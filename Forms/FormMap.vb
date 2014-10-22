@@ -1,3 +1,3 @@
-﻿Public Class FormMap
+﻿Public Class formMap
 
 End Class

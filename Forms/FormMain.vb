@@ -1,11 +1,11 @@
 ﻿'Make this the Main Menu form
-Public Class FormMain
+Public Class formMain
   Friend Shared GlobalSettings As New Settings()
 
   Private OptionsForm As New formOptions
 
   Friend Shared Sub Main(ByVal args() As String)
-    System.Windows.Forms.Application.Run(New FormMain())
+    System.Windows.Forms.Application.Run(New formMain())
   End Sub 'Sub Main
 
   Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load

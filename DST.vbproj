@@ -70,35 +70,35 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTypes\Global\Settings.vb" />
-    <Compile Include="Forms\FormGame.Designer.vb">
-      <DependentUpon>FormGame.vb</DependentUpon>
+    <Compile Include="DataTypes\Global\settings.vb" />
+    <Compile Include="Forms\formGame.Designer.vb">
+      <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormGame.vb">
+    <Compile Include="Forms\formGame.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormInventory.Designer.vb">
-      <DependentUpon>FormInventory.vb</DependentUpon>
+    <Compile Include="Forms\formInventory.Designer.vb">
+      <DependentUpon>formInventory.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormInventory.vb">
+    <Compile Include="Forms\formInventory.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMain.Designer.vb">
-      <DependentUpon>FormMain.vb</DependentUpon>
+    <Compile Include="Forms\formMain.Designer.vb">
+      <DependentUpon>formMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormMain.vb">
+    <Compile Include="Forms\formMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormMap.Designer.vb">
-      <DependentUpon>FormMap.vb</DependentUpon>
+    <Compile Include="Forms\formMap.Designer.vb">
+      <DependentUpon>formMap.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormMap.vb">
+    <Compile Include="Forms\formMap.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormOptions.Designer.vb">
-      <DependentUpon>FormOptions.vb</DependentUpon>
+    <Compile Include="Forms\formOptions.Designer.vb">
+      <DependentUpon>formOptions.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormOptions.vb">
+    <Compile Include="Forms\formOptions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\formStatus.Designer.vb">
@@ -149,11 +149,11 @@
     <Folder Include="DataTypes\Storage\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\FormMain.resx">
-      <DependentUpon>FormMain.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\formMain.resx">
+      <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormOptions.resx">
-      <DependentUpon>FormOptions.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\formOptions.resx">
+      <DependentUpon>formOptions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formStatus.resx">
       <DependentUpon>formStatus.vb</DependentUpon>

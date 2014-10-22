@@ -1,3 +1,3 @@
-﻿Public Class FormInventory
+﻿Public Class formInventory
 
 End Class

@@ -1,4 +1,4 @@
-﻿Public Class FormOptions
+﻿Public Class formOptions
 
   Private Sub buttonCancel_Click(sender As Object, e As EventArgs) Handles buttonCancel.Click
     'Dispose this form

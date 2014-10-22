@@ -1,3 +1,3 @@
-﻿Public Class FormGame
+﻿Public Class formGame
 
 End Class
