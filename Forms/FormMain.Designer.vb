@@ -26,6 +26,7 @@ Partial Class formMain
     Me.buttonResumeGame = New System.Windows.Forms.Button()
     Me.buttonOptions = New System.Windows.Forms.Button()
     Me.buttonQuit = New System.Windows.Forms.Button()
+    Me.buttonLoad = New System.Windows.Forms.Button()
     Me.SuspendLayout()
     '
     'buttonNewGame
@@ -48,35 +49,45 @@ Partial Class formMain
     '
     'buttonOptions
     '
-    Me.buttonOptions.Location = New System.Drawing.Point(12, 70)
+    Me.buttonOptions.Location = New System.Drawing.Point(12, 99)
     Me.buttonOptions.Name = "buttonOptions"
     Me.buttonOptions.Size = New System.Drawing.Size(157, 23)
     Me.buttonOptions.TabIndex = 0
-    Me.buttonOptions.Text = "Options"
+    Me.buttonOptions.Text = "Options..."
     Me.buttonOptions.UseVisualStyleBackColor = True
     '
     'buttonQuit
     '
-    Me.buttonQuit.Location = New System.Drawing.Point(12, 99)
+    Me.buttonQuit.Location = New System.Drawing.Point(12, 128)
     Me.buttonQuit.Name = "buttonQuit"
     Me.buttonQuit.Size = New System.Drawing.Size(157, 23)
     Me.buttonQuit.TabIndex = 0
     Me.buttonQuit.Text = "Quit"
     Me.buttonQuit.UseVisualStyleBackColor = True
     '
-    'FormMain
+    'buttonLoad
+    '
+    Me.buttonLoad.Location = New System.Drawing.Point(11, 70)
+    Me.buttonLoad.Name = "buttonLoad"
+    Me.buttonLoad.Size = New System.Drawing.Size(157, 23)
+    Me.buttonLoad.TabIndex = 0
+    Me.buttonLoad.Text = "Load Game..."
+    Me.buttonLoad.UseVisualStyleBackColor = True
+    '
+    'formMain
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(180, 135)
+    Me.ClientSize = New System.Drawing.Size(180, 164)
     Me.Controls.Add(Me.buttonQuit)
     Me.Controls.Add(Me.buttonOptions)
+    Me.Controls.Add(Me.buttonLoad)
     Me.Controls.Add(Me.buttonResumeGame)
     Me.Controls.Add(Me.buttonNewGame)
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
     Me.MaximizeBox = False
     Me.MinimizeBox = False
-    Me.Name = "FormMain"
+    Me.Name = "formMain"
     Me.Text = "Main Menu"
     Me.ResumeLayout(False)
 
@@ -85,4 +96,5 @@ Partial Class formMain
   Friend WithEvents buttonResumeGame As System.Windows.Forms.Button
   Friend WithEvents buttonOptions As System.Windows.Forms.Button
   Friend WithEvents buttonQuit As System.Windows.Forms.Button
+  Friend WithEvents buttonLoad As System.Windows.Forms.Button
 End Class

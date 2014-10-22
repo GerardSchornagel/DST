@@ -3,6 +3,7 @@ Public Class formMain
   Friend Shared GlobalSettings As New Settings()
 
   Private OptionsForm As New formOptions
+  Private StatusForm As New formStatus
 
   Friend Shared Sub Main(ByVal args() As String)
     System.Windows.Forms.Application.Run(New formMain())
@@ -14,16 +15,38 @@ Public Class formMain
 
   Private Sub buttonNewGame_Click(sender As Object, e As EventArgs) Handles buttonNewGame.Click
     'Look for nearest free number in save directory
-    'Call all Player\DataTypes for creating new user
+    Dim intCheck As Integer = 0
+    Do
+      If System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intCheck) = False Then
+        Exit Do
+      End If
+      intCheck += 1
+    Loop
+    '***Call all Player\DataTypes for creating new user
+
     'Replace ResumeGame Integer
-    'Call buttonResumeGame_Click(nothing,nothing)
+    GlobalSettings.LastUser = intCheck
+    'Load Game
+    buttonResumeGame_Click(Nothing, Nothing)
   End Sub
 
   Private Sub buttonResumeGame_Click(sender As Object, e As EventArgs) Handles buttonResumeGame.Click
-    'Get LastGame Integer from \AutoResume. file
-    'Pass LGint to FormPlayer.vb
-    'Open FormGame.vb
-    'set me to invisible
+    '***Pass LastUser to FormPlayer.vb
+
+    'set me to minimized
+    Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+  End Sub
+
+  Private Sub buttonLoad_Click(sender As Object, e As EventArgs) Handles buttonLoad.Click
+    'add filedialog and change lastuser
+    Dim filedialogLoadGame As New System.Windows.Forms.OpenFileDialog()
+    filedialogLoadGame.FileName = "player.pd"
+    filedialogLoadGame.InitialDirectory = System.IO.Directory.GetCurrentDirectory & "\save"
+    filedialogLoadGame.Title = "Please select one of the numbered directory's"
+    filedialogLoadGame.ShowDialog()
+    GlobalSettings.LastUser = filedialogLoadGame.FileName.Substring(filedialogLoadGame.FileName.Length - 11, 1)
+    'Load Game
+    buttonResumeGame_Click(Nothing, Nothing)
   End Sub
 
   Private Sub buttonOptions_Click(sender As Object, e As EventArgs) Handles buttonOptions.Click
