@@ -22,8 +22,7 @@ Public Class formMain
       End If
       intCheck += 1
     Loop
-    '***Call all Player\DataTypes for creating new user
-
+    System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intCheck)
     'Replace ResumeGame Integer
     GlobalSettings.LastUser = intCheck
     'Load Game
@@ -31,8 +30,6 @@ Public Class formMain
   End Sub
 
   Private Sub buttonResumeGame_Click(sender As Object, e As EventArgs) Handles buttonResumeGame.Click
-    '***Pass LastUser to FormPlayer.vb
-
     'set me to minimized
     Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
   End Sub

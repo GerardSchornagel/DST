@@ -71,6 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\Global\settings.vb" />
+    <Compile Include="DataTypes\Player\character.vb" />
+    <Compile Include="DataTypes\Player\inventory.vb" />
+    <Compile Include="DataTypes\Player\player.vb" />
+    <Compile Include="DataTypes\Player\statistics.vb" />
     <Compile Include="Forms\formGame.Designer.vb">
       <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
@@ -145,7 +149,6 @@
   <ItemGroup>
     <Folder Include="DataTypes\Item\" />
     <Folder Include="DataTypes\NPC\" />
-    <Folder Include="DataTypes\Player\" />
     <Folder Include="DataTypes\Storage\" />
   </ItemGroup>
   <ItemGroup>
