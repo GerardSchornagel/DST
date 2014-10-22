@@ -23,6 +23,8 @@
       bolMessagesNewgameOverwrite = CType(arraySettings(2), Boolean)
       bolMessagesOptionsApplyrestart = CType(arraySettings(3), Boolean)
 
+    Catch DnFException As IO.DirectoryNotFoundException 'If there is no directory create empty one from defaults.
+      SaveState()
     Catch FnFException As IO.FileNotFoundException 'If there is no file create empty one from defaults.
       SaveState()
     End Try
