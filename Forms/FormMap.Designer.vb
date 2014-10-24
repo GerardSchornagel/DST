@@ -1,29 +1,35 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formMap
-  Inherits System.Windows.Forms.Form
-
-  'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    Try
-      If disposing AndAlso components IsNot Nothing Then
-        components.Dispose()
-      End If
-    Finally
-      MyBase.Dispose(disposing)
-    End Try
-  End Sub
-
-  'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
-
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
-  Private Sub InitializeComponent()
-    components = New System.ComponentModel.Container
-    Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.Text = "FormMap"
-  End Sub
+﻿Partial Class formMap
+	Inherits System.Windows.Forms.Form
+	
+	''' <summary>
+	''' Designer variable used to keep track of non-visual components.
+	''' </summary>
+	Private components As System.ComponentModel.IContainer
+	
+	''' <summary>
+	''' Disposes resources used by the form.
+	''' </summary>
+	''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+	Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+		If disposing Then
+			If components IsNot Nothing Then
+				components.Dispose()
+			End If
+		End If
+		MyBase.Dispose(disposing)
+	End Sub
+	
+	''' <summary>
+	''' This method is required for Windows Forms designer support.
+	''' Do not change the method contents inside the source code editor. The Forms designer might
+	''' not be able to load this method if it was changed manually.
+	''' </summary>
+	Private Sub InitializeComponent()
+		'
+		'formMap
+		'
+		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.Name = "formMap"
+		Me.Text = "formMap"
+	End Sub
 End Class

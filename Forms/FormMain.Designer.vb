@@ -1,100 +1,108 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formMain
-  Inherits System.Windows.Forms.Form
-
-  'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()> _
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    Try
-      If disposing AndAlso components IsNot Nothing Then
-        components.Dispose()
-      End If
-    Finally
-      MyBase.Dispose(disposing)
-    End Try
-  End Sub
-
-  'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
-
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> _
-  Private Sub InitializeComponent()
-    Me.buttonNewGame = New System.Windows.Forms.Button()
-    Me.buttonResumeGame = New System.Windows.Forms.Button()
-    Me.buttonOptions = New System.Windows.Forms.Button()
-    Me.buttonQuit = New System.Windows.Forms.Button()
-    Me.buttonLoad = New System.Windows.Forms.Button()
-    Me.SuspendLayout()
-    '
-    'buttonNewGame
-    '
-    Me.buttonNewGame.Location = New System.Drawing.Point(12, 12)
-    Me.buttonNewGame.Name = "buttonNewGame"
-    Me.buttonNewGame.Size = New System.Drawing.Size(157, 23)
-    Me.buttonNewGame.TabIndex = 0
-    Me.buttonNewGame.Text = "New Game"
-    Me.buttonNewGame.UseVisualStyleBackColor = True
-    '
-    'buttonResumeGame
-    '
-    Me.buttonResumeGame.Location = New System.Drawing.Point(12, 41)
-    Me.buttonResumeGame.Name = "buttonResumeGame"
-    Me.buttonResumeGame.Size = New System.Drawing.Size(157, 23)
-    Me.buttonResumeGame.TabIndex = 0
-    Me.buttonResumeGame.Text = "Load Last Game"
-    Me.buttonResumeGame.UseVisualStyleBackColor = True
-    '
-    'buttonOptions
-    '
-    Me.buttonOptions.Location = New System.Drawing.Point(12, 99)
-    Me.buttonOptions.Name = "buttonOptions"
-    Me.buttonOptions.Size = New System.Drawing.Size(157, 23)
-    Me.buttonOptions.TabIndex = 0
-    Me.buttonOptions.Text = "Options..."
-    Me.buttonOptions.UseVisualStyleBackColor = True
-    '
-    'buttonQuit
-    '
-    Me.buttonQuit.Location = New System.Drawing.Point(12, 128)
-    Me.buttonQuit.Name = "buttonQuit"
-    Me.buttonQuit.Size = New System.Drawing.Size(157, 23)
-    Me.buttonQuit.TabIndex = 0
-    Me.buttonQuit.Text = "Quit"
-    Me.buttonQuit.UseVisualStyleBackColor = True
-    '
-    'buttonLoad
-    '
-    Me.buttonLoad.Location = New System.Drawing.Point(11, 70)
-    Me.buttonLoad.Name = "buttonLoad"
-    Me.buttonLoad.Size = New System.Drawing.Size(157, 23)
-    Me.buttonLoad.TabIndex = 0
-    Me.buttonLoad.Text = "Load Game..."
-    Me.buttonLoad.UseVisualStyleBackColor = True
-    '
-    'formMain
-    '
-    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-    Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(180, 164)
-    Me.Controls.Add(Me.buttonQuit)
-    Me.Controls.Add(Me.buttonOptions)
-    Me.Controls.Add(Me.buttonLoad)
-    Me.Controls.Add(Me.buttonResumeGame)
-    Me.Controls.Add(Me.buttonNewGame)
-    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-    Me.MaximizeBox = False
-    Me.MinimizeBox = False
-    Me.Name = "formMain"
-    Me.Text = "Main Menu"
-    Me.ResumeLayout(False)
-
-  End Sub
-  Friend WithEvents buttonNewGame As System.Windows.Forms.Button
-  Friend WithEvents buttonResumeGame As System.Windows.Forms.Button
-  Friend WithEvents buttonOptions As System.Windows.Forms.Button
-  Friend WithEvents buttonQuit As System.Windows.Forms.Button
-  Friend WithEvents buttonLoad As System.Windows.Forms.Button
+﻿Partial Class formMain
+	Inherits System.Windows.Forms.Form
+	
+	''' <summary>
+	''' Designer variable used to keep track of non-visual components.
+	''' </summary>
+	Private components As System.ComponentModel.IContainer
+	
+	''' <summary>
+	''' Disposes resources used by the form.
+	''' </summary>
+	''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+	Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+		If disposing Then
+			If components IsNot Nothing Then
+				components.Dispose()
+			End If
+		End If
+		MyBase.Dispose(disposing)
+	End Sub
+	
+	''' <summary>
+	''' This method is required for Windows Forms designer support.
+	''' Do not change the method contents inside the source code editor. The Forms designer might
+	''' not be able to load this method if it was changed manually.
+	''' </summary>
+	Private Sub InitializeComponent()
+		Me.buttonNewGame = New System.Windows.Forms.Button()
+		Me.buttonResumeGame = New System.Windows.Forms.Button()
+		Me.buttonOptions = New System.Windows.Forms.Button()
+		Me.buttonQuit = New System.Windows.Forms.Button()
+		Me.buttonLoad = New System.Windows.Forms.Button()
+		Me.SuspendLayout
+		'
+		'buttonNewGame
+		'
+		Me.buttonNewGame.Location = New System.Drawing.Point(12, 12)
+		Me.buttonNewGame.Name = "buttonNewGame"
+		Me.buttonNewGame.Size = New System.Drawing.Size(157, 23)
+		Me.buttonNewGame.TabIndex = 0
+		Me.buttonNewGame.Text = "New Game"
+		Me.buttonNewGame.UseVisualStyleBackColor = true
+		AddHandler Me.buttonNewGame.Click, AddressOf Me.ButtonNewGameClick
+		'
+		'buttonResumeGame
+		'
+		Me.buttonResumeGame.Location = New System.Drawing.Point(12, 41)
+		Me.buttonResumeGame.Name = "buttonResumeGame"
+		Me.buttonResumeGame.Size = New System.Drawing.Size(157, 23)
+		Me.buttonResumeGame.TabIndex = 0
+		Me.buttonResumeGame.Text = "Load Last Game"
+		Me.buttonResumeGame.UseVisualStyleBackColor = true
+		AddHandler Me.buttonResumeGame.Click, AddressOf Me.ButtonResumeGameClick
+		'
+		'buttonOptions
+		'
+		Me.buttonOptions.Location = New System.Drawing.Point(12, 99)
+		Me.buttonOptions.Name = "buttonOptions"
+		Me.buttonOptions.Size = New System.Drawing.Size(157, 23)
+		Me.buttonOptions.TabIndex = 0
+		Me.buttonOptions.Text = "Options..."
+		Me.buttonOptions.UseVisualStyleBackColor = true
+		AddHandler Me.buttonOptions.Click, AddressOf Me.ButtonOptionsClick
+		'
+		'buttonQuit
+		'
+		Me.buttonQuit.Location = New System.Drawing.Point(12, 128)
+		Me.buttonQuit.Name = "buttonQuit"
+		Me.buttonQuit.Size = New System.Drawing.Size(157, 23)
+		Me.buttonQuit.TabIndex = 0
+		Me.buttonQuit.Text = "Quit"
+		Me.buttonQuit.UseVisualStyleBackColor = true
+		AddHandler Me.buttonQuit.Click, AddressOf Me.ButtonQuitClick
+		'
+		'buttonLoad
+		'
+		Me.buttonLoad.Location = New System.Drawing.Point(11, 70)
+		Me.buttonLoad.Name = "buttonLoad"
+		Me.buttonLoad.Size = New System.Drawing.Size(157, 23)
+		Me.buttonLoad.TabIndex = 0
+		Me.buttonLoad.Text = "Load Game..."
+		Me.buttonLoad.UseVisualStyleBackColor = true
+		AddHandler Me.buttonLoad.Click, AddressOf Me.ButtonLoadClick
+		'
+		'formMain
+		'
+		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.ClientSize = New System.Drawing.Size(182, 161)
+		Me.Controls.Add(Me.buttonNewGame)
+		Me.Controls.Add(Me.buttonResumeGame)
+		Me.Controls.Add(Me.buttonLoad)
+		Me.Controls.Add(Me.buttonOptions)
+		Me.Controls.Add(Me.buttonQuit)
+		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+		Me.MaximizeBox = false
+		Me.MinimizeBox = false
+		Me.Name = "formMain"
+		Me.Text = "Main Menu"
+		AddHandler Load, AddressOf Me.formMainLoad
+		Me.ResumeLayout(false)
+	End Sub
+	Private buttonNewGame As System.Windows.Forms.Button
+	Private buttonResumeGame As System.Windows.Forms.Button
+	Private buttonLoad As System.Windows.Forms.Button
+	Private buttonOptions As System.Windows.Forms.Button
+	Private buttonQuit As System.Windows.Forms.Button
 End Class
