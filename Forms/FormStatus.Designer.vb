@@ -105,6 +105,7 @@
 		Me.buttonSave.TabIndex = 5
 		Me.buttonSave.Text = "Save"
 		Me.buttonSave.UseVisualStyleBackColor = true
+		AddHandler Me.buttonSave.Click, AddressOf Me.ButtonSaveClick
 		'
 		'groupboxDates
 		'
@@ -668,6 +669,7 @@
 		Me.MinimizeBox = false
 		Me.Name = "formStatus"
 		Me.Text = "Status"
+		AddHandler Load, AddressOf Me.FormStatusLoad
 		Me.groupboxDates.ResumeLayout(false)
 		Me.groupboxDates.PerformLayout
 		Me.groupboxFinances.ResumeLayout(false)

@@ -31,4 +31,3 @@ Imports System.Runtime.InteropServices
 ' numbers with the '*' character (the default):
 
 <assembly: AssemblyVersion("1.0.*")>
-<Assembly: NeutralResourcesLanguageAttribute("en")> 

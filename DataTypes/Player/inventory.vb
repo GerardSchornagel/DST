@@ -9,7 +9,7 @@
 		intID = PlayerID
 		'See if a new file has to be created with defaults
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\inventory.pd") = False Then SaveState()
-
+		strBinaryFileData = ""
 		'Get all info from File
 		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\inventory.pd", System.IO.FileMode.Open))
 			Do
@@ -19,9 +19,10 @@
 		'Split info into string-array
 		Dim rawInventory() As String = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
 		'Each entry in arrayInventory has 4 sub-dimensions, so the rawInventory(single dimension) is divided by 4 to count for the UpperBound of arrayInventory
-		ReDim arrayInventory(CType((((rawInventory.GetUpperBound(0)) / 4) + 1),Integer), 4)
+		ReDim arrayInventory(CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),Integer), 3)
 
-		'Split Raw data into Inventory
+'Split Raw data into Inventory
+Dim temp As Integer = rawInventory.GetUpperBound(0)
 		Dim intDimensionArray As Integer = -1 'Negative for upcoming Loop
 		Dim intDimensionRaw As Integer = -1 'Negative for upcoming Loop
 		Do
@@ -34,14 +35,14 @@
 			arrayInventory(intDimensionArray, 2) = rawInventory(intDimensionRaw) 'Last Buying Price
 			intDimensionRaw += 1
 			arrayInventory(intDimensionArray, 3) = rawInventory(intDimensionRaw) 'Selling Price
-		Loop Until intDimensionRaw = rawInventory.GetUpperBound(0)
+		Loop Until intDimensionArray = CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),integer) 
 	End Sub 'Sub New
 
 	Private Sub SaveState()
 		'Make Raw data String
 		'Check for empty arrayInventory for creating new one
-		If arrayInventory.GetLength(0) = 0 Then
-			ReDim arrayInventory(1, 4)
+		If arrayInventory Is Nothing Then
+			ReDim arrayInventory(0, 3)
 			arrayInventory(0, 0) = "Freebie Pen's"
 			arrayInventory(0, 1) = 25
 			arrayInventory(0, 2) = 1
@@ -51,16 +52,16 @@
 		strBinaryFileData = ""
 		Dim intDimensionFirst As Integer = -1 'Negative for upcoming Loop
 		Do
-			intDimensionFirst = +1
+			intDimensionFirst  +=1
 			Dim intDimensionSecond As Integer = -1 'Negative for upcoming Loop
 			Do
-				intDimensionSecond = +1
+				intDimensionSecond += 1
 				strBinaryFileData += "<>" & CType(arrayInventory(intDimensionFirst, intDimensionSecond),String)
 			Loop Until intDimensionSecond = arrayInventory.GetUpperBound(1)
 		Loop Until intDimensionFirst = arrayInventory.GetUpperBound(0)
 
 		'Remove the first empty entry "<>"
-		strBinaryFileData.Remove(0, 2)
+		strBinaryFileData=strBinaryFileData.Remove(0, 2)
 		'Fill Array for character per character progressing
 		Dim arrayInt32(strBinaryFileData.Length) As Int32
 		Dim intDimension As Integer = 0
