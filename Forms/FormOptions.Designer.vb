@@ -96,6 +96,7 @@
 		Me.MinimizeBox = false
 		Me.Name = "formOptions"
 		Me.Text = "Options"
+		AddHandler Load, AddressOf Me.FormOptionsLoad
 		Me.tabcontrolOptions.ResumeLayout(false)
 		Me.tabpageMessages.ResumeLayout(false)
 		Me.ResumeLayout(false)
