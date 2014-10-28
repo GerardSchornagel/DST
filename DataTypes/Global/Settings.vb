@@ -1,4 +1,7 @@
-﻿Public Class settings
+﻿	''' <summary>
+	''' Global Settings for the game, most will be handled from the Main Menu.
+	''' </summary>
+Public Class settings
 	Private intLastUser As Integer = 99 'If not overriden this is Create New
 
 	Private bolMessagesProgramQuit As Boolean = False 'Asks if Exiting the Program is true
@@ -6,33 +9,28 @@
 	Private bolMessagesOptionsApplyrestart As Boolean = False 'Inform about restart of Game
 
 	Private strBinaryFileData As String = "" 'Used as temponary string-storage
-	
 	Sub New()
+		'Check for existing settings.prd
+		if System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd") = False Then SaveState()
 		'Get all info from File
-		Try
-			Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd", System.IO.FileMode.Open))
-				Do
-					strBinaryFileData += (Chr(binReader.ReadInt32))
-				Loop Until binReader.PeekChar = Nothing
-			End Using
-			'Split raw data in String-Array
-			Dim arraySettings As String() = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
-			'Write Private's
-			intLastUser = CType(arraySettings(0), Integer)
-			bolMessagesProgramQuit = CType(arraySettings(1), Boolean)
-			bolMessagesNewgameOverwrite = CType(arraySettings(2), Boolean)
-			bolMessagesOptionsApplyrestart = CType(arraySettings(3), Boolean)
-
-		Catch DnFException As IO.DirectoryNotFoundException 'If there is no directory create empty one from defaults.
-			SaveState()
-		Catch FnFException As IO.FileNotFoundException 'If there is no file create empty one from defaults.
-			SaveState()
-		End Try
+		strBinaryFileData = ""
+		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd", System.IO.FileMode.Open))
+			Do
+				strBinaryFileData += (Chr(binReader.ReadInt32))
+			Loop Until binReader.PeekChar = Nothing
+		End Using
+		'Split raw data in String-Array
+		Dim arraySettings As String() = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
+		'Write Private's
+		intLastUser = CType(arraySettings(0), Integer)
+		bolMessagesProgramQuit = CType(arraySettings(1), Boolean)
+		bolMessagesNewgameOverwrite = CType(arraySettings(2), Boolean)
+		bolMessagesOptionsApplyrestart = CType(arraySettings(3), Boolean)
 	End Sub 'Sub New
 	
 	Private Sub SaveState()
 		'Make Raw data String
-		strBinaryFileData = CType(intLastUser,String)
+		strBinaryFileData = CType(intLastUser, String)
 		strBinaryFileData += "<>" & bolMessagesProgramQuit
 		strBinaryFileData += "<>" & bolMessagesNewgameOverwrite
 		strBinaryFileData += "<>" & bolMessagesOptionsApplyrestart
@@ -54,7 +52,10 @@
 		End Using
 	End Sub 'Sub SaveState
 
-		'--------PROPERTY'S---------
+'--------PROPERTY'S---------
+''' <summary>
+''' An Integer representing the last player that has played, it is corresponding with the number in the save directory.
+''' </summary>
 	Public Property LastUser As Integer
 		Get
 			Return intLastUser
@@ -64,7 +65,9 @@
 			SaveState()
 		End Set
 	End Property 'Property LastUser
-
+''' <summary>
+''' The warning message when quitting the program.
+''' </summary>
 	Public Property MessagesProgramQuit As Boolean
 		Get
 			Return bolMessagesProgramQuit
@@ -74,7 +77,9 @@
 			SaveState()
 		End Set
 	End Property 'Property MessagesProgramQuit
-
+''' <summary>
+''' Warning message that the last player ID will be overwritten, in Alpha stage this means you lose your prev. game.
+''' </summary>
 	Public Property MessagesNewgameOverwrite As Boolean
 		Get
 			Return bolMessagesNewgameOverwrite
@@ -84,7 +89,9 @@
 			SaveState()
 		End Set
 	End Property 'Property MessagesNewgameOverwrite
-
+''' <summary>
+''' Message if there are options are choosen via the main menu, the program has to be restarted.
+''' </summary>
 	Public Property MessagesOptionsApplyrestart As Boolean
 		Get
 			Return bolMessagesOptionsApplyrestart
@@ -94,5 +101,4 @@
 			SaveState()
 		End Set
 	End Property 'Property MessagesOptionsApplyrestart
-	
 End Class
