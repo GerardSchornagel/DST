@@ -37,7 +37,7 @@
 
 	Private Sub SaveState()
 		'Make Raw data String
-		strBinaryFileData = CType(intGlobalSaved,String)
+		strBinaryFileData = CType(intGlobalSaved, String)
 		strBinaryFileData += "<>" & intGlobalHours
 		strBinaryFileData += "<>" & intGlobalCycles
 		strBinaryFileData += "<>" & strDatesCreateDate

@@ -41,7 +41,7 @@ Dim temp As Integer = rawInventory.GetUpperBound(0)
 	Private Sub SaveState()
 		'Make Raw data String
 		'Check for empty arrayInventory for creating new one
-		If arrayInventory Is Nothing Then
+		If arrayInventory Is Nothing = True Then
 			ReDim arrayInventory(0, 3)
 			arrayInventory(0, 0) = "Freebie Pen's"
 			arrayInventory(0, 1) = 25
@@ -56,7 +56,7 @@ Dim temp As Integer = rawInventory.GetUpperBound(0)
 			Dim intDimensionSecond As Integer = -1 'Negative for upcoming Loop
 			Do
 				intDimensionSecond += 1
-				strBinaryFileData += "<>" & CType(arrayInventory(intDimensionFirst, intDimensionSecond),String)
+				strBinaryFileData += "<>" & CType(arrayInventory(intDimensionFirst, intDimensionSecond), String)
 			Loop Until intDimensionSecond = arrayInventory.GetUpperBound(1)
 		Loop Until intDimensionFirst = arrayInventory.GetUpperBound(0)
 
@@ -79,16 +79,16 @@ Dim temp As Integer = rawInventory.GetUpperBound(0)
 
 	Public Property GetInventorySpace(Dimension As Integer) As object
 		Get
-			Dim ReturnValue(4) As String
-			Try
-				ReturnValue(0) = CType(arrayInventory(Dimension, 0),String)
-				ReturnValue(1) = CType(arrayInventory(Dimension, 1),String)
-				ReturnValue(2) = CType(arrayInventory(Dimension, 2),String)
-				ReturnValue(3) = CType(arrayInventory(Dimension, 3),String)
-				Return ReturnValue
-			Catch ex As Exception
+			If Dimension > arrayInventory.GetUpperBound(0) Then
 				Return Nothing
-			End Try
+				Exit Property
+			End If
+			Dim ReturnValue(3) As String
+			ReturnValue(0) = CType(arrayInventory(Dimension, 0), String)
+			ReturnValue(1) = CType(arrayInventory(Dimension, 1), String)
+			ReturnValue(2) = CType(arrayInventory(Dimension, 2), String)
+			ReturnValue(3) = CType(arrayInventory(Dimension, 3), String)
+			Return ReturnValue
 		End Get
 		Set(value As Object)
 			If value is nothing Then value = New string() {"0","0","0","0"}

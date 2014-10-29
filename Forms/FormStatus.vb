@@ -4,45 +4,45 @@
 	Friend Shared classInventory As New inventory(formMain.GlobalSettings.LastUser)
 	Friend Shared classStatistics As New statistics(formMain.GlobalSettings.LastUser)
 	
+	Private arrayInventorySelected As Object
+	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
-		
-		'
-		' TODO : Add constructor code after InitializeComponents
-		'
 	End Sub
 	
 	Sub FormStatusLoad(sender As Object, e As EventArgs)
-		textboxBalance.Text = CType(classCharacter.Balance,String)
+		textboxBalance.Text = CType(classCharacter.Balance, String)
 		'Player Tab
-		textboxPlayerID.Text = CType(classPlayer.PlayerID,String)
+		textboxPlayerID.Text = CType(classPlayer.PlayerID, String)
 		textboxNameNick.Text = classPlayer.NickName
 		textboxNameFirst.Text = classPlayer.FirstName
 		textboxNameLast.Text = classPlayer.LastName
-		textboxBirthYear.Text = CType(classPlayer.BirthYear,String)
-		textboxBirthMonth.Text = CType(classPlayer.BirthMonth,String)
-		textboxBirthDay.Text = CType(classPlayer.BirthDay,String)
-		textboxGender.Text = CType(classPlayer.Gender,String)
+		textboxBirthYear.Text = CType(classPlayer.BirthYear, String)
+		textboxBirthMonth.Text = CType(classPlayer.BirthMonth, String)
+		textboxBirthDay.Text = CType(classPlayer.BirthDay, String)
+		textboxGender.Text = CType(classPlayer.Gender, String)
 		'Character Tab
-		textboxBalance.Text = CType(classCharacter.Balance,String)
-		textboxGradeInventory.Text = CType(classCharacter.GradeInventory,String)
-		textboxGradeShelf.Text = CType(classCharacter.GradeShelf,String)
-		textboxGradePopularity.Text = CType(classCharacter.GradePopularity,String)
+		textboxBalance.Text = CType(classCharacter.Balance, String)
+		textboxGradeInventory.Text = CType(classCharacter.GradeInventory, String)
+		textboxGradeShelf.Text = CType(classCharacter.GradeShelf, String)
+		textboxGradePopularity.Text = CType(classCharacter.GradePopularity, String)
 		'Statistics Tab
 		textboxCreatedDate.Text = classStatistics.CreationDate
 		textboxCreatedTime.Text = classStatistics.CreationTime
-		textboxPlayHours.Text = CType(classStatistics.TotalHoursPlayed,String)
-		textboxPlaycycles.Text = CType(classStatistics.TotalDayCycles,String)
-		textboxPlaySaved.Text = CType(classStatistics.TotalSaveTimes,String)
-		textboxMoneyEarned.Text = CType(classStatistics.TotalEarnings,String)
-		textboxMoneySpent.Text = CType(classStatistics.TotalSpent,String)
-		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold,String)
+		textboxPlayHours.Text = CType(classStatistics.TotalHoursPlayed, String)
+		textboxPlaycycles.Text = CType(classStatistics.TotalDayCycles, String)
+		textboxPlaySaved.Text = CType(classStatistics.TotalSaveTimes, String)
+		textboxMoneyEarned.Text = CType(classStatistics.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(classStatistics.TotalSpent, String)
+		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)
 		'Inventory Tab
 		Dim intInventoryMax As Integer = classCharacter.GradeInventory + 4 'Adding 4 Standard Inventory slots
 		Dim intDimension As Integer = 0
 		Do
-			If classInventory.GetInventorySpace(intInventoryMax) is Nothing Then Exit Do
+			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
+				Exit Do
+			End If
 			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
 			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
 			intInventoryMax -= 1
@@ -62,25 +62,33 @@
 		classPlayer.BirthDay = CType(textboxBirthDay.Text,Integer)
 		classPlayer.Gender = CType(textboxGender.Text,Integer)
 		'Character Tab
-		'*** CONTINUE ***
-		'switch following command for save.
-		'After this add buttonExit.
-		'After that add ghost buttonExport.
-		'Then make selection of listboxSelection working with textboxes
-		'And ofcourse add & commit with GitBash (VS sucks....)
-		'*** END CONTINUE ***
-		textboxBalance.Text = ctype(classCharacter.Balance,string)
-		textboxGradeInventory.Text = ctype(classCharacter.GradeInventory,string)
-		textboxGradeShelf.Text = ctype(classCharacter.GradeShelf,string)
-		textboxGradePopularity.Text = ctype(classCharacter.GradePopularity,string)
+		classCharacter.Balance = CType(textboxBalance.Text, Integer)
+		classCharacter.GradeInventory = CType(textboxGradeInventory.Text, Integer)
+		classCharacter.GradeShelf = CType(textboxGradeShelf.Text, Integer)
+		classCharacter.GradePopularity = CType(textboxGradePopularity.Text, Integer)
 		'Statistics Tab
-		textboxCreatedDate.Text = classStatistics.CreationDate
-		textboxCreatedTime.Text = classStatistics.CreationTime
-		textboxPlayHours.Text = ctype(classStatistics.TotalHoursPlayed,String)
-		textboxPlaycycles.Text = ctype(classStatistics.TotalDayCycles,String)
-		textboxPlaySaved.Text = ctype(classStatistics.TotalSaveTimes,String)
-		textboxMoneyEarned.Text = ctype(classStatistics.TotalEarnings,String)
-		textboxMoneySpent.Text = ctype(classStatistics.TotalSpent,String)
-		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold,String)
+		classStatistics.CreationDate = textboxCreatedDate.Text
+		classStatistics.CreationTime = textboxCreatedTime.Text
+		classStatistics.TotalHoursPlayed = CType(textboxPlayHours.Text, Integer)
+		classStatistics.TotalDayCycles = CType(textboxPlaycycles.Text, Integer)
+		classStatistics.TotalSaveTimes = CType(textboxPlaySaved.Text, Integer)
+		classStatistics.TotalEarnings = CType(textboxMoneyEarned.Text, Integer)
+		classStatistics.TotalSpent = CType(textboxMoneySpent.Text, Integer)
+		classStatistics.TotalItemsSold = CType(textboxItemsSold.Text, Integer)
+	End Sub
+	
+	Sub ButtonExitClick(sender As Object, e As EventArgs)
+		'Add code for closing formGame, formMap, formInventory, formStore & Me(formStatus)
+	End Sub
+	
+	Sub ButtonExportClick(sender As Object, e As EventArgs)
+		'This will send the article and amount to the qeue, so next cycle the goods arrive.
+	End Sub
+	
+	Sub ListboxInventorySelectedIndexChanged(sender As Object, e As EventArgs)
+		arrayInventorySelected = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
+		textboxAmount.Text = CType(arrayInventorySelected(1), String)
+		textboxLastBuying.Text = CType(arrayInventorySelected(2), String)
+		textboxLastSelling.Text = CType(arrayInventorySelected(3), String)
 	End Sub
 End Class

@@ -15,7 +15,7 @@
 		'See if a new file has to be created with defaults
 		If System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID) = False then System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\player.pd") = False Then SaveState()
-
+		strBinaryFileData = ""
 		'Get all info from File
 		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\player.pd", System.IO.FileMode.Open))
 			Do

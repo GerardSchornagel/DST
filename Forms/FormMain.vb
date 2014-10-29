@@ -1,8 +1,6 @@
 ﻿Public Partial Class formMain
 	Friend Shared GlobalSettings As New Settings()
 	
-	Private OptionsForm As New formOptions
-	Private StatusForm As New formStatus
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
@@ -36,6 +34,8 @@
 	Sub ButtonResumeGameClick(sender As Object, e As EventArgs)
 		'set me to minimized
 		Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+		Dim StatusForm As New formStatus
+		StatusForm.Show()
 	End Sub
 	
 	Sub ButtonLoadClick(sender As Object, e As EventArgs)
@@ -51,7 +51,7 @@
 	End Sub
 	
 	Sub ButtonOptionsClick(sender As Object, e As EventArgs)
-		OptionsForm = New formOptions
+		Dim OptionsForm as New formOptions
 		OptionsForm.Show()
 	End Sub
 	

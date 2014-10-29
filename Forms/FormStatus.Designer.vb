@@ -384,6 +384,7 @@
 		Me.listboxInventory.Name = "listboxInventory"
 		Me.listboxInventory.Size = New System.Drawing.Size(425, 134)
 		Me.listboxInventory.TabIndex = 3
+		AddHandler Me.listboxInventory.SelectedIndexChanged, AddressOf Me.ListboxInventorySelectedIndexChanged
 		'
 		'buttonExport
 		'
@@ -393,6 +394,7 @@
 		Me.buttonExport.TabIndex = 2
 		Me.buttonExport.Text = "Export to Store"
 		Me.buttonExport.UseVisualStyleBackColor = true
+		AddHandler Me.buttonExport.Click, AddressOf Me.ButtonExportClick
 		'
 		'buttonExit
 		'
@@ -402,6 +404,7 @@
 		Me.buttonExit.TabIndex = 6
 		Me.buttonExit.Text = "Exit"
 		Me.buttonExit.UseVisualStyleBackColor = true
+		AddHandler Me.buttonExit.Click, AddressOf Me.ButtonExitClick
 		'
 		'labelBalance
 		'

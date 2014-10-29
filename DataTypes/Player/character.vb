@@ -28,7 +28,7 @@
 
 	Private Sub SaveState()
 		'Make Raw data String
-		strBinaryFileData = CType(intBalance,String)
+		strBinaryFileData = CType(intBalance, String)
 		strBinaryFileData += "<>" & intGradeInventory
 		strBinaryFileData += "<>" & intGradeShelf
 		strBinaryFileData += "<>" & intGradePopularity
