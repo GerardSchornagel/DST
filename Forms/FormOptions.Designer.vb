@@ -28,8 +28,8 @@
 		Me.tabcontrolOptions = New System.Windows.Forms.TabControl()
 		Me.tabpageMessages = New System.Windows.Forms.TabPage()
 		Me.checkboxlistMessages = New System.Windows.Forms.CheckedListBox()
-		Me.buttonOK = New System.Windows.Forms.Button()
-		Me.buttonCancel = New System.Windows.Forms.Button()
+		Me.buttonOK = New System.Windows.Forms.button()
+		Me.buttonCancel = New System.Windows.Forms.button()
 		Me.tabcontrolOptions.SuspendLayout
 		Me.tabpageMessages.SuspendLayout
 		Me.SuspendLayout
@@ -71,7 +71,7 @@
 		Me.buttonOK.TabIndex = 1
 		Me.buttonOK.Text = "Apply && Close"
 		Me.buttonOK.UseVisualStyleBackColor = true
-		AddHandler Me.buttonOK.Click, AddressOf Me.ButtonOKClick
+		AddHandler Me.buttonOK.Click, AddressOf Me.buttonOKClick
 		'
 		'buttonCancel
 		'
@@ -81,7 +81,7 @@
 		Me.buttonCancel.TabIndex = 1
 		Me.buttonCancel.Text = "Discard && Close"
 		Me.buttonCancel.UseVisualStyleBackColor = true
-		AddHandler Me.buttonCancel.Click, AddressOf Me.ButtonCancelClick
+		AddHandler Me.buttonCancel.Click, AddressOf Me.buttonCancelClick
 		'
 		'formOptions
 		'
@@ -105,6 +105,6 @@
 	Private tabcontrolOptions As System.Windows.Forms.TabControl
 	Private tabpageMessages As System.Windows.Forms.TabPage
 	Private checkboxlistMessages As System.Windows.Forms.CheckedListBox
-	Private buttonOK As System.Windows.Forms.Button
-	Private buttonCancel As System.Windows.Forms.Button
+	Private buttonOK As System.Windows.Forms.button
+	Private buttonCancel As System.Windows.Forms.button
 End Class

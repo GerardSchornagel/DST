@@ -30,25 +30,25 @@
 		Me.textboxQuality = New System.Windows.Forms.TextBox()
 		Me.textboxWorthMaximum = New System.Windows.Forms.TextBox()
 		Me.textboxWorthMinimum = New System.Windows.Forms.TextBox()
-		Me.buttonClose = New System.Windows.Forms.Button()
-		Me.buttonBuy = New System.Windows.Forms.Button()
-		Me.labelBuyAmount = New System.Windows.Forms.Label()
-		Me.labelWorthMaximum = New System.Windows.Forms.Label()
-		Me.labelBuyPrice = New System.Windows.Forms.Label()
-		Me.labelQuality = New System.Windows.Forms.Label()
-		Me.labelWorthMinimum = New System.Windows.Forms.Label()
+		Me.buttonClose = New System.Windows.Forms.button()
+		Me.buttonBuy = New System.Windows.Forms.button()
+		Me.labelBuyAmount = New System.Windows.Forms.label()
+		Me.labelWorthMaximum = New System.Windows.Forms.label()
+		Me.labelBuyPrice = New System.Windows.Forms.label()
+		Me.labelQuality = New System.Windows.Forms.label()
+		Me.labelWorthMinimum = New System.Windows.Forms.label()
 		Me.comboboxDepartment = New System.Windows.Forms.ComboBox()
 		Me.comboboxSubGenre = New System.Windows.Forms.ComboBox()
 		Me.comboboxName = New System.Windows.Forms.ComboBox()
 		Me.comboboxGenre = New System.Windows.Forms.ComboBox()
 		Me.combobocManufactor = New System.Windows.Forms.ComboBox()
 		Me.comboboxCategory = New System.Windows.Forms.ComboBox()
-		Me.labelCategory = New System.Windows.Forms.Label()
-		Me.labelDepartment = New System.Windows.Forms.Label()
-		Me.labelSubGenre = New System.Windows.Forms.Label()
-		Me.labelGenre = New System.Windows.Forms.Label()
-		Me.labelManufactor = New System.Windows.Forms.Label()
-		Me.labelName = New System.Windows.Forms.Label()
+		Me.labelCategory = New System.Windows.Forms.label()
+		Me.labelDepartment = New System.Windows.Forms.label()
+		Me.labelSubGenre = New System.Windows.Forms.label()
+		Me.labelGenre = New System.Windows.Forms.label()
+		Me.labelManufactor = New System.Windows.Forms.label()
+		Me.labelName = New System.Windows.Forms.label()
 		Me.SuspendLayout()
 		'
 		'textboxBuyAmount
@@ -301,23 +301,23 @@
 	Private textboxQuality As System.Windows.Forms.TextBox
 	Private textboxWorthMaximum As System.Windows.Forms.TextBox
 	Private textboxWorthMinimum As System.Windows.Forms.TextBox
-	Private buttonClose As System.Windows.Forms.Button
-	Private buttonBuy As System.Windows.Forms.Button
-	Private labelBuyAmount As System.Windows.Forms.Label
-	Private labelWorthMaximum As System.Windows.Forms.Label
-	Private labelBuyPrice As System.Windows.Forms.Label
-	Private labelQuality As System.Windows.Forms.Label
-	Private labelWorthMinimum As System.Windows.Forms.Label
+	Private buttonClose As System.Windows.Forms.button
+	Private buttonBuy As System.Windows.Forms.button
+	Private labelBuyAmount As System.Windows.Forms.label
+	Private labelWorthMaximum As System.Windows.Forms.label
+	Private labelBuyPrice As System.Windows.Forms.label
+	Private labelQuality As System.Windows.Forms.label
+	Private labelWorthMinimum As System.Windows.Forms.label
 	Private comboboxDepartment As System.Windows.Forms.ComboBox
 	Private comboboxSubGenre As System.Windows.Forms.ComboBox
 	Private comboboxName As System.Windows.Forms.ComboBox
 	Private comboboxGenre As System.Windows.Forms.ComboBox
 	Private combobocManufactor As System.Windows.Forms.ComboBox
 	Private comboboxCategory As System.Windows.Forms.ComboBox
-	Private labelCategory As System.Windows.Forms.Label
-	Private labelDepartment As System.Windows.Forms.Label
-	Private labelSubGenre As System.Windows.Forms.Label
-	Private labelGenre As System.Windows.Forms.Label
-	Private labelManufactor As System.Windows.Forms.Label
-	Private labelName As System.Windows.Forms.Label
+	Private labelCategory As System.Windows.Forms.label
+	Private labelDepartment As System.Windows.Forms.label
+	Private labelSubGenre As System.Windows.Forms.label
+	Private labelGenre As System.Windows.Forms.label
+	Private labelManufactor As System.Windows.Forms.label
+	Private labelName As System.Windows.Forms.label
 End Class

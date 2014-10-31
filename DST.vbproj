@@ -110,6 +110,9 @@
     <Folder Include="DataTypes" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\formGame.resx">
+      <DependentUpon>formGame.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>

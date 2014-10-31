@@ -25,64 +25,64 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.buttonSave = New System.Windows.Forms.Button()
+		Me.buttonSave = New System.Windows.Forms.button()
 		Me.groupboxDates = New System.Windows.Forms.GroupBox()
-		Me.labelPlaySaved = New System.Windows.Forms.Label()
+		Me.labelPlaySaved = New System.Windows.Forms.label()
 		Me.textboxPlaySaved = New System.Windows.Forms.TextBox()
-		Me.labelCreatedTime = New System.Windows.Forms.Label()
-		Me.labelPlayHours = New System.Windows.Forms.Label()
+		Me.labelCreatedTime = New System.Windows.Forms.label()
+		Me.labelPlayHours = New System.Windows.Forms.label()
 		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
 		Me.textboxPlayHours = New System.Windows.Forms.TextBox()
-		Me.labelCreatedDate = New System.Windows.Forms.Label()
+		Me.labelCreatedDate = New System.Windows.Forms.label()
 		Me.textboxCreatedDate = New System.Windows.Forms.TextBox()
-		Me.labelPlaycycles = New System.Windows.Forms.Label()
+		Me.labelPlaycycles = New System.Windows.Forms.label()
 		Me.textboxPlaycycles = New System.Windows.Forms.TextBox()
 		Me.groupboxFinances = New System.Windows.Forms.GroupBox()
-		Me.labelItemsSold = New System.Windows.Forms.Label()
-		Me.labelMoneyEarned = New System.Windows.Forms.Label()
+		Me.labelItemsSold = New System.Windows.Forms.label()
+		Me.labelMoneyEarned = New System.Windows.Forms.label()
 		Me.textboxItemsSold = New System.Windows.Forms.TextBox()
 		Me.textboxMoneyEarned = New System.Windows.Forms.TextBox()
 		Me.textboxMoneySpent = New System.Windows.Forms.TextBox()
-		Me.labelMoneySpent = New System.Windows.Forms.Label()
+		Me.labelMoneySpent = New System.Windows.Forms.label()
 		Me.tabpageStatistics = New System.Windows.Forms.TabPage()
 		Me.tabpageInventory = New System.Windows.Forms.TabPage()
 		Me.groupboxDetails = New System.Windows.Forms.GroupBox()
-		Me.labelAmount = New System.Windows.Forms.Label()
+		Me.labelAmount = New System.Windows.Forms.label()
 		Me.textboxLastBuying = New System.Windows.Forms.TextBox()
 		Me.textboxLastSelling = New System.Windows.Forms.TextBox()
-		Me.labelLastBuying = New System.Windows.Forms.Label()
-		Me.labelLastSelling = New System.Windows.Forms.Label()
+		Me.labelLastBuying = New System.Windows.Forms.label()
+		Me.labelLastSelling = New System.Windows.Forms.label()
 		Me.textboxAmount = New System.Windows.Forms.TextBox()
 		Me.groupboxSelection = New System.Windows.Forms.GroupBox()
 		Me.listboxInventory = New System.Windows.Forms.ListBox()
-		Me.buttonExport = New System.Windows.Forms.Button()
-		Me.buttonExit = New System.Windows.Forms.Button()
-		Me.labelBalance = New System.Windows.Forms.Label()
+		Me.buttonExport = New System.Windows.Forms.button()
+		Me.buttonExit = New System.Windows.Forms.button()
+		Me.labelBalance = New System.Windows.Forms.label()
 		Me.textboxBalance = New System.Windows.Forms.TextBox()
 		Me.tabcontrolStatus = New System.Windows.Forms.TabControl()
 		Me.tabpagePlayer = New System.Windows.Forms.TabPage()
 		Me.groupboxProfile = New System.Windows.Forms.GroupBox()
-		Me.labelPlayerID = New System.Windows.Forms.Label()
+		Me.labelPlayerID = New System.Windows.Forms.label()
 		Me.textboxPlayerID = New System.Windows.Forms.TextBox()
-		Me.labelGender = New System.Windows.Forms.Label()
+		Me.labelGender = New System.Windows.Forms.label()
 		Me.textboxBirthYear = New System.Windows.Forms.TextBox()
-		Me.labelNameLast = New System.Windows.Forms.Label()
-		Me.labelBirthDate = New System.Windows.Forms.Label()
+		Me.labelNameLast = New System.Windows.Forms.label()
+		Me.labelBirthDate = New System.Windows.Forms.label()
 		Me.textboxNameFirst = New System.Windows.Forms.TextBox()
-		Me.labelNameNick = New System.Windows.Forms.Label()
+		Me.labelNameNick = New System.Windows.Forms.label()
 		Me.textboxBirthDay = New System.Windows.Forms.TextBox()
 		Me.textboxGender = New System.Windows.Forms.TextBox()
-		Me.labelNameFirst = New System.Windows.Forms.Label()
+		Me.labelNameFirst = New System.Windows.Forms.label()
 		Me.textboxNameLast = New System.Windows.Forms.TextBox()
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
 		Me.textboxNameNick = New System.Windows.Forms.TextBox()
 		Me.tabpageCharacter = New System.Windows.Forms.TabPage()
 		Me.groupboxGrades = New System.Windows.Forms.GroupBox()
-		Me.labelGradeInventory = New System.Windows.Forms.Label()
+		Me.labelGradeInventory = New System.Windows.Forms.label()
 		Me.textboxGradeInventory = New System.Windows.Forms.TextBox()
 		Me.textboxGradeShelf = New System.Windows.Forms.TextBox()
-		Me.labelGradePopularity = New System.Windows.Forms.Label()
-		Me.labelGradeShelf = New System.Windows.Forms.Label()
+		Me.labelGradePopularity = New System.Windows.Forms.label()
+		Me.labelGradeShelf = New System.Windows.Forms.label()
 		Me.textboxGradePopularity = New System.Windows.Forms.TextBox()
 		Me.groupboxDates.SuspendLayout
 		Me.groupboxFinances.SuspendLayout
@@ -105,7 +105,7 @@
 		Me.buttonSave.TabIndex = 5
 		Me.buttonSave.Text = "Save"
 		Me.buttonSave.UseVisualStyleBackColor = true
-		AddHandler Me.buttonSave.Click, AddressOf Me.ButtonSaveClick
+		AddHandler Me.buttonSave.Click, AddressOf Me.buttonSaveClick
 		'
 		'groupboxDates
 		'
@@ -394,7 +394,7 @@
 		Me.buttonExport.TabIndex = 2
 		Me.buttonExport.Text = "Export to Store"
 		Me.buttonExport.UseVisualStyleBackColor = true
-		AddHandler Me.buttonExport.Click, AddressOf Me.ButtonExportClick
+		AddHandler Me.buttonExport.Click, AddressOf Me.buttonExportClick
 		'
 		'buttonExit
 		'
@@ -404,7 +404,7 @@
 		Me.buttonExit.TabIndex = 6
 		Me.buttonExit.Text = "Exit"
 		Me.buttonExit.UseVisualStyleBackColor = true
-		AddHandler Me.buttonExit.Click, AddressOf Me.ButtonExitClick
+		AddHandler Me.buttonExit.Click, AddressOf Me.buttonExitClick
 		'
 		'labelBalance
 		'
@@ -692,62 +692,62 @@
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub
-	Private buttonSave As System.Windows.Forms.Button
+	Private buttonSave As System.Windows.Forms.button
 	Private groupboxDates As System.Windows.Forms.GroupBox
-	Private labelPlaySaved As System.Windows.Forms.Label
+	Private labelPlaySaved As System.Windows.Forms.label
 	Private textboxPlaySaved As System.Windows.Forms.TextBox
-	Private labelCreatedTime As System.Windows.Forms.Label
-	Private labelPlayHours As System.Windows.Forms.Label
+	Private labelCreatedTime As System.Windows.Forms.label
+	Private labelPlayHours As System.Windows.Forms.label
 	Private textboxCreatedTime As System.Windows.Forms.TextBox
 	Private textboxPlayHours As System.Windows.Forms.TextBox
-	Private labelCreatedDate As System.Windows.Forms.Label
+	Private labelCreatedDate As System.Windows.Forms.label
 	Private textboxCreatedDate As System.Windows.Forms.TextBox
-	Private labelPlaycycles As System.Windows.Forms.Label
+	Private labelPlaycycles As System.Windows.Forms.label
 	Private textboxPlaycycles As System.Windows.Forms.TextBox
 	Private groupboxFinances As System.Windows.Forms.GroupBox
-	Private labelItemsSold As System.Windows.Forms.Label
-	Private labelMoneyEarned As System.Windows.Forms.Label
+	Private labelItemsSold As System.Windows.Forms.label
+	Private labelMoneyEarned As System.Windows.Forms.label
 	Private textboxItemsSold As System.Windows.Forms.TextBox
 	Private textboxMoneyEarned As System.Windows.Forms.TextBox
 	Private textboxMoneySpent As System.Windows.Forms.TextBox
-	Private labelMoneySpent As System.Windows.Forms.Label
+	Private labelMoneySpent As System.Windows.Forms.label
 	Private tabpageStatistics As System.Windows.Forms.TabPage
 	Private tabpageInventory As System.Windows.Forms.TabPage
 	Private groupboxDetails As System.Windows.Forms.GroupBox
-	Private labelAmount As System.Windows.Forms.Label
+	Private labelAmount As System.Windows.Forms.label
 	Private textboxLastBuying As System.Windows.Forms.TextBox
 	Private textboxLastSelling As System.Windows.Forms.TextBox
-	Private labelLastBuying As System.Windows.Forms.Label
-	Private labelLastSelling As System.Windows.Forms.Label
+	Private labelLastBuying As System.Windows.Forms.label
+	Private labelLastSelling As System.Windows.Forms.label
 	Private textboxAmount As System.Windows.Forms.TextBox
 	Private groupboxSelection As System.Windows.Forms.GroupBox
 	Private listboxInventory As System.Windows.Forms.ListBox
-	Private buttonExport As System.Windows.Forms.Button
-	Private buttonExit As System.Windows.Forms.Button
-	Private labelBalance As System.Windows.Forms.Label
+	Private buttonExport As System.Windows.Forms.button
+	Private buttonExit As System.Windows.Forms.button
+	Private labelBalance As System.Windows.Forms.label
 	Private textboxBalance As System.Windows.Forms.TextBox
 	Private tabcontrolStatus As System.Windows.Forms.TabControl
 	Private tabpageCharacter As System.Windows.Forms.TabPage
 	Private groupboxGrades As System.Windows.Forms.GroupBox
-	Private labelGradeInventory As System.Windows.Forms.Label
+	Private labelGradeInventory As System.Windows.Forms.label
 	Private textboxGradeInventory As System.Windows.Forms.TextBox
 	Private textboxGradeShelf As System.Windows.Forms.TextBox
-	Private labelGradePopularity As System.Windows.Forms.Label
-	Private labelGradeShelf As System.Windows.Forms.Label
+	Private labelGradePopularity As System.Windows.Forms.label
+	Private labelGradeShelf As System.Windows.Forms.label
 	Private textboxGradePopularity As System.Windows.Forms.TextBox
 	Private tabpagePlayer As System.Windows.Forms.TabPage
 	Private groupboxProfile As System.Windows.Forms.GroupBox
-	Private labelPlayerID As System.Windows.Forms.Label
+	Private labelPlayerID As System.Windows.Forms.label
 	Private textboxPlayerID As System.Windows.Forms.TextBox
-	Private labelGender As System.Windows.Forms.Label
+	Private labelGender As System.Windows.Forms.label
 	Private textboxBirthYear As System.Windows.Forms.TextBox
-	Private labelNameLast As System.Windows.Forms.Label
-	Private labelBirthDate As System.Windows.Forms.Label
+	Private labelNameLast As System.Windows.Forms.label
+	Private labelBirthDate As System.Windows.Forms.label
 	Private textboxNameFirst As System.Windows.Forms.TextBox
-	Private labelNameNick As System.Windows.Forms.Label
+	Private labelNameNick As System.Windows.Forms.label
 	Private textboxBirthDay As System.Windows.Forms.TextBox
 	Private textboxGender As System.Windows.Forms.TextBox
-	Private labelNameFirst As System.Windows.Forms.Label
+	Private labelNameFirst As System.Windows.Forms.label
 	Private textboxNameLast As System.Windows.Forms.TextBox
 	Private textboxBirthMonth As System.Windows.Forms.TextBox
 	Private textboxNameNick As System.Windows.Forms.TextBox

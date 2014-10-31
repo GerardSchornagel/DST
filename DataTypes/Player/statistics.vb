@@ -3,8 +3,8 @@
 	Private intGlobalSaved As Integer = 0
 	Private intGlobalHours As Integer = 0
 	Private intGlobalCycles As Integer = 0
-	Private strDatesCreateDate As String = "01/01/2000"
-	Private strDatesCreateTime As String = "00:00"
+	Private strDatesCreateDate As String = System.DateTime.Now.Day & "/" & System.DateTime.Now.Month & "/" & System.DateTime.Now.Year
+	Private strDatesCreateTime As String = System.DateTime.Now.Hour & ":" & System.DateTime.Now.Minute
 	Private intFinanceTotalEarned As Integer = 0
 	Private intFinanceTotalSpent As Integer = 0
 	Private intItemsTotalSold As Integer = 0

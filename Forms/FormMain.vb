@@ -14,7 +14,7 @@
 		If GlobalSettings.LastUser = 99 Then buttonResumeGame.Enabled = False
 	End Sub
 	
-	Sub ButtonNewGameClick(sender As Object, e As EventArgs)
+	Sub buttonNewGameClick(sender As Object, e As EventArgs)
 		'Look for nearest free number in save directory
 		Dim intCheck As Integer = 0
 		Do
@@ -27,18 +27,15 @@
 		'Replace ResumeGame Integer
 		GlobalSettings.LastUser = intCheck
 		'Load Game
-		ButtonResumeGameClick(Nothing, Nothing)
-		
+		buttonResumeGameClick(Nothing, Nothing)
 	End Sub
 	
-	Sub ButtonResumeGameClick(sender As Object, e As EventArgs)
-		'set me to minimized
-		Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+	Sub buttonResumeGameClick(sender As Object, e As EventArgs)
 		Dim StatusForm As New formStatus
 		StatusForm.Show()
 	End Sub
 	
-	Sub ButtonLoadClick(sender As Object, e As EventArgs)
+	Sub buttonLoadClick(sender As Object, e As EventArgs)
 		'add filedialog and change lastuser
 		Dim filedialogLoadGame As New System.Windows.Forms.OpenFileDialog()
 		filedialogLoadGame.FileName = "player.pd"
@@ -47,15 +44,15 @@
 		filedialogLoadGame.ShowDialog()
 		GlobalSettings.LastUser = CType(filedialogLoadGame.FileName.Substring(filedialogLoadGame.FileName.Length - 11, 1),Integer)
 		'Load Game
-		ButtonResumeGameClick(Nothing, Nothing)
+		buttonResumeGameClick(Nothing, Nothing)
 	End Sub
 	
-	Sub ButtonOptionsClick(sender As Object, e As EventArgs)
+	Sub buttonOptionsClick(sender As Object, e As EventArgs)
 		Dim OptionsForm as New formOptions
 		OptionsForm.Show()
 	End Sub
 	
-	Sub ButtonQuitClick(sender As Object, e As EventArgs)
+	Sub buttonQuitClick(sender As Object, e As EventArgs)
 		'Check for WarningMessage Setting and show the warning with Yes/No, else just End
 	If GlobalSettings.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
 	End Sub

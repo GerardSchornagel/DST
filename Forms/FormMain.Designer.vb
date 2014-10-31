@@ -25,11 +25,11 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.buttonNewGame = New System.Windows.Forms.Button()
-		Me.buttonResumeGame = New System.Windows.Forms.Button()
-		Me.buttonOptions = New System.Windows.Forms.Button()
-		Me.buttonQuit = New System.Windows.Forms.Button()
-		Me.buttonLoad = New System.Windows.Forms.Button()
+		Me.buttonNewGame = New System.Windows.Forms.button()
+		Me.buttonResumeGame = New System.Windows.Forms.button()
+		Me.buttonOptions = New System.Windows.Forms.button()
+		Me.buttonQuit = New System.Windows.Forms.button()
+		Me.buttonLoad = New System.Windows.Forms.button()
 		Me.SuspendLayout
 		'
 		'buttonNewGame
@@ -40,7 +40,7 @@
 		Me.buttonNewGame.TabIndex = 0
 		Me.buttonNewGame.Text = "New Game"
 		Me.buttonNewGame.UseVisualStyleBackColor = true
-		AddHandler Me.buttonNewGame.Click, AddressOf Me.ButtonNewGameClick
+		AddHandler Me.buttonNewGame.Click, AddressOf Me.buttonNewGameClick
 		'
 		'buttonResumeGame
 		'
@@ -50,7 +50,7 @@
 		Me.buttonResumeGame.TabIndex = 0
 		Me.buttonResumeGame.Text = "Load Last Game"
 		Me.buttonResumeGame.UseVisualStyleBackColor = true
-		AddHandler Me.buttonResumeGame.Click, AddressOf Me.ButtonResumeGameClick
+		AddHandler Me.buttonResumeGame.Click, AddressOf Me.buttonResumeGameClick
 		'
 		'buttonOptions
 		'
@@ -60,7 +60,7 @@
 		Me.buttonOptions.TabIndex = 0
 		Me.buttonOptions.Text = "Options..."
 		Me.buttonOptions.UseVisualStyleBackColor = true
-		AddHandler Me.buttonOptions.Click, AddressOf Me.ButtonOptionsClick
+		AddHandler Me.buttonOptions.Click, AddressOf Me.buttonOptionsClick
 		'
 		'buttonQuit
 		'
@@ -70,7 +70,7 @@
 		Me.buttonQuit.TabIndex = 0
 		Me.buttonQuit.Text = "Quit"
 		Me.buttonQuit.UseVisualStyleBackColor = true
-		AddHandler Me.buttonQuit.Click, AddressOf Me.ButtonQuitClick
+		AddHandler Me.buttonQuit.Click, AddressOf Me.buttonQuitClick
 		'
 		'buttonLoad
 		'
@@ -80,7 +80,7 @@
 		Me.buttonLoad.TabIndex = 0
 		Me.buttonLoad.Text = "Load Game..."
 		Me.buttonLoad.UseVisualStyleBackColor = true
-		AddHandler Me.buttonLoad.Click, AddressOf Me.ButtonLoadClick
+		AddHandler Me.buttonLoad.Click, AddressOf Me.buttonLoadClick
 		'
 		'formMain
 		'
@@ -100,9 +100,9 @@
 		AddHandler Load, AddressOf Me.formMainLoad
 		Me.ResumeLayout(false)
 	End Sub
-	Private buttonNewGame As System.Windows.Forms.Button
-	Private buttonResumeGame As System.Windows.Forms.Button
-	Private buttonLoad As System.Windows.Forms.Button
-	Private buttonOptions As System.Windows.Forms.Button
-	Private buttonQuit As System.Windows.Forms.Button
+	Private buttonNewGame As System.Windows.Forms.button
+	Private buttonResumeGame As System.Windows.Forms.button
+	Private buttonLoad As System.Windows.Forms.button
+	Private buttonOptions As System.Windows.Forms.button
+	Private buttonQuit As System.Windows.Forms.button
 End Class

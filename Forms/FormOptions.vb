@@ -14,7 +14,7 @@
 		checkboxlistMessages.SetItemChecked(2, CType(formMain.GlobalSettings.MessagesOptionsApplyrestart, Boolean))
 	End Sub
 
-	Sub ButtonOKClick(sender As Object, e As EventArgs)
+	Sub buttonOKClick(sender As Object, e As EventArgs)
 		'Save all options to save\setting.prd
 		formMain.GlobalSettings.MessagesProgramQuit = CType(checkboxlistMessages.GetItemCheckState(0), Boolean)
 		formMain.GlobalSettings.MessagesNewgameOverwrite = CType(checkboxlistMessages.GetItemCheckState(1), Boolean)
@@ -24,7 +24,7 @@
 		Me.Dispose()
 	End Sub
 	
-	Sub ButtonCancelClick(sender As Object, e As EventArgs)
+	Sub buttonCancelClick(sender As Object, e As EventArgs)
 		Me.Dispose()
 	End Sub
 End Class

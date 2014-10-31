@@ -4,6 +4,11 @@
 	Friend Shared classInventory As New inventory(formMain.GlobalSettings.LastUser)
 	Friend Shared classStatistics As New statistics(formMain.GlobalSettings.LastUser)
 	
+	Friend Shared GameForm As New formGame()
+	Friend Shared InventoryForm As New formInventory()
+	Friend Shared MapForm As New formMap()
+	Friend Shared StoreForm As New formStore()
+	
 	Private arrayInventorySelected As Object
 	
 	Public Sub New()
@@ -48,9 +53,10 @@
 			intInventoryMax -= 1
 			intDimension += 1
 		Loop Until intInventoryMax = 0
+		GameForm.Show()
 	End Sub
 	
-	Sub ButtonSaveClick(sender As Object, e As EventArgs)
+	Sub buttonSaveClick(sender As Object, e As EventArgs)
 		MsgBox("Inventory Export function is immediate, no need to save for this.", MsgBoxStyle.Information, "Inventory doesn't need save.")
 		
 		'Player Tab
@@ -77,11 +83,11 @@
 		classStatistics.TotalItemsSold = CType(textboxItemsSold.Text, Integer)
 	End Sub
 	
-	Sub ButtonExitClick(sender As Object, e As EventArgs)
+	Sub buttonExitClick(sender As Object, e As EventArgs)
 		'Add code for closing formGame, formMap, formInventory, formStore & Me(formStatus)
 	End Sub
 	
-	Sub ButtonExportClick(sender As Object, e As EventArgs)
+	Sub buttonExportClick(sender As Object, e As EventArgs)
 		'This will send the article and amount to the qeue, so next cycle the goods arrive.
 	End Sub
 	
