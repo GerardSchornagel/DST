@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\Global\settings.vb" />
+    <Compile Include="DataTypes\NPC\customer.vb" />
     <Compile Include="DataTypes\Object\store.vb" />
     <Compile Include="DataTypes\Player\character.vb" />
     <Compile Include="DataTypes\Player\inventory.vb" />

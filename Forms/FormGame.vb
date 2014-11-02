@@ -11,6 +11,7 @@ Private timerCustomer As New System.Windows.Forms.Timer
 Private integerCustomerNumber As Integer
 Private stringCurrentShelf(5) As String
 Private integerCurrentSpace As Integer
+Private CustomerNew As New customer()
 
 Public Sub New()
 	AddHandler timerHour.Tick, AddressOf TimerHour_Tick
@@ -63,9 +64,9 @@ Private Sub TimerCustomer_Tick(ByVal sender As Object, ByVal e As System.EventAr
   '  '--AFTER SELL SUBTRACT FROM Inventory
   If IntegerCustomerNumber >= 0 Then 'More then Zero
 	'Make new Customer and get his/her data for log
-	CustomerNew=New customer()
+	CustomerNew.newCustomer
 	textboxCustomerName.Text = CustomerNew.Name
-	textboxCustomerMoney.Text = CustomerNew.Money
+	textboxCustomerMoney.Text = CType(CustomerNew.Money, String)
 	
 	CurrentShelf = New String() {"0", "0", "1", "5", "5"}
 	classShelf =  New Shelf("Store", "Floor", "Aisle", "Shelf", CurrentShelf, LayoutData)

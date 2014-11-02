@@ -122,9 +122,9 @@
 	Public Sub SaveState()
 		'Loop through arrayBin and save individual files
 		For Each bin As String In arrayBinCollection
-			strBinaryFileData = arrayBin(System.Text.RegularExpressions.Regex.Split(bin,".")(0),0)
-			strBinaryFileData += "<>" & arrayBin(System.Text.RegularExpressions.Regex.Split(bin,".")(0),1)
-			strBinaryFileData += "<>" & arrayBin(System.Text.RegularExpressions.Regex.Split(bin,".")(0),2)
+			strBinaryFileData = arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),0)
+			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),1)
+			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),2)
 			'Fill Array for character per character progressing
 			Dim arrayInt32(strBinaryFileData.Length) As Int32
 			Dim intDimension As Integer = 0
