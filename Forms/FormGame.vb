@@ -2,8 +2,8 @@
 Public Partial Class formGame
   Inherits System.Windows.Forms.Form
 
-Private CustomerNew As New customer()
-Private classShelf As New Shelf("Store", "Floor", "Aisle", "Shelf", CurrentShelf, LayoutData)
+'Private CustomerNew As New customer()
+'Private classShelf As New Shelf("Store", "Floor", "Aisle", "Shelf", CurrentShelf, LayoutData)
 Dim LayoutData As String(,)
 Private randomGenerator As New Random()
 Private timerHour As New System.Windows.Forms.Timer
@@ -38,21 +38,21 @@ Private Sub buttonProductBuy_Click(ByVal sender As Object, ByVal e As System.Eve
 End Sub
 
 Private Sub TimerHour_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
-	If textboxActionHour.Text >= 0 Then 'Before zero
+	If CType(textboxActionHour.Text, double) >= 0 Then 'Before zero
 		'For deciding how many customers per hour
     	IntegerCustomerNumber = RandomGenerator.Next(5)
     	TimerCustomer.Interval = 250
     	'Stop this element and let timerCustomer take over.
     	TimerCustomer.Start()
-    	textboxActionHour.Text -= 1
+    	textboxActionHour.Text = CType(CType(textboxActionHour.Text, Double) + 1,String)
     	TimerHour.Stop()
     	
     Else 'Beneath zero
     	'Pass information for procces to/through formStatus
-    	FormPlayer.IntegerCycles += 1
+    	formStatus.classStatistics.TotalDayCycles += 1
     	buttonActionStart.Text = "Start Day"
     	buttonActionStart.Enabled = True
-    	textboxActionHour.Text = 9
+    	textboxActionHour.Text = CType(9, String)
     	timerHour.Stop()
     End If
 End Sub

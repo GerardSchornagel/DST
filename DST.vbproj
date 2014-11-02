@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\Global\settings.vb" />
+    <Compile Include="DataTypes\Object\store.vb" />
     <Compile Include="DataTypes\Player\character.vb" />
     <Compile Include="DataTypes\Player\inventory.vb" />
     <Compile Include="DataTypes\Player\player.vb" />
@@ -99,7 +100,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
     </None>
-    <None Include="Stashed.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataTypes\Global" />
