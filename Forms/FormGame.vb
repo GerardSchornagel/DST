@@ -11,13 +11,15 @@ Private timerCustomer As New System.Windows.Forms.Timer
 Private integerCustomerNumber As Integer
 Private stringCurrentShelf(5) As String
 Private integerCurrentSpace As Integer
+Private CurrentSpace As Integer
 Private CustomerNew As New customer()
+Shared Friend StoreCurrent As New store("First")
 
 Public Sub New()
 	AddHandler timerHour.Tick, AddressOf TimerHour_Tick
     AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
 End Sub
-'*** Rewrite code to work and COMMIT ***
+
 Private Sub buttonActionStart_Click(ByVal sender As Object, ByVal e As System.EventArgs)
 	textboxActionHour.Text = "9"
     buttonActionStart.Text = "Day Started..."
@@ -59,44 +61,31 @@ Private Sub TimerHour_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
 End Sub
 
 Private Sub TimerCustomer_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
-  '  'TODO:
-  '  '--Redo writing and reading processes handling mostly by class
-  '  '--AFTER SELL SUBTRACT FROM Inventory
   If IntegerCustomerNumber >= 0 Then 'More then Zero
 	'Make new Customer and get his/her data for log
 	CustomerNew.newCustomer
 	textboxCustomerName.Text = CustomerNew.Name
 	textboxCustomerMoney.Text = CType(CustomerNew.Money, String)
 	
-	CurrentShelf = New String() {"0", "0", "1", "5", "5"}
-	classShelf =  New Shelf("Store", "Floor", "Aisle", "Shelf", CurrentShelf, LayoutData)
 	CurrentSpace = RandomGenerator.Next(4)
 	
-  If Val(classShelf.GetItem(CurrentSpace, "Quantity")) > 0 Then 'Check for inventory true
-  	If Val(classShelf.GetItem(CurrentSpace, "Price")) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
-  		textboxActionLog.AppendText(classShelf.GetItem(CurrentSpace, "Tag") & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
-  		'SEARCH FOR SELLING PRODUCT IN Inventory AND SUBSTRACT 1
-  		Dim pos As Integer = 0 'UPDATE WHEN ADDING CHAR INFO
-  		Do Until pos > formStatus.ArrayStoreInventory.GetUpperBound(0)
-  			If formStatus.ArrayStoreInventory(pos).Contains(classShelf.GetItem(CurrentSpace, "Tag")) = True Then
-  			Loop
-  			pos += 1
-  			formStatus.ArrayStoreInventory(pos) -= 1
-  			pos += 1
-  		Else
-  			pos += 2
-  		End If
-  	Loop
-  	'Update Balance
-  	formStatus.IntegerBalance += Val(classShelf.GetItem(CurrentSpace, "Price"))
-  	
-  	ElseIf Val(classShelf.GetItem(CurrentSpace, "Price")) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
-  		textboxActionLog.AppendText(classShelf.GetItem(CurrentSpace, "Tag") & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
+  If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
+  	If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
+  		textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
+  		formStatus.classCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
+  		Dim setBin(2) As String
+  		setBin = CType(StoreCurrent.getsetBin(CurrentSpace), String())
+  		setBin(1) = CType(CType(setBin(1), Integer) - 1, String)
+  		StoreCurrent.getsetBin(CurrentSpace) = setBin
+  		formStatus.classStatistics.TotalItemsSold += 1
+  		
+  	ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
+  		textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
   	End If
   	
-  ElseIf classShelf.GetItem(CurrentSpace, "Quantity") = "0" Then 'NOSTASH:Check for customer-money and item sell-price
-  	textboxActionLog.AppendText(classShelf.GetItem(CurrentSpace, "Tag") & " stock Depleted" & Chr(10))
-  	textboxActionHour.Text = -1
+  ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
+  	textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
+  	textboxActionHour.Text = CType(CType(textboxActionHour.Text, Integer) - 1, String)
   	textboxCustomerMoney.Text = ""
   	textboxCustomerName.Text = ""
   	TimerHour.Start()
@@ -105,7 +94,7 @@ Private Sub TimerCustomer_Tick(ByVal sender As Object, ByVal e As System.EventAr
   
   IntegerCustomerNumber -= 1
   Else 'Less then zero customers
-  	TimerCustomer.Stop()
+  	timerCustomer.Stop()
   	TimerHour.Start()
   End If
 End Sub
