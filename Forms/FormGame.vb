@@ -1,101 +1,101 @@
-﻿
-Public Partial Class formGame
-  Inherits System.Windows.Forms.Form
-
-'Private CustomerNew As New customer()
-'Private classShelf As New Shelf("Store", "Floor", "Aisle", "Shelf", CurrentShelf, LayoutData)
-Dim LayoutData As String(,)
-Private randomGenerator As New Random()
-Private timerHour As New System.Windows.Forms.Timer
-Private timerCustomer As New System.Windows.Forms.Timer
-Private integerCustomerNumber As Integer
-Private stringCurrentShelf(5) As String
-Private integerCurrentSpace As Integer
-Private CurrentSpace As Integer
-Private CustomerNew As New customer()
-Shared Friend StoreCurrent As New store("First")
-
-Public Sub New()
-	AddHandler timerHour.Tick, AddressOf TimerHour_Tick
-    AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
-End Sub
-
-Private Sub buttonActionStart_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-	textboxActionHour.Text = "9"
-    buttonActionStart.Text = "Day Started..."
-    buttonActionStart.Enabled = False
-    'Write away previous log an d proccess data to/through formStatus
-    textboxActionLog.Text = ""
-    'Add 4 buttons for speed control (Pause/Slow[1Thread]/Medium[2Threads]/Fast[4Threads])
-    'I think I've to adapt the randomgenerator for this with 4 customs seeds provided by 5th random for cycling the lesser.
-    timerHour.Interval = 500
-    timerHour.Start()
-End Sub
-
-Private Sub buttonStoreInventory_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+﻿Public Partial Class formGame
+	Dim LayoutData As String(,)
+	Private randomGenerator As New Random()
+	Private timerHour As New System.Windows.Forms.Timer
+	Private timerCustomer As New System.Windows.Forms.Timer
+	Private integerCustomerNumber As Integer
+	Private stringCurrentShelf(5) As String
+	Private integerCurrentSpace As Integer
+	Private CurrentSpace As Integer
+	Private CustomerNew As New customer()
+	Shared Friend StoreCurrent As New store("First")
 	
-End Sub
-
-Private Sub buttonProductBuy_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+	Public Sub New()
+		' The Me.InitializeComponent call is required for Windows Forms designer support.
+		Me.InitializeComponent()
+	End Sub
 	
-End Sub
-
-Private Sub TimerHour_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
-	If CType(textboxActionHour.Text, double) >= 0 Then 'Before zero
-		'For deciding how many customers per hour
-    	IntegerCustomerNumber = RandomGenerator.Next(5)
-    	TimerCustomer.Interval = 250
-    	'Stop this element and let timerCustomer take over.
-    	TimerCustomer.Start()
-    	textboxActionHour.Text = CType(CType(textboxActionHour.Text, Double) + 1,String)
-    	TimerHour.Stop()
-    	
-    Else 'Beneath zero
-    	'Pass information for procces to/through formStatus
-    	formStatus.classStatistics.TotalDayCycles += 1
-    	buttonActionStart.Text = "Start Day"
-    	buttonActionStart.Enabled = True
-    	textboxActionHour.Text = CType(9, String)
-    	timerHour.Stop()
-    End If
-End Sub
-
-Private Sub TimerCustomer_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
-  If IntegerCustomerNumber >= 0 Then 'More then Zero
-	'Make new Customer and get his/her data for log
-	CustomerNew.newCustomer
-	textboxCustomerName.Text = CustomerNew.Name
-	textboxCustomerMoney.Text = CType(CustomerNew.Money, String)
+	Sub FormGameLoad(sender As Object, e As EventArgs)
+		AddHandler timerHour.Tick, AddressOf TimerHour_Tick
+		AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
+	End Sub
 	
-	CurrentSpace = RandomGenerator.Next(4)
+	Private Sub ButtonActionStartClick(ByVal sender As Object, ByVal e As System.EventArgs)
+		textboxActionHour.Text = "9"
+		buttonActionStart.Text = "Day Started..."
+		buttonActionStart.Enabled = False
+		'Write away previous log an d proccess data to/through formStatus
+		textboxActionLog.Text = ""
+		'Add 4 buttons for speed control (Pause/Slow[1Thread]/Medium[2Threads]/Fast[4Threads])
+		'I think I've to adapt the randomgenerator for this with 4 customs seeds provided by 5th random for cycling the lesser.
+		timerHour.Interval = 500
+		timerHour.Start()
+	End Sub
 	
-  If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
-  	If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
-  		textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
-  		formStatus.classCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
-  		Dim setBin(2) As String
-  		setBin = CType(StoreCurrent.getsetBin(CurrentSpace), String())
-  		setBin(1) = CType(CType(setBin(1), Integer) - 1, String)
-  		StoreCurrent.getsetBin(CurrentSpace) = setBin
-  		formStatus.classStatistics.TotalItemsSold += 1
-  		
-  	ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
-  		textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
-  	End If
-  	
-  ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
-  	textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
-  	textboxActionHour.Text = CType(CType(textboxActionHour.Text, Integer) - 1, String)
-  	textboxCustomerMoney.Text = ""
-  	textboxCustomerName.Text = ""
-  	TimerHour.Start()
-  	TimerCustomer.Stop()
-  End If
-  
-  IntegerCustomerNumber -= 1
-  Else 'Less then zero customers
-  	timerCustomer.Stop()
-  	TimerHour.Start()
-  End If
-End Sub
+	Private Sub ButtonStoreInventoryClick(ByVal sender As Object, ByVal e As System.EventArgs)
+		
+	End Sub
+	
+	Private Sub buttonProductBuyClick(ByVal sender As Object, ByVal e As System.EventArgs)
+		
+	End Sub
+	
+	Private Sub TimerHour_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
+		If CType(textboxActionHour.Text, Double) >= 0 Then 'Before zero
+			'For deciding how many customers per hour
+			IntegerCustomerNumber = RandomGenerator.Next(5)
+			TimerCustomer.Interval = 250
+			'Stop this element and let timerCustomer take over.
+			TimerCustomer.Start()
+			textboxActionHour.Text = CType(CType(textboxActionHour.Text, Double) + 1,String)
+			TimerHour.Stop()
+			
+		Else 'Beneath zero
+			'Pass information for procces to/through formStatus
+			formStatus.classStatistics.TotalDayCycles += 1
+			buttonActionStart.Text = "Start Day"
+			buttonActionStart.Enabled = True
+			textboxActionHour.Text = CType(9, String)
+			timerHour.Stop()
+		End If
+	End Sub
+	
+	Private Sub TimerCustomer_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
+		If IntegerCustomerNumber >= 0 Then 'More then Zero
+			'Make new Customer and get his/her data for log
+			CustomerNew.newCustomer
+			textboxCustomerName.Text = CustomerNew.Name
+			textboxCustomerMoney.Text = CType(CustomerNew.Money, String)
+			
+			CurrentSpace = RandomGenerator.Next(4)
+			
+			If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
+				If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
+					textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
+					formStatus.classCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
+					Dim setBin(2) As String
+					setBin = CType(StoreCurrent.getsetBin(CurrentSpace), String())
+					setBin(1) = CType(CType(setBin(1), Integer) - 1, String)
+					StoreCurrent.getsetBin(CurrentSpace) = setBin
+					formStatus.classStatistics.TotalItemsSold += 1
+					
+				ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
+					textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
+				End If
+				
+			ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
+				textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
+				textboxActionHour.Text = CType(CType(textboxActionHour.Text, Integer) - 1, String)
+				textboxCustomerMoney.Text = ""
+				textboxCustomerName.Text = ""
+				TimerHour.Start()
+				TimerCustomer.Stop()
+			End If
+			
+			IntegerCustomerNumber -= 1
+		Else 'Less then zero customers
+			timerCustomer.Stop()
+			TimerHour.Start()
+		End If
+	End Sub
 End Class
