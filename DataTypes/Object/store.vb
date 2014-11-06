@@ -1,4 +1,7 @@
-﻿Public Class store
+﻿''' <summary>
+''' Handles the Selecting and get/set functions for the Store Inventory.
+''' </summary>
+Public Class store
 	Dim arrayStore() As String 'from Location
 	Dim arrayBinCollection() As String 'Containing Bin file(s) from Location/Store
 	Dim arrayBin(,) As String 'Contains collected and sorted Bin data
@@ -14,7 +17,9 @@
 		'Prepare by getting Store(s) from Location
 		arrayStore = (System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent))
 	End Sub 'New
-	
+	''' <summary>
+	''' Creates the space for a new Store and create a zero-filled starting array.
+	''' </summary>
 	Public Sub makeStore(ByVal StoreName As String)
 		'Make physical file
 		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent & "\" & StoreName)
@@ -27,7 +32,9 @@
 		strStoreCurrent = StoreName
 		setStore(strStoreCurrent)
 	End Sub 'makeStore
-	
+	''' <summary>
+	''' Loads the current store to memory and fills the 'bins'.
+	''' </summary>	
 	Public Sub setStore(ByVal StoreName As String)
 		strStoreCurrent = StoreName
 		'Load Shelf data
@@ -52,7 +59,9 @@
 			intBin += 1
 		Next
 	End Sub 'setStore
-	
+	''' <summary>
+	''' This makes a new space for a new bin, saves the blank and reloads it to memory.
+	''' </summary>
 	Public Sub makeBin()
 		'Look for biggest existing file
 		Dim intBinNew As Integer = 0
@@ -97,7 +106,9 @@
 		
 		setStore(strStoreCurrent)
 	End Sub 'makeBin
-	
+	''' <summary>
+	''' Get or Sets the requested Bin to array.
+	''' </summary>
 	Public Property getsetBin(Dimension As Integer) As object
 		Get
 			If Dimension > arrayBin.GetUpperBound(0) Then
@@ -118,7 +129,9 @@
 			SaveState()
 		End Set
 	End Property 'getsetBin
-	
+	''' <summary>
+	''' Saves the current state of the Store Inventory.
+	''' </summary>
 	Public Sub SaveState()
 		'Loop through arrayBin and save individual files
 		For Each bin As String In arrayBinCollection

@@ -1,4 +1,8 @@
-﻿Public Class customer
+﻿''' <summary>
+''' Creates a Random customer via Ethnic>Gender=Name&Desire>Age>Money
+''' Can be reused through newCustomer()
+''' </summary>
+Public Class customer
 	Private cRandom As Random
 	Private cEthnic As String
 	Private cName As String
@@ -12,7 +16,9 @@
 	Sub New()
 		newCustomer()
 	End Sub
-	
+	''' <summary>
+	''' Creates new Customer.
+	''' </summary>
 	Public Sub newCustomer()
 		cRandom = New Random()
 		'DeFine ArrayEthnic
@@ -56,31 +62,41 @@
 		cMoney = cRandom.Next(CType(ArrayProductData(3), Integer), CType(ArrayProductData(4), Integer))
 		cDesire = cRandom.Next(CType(ArrayProductData(5), Integer))
 	End Sub
-	
+	''' <summary>
+	''' Returns a String with the Ethnic variable.
+	''' </summary>
 	Public ReadOnly Property Ethnic() As String
 		Get
 			Return cEthnic
 		End Get
 	End Property
-	
+	''' <summary>
+	''' Returns a String with the Name.
+	''' </summary>
 	Public ReadOnly Property Name() As String
 		Get
 			Return cName
 		End Get
 	End Property
-	
+	''' <summary>
+	''' Returns an Integer with the Age.
+	''' </summary>
 	Public ReadOnly Property Age() As Integer
 		Get
 			Return cAge
 		End Get
 	End Property
-	
+	''' <summary>
+	''' Returns an Integer with the Money on Customer.
+	''' </summary>
 	Public ReadOnly Property Money() As Integer
 		Get
 			Return cMoney
 		End Get
 	End Property
-	
+	''' <summary>
+	''' Returns an Integer with the Desire rate.
+	''' </summary>
 	Public ReadOnly Property Desire() As Integer
 		Get
 			Return cDesire

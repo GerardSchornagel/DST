@@ -1,4 +1,7 @@
-﻿Public Class statistics
+﻿''' <summary>
+''' Get or Sets the current Player Statistics.
+''' </summary>
+Public Class statistics
 	Private intID As Integer = 99 'Passed on from parent
 	Private intGlobalSaved As Integer = 0
 	Private intGlobalHours As Integer = 0
@@ -34,7 +37,9 @@
 		intFinanceTotalSpent = CType(arrayStatisticsData(6), Integer)
 		intItemsTotalSold = CType(arrayStatisticsData(7), Integer)
 	End Sub 'Sub New
-
+''' <summary>
+''' Saves the current state of the Player Statistics Variables.
+''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = CType(intGlobalSaved, String)
@@ -60,7 +65,9 @@
 			Next
 		End Using
 	End Sub 'Sub SaveState
-
+''' <summary>
+''' Returns an Integer with the current Player ID.
+''' </summary>
 	Public Property PlayerID As Integer
 		Get
 			Return intID
@@ -70,7 +77,9 @@
 			SaveState()
 		End Set
 	End Property 'Property PlayerID
-
+''' <summary>
+''' Returns an Integer with the total amount of saves.
+''' </summary>
 	Public Property TotalSaveTimes As Integer
 		Get
 			Return intGlobalSaved
@@ -80,7 +89,9 @@
 			SaveState()
 		End Set
 	End Property 'Property TotalSaveTimes
-
+''' <summary>
+''' Returns an Integer with the total play hours.
+''' </summary>
 	Public Property TotalHoursPlayed As Integer
 		Get
 			Return intGlobalHours
@@ -90,7 +101,9 @@
 			SaveState()
 		End Set
 	End Property 'Property TotalHoursPlayed
-
+''' <summary>
+''' Returns an Integer with the total Day Cycles.
+''' </summary>
 	Public Property TotalDayCycles As Integer
 		Get
 			Return intGlobalCycles
@@ -100,7 +113,9 @@
 			SaveState()
 		End Set
 	End Property 'Property TotalDayCycles
-
+''' <summary>
+''' Returns a String with the Creation Date "1985-09-24".
+''' </summary>
 	Public Property CreationDate As String
 		Get
 			Return strDatesCreateDate
@@ -110,7 +125,9 @@
 			SaveState()
 		End Set
 	End Property 'Property CreationDate
-
+''' <summary>
+''' Returns a String with the Creation Time "20:15".
+''' </summary>
 	Public Property CreationTime As String
 		Get
 			Return strDatesCreateTime
@@ -120,7 +137,9 @@
 			SaveState()
 		End Set
 	End Property 'Property CreationTime
-
+''' <summary>
+''' Returns an Integer with the total lifetime earnings.
+''' </summary>
 	Public Property TotalEarnings As Integer
 		Get
 			Return intFinanceTotalEarned
@@ -130,7 +149,9 @@
 			SaveState()
 		End Set
 	End Property 'Property TotalEarnings
-
+''' <summary>
+''' Returns an Integer with the total lifetime Spending.
+''' </summary>
 	Public Property TotalSpent As Integer
 		Get
 			Return intFinanceTotalSpent
@@ -140,7 +161,9 @@
 			SaveState()
 		End Set
 	End Property 'Property TotalSpent
-
+''' <summary>
+''' Returns an Integer with the total lifetime Items Sold.
+''' </summary>
 	Public Property TotalItemsSold As Integer
 		Get
 			Return intItemsTotalSold

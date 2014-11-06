@@ -1,4 +1,7 @@
-﻿Public Class inventory
+﻿''' <summary>
+''' Handles the Player Inventory array's.
+''' </summary>
+Public Class inventory
 	Private intID As Integer = 99 'Passed on from parent
 
 	Dim arrayInventory(,) As Object
@@ -20,9 +23,9 @@
 		Dim rawInventory() As String = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
 		'Each entry in arrayInventory has 4 sub-dimensions, so the rawInventory(single dimension) is divided by 4 to count for the UpperBound of arrayInventory
 		ReDim arrayInventory(CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),Integer), 3)
-
-'Split Raw data into Inventory
-Dim temp As Integer = rawInventory.GetUpperBound(0)
+		
+		'Split Raw data into Inventory
+		Dim temp As Integer = rawInventory.GetUpperBound(0)
 		Dim intDimensionArray As Integer = -1 'Negative for upcoming Loop
 		Dim intDimensionRaw As Integer = -1 'Negative for upcoming Loop
 		Do
@@ -37,7 +40,9 @@ Dim temp As Integer = rawInventory.GetUpperBound(0)
 			arrayInventory(intDimensionArray, 3) = rawInventory(intDimensionRaw) 'Selling Price
 		Loop Until intDimensionArray = CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),integer) 
 	End Sub 'Sub New
-
+''' <summary>
+''' Saves the current state of the Player Inventory array.
+''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		'Check for empty arrayInventory for creating new one
@@ -76,7 +81,9 @@ Dim temp As Integer = rawInventory.GetUpperBound(0)
 			Next
 		End Using
 	End Sub
-
+''' <summary>
+''' Gets or sets the appointed InventorySpace or sets it to 0.
+''' </summary>
 	Public Property GetInventorySpace(Dimension As Integer) As object
 		Get
 			If Dimension > arrayInventory.GetUpperBound(0) Then

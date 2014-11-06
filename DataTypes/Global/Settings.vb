@@ -28,6 +28,9 @@ Public Class settings
 		bolMessagesOptionsApplyrestart = CType(arraySettings(3), Boolean)
 	End Sub 'Sub New
 	
+	''' <summary>
+	''' Saves all changes made to Global Settings.
+	''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = CType(intLastUser, String)

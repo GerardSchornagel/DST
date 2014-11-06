@@ -1,4 +1,7 @@
-﻿Public Class player
+﻿''' <summary>
+''' Get or Set the current Player data.
+''' </summary>
+Public Class player
 	Private intID As Integer = 99 'Passed on from parent
 	Private strNameNick As String = "Nick Name" 'User generated
 	Private strNameFirst As String = "First Name" 'User generated
@@ -33,7 +36,9 @@
 		intBirthDay = CType(arrayPlayerData(5), Integer)
 		intGender = CType(arrayPlayerData(6), Integer)
 	End Sub
-
+''' <summary>
+''' Saves the current state of the Player data.
+''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = strNameNick
@@ -58,7 +63,9 @@
 			Next
 		End Using
 	End Sub 'Sub SaveState
-
+''' <summary>
+''' Returns an Integer with the Player ID.
+''' </summary>
 	Public Property PlayerID As Integer
 		Get
 			Return intID
@@ -68,7 +75,9 @@
 			SaveState()
 		End Set
 	End Property 'Property PlayerID
-
+''' <summary>
+''' Returns a String with the Nick name.
+''' </summary>
 	Public Property NickName As String
 		Get
 			Return strNameNick
@@ -78,7 +87,9 @@
 			SaveState()
 		End Set
 	End Property 'Property NickName
-
+''' <summary>
+''' Returns a String with the First name.
+''' </summary>
 	Public Property FirstName As String
 		Get
 			Return strNameFirst
@@ -88,7 +99,9 @@
 			SaveState()
 		End Set
 	End Property 'Property FirstName
-
+''' <summary>
+''' Returns a String with the Last name.
+''' </summary>
 	Public Property LastName As String
 		Get
 			Return strNameLast
@@ -98,7 +111,9 @@
 			SaveState()
 		End Set
 	End Property 'Property LastName
-
+''' <summary>
+''' Returns an Integer with the Birth Year.
+''' </summary>
 	Public Property BirthYear As Integer
 		Get
 			Return intBirthYear
@@ -108,7 +123,9 @@
 			SaveState()
 		End Set
 	End Property 'Property BirthYear
-
+''' <summary>
+''' Returns an Integer with the Birth Month.
+''' </summary>
 	Public Property BirthMonth As Integer
 		Get
 			Return intBirthMonth
@@ -118,7 +135,9 @@
 			SaveState()
 		End Set
 	End Property 'Property BirthMonth
-
+''' <summary>
+''' Returns an Integer with the Birth Day.
+''' </summary>
 	Public Property BirthDay As Integer
 		Get
 			Return intBirthDay
@@ -128,7 +147,9 @@
 			SaveState()
 		End Set
 	End Property 'Property BirthDay
-
+''' <summary>
+''' Returns an Integer with the Gender (0=F 1=M)
+''' </summary>
 	Public Property Gender As Integer
 		Get
 			Return intGender

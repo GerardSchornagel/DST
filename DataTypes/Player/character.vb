@@ -1,4 +1,8 @@
-﻿Public Class character
+﻿''' <summary>
+''' All Character Variables are retrieved/stored here.
+''' Starting Variables are hard-coded here.
+''' </summary>
+Public Class character
 	Private intID As Integer = 99 'Passed on from parent
 	Private intBalance As Integer = 250 'Self adjusting through game
 	Private intGradeInventory As Integer = 0 'Self adjusting through game
@@ -25,7 +29,9 @@
 		intGradeShelf = CType(arrayCharacterData(2), Integer)
 		intGradePopularity = CType(arrayCharacterData(3), Integer)
 	End Sub
-
+''' <summary>
+''' Saves the current state of character.vb Variables to file.
+''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = CType(intBalance, String)
@@ -47,7 +53,9 @@
 			Next
 		End Using
 	End Sub 'Sub SaveState
-
+''' <summary>
+''' Returns an Integer with the PlayerID.
+''' </summary>
 	Public Property PlayerID As Integer
 		Get
 			Return intID
@@ -57,7 +65,9 @@
 			SaveState()
 		End Set
 	End Property 'Property PlayerID
-
+''' <summary>
+''' Returns an Integer with the current balance.
+''' </summary>
 	Public Property Balance As Integer
 		Get
 			Return intBalance
@@ -67,7 +77,9 @@
 			SaveState()
 		End Set
 	End Property 'Property Balance
-
+''' <summary>
+''' Returns an Integer with the Inventory Grade.
+''' </summary>
 	Public Property GradeInventory As Integer
 		Get
 			Return intGradeInventory
@@ -77,7 +89,9 @@
 			SaveState()
 		End Set
 	End Property 'Property GradeInventory
-
+''' <summary>
+''' Returns an Integer with the Shelf Grade.
+''' </summary>
 	Public Property GradeShelf As Integer
 		Get
 			Return intGradeShelf
@@ -87,7 +101,9 @@
 			SaveState()
 		End Set
 	End Property 'Property GradeShelf
-
+''' <summary>
+''' Returns an Integer with the Popularity Grade.
+''' </summary>
 	Public Property GradePopularity As Integer
 		Get
 			Return intGradePopularity
