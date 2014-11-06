@@ -8,17 +8,18 @@
 	Private integerCurrentSpace As Integer
 	Private CurrentSpace As Integer
 	Private CustomerNew As New customer()
-	Shared Friend StoreCurrent As New store("First")
+	Shared Friend StoreCurrent As New store(CType(formStatus.classPlayer.PlayerID, String), "FirstLocation")
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
 	End Sub
 	
-	Sub FormGameLoad(sender As Object, e As EventArgs)
+	Sub formGameLoad(sender As Object, e As EventArgs)
 		AddHandler timerHour.Tick, AddressOf TimerHour_Tick
 		AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
 	End Sub
+	
 	
 	Private Sub ButtonActionStartClick(ByVal sender As Object, ByVal e As System.EventArgs)
 		textboxActionHour.Text = "9"
@@ -28,7 +29,7 @@
 		textboxActionLog.Text = ""
 		'Add 4 buttons for speed control (Pause/Slow[1Thread]/Medium[2Threads]/Fast[4Threads])
 		'I think I've to adapt the randomgenerator for this with 4 customs seeds provided by 5th random for cycling the lesser.
-		timerHour.Interval = 500
+		timerHour.Interval = 1000
 		timerHour.Start()
 	End Sub
 	
@@ -47,7 +48,7 @@
 			TimerCustomer.Interval = 250
 			'Stop this element and let timerCustomer take over.
 			TimerCustomer.Start()
-			textboxActionHour.Text = CType(CType(textboxActionHour.Text, Double) + 1,String)
+			textboxActionHour.Text = CType(CType(textboxActionHour.Text, Double) - 1,String)
 			TimerHour.Stop()
 			
 		Else 'Beneath zero

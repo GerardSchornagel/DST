@@ -2,19 +2,27 @@
 ''' Get or Set the current Player data.
 ''' </summary>
 Public Class player
-	Private intID As Integer = 99 'Passed on from parent
-	Private strNameNick As String = "Nick Name" 'User generated
-	Private strNameFirst As String = "First Name" 'User generated
-	Private strNameLast As String = "Last Name" 'User generated
-	Private intBirthYear As Integer = 2000 'User generated
-	Private intBirthMonth As Integer = 1 'User generated
-	Private intBirthDay As Integer = 1 'User generated
-	Private intGender As Integer = 1 'User generated (0=F 1=M)
-
+	Private intID As Integer
+	Private strNameNick As String
+	Private strNameFirst As String
+	Private strNameLast As String
+	Private intBirthYear As Integer
+	Private intBirthMonth As Integer
+	Private intBirthDay As Integer
+	Private intGender As Integer
+	
 	Private strBinaryFileData As String = ""
-
-	Friend Sub New(PlayerID As Integer)
-		intID = PlayerID
+	''' <summary>
+	''' Retrieves Player Variables.
+	''' </summary>
+	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
+	''' <param name="Template">New String() {PlayerID, NickName, FirstName, LastName, BirthYear, BirthMonth, BirthDay, Gender(0=F;1=M)}</param>
+	Friend Sub New(PlayerID As String, Optional Template() As String = Nothing)
+		If PlayerID = "New" Then
+			NewPlayer(Template)
+			Exit Sub
+		End If
+		intID = CType(PlayerID, Integer)
 		'See if a new file has to be created with defaults
 		If System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID) = False then System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\player.pd") = False Then SaveState()
@@ -36,9 +44,26 @@ Public Class player
 		intBirthDay = CType(arrayPlayerData(5), Integer)
 		intGender = CType(arrayPlayerData(6), Integer)
 	End Sub
-''' <summary>
-''' Saves the current state of the Player data.
-''' </summary>
+	''' <summary>
+	''' Creates a new player through given template.
+	''' </summary>
+	Public Sub NewPlayer(ByVal PlayerData() As String)
+		intID = CType(PlayerData(0), Integer)
+		strNameNick = PlayerData(1)
+		strNameFirst = PlayerData(2)
+		strNameLast = PlayerData(3)
+		intBirthYear = CType(PlayerData(4), Integer)
+		intBirthMonth = CType(PlayerData(5), Integer)
+		intBirthDay = CType(PlayerData(6), Integer)
+		intGender = CType(PlayerData(7), Integer)
+		'Create the directory(s)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
+		'Start Writing New Player
+		SaveState()
+	End Sub
+	''' <summary>
+	''' Saves the current state of the Player data.
+	''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = strNameNick

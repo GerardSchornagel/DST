@@ -4,14 +4,10 @@
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
-		
-		'
-		' TODO : Add constructor code after InitializeComponents
-		'
 	End Sub
 	
 	Sub formMainLoad(sender As Object, e As EventArgs)
-		If GlobalSettings.LastUser = 99 Then buttonResumeGame.Enabled = False
+		
 	End Sub
 	
 	Sub buttonNewGameClick(sender As Object, e As EventArgs)
@@ -24,10 +20,32 @@
 			intCheck += 1
 		Loop
 		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intCheck)
-		'Replace ResumeGame Integer
+		'Make templates for all classes
+		'Player
+		Dim stringNewPlayer() As String
+		stringNewPlayer = New String() {CType(intCheck, String), "Nick Name", "First Name", "Last Name", "1985", "09", "24", "1"}
+		Dim newPlayer As New player("New", stringNewPlayer)
+		'Character
+		Dim stringNewCharacter() As String
+		stringNewCharacter = New String() {CType(intCheck, String), "250", "0", "0", "0"}
+		Dim newCharacter As New character("New", stringNewCharacter)
+		'Statistics
+		Dim stringNewStatistics() As String
+		stringNewStatistics = New String() {CType(intCheck, String), "0", "0", "0", System.DateTime.Now.Date.ToString, System.DateTime.Now.TimeOfDay.ToString, "0", "0", "0"}
+		Dim newStatistics As New statistics("New", stringNewStatistics)
+		'Inventory
+		Dim arrayNewInventory(0, 3) As Object
+		arrayNewInventory(0, 0) = "Freebie Pen's"
+		arrayNewInventory(0, 1) = "25"
+		arrayNewInventory(0, 2) = "1"
+		arrayNewInventory(0, 3) = "5"
+		Dim newInventory As New inventory("New", arrayNewInventory, CType(intCheck, String))
+		'Store
+		Dim newStore As New store("New", "FirstLocation", CType(intCheck, String))
+		'Update LastUser
 		GlobalSettings.LastUser = intCheck
-		'Load Game
-		buttonResumeGameClick(Nothing, Nothing)
+		'Call ResumeGame to continue starting.
+		buttonResumeGameClick(nothing, nothing)
 	End Sub
 	
 	Sub buttonResumeGameClick(sender As Object, e As EventArgs)

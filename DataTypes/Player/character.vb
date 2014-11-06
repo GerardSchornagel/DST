@@ -3,15 +3,24 @@
 ''' Starting Variables are hard-coded here.
 ''' </summary>
 Public Class character
-	Private intID As Integer = 99 'Passed on from parent
-	Private intBalance As Integer = 250 'Self adjusting through game
-	Private intGradeInventory As Integer = 0 'Self adjusting through game
-	Private intGradeShelf As Integer = 0 'Self adjusting through game
-	Private intGradePopularity As Integer = 0 'Self adjusting through game
+	Private intID As Integer
+	Private intBalance As Integer
+	Private intGradeInventory As Integer
+	Private intGradeShelf As Integer
+	Private intGradePopularity As Integer
 
 	Private strBinaryFileData As String = ""
-	Friend Sub New(PlayerID As Integer)
-		intID = PlayerID
+	''' <summary>
+	''' Retrieves Character Variables.
+	''' </summary>
+	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
+	''' <param name="Template">New String() {PlayerID, Balance, GradeInventory, GradeShelf, GradePopularity}</param>
+	Friend Sub New(PlayerID As String, Optional Template As String() = Nothing)
+		If PlayerID="New" Then
+			NewCharacter(Template)
+			Exit Sub
+		End If
+		intID = CType(PlayerID, Integer)
 		'See if a new file has to be created with defaults
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\character.pd") = False Then SaveState()
 
@@ -29,9 +38,23 @@ Public Class character
 		intGradeShelf = CType(arrayCharacterData(2), Integer)
 		intGradePopularity = CType(arrayCharacterData(3), Integer)
 	End Sub
-''' <summary>
-''' Saves the current state of character.vb Variables to file.
-''' </summary>
+	''' <summary>
+	''' Creates new Character Data and SaveState()
+	''' </summary>
+	Public Sub NewCharacter(ByVal CharacterData() As String)
+		intID = CType(CharacterData(0), Integer)
+		intBalance = CType(CharacterData(1), Integer)
+		intGradeInventory = CType(CharacterData(2), Integer)
+		intGradeShelf = CType(CharacterData(3), Integer)
+		intGradePopularity = CType(CharacterData(4), Integer)
+		'Create the directory(s)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
+		'Start Writing New Player
+		SaveState()
+	End Sub
+	''' <summary>
+	''' Saves the current state of character.vb Variables to file.
+	''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = CType(intBalance, String)

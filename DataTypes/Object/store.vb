@@ -2,21 +2,80 @@
 ''' Handles the Selecting and get/set functions for the Store Inventory.
 ''' </summary>
 Public Class store
-	Dim arrayStore() As String 'from Location
-	Dim arrayBinCollection() As String 'Containing Bin file(s) from Location/Store
+	Dim arrayStoreCollection() As String 'Contains all Stores in given Location
+	Dim arrayBinCollection() As String 'Containing Bin's shortcuts of current Store
 	Dim arrayBin(,) As String 'Contains collected and sorted Bin data
 	
 	Private intID As Integer
 	Private strLocationCurrent As String
 	Private strStoreCurrent As String
 	Private strBinaryFileData As String
-	
-	Friend Sub New(ByVal Location As String)
-		intID = formStatus.classPlayer.PlayerID
+	''' <summary>
+	''' Retrieves and Sets the current Store array.
+	''' </summary>
+	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
+	''' <param name="Location">Use "FirstLocation" for Alpha phase.</param>
+	''' <param name="Template">2d ObjectArray filled with String. Name, Quantity, Price.</param>
+	''' <param name="NewPlayerID">Use intCheck for new ID String.</param>
+	Friend Sub New(ByVal PlayerID As String, ByVal Location As String, Optional ByVal NewPlayerID As String = Nothing)
+		If PlayerID = "New" Then
+			intID = CType(NewPlayerID, Integer)
+			NewStore()
+			Exit Sub
+		End If
+		intID = CType(PlayerID, Integer)
 		strLocationCurrent = Location
 		'Prepare by getting Store(s) from Location
-		arrayStore = (System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent))
+		arrayStoreCollection = (System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent))
 	End Sub 'New
+	''' <summary>
+	''' Creates a new first player store through Template.
+	''' </summary>
+	Public Sub NewStore()
+		strLocationCurrent = "FirstLocation"
+		'Create the directory(s)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent & "\FirstStore")
+		'Write first bin.
+		strBinaryFileData = CType("0", String) & "<>" & CType("0", String) & "<>" & CType("0", String)
+		'Fill Array for character per character progressing
+		Dim arrayInt32(strBinaryFileData.Length) As Int32
+		Dim intDimension As Integer = 0
+		For Each character As Char In strBinaryFileData
+			arrayInt32(intDimension) = Asc(character)
+			intDimension += 1
+		Next
+		
+		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\FirstLocation\FirstStore\0.prd", System.IO.FileMode.Create))
+			For Each integer32 As Int32 In arrayInt32
+				binWriter.Write(integer32)
+			Next
+		End Using
+	End Sub
+	''' <summary>
+	''' Saves the current state of the Store Inventory.
+	''' </summary>
+	Public Sub SaveState()
+		'Loop through arrayBin and save individual files
+		For Each bin As String In arrayBinCollection
+			strBinaryFileData = arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),0)
+			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),1)
+			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),2)
+			'Fill Array for character per character progressing
+			Dim arrayInt32(strBinaryFileData.Length) As Int32
+			Dim intDimension As Integer = 0
+			For Each character As Char In strBinaryFileData
+				arrayInt32(intDimension) = Asc(character)
+				intDimension += 1
+			Next
+			
+			Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent & "\" & strStoreCurrent & "\" & bin, System.IO.FileMode.Create))
+				For Each integer32 As Int32 In arrayInt32
+					binWriter.Write(integer32)
+				Next
+			End Using
+		Next
+	End Sub 'SaveState
 	''' <summary>
 	''' Creates the space for a new Store and create a zero-filled starting array.
 	''' </summary>
@@ -129,28 +188,4 @@ Public Class store
 			SaveState()
 		End Set
 	End Property 'getsetBin
-	''' <summary>
-	''' Saves the current state of the Store Inventory.
-	''' </summary>
-	Public Sub SaveState()
-		'Loop through arrayBin and save individual files
-		For Each bin As String In arrayBinCollection
-			strBinaryFileData = arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),0)
-			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),1)
-			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),2)
-			'Fill Array for character per character progressing
-			Dim arrayInt32(strBinaryFileData.Length) As Int32
-			Dim intDimension As Integer = 0
-			For Each character As Char In strBinaryFileData
-				arrayInt32(intDimension) = Asc(character)
-				intDimension += 1
-			Next
-			
-			Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent & "\" & strStoreCurrent & "\" & bin, System.IO.FileMode.Create))
-				For Each integer32 As Int32 In arrayInt32
-					binWriter.Write(integer32)
-				Next
-			End Using
-		Next
-	End Sub 'SaveState
 End Class

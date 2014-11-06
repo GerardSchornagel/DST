@@ -2,14 +2,23 @@
 ''' Handles the Player Inventory array's.
 ''' </summary>
 Public Class inventory
-	Private intID As Integer = 99 'Passed on from parent
-
+	Private intID As Integer
 	Dim arrayInventory(,) As Object
-
+	
 	Private strBinaryFileData As String = ""
-
-	Friend Sub New(PlayerID As Integer)
-		intID = PlayerID
+	''' <summary>
+	''' Retrieves Inventory Array.
+	''' </summary>
+	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
+	''' <param name="Template">2d ObjectArray filled with String. Name, Quantity, LastBuy, LastSell.</param>
+	''' <param name="NewPlayerID">Use intCheck for new ID String.</param>
+	Friend Sub New(ByVal PlayerID As String, Optional ByVal Template(,) As Object = Nothing, Optional ByVal NewPlayerID As String = Nothing)
+		If PlayerID = "New" Then
+			intID = CType(NewPlayerID, Integer)
+			NewInventory(Template)
+			Exit Sub
+		End If
+		intID = CType(PlayerID, Integer)
 		'See if a new file has to be created with defaults
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\inventory.pd") = False Then SaveState()
 		strBinaryFileData = ""
@@ -40,20 +49,25 @@ Public Class inventory
 			arrayInventory(intDimensionArray, 3) = rawInventory(intDimensionRaw) 'Selling Price
 		Loop Until intDimensionArray = CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),integer) 
 	End Sub 'Sub New
+	''' <summary>
+	''' Creates a new player inventory through Template.
+	''' </summary>
+	Public Sub NewInventory(ByVal InventoryData(,) As Object)
+		ReDim arrayInventory(0, 3)
+		arrayInventory(0, 0) = InventoryData(0, 0)
+		arrayInventory(0, 1) = InventoryData(0, 1)
+		arrayInventory(0, 2) = InventoryData(0, 2)
+		arrayInventory(0, 3) = InventoryData(0, 3)
+		'Create the directory(s)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
+		'Start Writing New Player
+		SaveState()
+	End Sub
 ''' <summary>
 ''' Saves the current state of the Player Inventory array.
 ''' </summary>
 	Private Sub SaveState()
 		'Make Raw data String
-		'Check for empty arrayInventory for creating new one
-		If arrayInventory Is Nothing = True Then
-			ReDim arrayInventory(0, 3)
-			arrayInventory(0, 0) = "Freebie Pen's"
-			arrayInventory(0, 1) = 25
-			arrayInventory(0, 2) = 1
-			arrayInventory(0, 3) = 5
-		End If
-
 		strBinaryFileData = ""
 		Dim intDimensionFirst As Integer = -1 'Negative for upcoming Loop
 		Do

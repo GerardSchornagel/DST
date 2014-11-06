@@ -2,41 +2,66 @@
 ''' Get or Sets the current Player Statistics.
 ''' </summary>
 Public Class statistics
-	Private intID As Integer = 99 'Passed on from parent
-	Private intGlobalSaved As Integer = 0
-	Private intGlobalHours As Integer = 0
-	Private intGlobalCycles As Integer = 0
-	Private strDatesCreateDate As String = System.DateTime.Now.Day & "/" & System.DateTime.Now.Month & "/" & System.DateTime.Now.Year
-	Private strDatesCreateTime As String = System.DateTime.Now.Hour & ":" & System.DateTime.Now.Minute
-	Private intFinanceTotalEarned As Integer = 0
-	Private intFinanceTotalSpent As Integer = 0
-	Private intItemsTotalSold As Integer = 0
+	Private intID As Integer
+	Private intGlobalSaved As Integer
+	Private intGlobalHours As Integer
+	Private intGlobalCycles As Integer
+	Private strDatesCreateDate As String
+	Private strDatesCreateTime As String
+	Private intFinanceTotalEarned As Integer
+	Private intFinanceTotalSpent As Integer
+	Private intItemsTotalSold As Integer
 
 	Private strBinaryFileData As String = ""
-
-	Friend Sub New(PlayerID As Integer)
-		intID = PlayerID
-		'See if a new file has to be created with defaults
-		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\statistics.pd") = False Then SaveState()
-
-		'Get all info from File
-		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\statistics.pd", System.IO.FileMode.Open))
-			Do
-				strBinaryFileData += (Chr(binReader.ReadInt32))
-			Loop Until binReader.PeekChar = Nothing
-		End Using
-		'Split info into string-array
-		Dim arrayStatisticsData As String() = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
-		'Write Private's
-		intGlobalSaved = CType(arrayStatisticsData(0), Integer)
-		intGlobalHours = CType(arrayStatisticsData(1), Integer)
-		intGlobalCycles = CType(arrayStatisticsData(2), Integer)
-		strDatesCreateDate = arrayStatisticsData(3)
-		strDatesCreateTime = arrayStatisticsData(4)
-		intFinanceTotalEarned = CType(arrayStatisticsData(5), Integer)
-		intFinanceTotalSpent = CType(arrayStatisticsData(6), Integer)
-		intItemsTotalSold = CType(arrayStatisticsData(7), Integer)
-	End Sub 'Sub New
+	''' <summary>
+	''' Retrieves Statistics Variables.
+	''' </summary>
+	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
+	''' <param name="Template">New String() {PlayerID, TotalSaves, TotalHours, TotalCycles, CreateDate, CreateTime, TotalEarned, TotalSpent, TotalSold}.</param>
+	Friend Sub New(PlayerID As String, Optional Template As String() = Nothing)
+		If PlayerID="New" Then
+			NewStatistics(Template)
+			Exit Sub
+		End If
+	intID = CType(PlayerID, Integer)
+	'See if a new file has to be created with defaults
+	If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\statistics.pd") = False Then SaveState()
+	'Get all info from File
+	Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\statistics.pd", System.IO.FileMode.Open))
+		Do
+			strBinaryFileData += (Chr(binReader.ReadInt32))
+		Loop Until binReader.PeekChar = Nothing
+	End Using
+	'Split info into string-array
+	Dim arrayStatisticsData As String() = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
+	'Write Private's
+	intGlobalSaved = CType(arrayStatisticsData(0), Integer)
+	intGlobalHours = CType(arrayStatisticsData(1), Integer)
+	intGlobalCycles = CType(arrayStatisticsData(2), Integer)
+	strDatesCreateDate = arrayStatisticsData(3)
+	strDatesCreateTime = arrayStatisticsData(4)
+	intFinanceTotalEarned = CType(arrayStatisticsData(5), Integer)
+	intFinanceTotalSpent = CType(arrayStatisticsData(6), Integer)
+	intItemsTotalSold = CType(arrayStatisticsData(7), Integer)
+End Sub 'Sub New
+	''' <summary>
+	''' Creates new Statistics Data and SaveState()
+	''' </summary>
+	Public Sub NewStatistics(ByVal StatisticsData() As String)
+		intID = CType(StatisticsData(0), Integer)
+		intGlobalSaved = CType(StatisticsData(1), Integer)
+		intGlobalHours = CType(StatisticsData(2), Integer)
+		intGlobalCycles = CType(StatisticsData(3), Integer)
+		strDatesCreateDate = StatisticsData(4)
+		strDatesCreateTime = StatisticsData(5)
+		intFinanceTotalEarned = CType(StatisticsData(6), Integer)
+		intFinanceTotalSpent = CType(StatisticsData(7), Integer)
+		intItemsTotalSold = CType(StatisticsData(8), Integer)
+		'Create the directory(s)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
+		'Start Writing New Statistics
+		SaveState()
+	End Sub
 ''' <summary>
 ''' Saves the current state of the Player Statistics Variables.
 ''' </summary>

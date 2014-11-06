@@ -158,7 +158,7 @@ Partial Class formGame
 		Me.Controls.Add(Me.textboxActionLog)
 		Me.Name = "formGame"
 		Me.Text = "formGame"
-		AddHandler Load, AddressOf Me.FormGameLoad
+		AddHandler Load, AddressOf Me.formGameLoad
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub

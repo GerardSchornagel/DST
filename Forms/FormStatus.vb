@@ -1,8 +1,8 @@
 ﻿Public Partial Class formStatus
-	Friend Shared classPlayer As New player(formMain.GlobalSettings.LastUser)
-	Friend Shared classCharacter As New character(formMain.GlobalSettings.LastUser)
-	Friend Shared classInventory As New inventory(formMain.GlobalSettings.LastUser)
-	Friend Shared classStatistics As New statistics(formMain.GlobalSettings.LastUser)
+	Friend Shared classPlayer As New player(CType(formMain.GlobalSettings.LastUser, String))
+	Friend Shared classCharacter As New character(CType(formMain.GlobalSettings.LastUser, String))
+	Friend Shared classInventory As New inventory(CType(formMain.GlobalSettings.LastUser, String))
+	Friend Shared classStatistics As New statistics(CType(formMain.GlobalSettings.LastUser, String))
 	
 	Friend Shared GameForm As New formGame()
 	Friend Shared InventoryForm As New formInventory()

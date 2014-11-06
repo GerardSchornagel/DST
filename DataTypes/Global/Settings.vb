@@ -2,7 +2,7 @@
 	''' Global Settings for the game, most will be handled from the Main Menu.
 	''' </summary>
 Public Class settings
-	Private intLastUser As Integer = 99 'If not overriden this is Create New
+	Private intLastUser As Integer = 0
 
 	Private bolMessagesProgramQuit As Boolean = False 'Asks if Exiting the Program is true
 	Private bolMessagesNewgameOverwrite As Boolean = False 'Inform about overwrite of Load Last Game
@@ -27,11 +27,12 @@ Public Class settings
 		bolMessagesNewgameOverwrite = CType(arraySettings(2), Boolean)
 		bolMessagesOptionsApplyrestart = CType(arraySettings(3), Boolean)
 	End Sub 'Sub New
-	
 	''' <summary>
 	''' Saves all changes made to Global Settings.
 	''' </summary>
 	Private Sub SaveState()
+		'Check for directory and create if false.
+		if System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save") = False Then System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save")
 		'Make Raw data String
 		strBinaryFileData = CType(intLastUser, String)
 		strBinaryFileData += "<>" & bolMessagesProgramQuit
@@ -45,9 +46,7 @@ Public Class settings
 			arrayInt32(intDimension) = Asc(character)
 			intDimension += 1
 		Next
-
-		' Create the BinaryWriter and use File.Create to create the file.
-		If intLastUser = 99 Then System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save")
+		
 		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd", System.IO.FileMode.Create))
 			For Each integer32 As Int32 In arrayInt32
 				binWriter.Write(integer32)
