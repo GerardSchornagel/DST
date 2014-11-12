@@ -66,7 +66,7 @@ Public Class inventory
 ''' <summary>
 ''' Saves the current state of the Player Inventory array.
 ''' </summary>
-	Private Sub SaveState()
+	Public Sub SaveState()
 		'Make Raw data String
 		strBinaryFileData = ""
 		Dim intDimensionFirst As Integer = -1 'Negative for upcoming Loop
@@ -100,7 +100,10 @@ Public Class inventory
 ''' </summary>
 	Public Property GetInventorySpace(Dimension As Integer) As object
 		Get
-			If Dimension = -1 Then Exit Property
+			If Dimension = -1 Then 
+				Return Nothing
+				Exit Property
+			End If
 			If Dimension > arrayInventory.GetUpperBound(0) Then
 				Return Nothing
 				Exit Property

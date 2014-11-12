@@ -191,4 +191,14 @@ Public Class store
 			SaveState()
 		End Set
 	End Property 'getsetBin
+	''' <summary>
+	''' Returns the highest Index.
+	''' </summary>
+	Public Property getUpperbound As Integer
+		Get
+			Return CType(arrayBin.GetUpperBound(0), Integer)
+		End Get
+		Set
+		End Set
+	End Property
 End Class

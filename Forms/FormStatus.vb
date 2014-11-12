@@ -4,20 +4,25 @@
 	Friend Shared classInventory As New inventory(CType(formMain.GlobalSettings.LastUser, String))
 	Friend Shared classStatistics As New statistics(CType(formMain.GlobalSettings.LastUser, String))
 	
-	
 	Friend Shared GameForm As New formGame()
 	Friend Shared InventoryForm As New formInventory()
 	Friend Shared MapForm As New formMap()
 	Friend Shared StoreForm As New formStore()
 	
 	Private arrayInventorySelected As Object
+	Private timerUpdate As New System.Windows.Forms.Timer
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
 	End Sub
-	
+		
 	Sub FormStatusLoad(sender As Object, e As EventArgs)
+		AddHandler timerUpdate.Tick, AddressOf timerUpdateTick
+		'Make a minium Interval value based on pc time to process random data equal to a medium big Savegame-size.
+		timerUpdate.Interval = 2500
+		timerUpdate.Start()
+		
 		textboxBalance.Text = CType(classCharacter.Balance, String)
 		'Player Tab
 		textboxPlayerID.Text = CType(classPlayer.PlayerID, String)
@@ -29,7 +34,6 @@
 		textboxBirthDay.Text = CType(classPlayer.BirthDay, String)
 		textboxGender.Text = CType(classPlayer.Gender, String)
 		'Character Tab
-		textboxBalance.Text = CType(classCharacter.Balance, String)
 		textboxGradeInventory.Text = CType(classCharacter.GradeInventory, String)
 		textboxGradeShelf.Text = CType(classCharacter.GradeShelf, String)
 		textboxGradePopularity.Text = CType(classCharacter.GradePopularity, String)
@@ -41,9 +45,10 @@
 		textboxPlaySaved.Text = CType(classStatistics.TotalSaveTimes, String)
 		textboxMoneyEarned.Text = CType(classStatistics.TotalEarnings, String)
 		textboxMoneySpent.Text = CType(classStatistics.TotalSpent, String)
-		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)
+		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)		
 		'Inventory Tab
 		Dim intDimension As Integer = 0
+		listboxInventory.Items.Clear()
 		Do
 			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
 				Exit Do
@@ -52,6 +57,7 @@
 			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
 			intDimension += 1
 		Loop
+		
 		GameForm.Show()
 	End Sub
 	
@@ -61,10 +67,11 @@
 	
 	Sub buttonExportClick(sender As Object, e As EventArgs)
 		'This will send the article and total amount to the user decided Bin
-		Dim arrayPocket() As String = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
-		Dim arrayBin() As String = formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)
+		Dim arrayPocket As Object = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
+		Dim arrayBin As Object = formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)
+		If listboxInventory.SelectedIndex = -1 then Exit Sub
 		'Look for current item in Shelf
-		If arrayBin(0) = "empty" Then
+		If arrayBin(0) Is CType("empty", String) Then
 			formGame.StoreCurrent.makeBin()
 			formGame.StoreCurrent.SaveState()
 			arrayPocket = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)		
@@ -106,7 +113,21 @@
 			arrayPocket(1) = "0"
 			classInventory.GetInventorySpace(listboxInventory.SelectedIndex) = arrayPocket
 		End If
+		classInventory.SaveState()
 		formGame.StoreCurrent.SaveState()
+		
+		textboxAmount.Text = CType(arrayInventorySelected(1), String)
+		'Inventory Tab
+		Dim intDimension As Integer = 0
+		listboxInventory.Items.Clear()
+		Do
+			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
+				Exit Do
+			End If
+			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
+			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
+			intDimension += 1
+		Loop
 	End Sub
 	
 	Sub ListboxInventorySelectedIndexChanged(sender As Object, e As EventArgs)
@@ -128,5 +149,19 @@
 	Sub ButtonInventoryClick(sender As Object, e As EventArgs)
 		InventoryForm = New formInventory()
 		InventoryForm.Show()
+	End Sub
+	
+	Private Sub timerUpdateTick(sender As Object, e As system.EventArgs)
+		Reload()
+	End Sub
+	
+	Private Sub Reload()
+		textboxBalance.Text = CType(classCharacter.Balance, String)
+		textboxPlayHours.Text = CType(classStatistics.TotalHoursPlayed, String)
+		textboxPlaycycles.Text = CType(classStatistics.TotalDayCycles, String)
+		textboxPlaySaved.Text = CType(classStatistics.TotalSaveTimes, String)
+		textboxMoneyEarned.Text = CType(classStatistics.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(classStatistics.TotalSpent, String)
+		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)
 	End Sub
 End Class

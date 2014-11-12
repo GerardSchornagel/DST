@@ -34,7 +34,7 @@
 	End Sub
 	
 	Private Sub TimerHour_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
-		If CType(textboxActionHour.Text, Double) >= 0 Then 'Before zero
+		If CType(textboxActionHour.Text, Double) > 0 Then 'Before zero
 			'For deciding how many customers per hour
 			IntegerCustomerNumber = RandomGenerator.Next(5)
 			TimerCustomer.Interval = 250
@@ -58,11 +58,11 @@
 			'Make new Customer and get his/her data for log
 			CustomerNew.newCustomer
 			
-			CurrentSpace = RandomGenerator.Next(4)
+			CurrentSpace = RandomGenerator.Next(formGame.StoreCurrent.getUpperbound)
 			
 			If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
 				If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
-					textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
+					textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & CurrentSpace & Chr(10))
 					formStatus.classCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
 					Dim setBin(2) As String
 					setBin = CType(StoreCurrent.getsetBin(CurrentSpace), String())
@@ -71,11 +71,11 @@
 					formStatus.classStatistics.TotalItemsSold += 1
 					
 				ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
-					textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ")" & Chr(10))
+					textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot" & CurrentSpace & Chr(10))
 				End If
 				
 			ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
-				textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
+				textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
 				textboxActionHour.Text = CType(CType(textboxActionHour.Text, Integer) - 1, String)
 				TimerHour.Start()
 				TimerCustomer.Stop()

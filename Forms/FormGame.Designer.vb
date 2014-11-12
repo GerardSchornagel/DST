@@ -38,7 +38,7 @@ Partial Class formGame
 		Me.buttonActionStart.AutoSize = true
 		Me.buttonActionStart.Location = New System.Drawing.Point(93, 25)
 		Me.buttonActionStart.Name = "buttonActionStart"
-		Me.buttonActionStart.Size = New System.Drawing.Size(61, 23)
+		Me.buttonActionStart.Size = New System.Drawing.Size(79, 23)
 		Me.buttonActionStart.TabIndex = 17
 		Me.buttonActionStart.Text = "Start Day"
 		AddHandler Me.buttonActionStart.Click, AddressOf Me.ButtonActionStartClick
@@ -64,7 +64,7 @@ Partial Class formGame
 		'labelActionLog
 		'
 		Me.labelActionLog.AutoSize = true
-		Me.labelActionLog.Location = New System.Drawing.Point(160, 8)
+		Me.labelActionLog.Location = New System.Drawing.Point(178, 8)
 		Me.labelActionLog.Name = "labelActionLog"
 		Me.labelActionLog.Size = New System.Drawing.Size(80, 13)
 		Me.labelActionLog.TabIndex = 20
@@ -72,12 +72,12 @@ Partial Class formGame
 		'
 		'textboxActionLog
 		'
-		Me.textboxActionLog.Location = New System.Drawing.Point(160, 24)
+		Me.textboxActionLog.Location = New System.Drawing.Point(178, 24)
 		Me.textboxActionLog.Multiline = true
 		Me.textboxActionLog.Name = "textboxActionLog"
 		Me.textboxActionLog.ReadOnly = true
 		Me.textboxActionLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.textboxActionLog.Size = New System.Drawing.Size(328, 256)
+		Me.textboxActionLog.Size = New System.Drawing.Size(310, 256)
 		Me.textboxActionLog.TabIndex = 21
 		'
 		'formGame
