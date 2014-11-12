@@ -18,8 +18,8 @@
 	Sub formGameLoad(sender As Object, e As EventArgs)
 		AddHandler timerHour.Tick, AddressOf TimerHour_Tick
 		AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
+		StoreCurrent.setStore("FirstStore")
 	End Sub
-	
 	
 	Private Sub ButtonActionStartClick(ByVal sender As Object, ByVal e As System.EventArgs)
 		textboxActionHour.Text = "9"
@@ -31,14 +31,6 @@
 		'I think I've to adapt the randomgenerator for this with 4 customs seeds provided by 5th random for cycling the lesser.
 		timerHour.Interval = 1000
 		timerHour.Start()
-	End Sub
-	
-	Private Sub ButtonStoreInventoryClick(ByVal sender As Object, ByVal e As System.EventArgs)
-		
-	End Sub
-	
-	Private Sub buttonProductBuyClick(ByVal sender As Object, ByVal e As System.EventArgs)
-		
 	End Sub
 	
 	Private Sub TimerHour_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -65,8 +57,6 @@
 		If IntegerCustomerNumber >= 0 Then 'More then Zero
 			'Make new Customer and get his/her data for log
 			CustomerNew.newCustomer
-			textboxCustomerName.Text = CustomerNew.Name
-			textboxCustomerMoney.Text = CType(CustomerNew.Money, String)
 			
 			CurrentSpace = RandomGenerator.Next(4)
 			
@@ -87,8 +77,6 @@
 			ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
 				textboxActionLog.AppendText(CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
 				textboxActionHour.Text = CType(CType(textboxActionHour.Text, Integer) - 1, String)
-				textboxCustomerMoney.Text = ""
-				textboxCustomerName.Text = ""
 				TimerHour.Start()
 				TimerCustomer.Stop()
 			End If

@@ -25,65 +25,68 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.buttonSave = New System.Windows.Forms.button()
 		Me.groupboxDates = New System.Windows.Forms.GroupBox()
-		Me.labelPlaySaved = New System.Windows.Forms.label()
+		Me.labelPlaySaved = New System.Windows.Forms.Label()
 		Me.textboxPlaySaved = New System.Windows.Forms.TextBox()
-		Me.labelCreatedTime = New System.Windows.Forms.label()
-		Me.labelPlayHours = New System.Windows.Forms.label()
+		Me.labelCreatedTime = New System.Windows.Forms.Label()
+		Me.labelPlayHours = New System.Windows.Forms.Label()
 		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
 		Me.textboxPlayHours = New System.Windows.Forms.TextBox()
-		Me.labelCreatedDate = New System.Windows.Forms.label()
+		Me.labelCreatedDate = New System.Windows.Forms.Label()
 		Me.textboxCreatedDate = New System.Windows.Forms.TextBox()
-		Me.labelPlaycycles = New System.Windows.Forms.label()
+		Me.labelPlaycycles = New System.Windows.Forms.Label()
 		Me.textboxPlaycycles = New System.Windows.Forms.TextBox()
 		Me.groupboxFinances = New System.Windows.Forms.GroupBox()
-		Me.labelItemsSold = New System.Windows.Forms.label()
-		Me.labelMoneyEarned = New System.Windows.Forms.label()
+		Me.labelItemsSold = New System.Windows.Forms.Label()
+		Me.labelMoneyEarned = New System.Windows.Forms.Label()
 		Me.textboxItemsSold = New System.Windows.Forms.TextBox()
 		Me.textboxMoneyEarned = New System.Windows.Forms.TextBox()
 		Me.textboxMoneySpent = New System.Windows.Forms.TextBox()
-		Me.labelMoneySpent = New System.Windows.Forms.label()
+		Me.labelMoneySpent = New System.Windows.Forms.Label()
 		Me.tabpageStatistics = New System.Windows.Forms.TabPage()
 		Me.tabpageInventory = New System.Windows.Forms.TabPage()
 		Me.groupboxDetails = New System.Windows.Forms.GroupBox()
-		Me.labelAmount = New System.Windows.Forms.label()
+		Me.labelAmount = New System.Windows.Forms.Label()
 		Me.textboxLastBuying = New System.Windows.Forms.TextBox()
 		Me.textboxLastSelling = New System.Windows.Forms.TextBox()
-		Me.labelLastBuying = New System.Windows.Forms.label()
-		Me.labelLastSelling = New System.Windows.Forms.label()
+		Me.labelLastBuying = New System.Windows.Forms.Label()
+		Me.labelLastSelling = New System.Windows.Forms.Label()
 		Me.textboxAmount = New System.Windows.Forms.TextBox()
 		Me.groupboxSelection = New System.Windows.Forms.GroupBox()
+		Me.comboboxBins = New System.Windows.Forms.ComboBox()
 		Me.listboxInventory = New System.Windows.Forms.ListBox()
-		Me.buttonExport = New System.Windows.Forms.button()
-		Me.buttonExit = New System.Windows.Forms.button()
-		Me.labelBalance = New System.Windows.Forms.label()
+		Me.buttonExport = New System.Windows.Forms.Button()
+		Me.buttonExit = New System.Windows.Forms.Button()
+		Me.labelBalance = New System.Windows.Forms.Label()
 		Me.textboxBalance = New System.Windows.Forms.TextBox()
 		Me.tabcontrolStatus = New System.Windows.Forms.TabControl()
 		Me.tabpagePlayer = New System.Windows.Forms.TabPage()
 		Me.groupboxProfile = New System.Windows.Forms.GroupBox()
-		Me.labelPlayerID = New System.Windows.Forms.label()
+		Me.labelPlayerID = New System.Windows.Forms.Label()
 		Me.textboxPlayerID = New System.Windows.Forms.TextBox()
-		Me.labelGender = New System.Windows.Forms.label()
+		Me.labelGender = New System.Windows.Forms.Label()
 		Me.textboxBirthYear = New System.Windows.Forms.TextBox()
-		Me.labelNameLast = New System.Windows.Forms.label()
-		Me.labelBirthDate = New System.Windows.Forms.label()
+		Me.labelNameLast = New System.Windows.Forms.Label()
+		Me.labelBirthDate = New System.Windows.Forms.Label()
 		Me.textboxNameFirst = New System.Windows.Forms.TextBox()
-		Me.labelNameNick = New System.Windows.Forms.label()
+		Me.labelNameNick = New System.Windows.Forms.Label()
 		Me.textboxBirthDay = New System.Windows.Forms.TextBox()
 		Me.textboxGender = New System.Windows.Forms.TextBox()
-		Me.labelNameFirst = New System.Windows.Forms.label()
+		Me.labelNameFirst = New System.Windows.Forms.Label()
 		Me.textboxNameLast = New System.Windows.Forms.TextBox()
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
 		Me.textboxNameNick = New System.Windows.Forms.TextBox()
 		Me.tabpageCharacter = New System.Windows.Forms.TabPage()
 		Me.groupboxGrades = New System.Windows.Forms.GroupBox()
-		Me.labelGradeInventory = New System.Windows.Forms.label()
+		Me.labelGradeInventory = New System.Windows.Forms.Label()
 		Me.textboxGradeInventory = New System.Windows.Forms.TextBox()
 		Me.textboxGradeShelf = New System.Windows.Forms.TextBox()
-		Me.labelGradePopularity = New System.Windows.Forms.label()
-		Me.labelGradeShelf = New System.Windows.Forms.label()
+		Me.labelGradePopularity = New System.Windows.Forms.Label()
+		Me.labelGradeShelf = New System.Windows.Forms.Label()
 		Me.textboxGradePopularity = New System.Windows.Forms.TextBox()
+		Me.buttonMap = New System.Windows.Forms.Button()
+		Me.buttonInventory = New System.Windows.Forms.Button()
+		Me.buttonStore = New System.Windows.Forms.Button()
 		Me.groupboxDates.SuspendLayout
 		Me.groupboxFinances.SuspendLayout
 		Me.tabpageStatistics.SuspendLayout
@@ -96,16 +99,6 @@
 		Me.tabpageCharacter.SuspendLayout
 		Me.groupboxGrades.SuspendLayout
 		Me.SuspendLayout
-		'
-		'buttonSave
-		'
-		Me.buttonSave.Location = New System.Drawing.Point(238, 421)
-		Me.buttonSave.Name = "buttonSave"
-		Me.buttonSave.Size = New System.Drawing.Size(227, 23)
-		Me.buttonSave.TabIndex = 5
-		Me.buttonSave.Text = "Save"
-		Me.buttonSave.UseVisualStyleBackColor = true
-		AddHandler Me.buttonSave.Click, AddressOf Me.buttonSaveClick
 		'
 		'groupboxDates
 		'
@@ -284,7 +277,7 @@
 		Me.tabpageStatistics.Location = New System.Drawing.Point(4, 22)
 		Me.tabpageStatistics.Name = "tabpageStatistics"
 		Me.tabpageStatistics.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpageStatistics.Size = New System.Drawing.Size(449, 377)
+		Me.tabpageStatistics.Size = New System.Drawing.Size(453, 377)
 		Me.tabpageStatistics.TabIndex = 1
 		Me.tabpageStatistics.Text = "Statistics"
 		Me.tabpageStatistics.UseVisualStyleBackColor = true
@@ -296,7 +289,7 @@
 		Me.tabpageInventory.Location = New System.Drawing.Point(4, 22)
 		Me.tabpageInventory.Name = "tabpageInventory"
 		Me.tabpageInventory.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpageInventory.Size = New System.Drawing.Size(449, 377)
+		Me.tabpageInventory.Size = New System.Drawing.Size(453, 377)
 		Me.tabpageInventory.TabIndex = 2
 		Me.tabpageInventory.Text = "Inventory"
 		Me.tabpageInventory.UseVisualStyleBackColor = true
@@ -363,11 +356,13 @@
 		'
 		Me.textboxAmount.Location = New System.Drawing.Point(9, 32)
 		Me.textboxAmount.Name = "textboxAmount"
+		Me.textboxAmount.ReadOnly = true
 		Me.textboxAmount.Size = New System.Drawing.Size(135, 20)
 		Me.textboxAmount.TabIndex = 1
 		'
 		'groupboxSelection
 		'
+		Me.groupboxSelection.Controls.Add(Me.comboboxBins)
 		Me.groupboxSelection.Controls.Add(Me.listboxInventory)
 		Me.groupboxSelection.Controls.Add(Me.buttonExport)
 		Me.groupboxSelection.Location = New System.Drawing.Point(6, 6)
@@ -376,6 +371,16 @@
 		Me.groupboxSelection.TabIndex = 0
 		Me.groupboxSelection.TabStop = false
 		Me.groupboxSelection.Text = "Selection"
+		'
+		'comboboxBins
+		'
+		Me.comboboxBins.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.comboboxBins.FormattingEnabled = true
+		Me.comboboxBins.Items.AddRange(New Object() {"1A", "1B", "1C", "2A", "2B", "2C", "3A", "3B", "3C"})
+		Me.comboboxBins.Location = New System.Drawing.Point(6, 160)
+		Me.comboboxBins.Name = "comboboxBins"
+		Me.comboboxBins.Size = New System.Drawing.Size(115, 21)
+		Me.comboboxBins.TabIndex = 4
 		'
 		'listboxInventory
 		'
@@ -388,9 +393,9 @@
 		'
 		'buttonExport
 		'
-		Me.buttonExport.Location = New System.Drawing.Point(6, 160)
+		Me.buttonExport.Location = New System.Drawing.Point(127, 160)
 		Me.buttonExport.Name = "buttonExport"
-		Me.buttonExport.Size = New System.Drawing.Size(425, 23)
+		Me.buttonExport.Size = New System.Drawing.Size(304, 23)
 		Me.buttonExport.TabIndex = 2
 		Me.buttonExport.Text = "Export to Store"
 		Me.buttonExport.UseVisualStyleBackColor = true
@@ -398,9 +403,9 @@
 		'
 		'buttonExit
 		'
-		Me.buttonExit.Location = New System.Drawing.Point(12, 421)
+		Me.buttonExit.Location = New System.Drawing.Point(243, 442)
 		Me.buttonExit.Name = "buttonExit"
-		Me.buttonExit.Size = New System.Drawing.Size(220, 23)
+		Me.buttonExit.Size = New System.Drawing.Size(223, 23)
 		Me.buttonExit.TabIndex = 6
 		Me.buttonExit.Text = "Exit"
 		Me.buttonExit.UseVisualStyleBackColor = true
@@ -429,10 +434,10 @@
 		Me.tabcontrolStatus.Controls.Add(Me.tabpageCharacter)
 		Me.tabcontrolStatus.Controls.Add(Me.tabpageStatistics)
 		Me.tabcontrolStatus.Controls.Add(Me.tabpageInventory)
-		Me.tabcontrolStatus.Location = New System.Drawing.Point(12, 12)
+		Me.tabcontrolStatus.Location = New System.Drawing.Point(8, 12)
 		Me.tabcontrolStatus.Name = "tabcontrolStatus"
 		Me.tabcontrolStatus.SelectedIndex = 0
-		Me.tabcontrolStatus.Size = New System.Drawing.Size(457, 403)
+		Me.tabcontrolStatus.Size = New System.Drawing.Size(461, 403)
 		Me.tabcontrolStatus.TabIndex = 7
 		'
 		'tabpagePlayer
@@ -441,7 +446,7 @@
 		Me.tabpagePlayer.Location = New System.Drawing.Point(4, 22)
 		Me.tabpagePlayer.Name = "tabpagePlayer"
 		Me.tabpagePlayer.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpagePlayer.Size = New System.Drawing.Size(449, 377)
+		Me.tabpagePlayer.Size = New System.Drawing.Size(453, 377)
 		Me.tabpagePlayer.TabIndex = 3
 		Me.tabpagePlayer.Text = "Player"
 		Me.tabpagePlayer.UseVisualStyleBackColor = true
@@ -589,7 +594,7 @@
 		Me.tabpageCharacter.Location = New System.Drawing.Point(4, 22)
 		Me.tabpageCharacter.Name = "tabpageCharacter"
 		Me.tabpageCharacter.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpageCharacter.Size = New System.Drawing.Size(449, 377)
+		Me.tabpageCharacter.Size = New System.Drawing.Size(453, 377)
 		Me.tabpageCharacter.TabIndex = 0
 		Me.tabpageCharacter.Text = "Character"
 		Me.tabpageCharacter.UseVisualStyleBackColor = true
@@ -622,6 +627,7 @@
 		'
 		Me.textboxGradeInventory.Location = New System.Drawing.Point(6, 32)
 		Me.textboxGradeInventory.Name = "textboxGradeInventory"
+		Me.textboxGradeInventory.ReadOnly = true
 		Me.textboxGradeInventory.Size = New System.Drawing.Size(169, 20)
 		Me.textboxGradeInventory.TabIndex = 1
 		'
@@ -629,6 +635,7 @@
 		'
 		Me.textboxGradeShelf.Location = New System.Drawing.Point(6, 71)
 		Me.textboxGradeShelf.Name = "textboxGradeShelf"
+		Me.textboxGradeShelf.ReadOnly = true
 		Me.textboxGradeShelf.Size = New System.Drawing.Size(169, 20)
 		Me.textboxGradeShelf.TabIndex = 1
 		'
@@ -654,17 +661,50 @@
 		'
 		Me.textboxGradePopularity.Location = New System.Drawing.Point(6, 110)
 		Me.textboxGradePopularity.Name = "textboxGradePopularity"
+		Me.textboxGradePopularity.ReadOnly = true
 		Me.textboxGradePopularity.Size = New System.Drawing.Size(169, 20)
 		Me.textboxGradePopularity.TabIndex = 1
+		'
+		'buttonMap
+		'
+		Me.buttonMap.Location = New System.Drawing.Point(10, 442)
+		Me.buttonMap.Name = "buttonMap"
+		Me.buttonMap.Size = New System.Drawing.Size(228, 23)
+		Me.buttonMap.TabIndex = 8
+		Me.buttonMap.Text = "Map"
+		Me.buttonMap.UseVisualStyleBackColor = true
+		AddHandler Me.buttonMap.Click, AddressOf Me.ButtonMapClick
+		'
+		'buttonInventory
+		'
+		Me.buttonInventory.Location = New System.Drawing.Point(244, 416)
+		Me.buttonInventory.Name = "buttonInventory"
+		Me.buttonInventory.Size = New System.Drawing.Size(223, 23)
+		Me.buttonInventory.TabIndex = 8
+		Me.buttonInventory.Text = "Inventory"
+		Me.buttonInventory.UseVisualStyleBackColor = true
+		AddHandler Me.buttonInventory.Click, AddressOf Me.ButtonInventoryClick
+		'
+		'buttonStore
+		'
+		Me.buttonStore.Location = New System.Drawing.Point(8, 416)
+		Me.buttonStore.Name = "buttonStore"
+		Me.buttonStore.Size = New System.Drawing.Size(232, 23)
+		Me.buttonStore.TabIndex = 6
+		Me.buttonStore.Text = "Buy Items"
+		Me.buttonStore.UseVisualStyleBackColor = true
+		AddHandler Me.buttonStore.Click, AddressOf Me.buttonStoreClick
 		'
 		'formStatus
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(475, 456)
+		Me.ClientSize = New System.Drawing.Size(475, 472)
+		Me.Controls.Add(Me.buttonInventory)
+		Me.Controls.Add(Me.buttonMap)
 		Me.Controls.Add(Me.labelBalance)
 		Me.Controls.Add(Me.textboxBalance)
-		Me.Controls.Add(Me.buttonSave)
+		Me.Controls.Add(Me.buttonStore)
 		Me.Controls.Add(Me.buttonExit)
 		Me.Controls.Add(Me.tabcontrolStatus)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -692,62 +732,65 @@
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub
-	Private buttonSave As System.Windows.Forms.button
+	Private comboboxBins As System.Windows.Forms.ComboBox
+	Private buttonStore As System.Windows.Forms.Button
+	Private buttonInventory As System.Windows.Forms.Button
+	Private buttonMap As System.Windows.Forms.Button
 	Private groupboxDates As System.Windows.Forms.GroupBox
-	Private labelPlaySaved As System.Windows.Forms.label
+	Private labelPlaySaved As System.Windows.Forms.Label
 	Private textboxPlaySaved As System.Windows.Forms.TextBox
-	Private labelCreatedTime As System.Windows.Forms.label
-	Private labelPlayHours As System.Windows.Forms.label
+	Private labelCreatedTime As System.Windows.Forms.Label
+	Private labelPlayHours As System.Windows.Forms.Label
 	Private textboxCreatedTime As System.Windows.Forms.TextBox
 	Private textboxPlayHours As System.Windows.Forms.TextBox
-	Private labelCreatedDate As System.Windows.Forms.label
+	Private labelCreatedDate As System.Windows.Forms.Label
 	Private textboxCreatedDate As System.Windows.Forms.TextBox
-	Private labelPlaycycles As System.Windows.Forms.label
+	Private labelPlaycycles As System.Windows.Forms.Label
 	Private textboxPlaycycles As System.Windows.Forms.TextBox
 	Private groupboxFinances As System.Windows.Forms.GroupBox
-	Private labelItemsSold As System.Windows.Forms.label
-	Private labelMoneyEarned As System.Windows.Forms.label
+	Private labelItemsSold As System.Windows.Forms.Label
+	Private labelMoneyEarned As System.Windows.Forms.Label
 	Private textboxItemsSold As System.Windows.Forms.TextBox
 	Private textboxMoneyEarned As System.Windows.Forms.TextBox
 	Private textboxMoneySpent As System.Windows.Forms.TextBox
-	Private labelMoneySpent As System.Windows.Forms.label
+	Private labelMoneySpent As System.Windows.Forms.Label
 	Private tabpageStatistics As System.Windows.Forms.TabPage
 	Private tabpageInventory As System.Windows.Forms.TabPage
 	Private groupboxDetails As System.Windows.Forms.GroupBox
-	Private labelAmount As System.Windows.Forms.label
+	Private labelAmount As System.Windows.Forms.Label
 	Private textboxLastBuying As System.Windows.Forms.TextBox
 	Private textboxLastSelling As System.Windows.Forms.TextBox
-	Private labelLastBuying As System.Windows.Forms.label
-	Private labelLastSelling As System.Windows.Forms.label
+	Private labelLastBuying As System.Windows.Forms.Label
+	Private labelLastSelling As System.Windows.Forms.Label
 	Private textboxAmount As System.Windows.Forms.TextBox
 	Private groupboxSelection As System.Windows.Forms.GroupBox
 	Private listboxInventory As System.Windows.Forms.ListBox
-	Private buttonExport As System.Windows.Forms.button
-	Private buttonExit As System.Windows.Forms.button
-	Private labelBalance As System.Windows.Forms.label
+	Private buttonExport As System.Windows.Forms.Button
+	Private buttonExit As System.Windows.Forms.Button
+	Private labelBalance As System.Windows.Forms.Label
 	Private textboxBalance As System.Windows.Forms.TextBox
 	Private tabcontrolStatus As System.Windows.Forms.TabControl
 	Private tabpageCharacter As System.Windows.Forms.TabPage
 	Private groupboxGrades As System.Windows.Forms.GroupBox
-	Private labelGradeInventory As System.Windows.Forms.label
+	Private labelGradeInventory As System.Windows.Forms.Label
 	Private textboxGradeInventory As System.Windows.Forms.TextBox
 	Private textboxGradeShelf As System.Windows.Forms.TextBox
-	Private labelGradePopularity As System.Windows.Forms.label
-	Private labelGradeShelf As System.Windows.Forms.label
+	Private labelGradePopularity As System.Windows.Forms.Label
+	Private labelGradeShelf As System.Windows.Forms.Label
 	Private textboxGradePopularity As System.Windows.Forms.TextBox
 	Private tabpagePlayer As System.Windows.Forms.TabPage
 	Private groupboxProfile As System.Windows.Forms.GroupBox
-	Private labelPlayerID As System.Windows.Forms.label
+	Private labelPlayerID As System.Windows.Forms.Label
 	Private textboxPlayerID As System.Windows.Forms.TextBox
-	Private labelGender As System.Windows.Forms.label
+	Private labelGender As System.Windows.Forms.Label
 	Private textboxBirthYear As System.Windows.Forms.TextBox
-	Private labelNameLast As System.Windows.Forms.label
-	Private labelBirthDate As System.Windows.Forms.label
+	Private labelNameLast As System.Windows.Forms.Label
+	Private labelBirthDate As System.Windows.Forms.Label
 	Private textboxNameFirst As System.Windows.Forms.TextBox
-	Private labelNameNick As System.Windows.Forms.label
+	Private labelNameNick As System.Windows.Forms.Label
 	Private textboxBirthDay As System.Windows.Forms.TextBox
 	Private textboxGender As System.Windows.Forms.TextBox
-	Private labelNameFirst As System.Windows.Forms.label
+	Private labelNameFirst As System.Windows.Forms.Label
 	Private textboxNameLast As System.Windows.Forms.TextBox
 	Private textboxBirthMonth As System.Windows.Forms.TextBox
 	Private textboxNameNick As System.Windows.Forms.TextBox

@@ -26,72 +26,12 @@ Partial Class formGame
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.buttonStoreInventory = New System.Windows.Forms.Button()
-		Me.buttonProductBuy = New System.Windows.Forms.Button()
-		Me.labelCustomerName = New System.Windows.Forms.Label()
-		Me.textboxCustomerName = New System.Windows.Forms.TextBox()
-		Me.labelCustomerMoney = New System.Windows.Forms.Label()
-		Me.textboxCustomerMoney = New System.Windows.Forms.TextBox()
 		Me.buttonActionStart = New System.Windows.Forms.Button()
 		Me.labelActionHour = New System.Windows.Forms.Label()
 		Me.textboxActionHour = New System.Windows.Forms.TextBox()
 		Me.labelActionLog = New System.Windows.Forms.Label()
 		Me.textboxActionLog = New System.Windows.Forms.TextBox()
 		Me.SuspendLayout
-		'
-		'buttonStoreInventory
-		'
-		Me.buttonStoreInventory.AutoSize = true
-		Me.buttonStoreInventory.Location = New System.Drawing.Point(184, 9)
-		Me.buttonStoreInventory.Name = "buttonStoreInventory"
-		Me.buttonStoreInventory.Size = New System.Drawing.Size(101, 23)
-		Me.buttonStoreInventory.TabIndex = 11
-		Me.buttonStoreInventory.Text = "Inventory of Store"
-		AddHandler Me.buttonStoreInventory.Click, AddressOf Me.ButtonStoreInventoryClick
-		'
-		'buttonProductBuy
-		'
-		Me.buttonProductBuy.AutoSize = true
-		Me.buttonProductBuy.Location = New System.Drawing.Point(184, 38)
-		Me.buttonProductBuy.Name = "buttonProductBuy"
-		Me.buttonProductBuy.Size = New System.Drawing.Size(80, 23)
-		Me.buttonProductBuy.TabIndex = 12
-		Me.buttonProductBuy.Text = "Buy Products"
-		AddHandler Me.buttonProductBuy.Click, AddressOf Me.ButtonProductBuyClick
-		'
-		'labelCustomerName
-		'
-		Me.labelCustomerName.AutoSize = true
-		Me.labelCustomerName.Location = New System.Drawing.Point(12, 92)
-		Me.labelCustomerName.Name = "labelCustomerName"
-		Me.labelCustomerName.Size = New System.Drawing.Size(82, 13)
-		Me.labelCustomerName.TabIndex = 13
-		Me.labelCustomerName.Text = "Customer Name"
-		'
-		'textboxCustomerName
-		'
-		Me.textboxCustomerName.Location = New System.Drawing.Point(12, 120)
-		Me.textboxCustomerName.Name = "textboxCustomerName"
-		Me.textboxCustomerName.ReadOnly = true
-		Me.textboxCustomerName.Size = New System.Drawing.Size(128, 20)
-		Me.textboxCustomerName.TabIndex = 14
-		'
-		'labelCustomerMoney
-		'
-		Me.labelCustomerMoney.AutoSize = true
-		Me.labelCustomerMoney.Location = New System.Drawing.Point(12, 150)
-		Me.labelCustomerMoney.Name = "labelCustomerMoney"
-		Me.labelCustomerMoney.Size = New System.Drawing.Size(86, 13)
-		Me.labelCustomerMoney.TabIndex = 15
-		Me.labelCustomerMoney.Text = "Customer Money"
-		'
-		'textboxCustomerMoney
-		'
-		Me.textboxCustomerMoney.Location = New System.Drawing.Point(12, 190)
-		Me.textboxCustomerMoney.Name = "textboxCustomerMoney"
-		Me.textboxCustomerMoney.ReadOnly = true
-		Me.textboxCustomerMoney.Size = New System.Drawing.Size(128, 20)
-		Me.textboxCustomerMoney.TabIndex = 16
 		'
 		'buttonActionStart
 		'
@@ -124,7 +64,7 @@ Partial Class formGame
 		'labelActionLog
 		'
 		Me.labelActionLog.AutoSize = true
-		Me.labelActionLog.Location = New System.Drawing.Point(147, 92)
+		Me.labelActionLog.Location = New System.Drawing.Point(160, 8)
 		Me.labelActionLog.Name = "labelActionLog"
 		Me.labelActionLog.Size = New System.Drawing.Size(80, 13)
 		Me.labelActionLog.TabIndex = 20
@@ -132,25 +72,19 @@ Partial Class formGame
 		'
 		'textboxActionLog
 		'
-		Me.textboxActionLog.Location = New System.Drawing.Point(147, 108)
+		Me.textboxActionLog.Location = New System.Drawing.Point(160, 24)
 		Me.textboxActionLog.Multiline = true
 		Me.textboxActionLog.Name = "textboxActionLog"
 		Me.textboxActionLog.ReadOnly = true
 		Me.textboxActionLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.textboxActionLog.Size = New System.Drawing.Size(339, 256)
+		Me.textboxActionLog.Size = New System.Drawing.Size(328, 256)
 		Me.textboxActionLog.TabIndex = 21
 		'
 		'formGame
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(500, 376)
-		Me.Controls.Add(Me.buttonStoreInventory)
-		Me.Controls.Add(Me.buttonProductBuy)
-		Me.Controls.Add(Me.labelCustomerName)
-		Me.Controls.Add(Me.textboxCustomerName)
-		Me.Controls.Add(Me.labelCustomerMoney)
-		Me.Controls.Add(Me.textboxCustomerMoney)
+		Me.ClientSize = New System.Drawing.Size(500, 288)
 		Me.Controls.Add(Me.buttonActionStart)
 		Me.Controls.Add(Me.labelActionHour)
 		Me.Controls.Add(Me.textboxActionHour)
@@ -167,10 +101,4 @@ Partial Class formGame
 	Private textboxActionHour As System.Windows.Forms.TextBox
 	Private labelActionHour As System.Windows.Forms.Label
 	Private buttonActionStart As System.Windows.Forms.Button
-	Private textboxCustomerMoney As System.Windows.Forms.TextBox
-	Private labelCustomerMoney As System.Windows.Forms.Label
-	Private textboxCustomerName As System.Windows.Forms.TextBox
-	Private labelCustomerName As System.Windows.Forms.Label
-	Private buttonProductBuy As System.Windows.Forms.Button
-	Private buttonStoreInventory As System.Windows.Forms.Button
 End Class

@@ -31,7 +31,7 @@
 		Dim newCharacter As New character("New", stringNewCharacter)
 		'Statistics
 		Dim stringNewStatistics() As String
-		stringNewStatistics = New String() {CType(intCheck, String), "0", "0", "0", System.DateTime.Now.Date.ToString, System.DateTime.Now.TimeOfDay.ToString, "0", "0", "0"}
+		stringNewStatistics = New String() {CType(intCheck, String), "0", "0", "0", System.DateTime.Now.Date.ToShortDateString, (System.DateTime.Now.TimeOfDay.ToString).Split(CType(".", Char))(0), "0", "0", "0"}
 		Dim newStatistics As New statistics("New", stringNewStatistics)
 		'Inventory
 		Dim arrayNewInventory(0, 3) As Object
@@ -55,12 +55,12 @@
 	
 	Sub buttonLoadClick(sender As Object, e As EventArgs)
 		'add filedialog and change lastuser
-		Dim filedialogLoadGame As New System.Windows.Forms.OpenFileDialog()
-		filedialogLoadGame.FileName = "player.pd"
-		filedialogLoadGame.InitialDirectory = System.IO.Directory.GetCurrentDirectory & "\save"
-		filedialogLoadGame.Title = "Please select one of the numbered directory's"
-		filedialogLoadGame.ShowDialog()
-		GlobalSettings.LastUser = CType(filedialogLoadGame.FileName.Substring(filedialogLoadGame.FileName.Length - 11, 1),Integer)
+		Dim folderdialogLoadGame As New System.Windows.Forms.FolderBrowserDialog()
+		folderdialogLoadGame.ShowNewFolderButton = False
+		folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory & "\save"
+		folderdialogLoadGame.Description = "Please select one of the numbered directory's"
+		folderdialogLoadGame.ShowDialog()
+		GlobalSettings.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1),Integer)
 		'Load Game
 		buttonResumeGameClick(Nothing, Nothing)
 	End Sub

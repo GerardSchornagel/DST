@@ -25,11 +25,11 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.buttonNewGame = New System.Windows.Forms.button()
-		Me.buttonResumeGame = New System.Windows.Forms.button()
-		Me.buttonOptions = New System.Windows.Forms.button()
-		Me.buttonQuit = New System.Windows.Forms.button()
-		Me.buttonLoad = New System.Windows.Forms.button()
+		Me.buttonNewGame = New System.Windows.Forms.Button()
+		Me.buttonResumeGame = New System.Windows.Forms.Button()
+		Me.buttonOptions = New System.Windows.Forms.Button()
+		Me.buttonQuit = New System.Windows.Forms.Button()
+		Me.buttonLoad = New System.Windows.Forms.Button()
 		Me.SuspendLayout
 		'
 		'buttonNewGame
@@ -100,9 +100,9 @@
 		AddHandler Load, AddressOf Me.formMainLoad
 		Me.ResumeLayout(false)
 	End Sub
-	Private buttonNewGame As System.Windows.Forms.button
-	Private buttonResumeGame As System.Windows.Forms.button
-	Private buttonLoad As System.Windows.Forms.button
-	Private buttonOptions As System.Windows.Forms.button
-	Private buttonQuit As System.Windows.Forms.button
+	Private buttonNewGame As System.Windows.Forms.Button
+	Private buttonResumeGame As System.Windows.Forms.Button
+	Private buttonLoad As System.Windows.Forms.Button
+	Private buttonOptions As System.Windows.Forms.Button
+	Private buttonQuit As System.Windows.Forms.Button
 End Class

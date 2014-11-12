@@ -4,6 +4,7 @@
 	Friend Shared classInventory As New inventory(CType(formMain.GlobalSettings.LastUser, String))
 	Friend Shared classStatistics As New statistics(CType(formMain.GlobalSettings.LastUser, String))
 	
+	
 	Friend Shared GameForm As New formGame()
 	Friend Shared InventoryForm As New formInventory()
 	Friend Shared MapForm As New formMap()
@@ -42,7 +43,6 @@
 		textboxMoneySpent.Text = CType(classStatistics.TotalSpent, String)
 		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)
 		'Inventory Tab
-		Dim intInventoryMax As Integer = classCharacter.GradeInventory + 4 'Adding 4 Standard Inventory slots
 		Dim intDimension As Integer = 0
 		Do
 			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
@@ -50,37 +50,9 @@
 			End If
 			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
 			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
-			intInventoryMax -= 1
 			intDimension += 1
-		Loop Until intInventoryMax = 0
+		Loop
 		GameForm.Show()
-	End Sub
-	
-	Sub buttonSaveClick(sender As Object, e As EventArgs)
-		MsgBox("Inventory Export function is immediate, no need to save for this.", MsgBoxStyle.Information, "Inventory doesn't need save.")
-		
-		'Player Tab
-		classPlayer.NickName = textboxNameNick.Text
-		classPlayer.FirstName = textboxNameFirst.Text
-		classPlayer.LastName = textboxNameLast.Text
-		classPlayer.BirthYear = CType(textboxBirthYear.Text,Integer)
-		classPlayer.BirthMonth = CType(textboxBirthMonth.Text,Integer)
-		classPlayer.BirthDay = CType(textboxBirthDay.Text,Integer)
-		classPlayer.Gender = CType(textboxGender.Text,Integer)
-		'Character Tab
-		classCharacter.Balance = CType(textboxBalance.Text, Integer)
-		classCharacter.GradeInventory = CType(textboxGradeInventory.Text, Integer)
-		classCharacter.GradeShelf = CType(textboxGradeShelf.Text, Integer)
-		classCharacter.GradePopularity = CType(textboxGradePopularity.Text, Integer)
-		'Statistics Tab
-		classStatistics.CreationDate = textboxCreatedDate.Text
-		classStatistics.CreationTime = textboxCreatedTime.Text
-		classStatistics.TotalHoursPlayed = CType(textboxPlayHours.Text, Integer)
-		classStatistics.TotalDayCycles = CType(textboxPlaycycles.Text, Integer)
-		classStatistics.TotalSaveTimes = CType(textboxPlaySaved.Text, Integer)
-		classStatistics.TotalEarnings = CType(textboxMoneyEarned.Text, Integer)
-		classStatistics.TotalSpent = CType(textboxMoneySpent.Text, Integer)
-		classStatistics.TotalItemsSold = CType(textboxItemsSold.Text, Integer)
 	End Sub
 	
 	Sub buttonExitClick(sender As Object, e As EventArgs)
@@ -88,13 +60,73 @@
 	End Sub
 	
 	Sub buttonExportClick(sender As Object, e As EventArgs)
-		'This will send the article and amount to the qeue, so next cycle the goods arrive.
+		'This will send the article and total amount to the user decided Bin
+		Dim arrayPocket() As String = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
+		Dim arrayBin() As String = formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)
+		'Look for current item in Shelf
+		If arrayBin(0) = "empty" Then
+			formGame.StoreCurrent.makeBin()
+			formGame.StoreCurrent.SaveState()
+			arrayPocket = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)		
+			arrayBin = formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)
+			'Copy info from classInventory to store(SpecifiedBin)
+			arrayBin(0) = arrayPocket(0)
+			arrayBin(1) = arrayPocket(1)
+			arrayBin(2) = arrayPocket(3)
+			formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex) = arrayBin
+			'set Amount in classInventory to zero
+			arrayPocket(1) = "0"
+			classInventory.GetInventorySpace(listboxInventory.SelectedIndex) = arrayPocket
+			
+		ElseIf CType((formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex))(0), String) = "0" Then
+			'Copy info from classInventory to store(SpecifiedBin)
+			arrayBin(0) = arrayPocket(0)
+			arrayBin(1) = arrayPocket(1)
+			arrayBin(2) = arrayPocket(3)
+			formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex) = arrayBin
+			'set Amount in classInventory to zero
+			arrayPocket(1) = "0"
+			classInventory.GetInventorySpace(listboxInventory.SelectedIndex) = arrayPocket
+			
+		Else 'Check where item exists in classInventory and add amount.
+			Dim integerLoopCounter As integer = 0
+			Do
+				If (classInventory.GetInventorySpace(integerLoopCounter))(0) = arrayBin(0) Then Exit Do
+				integerLoopCounter += 1
+			Loop Until integerLoopCounter = 9
+			classInventory.GetInventorySpace(integerLoopCounter) = arrayPocket
+			arrayPocket(1) = CType(CType(arrayPocket(1), Integer) + CType(formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)(1), Integer), String)
+			classInventory.GetInventorySpace(integerLoopCounter) = arrayPocket
+			'Copy info from classInventory to store(SpecifiedBin)
+			arrayBin(0) = arrayPocket(0)
+			arrayBin(1) = arrayPocket(1)
+			arrayBin(2) = arrayPocket(3)
+			formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex) = arrayBin
+			'set Amount in classInventory to zero
+			arrayPocket(1) = "0"
+			classInventory.GetInventorySpace(listboxInventory.SelectedIndex) = arrayPocket
+		End If
+		formGame.StoreCurrent.SaveState()
 	End Sub
 	
 	Sub ListboxInventorySelectedIndexChanged(sender As Object, e As EventArgs)
+		If listboxInventory.SelectedIndex = -1 Then Exit Sub
 		arrayInventorySelected = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
 		textboxAmount.Text = CType(arrayInventorySelected(1), String)
 		textboxLastBuying.Text = CType(arrayInventorySelected(2), String)
 		textboxLastSelling.Text = CType(arrayInventorySelected(3), String)
+	End Sub
+	
+	Sub ButtonMapClick(sender As Object, e As EventArgs)
+		MapForm.Show()
+	End Sub
+	
+	Sub buttonStoreClick(sender As Object, e As EventArgs)
+		StoreForm.Show()
+	End Sub
+	
+	Sub ButtonInventoryClick(sender As Object, e As EventArgs)
+		InventoryForm = New formInventory()
+		InventoryForm.Show()
 	End Sub
 End Class

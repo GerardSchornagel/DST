@@ -139,7 +139,7 @@ End Sub 'Sub New
 		End Set
 	End Property 'Property TotalDayCycles
 ''' <summary>
-''' Returns a String with the Creation Date "1985-09-24".
+''' Returns a String with the Creation Date "24-09-1985"
 ''' </summary>
 	Public Property CreationDate As String
 		Get
@@ -151,7 +151,7 @@ End Sub 'Sub New
 		End Set
 	End Property 'Property CreationDate
 ''' <summary>
-''' Returns a String with the Creation Time "20:15".
+''' Returns a String with the Creation Time "20:15:29".
 ''' </summary>
 	Public Property CreationTime As String
 		Get

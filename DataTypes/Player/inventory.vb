@@ -100,6 +100,7 @@ Public Class inventory
 ''' </summary>
 	Public Property GetInventorySpace(Dimension As Integer) As object
 		Get
+			If Dimension = -1 Then Exit Property
 			If Dimension > arrayInventory.GetUpperBound(0) Then
 				Return Nothing
 				Exit Property

@@ -15,7 +15,7 @@ Public Class store
 	''' </summary>
 	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
 	''' <param name="Location">Use "FirstLocation" for Alpha phase.</param>
-	''' <param name="Template">2d ObjectArray filled with String. Name, Quantity, Price.</param>
+	''' <param name="Template">2D ObjectArray filled with String. Name, Quantity, Price.</param>
 	''' <param name="NewPlayerID">Use intCheck for new ID String.</param>
 	Friend Sub New(ByVal PlayerID As String, ByVal Location As String, Optional ByVal NewPlayerID As String = Nothing)
 		If PlayerID = "New" Then
@@ -57,10 +57,13 @@ Public Class store
 	''' </summary>
 	Public Sub SaveState()
 		'Loop through arrayBin and save individual files
+		Dim stringTempPath As String
 		For Each bin As String In arrayBinCollection
-			strBinaryFileData = arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),0)
-			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),1)
-			strBinaryFileData += "<>" & arrayBin(CType(System.Text.RegularExpressions.Regex.Split(bin,".")(0), Integer),2)
+			stringTempPath = bin.Split(CType(".", Char))(0)
+			stringTempPath = stringTempPath.Remove(0, stringTempPath.Length - 1)
+			strBinaryFileData = arrayBin(CType(stringTempPath, Integer), 0)
+			strBinaryFileData += "<>" & arrayBin(CType(stringTempPath, Integer), 1)
+			strBinaryFileData += "<>" & arrayBin(CType(stringTempPath, Integer), 2)
 			'Fill Array for character per character progressing
 			Dim arrayInt32(strBinaryFileData.Length) As Int32
 			Dim intDimension As Integer = 0
@@ -69,7 +72,7 @@ Public Class store
 				intDimension += 1
 			Next
 			
-			Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent & "\" & strStoreCurrent & "\" & bin, System.IO.FileMode.Create))
+			Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(bin, System.IO.FileMode.Create))
 				For Each integer32 As Int32 In arrayInt32
 					binWriter.Write(integer32)
 				Next
@@ -104,7 +107,7 @@ Public Class store
 		For Each file As String In arrayBinCollection
 			'Read
 			strBinaryFileData = ""
-			Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\" & strLocationCurrent & "\" & strStoreCurrent & "\" & file, System.IO.FileMode.Open))
+			Using binReader As New System.IO.BinaryReader(System.IO.File.Open(file, System.IO.FileMode.Open))
 				Do
 					strBinaryFileData += (Chr(binReader.ReadInt32))
 				Loop Until binReader.PeekChar = Nothing
@@ -171,7 +174,7 @@ Public Class store
 	Public Property getsetBin(Dimension As Integer) As object
 		Get
 			If Dimension > arrayBin.GetUpperBound(0) Then
-				Return Nothing
+				Return New string() {"empty","0","0"}
 				Exit Property
 			End If
 			Dim ReturnValue(2) As String
@@ -181,7 +184,7 @@ Public Class store
 			Return ReturnValue
 		End Get
 		Set(value As Object)
-			If value is nothing Then value = New string() {"0","0","0"}
+			If value is nothing Then value = New string() {"empty","0","0"}
 			arrayBin(Dimension, 0) = Ctype(value(0), String)
 			arrayBin(Dimension, 1) = Ctype(value(1), String)
 			arrayBin(Dimension, 2) = CType(value(2), String)
