@@ -61,6 +61,19 @@
 		GameForm.Show()
 	End Sub
 	
+	Sub buttonRefreshClick(sender As Object, e As EventArgs)
+		Dim intDimension As Integer = 0
+		listboxInventory.Items.Clear()
+		Do
+			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
+				Exit Do
+			End If
+			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
+			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
+			intDimension += 1
+		Loop
+	End Sub
+	
 	Sub buttonExitClick(sender As Object, e As EventArgs)
 		'Add code for closing formGame, formMap, formInventory, formStore & Me(formStatus)
 	End Sub
@@ -71,7 +84,7 @@
 		Dim arrayBin As Object = formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)
 		If listboxInventory.SelectedIndex = -1 then Exit Sub
 		'Look for current item in Shelf
-		If arrayBin(0) Is CType("empty", String) Then
+		If arrayBin(0) Is CType("Empty", String) Then
 			formGame.StoreCurrent.makeBin()
 			formGame.StoreCurrent.SaveState()
 			arrayPocket = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)		
@@ -116,7 +129,11 @@
 		classInventory.SaveState()
 		formGame.StoreCurrent.SaveState()
 		
+		arrayInventorySelected = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
 		textboxAmount.Text = CType(arrayInventorySelected(1), String)
+		textboxLastBuying.Text = CType(arrayInventorySelected(2), String)
+		textboxLastSelling.Text = CType(arrayInventorySelected(3), String)
+		
 		'Inventory Tab
 		Dim intDimension As Integer = 0
 		listboxInventory.Items.Clear()
@@ -128,6 +145,7 @@
 			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
 			intDimension += 1
 		Loop
+		formGame.StoreCurrent.makeBin()
 	End Sub
 	
 	Sub ListboxInventorySelectedIndexChanged(sender As Object, e As EventArgs)

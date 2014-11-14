@@ -125,6 +125,9 @@
     <EmbeddedResource Include="Forms\formStatus.resx">
       <DependentUpon>formStatus.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formStore.resx">
+      <DependentUpon>formStore.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />

@@ -2,112 +2,140 @@
 ''' Handles the Player Inventory array's.
 ''' </summary>
 Public Class inventory
-	Private intID As Integer
+	Private integerID As Integer
 	Dim arrayInventory(,) As Object
 	
-	Private strBinaryFileData As String = ""
+	Private stringBinaryFileData As String = ""
 	''' <summary>
 	''' Retrieves Inventory Array.
 	''' </summary>
 	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
 	''' <param name="Template">2d ObjectArray filled with String. Name, Quantity, LastBuy, LastSell.</param>
 	''' <param name="NewPlayerID">Use intCheck for new ID String.</param>
+	
 	Friend Sub New(ByVal PlayerID As String, Optional ByVal Template(,) As Object = Nothing, Optional ByVal NewPlayerID As String = Nothing)
+		'Check for new parameter and re-direct.
 		If PlayerID = "New" Then
-			intID = CType(NewPlayerID, Integer)
+			integerID = CType(NewPlayerID, Integer)
 			NewInventory(Template)
 			Exit Sub
 		End If
-		intID = CType(PlayerID, Integer)
-		'See if a new file has to be created with defaults
-		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\inventory.pd") = False Then SaveState()
-		strBinaryFileData = ""
+		
+		integerID = CType(PlayerID, Integer)
+		
 		'Get all info from File
-		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\inventory.pd", System.IO.FileMode.Open))
+		stringBinaryFileData = ""
+		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & integerID & "\inventory.pd", System.IO.FileMode.Open))
 			Do
-				strBinaryFileData += (Chr(binReader.ReadInt32))
+				stringBinaryFileData += (Chr(binReader.ReadInt32))
 			Loop Until binReader.PeekChar = Nothing
 		End Using
+		
 		'Split info into string-array
-		Dim rawInventory() As String = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
-		'Each entry in arrayInventory has 4 sub-dimensions, so the rawInventory(single dimension) is divided by 4 to count for the UpperBound of arrayInventory
-		ReDim arrayInventory(CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),Integer), 3)
+		Dim rawInventory() As String = stringBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
 		
 		'Split Raw data into Inventory
-		Dim temp As Integer = rawInventory.GetUpperBound(0)
-		Dim intDimensionArray As Integer = -1 'Negative for upcoming Loop
-		Dim intDimensionRaw As Integer = -1 'Negative for upcoming Loop
+		Dim integerDimensionArray As Integer = 0
+		Dim integerDimensionRaw As Integer = 0
+		ReDim arrayInventory((((rawInventory.GetUpperBound(0) + 1) / 4) - 1), 3)
 		Do
-			intDimensionArray += 1
-			intDimensionRaw += 1
-			arrayInventory(intDimensionArray, 0) = rawInventory(intDimensionRaw) 'Item
-			intDimensionRaw += 1
-			arrayInventory(intDimensionArray, 1) = rawInventory(intDimensionRaw) 'Quantity
-			intDimensionRaw += 1
-			arrayInventory(intDimensionArray, 2) = rawInventory(intDimensionRaw) 'Last Buying Price
-			intDimensionRaw += 1
-			arrayInventory(intDimensionArray, 3) = rawInventory(intDimensionRaw) 'Selling Price
-		Loop Until intDimensionArray = CType((((rawInventory.GetUpperBound(0) + 1) / 4) - 1),integer) 
-	End Sub 'Sub New
+			arrayInventory(integerDimensionArray, 0) = rawInventory(integerDimensionRaw) 'Item
+			integerDimensionRaw += 1
+			arrayInventory(integerDimensionArray, 1) = rawInventory(integerDimensionRaw) 'Quantity
+			integerDimensionRaw += 1
+			arrayInventory(integerDimensionArray, 2) = rawInventory(integerDimensionRaw) 'Last Buying Price
+			integerDimensionRaw += 1
+			arrayInventory(integerDimensionArray, 3) = rawInventory(integerDimensionRaw) 'Last Selling Price
+			integerDimensionRaw += 1
+			integerDimensionArray += 1
+		Loop Until integerDimensionRaw > rawInventory.GetUpperBound(0)
+	End Sub
+	
 	''' <summary>
 	''' Creates a new player inventory through Template.
 	''' </summary>
 	Public Sub NewInventory(ByVal InventoryData(,) As Object)
-		ReDim arrayInventory(0, 3)
-		arrayInventory(0, 0) = InventoryData(0, 0)
-		arrayInventory(0, 1) = InventoryData(0, 1)
-		arrayInventory(0, 2) = InventoryData(0, 2)
-		arrayInventory(0, 3) = InventoryData(0, 3)
-		'Create the directory(s)
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
-		'Start Writing New Player
+		'Make new Inventory with template.
+		arrayInventory = InventoryData.Clone()
+		'Start Writing New Inventory
 		SaveState()
 	End Sub
+
 ''' <summary>
 ''' Saves the current state of the Player Inventory array.
 ''' </summary>
 	Public Sub SaveState()
 		'Make Raw data String
-		strBinaryFileData = ""
-		Dim intDimensionFirst As Integer = -1 'Negative for upcoming Loop
+		stringBinaryFileData = ""
+		Dim integerDimensionRow As Integer = 0
 		Do
-			intDimensionFirst  +=1
-			Dim intDimensionSecond As Integer = -1 'Negative for upcoming Loop
+			Dim integerDimensionColumn As Integer = 0
 			Do
-				intDimensionSecond += 1
-				strBinaryFileData += "<>" & CType(arrayInventory(intDimensionFirst, intDimensionSecond), String)
-			Loop Until intDimensionSecond = arrayInventory.GetUpperBound(1)
-		Loop Until intDimensionFirst = arrayInventory.GetUpperBound(0)
-
-		'Remove the first empty entry "<>"
-		strBinaryFileData=strBinaryFileData.Remove(0, 2)
+				stringBinaryFileData += "<>" & CType(arrayInventory(integerDimensionRow, integerDimensionColumn), String)
+				integerDimensionColumn += 1
+			Loop Until integerDimensionColumn > 3
+			integerDimensionRow += 1
+		Loop Until integerDimensionRow > arrayInventory.GetUpperBound(0)
+		'Remove the first Empty entry "<>"
+		stringBinaryFileData=stringBinaryFileData.Remove(0, 2)
+		
 		'Fill Array for character per character progressing
-		Dim arrayInt32(strBinaryFileData.Length) As Int32
-		Dim intDimension As Integer = 0
-		For Each character As Char In strBinaryFileData
-			arrayInt32(intDimension) = Asc(character)
-			intDimension += 1
+		Dim arrayInt32(stringBinaryFileData.Length) As Int32
+		Dim integerDimension As Integer = 0
+		For Each character As Char In stringBinaryFileData
+			arrayInt32(integerDimension) = Asc(character)
+			integerDimension += 1
 		Next
+		
 		' Create the BinaryWriter and use File.Create to create the file.
-		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\inventory.pd", System.IO.FileMode.Create))
+		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & integerID & "\inventory.pd", System.IO.FileMode.Create))
 			For Each integer32 As Int32 In arrayInt32
 				binWriter.Write(integer32)
 			Next
 		End Using
 	End Sub
-''' <summary>
-''' Gets or sets the appointed InventorySpace or sets it to 0.
-''' </summary>
+	
+	''' <summary>
+	''' Returns an integer with the upperbound of the inventory with 0-index.
+	''' </summary>
+	Public Property GetUpperbound As Integer
+		Get
+			Return arrayInventory.GetUpperBound(0)
+		End Get
+		Set
+		End Set
+		End Property
+		
+	''' <summary>
+	''' Makes a new slot on smallest free index. And saves.
+	''' </summary>
+	''' <param name="Template">New String() {Name, Amount, LastSelling, LastBuying}</param>
+	Public Sub NewSlot(Template As String())
+		Dim integerSlotNumber = arrayInventory.GetUpperBound(0) + 1
+		Dim arrayInventoryBuild(integerSlotNumber, 3) As Object
+		arrayInventory.Copy(arrayInventory, arrayInventoryBuild, arrayInventory.Length)
+		arrayInventoryBuild(integerSlotNumber, 0) = Template(0)
+		arrayInventoryBuild(integerSlotNumber, 1) = Template(1)
+		arrayInventoryBuild(integerSlotNumber, 2) = Template(2)
+		arrayInventoryBuild(integerSlotNumber, 3) = Template(3)
+		arrayInventory = arrayInventoryBuild
+		SaveState()
+	End Sub
+	
+	''' <summary>
+	''' Gets or sets the appointed InventorySpace or sets it to 0. And Saves.
+	''' </summary>
 	Public Property GetInventorySpace(Dimension As Integer) As object
 		Get
-			If Dimension = -1 Then 
+			If Dimension = -1 Then 'Return from an Empty control that calls this sub.
 				Return Nothing
 				Exit Property
 			End If
-			If Dimension > arrayInventory.GetUpperBound(0) Then
+			If Dimension > arrayInventory.GetUpperBound(0) Then 'Just in case error-catch.
 				Return Nothing
 				Exit Property
 			End If
+			
 			Dim ReturnValue(3) As String
 			ReturnValue(0) = CType(arrayInventory(Dimension, 0), String)
 			ReturnValue(1) = CType(arrayInventory(Dimension, 1), String)
@@ -115,12 +143,16 @@ Public Class inventory
 			ReturnValue(3) = CType(arrayInventory(Dimension, 3), String)
 			Return ReturnValue
 		End Get
+		
 		Set(value As Object)
-			If value is nothing Then value = New string() {"0","0","0","0"}
+			If value Is Nothing Then 'Just in case error catching.
+				Exit Property
+			End If
 			arrayInventory(Dimension, 0) = value(0)
 			arrayInventory(Dimension, 1) = value(1)
 			arrayInventory(Dimension, 2) = value(2)
 			arrayInventory(Dimension, 3) = value(3)
+			SaveState()
 		End Set
-	End Property 'GetInventorySpace
+	End Property
 End Class

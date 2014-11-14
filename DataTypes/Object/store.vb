@@ -46,7 +46,7 @@ Public Class store
 			intDimension += 1
 		Next
 		
-		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\FirstLocation\FirstStore\0.prd", System.IO.FileMode.Create))
+		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\FirstLocation\FirstStore\0.pd", System.IO.FileMode.Create))
 			For Each integer32 As Int32 In arrayInt32
 				binWriter.Write(integer32)
 			Next
@@ -132,7 +132,7 @@ Public Class store
 			intBinNew += 1
 		Loop
 		
-		'Start binWriter with "empty" array
+		'Start binWriter with "Empty" array
 		ReDim arrayBin(0, 2)
 		arrayBin(0, 0) = "0"
 		arrayBin(0, 1) = "0"
@@ -149,7 +149,7 @@ Public Class store
 			Loop Until intDimensionSecond = arrayBin.GetUpperBound(1)
 		Loop Until intDimensionFirst = arrayBin.GetUpperBound(0)
 
-		'Remove the first empty entry "<>"
+		'Remove the first Empty entry "<>"
 		strBinaryFileData=strBinaryFileData.Remove(0, 2)
 		'Fill Array for character per character progressing
 		Dim arrayInt32(strBinaryFileData.Length) As Int32
@@ -174,7 +174,7 @@ Public Class store
 	Public Property getsetBin(Dimension As Integer) As object
 		Get
 			If Dimension > arrayBin.GetUpperBound(0) Then
-				Return New string() {"empty","0","0"}
+				Return New string() {"Empty","0","0"}
 				Exit Property
 			End If
 			Dim ReturnValue(2) As String
@@ -184,7 +184,7 @@ Public Class store
 			Return ReturnValue
 		End Get
 		Set(value As Object)
-			If value is nothing Then value = New string() {"empty","0","0"}
+			If value is nothing Then value = New string() {"Empty","0","0"}
 			arrayBin(Dimension, 0) = Ctype(value(0), String)
 			arrayBin(Dimension, 1) = Ctype(value(1), String)
 			arrayBin(Dimension, 2) = CType(value(2), String)
@@ -196,7 +196,7 @@ Public Class store
 	''' </summary>
 	Public Property getUpperbound As Integer
 		Get
-			Return CType(arrayBin.GetUpperBound(0), Integer)
+			Return CType(arrayBinCollection.GetUpperBound(0), Integer)	
 		End Get
 		Set
 		End Set

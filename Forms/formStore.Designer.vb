@@ -27,190 +27,156 @@
 	Private Sub InitializeComponent()
 		Me.textboxBuyAmount = New System.Windows.Forms.TextBox()
 		Me.textboxBuyPrice = New System.Windows.Forms.TextBox()
-		Me.textboxQuality = New System.Windows.Forms.TextBox()
-		Me.textboxWorthMaximum = New System.Windows.Forms.TextBox()
-		Me.textboxWorthMinimum = New System.Windows.Forms.TextBox()
 		Me.buttonClose = New System.Windows.Forms.Button()
 		Me.buttonBuy = New System.Windows.Forms.Button()
 		Me.labelBuyAmount = New System.Windows.Forms.Label()
-		Me.labelWorthMaximum = New System.Windows.Forms.Label()
+		Me.labelWorthBaseName = New System.Windows.Forms.Label()
 		Me.labelBuyPrice = New System.Windows.Forms.Label()
-		Me.labelQuality = New System.Windows.Forms.Label()
-		Me.labelWorthMinimum = New System.Windows.Forms.Label()
+		Me.labelQualityName = New System.Windows.Forms.Label()
 		Me.comboboxDepartment = New System.Windows.Forms.ComboBox()
-		Me.comboboxSubGenre = New System.Windows.Forms.ComboBox()
 		Me.comboboxName = New System.Windows.Forms.ComboBox()
 		Me.comboboxGenre = New System.Windows.Forms.ComboBox()
-		Me.combobocManufactor = New System.Windows.Forms.ComboBox()
 		Me.comboboxCategory = New System.Windows.Forms.ComboBox()
 		Me.labelCategory = New System.Windows.Forms.Label()
 		Me.labelDepartment = New System.Windows.Forms.Label()
-		Me.labelSubGenre = New System.Windows.Forms.Label()
 		Me.labelGenre = New System.Windows.Forms.Label()
-		Me.labelManufactor = New System.Windows.Forms.Label()
 		Me.labelName = New System.Windows.Forms.Label()
-		Me.SuspendLayout()
+		Me.groupboxItemInfo = New System.Windows.Forms.GroupBox()
+		Me.labelManufactorerDisplay = New System.Windows.Forms.Label()
+		Me.labelManufactorerName = New System.Windows.Forms.Label()
+		Me.labelGenreDisplay = New System.Windows.Forms.Label()
+		Me.labelGenreName = New System.Windows.Forms.Label()
+		Me.labelItemDisplay = New System.Windows.Forms.Label()
+		Me.labelItemName = New System.Windows.Forms.Label()
+		Me.labelWorthBaseDisplay = New System.Windows.Forms.Label()
+		Me.labelCategoryDisplay = New System.Windows.Forms.Label()
+		Me.labelCategoryName = New System.Windows.Forms.Label()
+		Me.labelGenreSubDisplay = New System.Windows.Forms.Label()
+		Me.labelGenreSubName = New System.Windows.Forms.Label()
+		Me.labelDepartmentDisplay = New System.Windows.Forms.Label()
+		Me.labelDepartmentName = New System.Windows.Forms.Label()
+		Me.labelQualityDisplay = New System.Windows.Forms.Label()
+		Me.textboxPriceTotal = New System.Windows.Forms.TextBox()
+		Me.labelPriceTotal = New System.Windows.Forms.Label()
+		Me.groupboxItemInfo.SuspendLayout
+		Me.SuspendLayout
 		'
 		'textboxBuyAmount
 		'
-		Me.textboxBuyAmount.Location = New System.Drawing.Point(572, 522)
+		Me.textboxBuyAmount.Location = New System.Drawing.Point(131, 313)
 		Me.textboxBuyAmount.Name = "textboxBuyAmount"
-		Me.textboxBuyAmount.Size = New System.Drawing.Size(177, 20)
+		Me.textboxBuyAmount.Size = New System.Drawing.Size(113, 20)
 		Me.textboxBuyAmount.TabIndex = 72
+		AddHandler Me.textboxBuyAmount.TextChanged, AddressOf Me.TextboxBuyAmountTextChanged
 		'
 		'textboxBuyPrice
 		'
-		Me.textboxBuyPrice.Location = New System.Drawing.Point(386, 522)
+		Me.textboxBuyPrice.Location = New System.Drawing.Point(12, 313)
 		Me.textboxBuyPrice.Name = "textboxBuyPrice"
-		Me.textboxBuyPrice.ReadOnly = True
-		Me.textboxBuyPrice.Size = New System.Drawing.Size(180, 20)
+		Me.textboxBuyPrice.ReadOnly = true
+		Me.textboxBuyPrice.Size = New System.Drawing.Size(113, 20)
 		Me.textboxBuyPrice.TabIndex = 71
-		'
-		'textboxQuality
-		'
-		Me.textboxQuality.Location = New System.Drawing.Point(633, 483)
-		Me.textboxQuality.Name = "textboxQuality"
-		Me.textboxQuality.ReadOnly = True
-		Me.textboxQuality.Size = New System.Drawing.Size(118, 20)
-		Me.textboxQuality.TabIndex = 70
-		'
-		'textboxWorthMaximum
-		'
-		Me.textboxWorthMaximum.Location = New System.Drawing.Point(510, 483)
-		Me.textboxWorthMaximum.Name = "textboxWorthMaximum"
-		Me.textboxWorthMaximum.ReadOnly = True
-		Me.textboxWorthMaximum.Size = New System.Drawing.Size(118, 20)
-		Me.textboxWorthMaximum.TabIndex = 69
-		'
-		'textboxWorthMinimum
-		'
-		Me.textboxWorthMinimum.Location = New System.Drawing.Point(386, 483)
-		Me.textboxWorthMinimum.Name = "textboxWorthMinimum"
-		Me.textboxWorthMinimum.ReadOnly = True
-		Me.textboxWorthMinimum.Size = New System.Drawing.Size(118, 20)
-		Me.textboxWorthMinimum.TabIndex = 68
 		'
 		'buttonClose
 		'
-		Me.buttonClose.Location = New System.Drawing.Point(635, 574)
+		Me.buttonClose.Location = New System.Drawing.Point(199, 339)
 		Me.buttonClose.Name = "buttonClose"
-		Me.buttonClose.Size = New System.Drawing.Size(116, 23)
+		Me.buttonClose.Size = New System.Drawing.Size(178, 25)
 		Me.buttonClose.TabIndex = 67
 		Me.buttonClose.Text = "Close"
-		Me.buttonClose.UseVisualStyleBackColor = True
+		Me.buttonClose.UseVisualStyleBackColor = true
+		AddHandler Me.buttonClose.Click, AddressOf Me.ButtonCloseClick
 		'
 		'buttonBuy
 		'
-		Me.buttonBuy.Location = New System.Drawing.Point(386, 574)
+		Me.buttonBuy.Location = New System.Drawing.Point(12, 339)
 		Me.buttonBuy.Name = "buttonBuy"
-		Me.buttonBuy.Size = New System.Drawing.Size(241, 23)
+		Me.buttonBuy.Size = New System.Drawing.Size(178, 25)
 		Me.buttonBuy.TabIndex = 66
 		Me.buttonBuy.Text = "Buy"
-		Me.buttonBuy.UseVisualStyleBackColor = True
+		Me.buttonBuy.UseVisualStyleBackColor = true
+		AddHandler Me.buttonBuy.Click, AddressOf Me.ButtonBuyClick
 		'
 		'labelBuyAmount
 		'
-		Me.labelBuyAmount.AutoSize = True
-		Me.labelBuyAmount.Location = New System.Drawing.Point(569, 506)
+		Me.labelBuyAmount.AutoSize = true
+		Me.labelBuyAmount.Location = New System.Drawing.Point(131, 297)
 		Me.labelBuyAmount.Name = "labelBuyAmount"
 		Me.labelBuyAmount.Size = New System.Drawing.Size(75, 13)
 		Me.labelBuyAmount.TabIndex = 65
 		Me.labelBuyAmount.Text = "Amount to buy"
 		'
-		'labelWorthMaximum
+		'labelWorthBaseName
 		'
-		Me.labelWorthMaximum.AutoSize = True
-		Me.labelWorthMaximum.Location = New System.Drawing.Point(507, 467)
-		Me.labelWorthMaximum.Name = "labelWorthMaximum"
-		Me.labelWorthMaximum.Size = New System.Drawing.Size(83, 13)
-		Me.labelWorthMaximum.TabIndex = 64
-		Me.labelWorthMaximum.Text = "Maximum Worth"
+		Me.labelWorthBaseName.AutoSize = true
+		Me.labelWorthBaseName.Location = New System.Drawing.Point(6, 118)
+		Me.labelWorthBaseName.Name = "labelWorthBaseName"
+		Me.labelWorthBaseName.Size = New System.Drawing.Size(66, 13)
+		Me.labelWorthBaseName.TabIndex = 64
+		Me.labelWorthBaseName.Text = "Base Worth:"
 		'
 		'labelBuyPrice
 		'
-		Me.labelBuyPrice.AutoSize = True
-		Me.labelBuyPrice.Location = New System.Drawing.Point(386, 506)
+		Me.labelBuyPrice.AutoSize = true
+		Me.labelBuyPrice.Location = New System.Drawing.Point(12, 297)
 		Me.labelBuyPrice.Name = "labelBuyPrice"
 		Me.labelBuyPrice.Size = New System.Drawing.Size(89, 13)
 		Me.labelBuyPrice.TabIndex = 62
 		Me.labelBuyPrice.Text = "Current Buy Price"
 		'
-		'labelQuality
+		'labelQualityName
 		'
-		Me.labelQuality.AutoSize = True
-		Me.labelQuality.Location = New System.Drawing.Point(630, 467)
-		Me.labelQuality.Name = "labelQuality"
-		Me.labelQuality.Size = New System.Drawing.Size(109, 13)
-		Me.labelQuality.TabIndex = 63
-		Me.labelQuality.Text = "Quality Rating (0-100)"
-		'
-		'labelWorthMinimum
-		'
-		Me.labelWorthMinimum.AutoSize = True
-		Me.labelWorthMinimum.Location = New System.Drawing.Point(386, 467)
-		Me.labelWorthMinimum.Name = "labelWorthMinimum"
-		Me.labelWorthMinimum.Size = New System.Drawing.Size(80, 13)
-		Me.labelWorthMinimum.TabIndex = 61
-		Me.labelWorthMinimum.Text = "Minimum Worth"
+		Me.labelQualityName.AutoSize = true
+		Me.labelQualityName.Location = New System.Drawing.Point(6, 135)
+		Me.labelQualityName.Name = "labelQualityName"
+		Me.labelQualityName.Size = New System.Drawing.Size(100, 13)
+		Me.labelQualityName.TabIndex = 63
+		Me.labelQualityName.Text = "Quality Percentage:"
 		'
 		'comboboxDepartment
 		'
-		Me.comboboxDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.comboboxDepartment.FormattingEnabled = True
-		Me.comboboxDepartment.Location = New System.Drawing.Point(15, 25)
+		Me.comboboxDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.comboboxDepartment.FormattingEnabled = true
+		Me.comboboxDepartment.Location = New System.Drawing.Point(12, 25)
 		Me.comboboxDepartment.Name = "comboboxDepartment"
-		Me.comboboxDepartment.Size = New System.Drawing.Size(365, 99)
+		Me.comboboxDepartment.Size = New System.Drawing.Size(365, 21)
 		Me.comboboxDepartment.TabIndex = 49
-		'
-		'comboboxSubGenre
-		'
-		Me.comboboxSubGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.comboboxSubGenre.FormattingEnabled = True
-		Me.comboboxSubGenre.Location = New System.Drawing.Point(15, 337)
-		Me.comboboxSubGenre.Name = "comboboxSubGenre"
-		Me.comboboxSubGenre.Size = New System.Drawing.Size(365, 268)
-		Me.comboboxSubGenre.TabIndex = 51
+		AddHandler Me.comboboxDepartment.SelectedIndexChanged, AddressOf Me.ComboboxDepartmentSelectedIndexChanged
 		'
 		'comboboxName
 		'
 		Me.comboboxName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.comboboxName.FormattingEnabled = True
-		Me.comboboxName.Location = New System.Drawing.Point(386, 326)
+		Me.comboboxName.FormattingEnabled = true
+		Me.comboboxName.Location = New System.Drawing.Point(383, 25)
 		Me.comboboxName.Name = "comboboxName"
-		Me.comboboxName.Size = New System.Drawing.Size(365, 138)
+		Me.comboboxName.Size = New System.Drawing.Size(365, 346)
 		Me.comboboxName.TabIndex = 54
+		AddHandler Me.comboboxName.SelectedIndexChanged, AddressOf Me.ComboboxNameSelectedIndexChanged
 		'
 		'comboboxGenre
 		'
-		Me.comboboxGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.comboboxGenre.FormattingEnabled = True
-		Me.comboboxGenre.Location = New System.Drawing.Point(15, 143)
+		Me.comboboxGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.comboboxGenre.FormattingEnabled = true
+		Me.comboboxGenre.Location = New System.Drawing.Point(12, 65)
 		Me.comboboxGenre.Name = "comboboxGenre"
-		Me.comboboxGenre.Size = New System.Drawing.Size(365, 175)
+		Me.comboboxGenre.Size = New System.Drawing.Size(365, 21)
 		Me.comboboxGenre.TabIndex = 50
-		'
-		'combobocManufactor
-		'
-		Me.combobocManufactor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.combobocManufactor.FormattingEnabled = True
-		Me.combobocManufactor.Location = New System.Drawing.Point(386, 208)
-		Me.combobocManufactor.Name = "combobocManufactor"
-		Me.combobocManufactor.Size = New System.Drawing.Size(365, 99)
-		Me.combobocManufactor.TabIndex = 53
+		AddHandler Me.comboboxGenre.SelectedIndexChanged, AddressOf Me.ComboboxGenreSelectedIndexChanged
 		'
 		'comboboxCategory
 		'
-		Me.comboboxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.comboboxCategory.FormattingEnabled = True
-		Me.comboboxCategory.Location = New System.Drawing.Point(386, 25)
+		Me.comboboxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+		Me.comboboxCategory.FormattingEnabled = true
+		Me.comboboxCategory.Location = New System.Drawing.Point(12, 105)
 		Me.comboboxCategory.Name = "comboboxCategory"
-		Me.comboboxCategory.Size = New System.Drawing.Size(365, 164)
+		Me.comboboxCategory.Size = New System.Drawing.Size(365, 21)
 		Me.comboboxCategory.TabIndex = 52
+		AddHandler Me.comboboxCategory.SelectedIndexChanged, AddressOf Me.ComboboxCategorySelectedIndexChanged
 		'
 		'labelCategory
 		'
-		Me.labelCategory.AutoSize = True
-		Me.labelCategory.Location = New System.Drawing.Point(383, 9)
+		Me.labelCategory.AutoSize = true
+		Me.labelCategory.Location = New System.Drawing.Point(12, 89)
 		Me.labelCategory.Name = "labelCategory"
 		Me.labelCategory.Size = New System.Drawing.Size(81, 13)
 		Me.labelCategory.TabIndex = 60
@@ -218,106 +184,254 @@
 		'
 		'labelDepartment
 		'
-		Me.labelDepartment.AutoSize = True
+		Me.labelDepartment.AutoSize = true
 		Me.labelDepartment.Location = New System.Drawing.Point(12, 9)
 		Me.labelDepartment.Name = "labelDepartment"
 		Me.labelDepartment.Size = New System.Drawing.Size(62, 13)
 		Me.labelDepartment.TabIndex = 59
 		Me.labelDepartment.Text = "Department"
 		'
-		'labelSubGenre
-		'
-		Me.labelSubGenre.AutoSize = True
-		Me.labelSubGenre.Location = New System.Drawing.Point(12, 321)
-		Me.labelSubGenre.Name = "labelSubGenre"
-		Me.labelSubGenre.Size = New System.Drawing.Size(55, 13)
-		Me.labelSubGenre.TabIndex = 58
-		Me.labelSubGenre.Text = "SubGenre"
-		'
 		'labelGenre
 		'
-		Me.labelGenre.AutoSize = True
-		Me.labelGenre.Location = New System.Drawing.Point(15, 127)
+		Me.labelGenre.AutoSize = true
+		Me.labelGenre.Location = New System.Drawing.Point(12, 49)
 		Me.labelGenre.Name = "labelGenre"
 		Me.labelGenre.Size = New System.Drawing.Size(36, 13)
 		Me.labelGenre.TabIndex = 57
 		Me.labelGenre.Text = "Genre"
 		'
-		'labelManufactor
-		'
-		Me.labelManufactor.AutoSize = True
-		Me.labelManufactor.Location = New System.Drawing.Point(383, 192)
-		Me.labelManufactor.Name = "labelManufactor"
-		Me.labelManufactor.Size = New System.Drawing.Size(61, 13)
-		Me.labelManufactor.TabIndex = 56
-		Me.labelManufactor.Text = "Manufactor"
-		'
 		'labelName
 		'
-		Me.labelName.AutoSize = True
-		Me.labelName.Location = New System.Drawing.Point(383, 310)
+		Me.labelName.AutoSize = true
+		Me.labelName.Location = New System.Drawing.Point(380, 9)
 		Me.labelName.Name = "labelName"
 		Me.labelName.Size = New System.Drawing.Size(75, 13)
 		Me.labelName.TabIndex = 55
 		Me.labelName.Text = "Product Name"
 		'
+		'groupboxItemInfo
+		'
+		Me.groupboxItemInfo.Controls.Add(Me.labelManufactorerDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelManufactorerName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelGenreDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelGenreName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelItemDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelItemName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelWorthBaseDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelWorthBaseName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelCategoryDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelCategoryName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelGenreSubDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelGenreSubName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelDepartmentDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelDepartmentName)
+		Me.groupboxItemInfo.Controls.Add(Me.labelQualityDisplay)
+		Me.groupboxItemInfo.Controls.Add(Me.labelQualityName)
+		Me.groupboxItemInfo.Location = New System.Drawing.Point(12, 132)
+		Me.groupboxItemInfo.Name = "groupboxItemInfo"
+		Me.groupboxItemInfo.Size = New System.Drawing.Size(365, 162)
+		Me.groupboxItemInfo.TabIndex = 73
+		Me.groupboxItemInfo.TabStop = false
+		'
+		'labelManufactorerDisplay
+		'
+		Me.labelManufactorerDisplay.AutoSize = true
+		Me.labelManufactorerDisplay.Location = New System.Drawing.Point(112, 84)
+		Me.labelManufactorerDisplay.Name = "labelManufactorerDisplay"
+		Me.labelManufactorerDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelManufactorerDisplay.TabIndex = 64
+		'
+		'labelManufactorerName
+		'
+		Me.labelManufactorerName.AutoSize = true
+		Me.labelManufactorerName.Location = New System.Drawing.Point(6, 84)
+		Me.labelManufactorerName.Name = "labelManufactorerName"
+		Me.labelManufactorerName.Size = New System.Drawing.Size(73, 13)
+		Me.labelManufactorerName.TabIndex = 64
+		Me.labelManufactorerName.Text = "Manufactorer:"
+		'
+		'labelGenreDisplay
+		'
+		Me.labelGenreDisplay.AutoSize = true
+		Me.labelGenreDisplay.Location = New System.Drawing.Point(112, 33)
+		Me.labelGenreDisplay.Name = "labelGenreDisplay"
+		Me.labelGenreDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelGenreDisplay.TabIndex = 64
+		'
+		'labelGenreName
+		'
+		Me.labelGenreName.AutoSize = true
+		Me.labelGenreName.Location = New System.Drawing.Point(6, 33)
+		Me.labelGenreName.Name = "labelGenreName"
+		Me.labelGenreName.Size = New System.Drawing.Size(39, 13)
+		Me.labelGenreName.TabIndex = 64
+		Me.labelGenreName.Text = "Genre:"
+		'
+		'labelItemDisplay
+		'
+		Me.labelItemDisplay.AutoSize = true
+		Me.labelItemDisplay.Location = New System.Drawing.Point(112, 101)
+		Me.labelItemDisplay.Name = "labelItemDisplay"
+		Me.labelItemDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelItemDisplay.TabIndex = 63
+		'
+		'labelItemName
+		'
+		Me.labelItemName.AutoSize = true
+		Me.labelItemName.Location = New System.Drawing.Point(6, 101)
+		Me.labelItemName.Name = "labelItemName"
+		Me.labelItemName.Size = New System.Drawing.Size(61, 13)
+		Me.labelItemName.TabIndex = 63
+		Me.labelItemName.Text = "Item Name:"
+		'
+		'labelWorthBaseDisplay
+		'
+		Me.labelWorthBaseDisplay.AutoSize = true
+		Me.labelWorthBaseDisplay.Location = New System.Drawing.Point(112, 118)
+		Me.labelWorthBaseDisplay.Name = "labelWorthBaseDisplay"
+		Me.labelWorthBaseDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelWorthBaseDisplay.TabIndex = 64
+		'
+		'labelCategoryDisplay
+		'
+		Me.labelCategoryDisplay.AutoSize = true
+		Me.labelCategoryDisplay.Location = New System.Drawing.Point(112, 67)
+		Me.labelCategoryDisplay.Name = "labelCategoryDisplay"
+		Me.labelCategoryDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelCategoryDisplay.TabIndex = 61
+		'
+		'labelCategoryName
+		'
+		Me.labelCategoryName.AutoSize = true
+		Me.labelCategoryName.Location = New System.Drawing.Point(6, 67)
+		Me.labelCategoryName.Name = "labelCategoryName"
+		Me.labelCategoryName.Size = New System.Drawing.Size(52, 13)
+		Me.labelCategoryName.TabIndex = 61
+		Me.labelCategoryName.Text = "Category:"
+		'
+		'labelGenreSubDisplay
+		'
+		Me.labelGenreSubDisplay.AutoSize = true
+		Me.labelGenreSubDisplay.Location = New System.Drawing.Point(112, 50)
+		Me.labelGenreSubDisplay.Name = "labelGenreSubDisplay"
+		Me.labelGenreSubDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelGenreSubDisplay.TabIndex = 63
+		'
+		'labelGenreSubName
+		'
+		Me.labelGenreSubName.AutoSize = true
+		Me.labelGenreSubName.Location = New System.Drawing.Point(6, 50)
+		Me.labelGenreSubName.Name = "labelGenreSubName"
+		Me.labelGenreSubName.Size = New System.Drawing.Size(58, 13)
+		Me.labelGenreSubName.TabIndex = 63
+		Me.labelGenreSubName.Text = "SubGenre:"
+		'
+		'labelDepartmentDisplay
+		'
+		Me.labelDepartmentDisplay.AutoSize = true
+		Me.labelDepartmentDisplay.Location = New System.Drawing.Point(112, 16)
+		Me.labelDepartmentDisplay.Name = "labelDepartmentDisplay"
+		Me.labelDepartmentDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelDepartmentDisplay.TabIndex = 61
+		'
+		'labelDepartmentName
+		'
+		Me.labelDepartmentName.AutoSize = true
+		Me.labelDepartmentName.Location = New System.Drawing.Point(6, 16)
+		Me.labelDepartmentName.Name = "labelDepartmentName"
+		Me.labelDepartmentName.Size = New System.Drawing.Size(65, 13)
+		Me.labelDepartmentName.TabIndex = 61
+		Me.labelDepartmentName.Text = "Department:"
+		'
+		'labelQualityDisplay
+		'
+		Me.labelQualityDisplay.AutoSize = true
+		Me.labelQualityDisplay.Location = New System.Drawing.Point(112, 135)
+		Me.labelQualityDisplay.Name = "labelQualityDisplay"
+		Me.labelQualityDisplay.Size = New System.Drawing.Size(0, 13)
+		Me.labelQualityDisplay.TabIndex = 63
+		'
+		'textboxPriceTotal
+		'
+		Me.textboxPriceTotal.Location = New System.Drawing.Point(250, 313)
+		Me.textboxPriceTotal.Name = "textboxPriceTotal"
+		Me.textboxPriceTotal.ReadOnly = true
+		Me.textboxPriceTotal.Size = New System.Drawing.Size(113, 20)
+		Me.textboxPriceTotal.TabIndex = 72
+		'
+		'labelPriceTotal
+		'
+		Me.labelPriceTotal.AutoSize = true
+		Me.labelPriceTotal.Location = New System.Drawing.Point(250, 297)
+		Me.labelPriceTotal.Name = "labelPriceTotal"
+		Me.labelPriceTotal.Size = New System.Drawing.Size(58, 13)
+		Me.labelPriceTotal.TabIndex = 65
+		Me.labelPriceTotal.Text = "Total Price"
+		'
 		'formStore
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(762, 610)
-		Me.Controls.Add(Me.textboxBuyAmount)
-		Me.Controls.Add(Me.textboxBuyPrice)
-		Me.Controls.Add(Me.textboxQuality)
-		Me.Controls.Add(Me.textboxWorthMaximum)
-		Me.Controls.Add(Me.textboxWorthMinimum)
-		Me.Controls.Add(Me.buttonClose)
-		Me.Controls.Add(Me.buttonBuy)
-		Me.Controls.Add(Me.labelBuyAmount)
-		Me.Controls.Add(Me.labelWorthMaximum)
-		Me.Controls.Add(Me.labelBuyPrice)
-		Me.Controls.Add(Me.labelQuality)
-		Me.Controls.Add(Me.labelWorthMinimum)
+		Me.ClientSize = New System.Drawing.Size(760, 378)
+		Me.Controls.Add(Me.groupboxItemInfo)
+		Me.Controls.Add(Me.textboxPriceTotal)
 		Me.Controls.Add(Me.comboboxDepartment)
-		Me.Controls.Add(Me.comboboxSubGenre)
+		Me.Controls.Add(Me.textboxBuyAmount)
 		Me.Controls.Add(Me.comboboxName)
 		Me.Controls.Add(Me.comboboxGenre)
-		Me.Controls.Add(Me.combobocManufactor)
+		Me.Controls.Add(Me.textboxBuyPrice)
 		Me.Controls.Add(Me.comboboxCategory)
+		Me.Controls.Add(Me.buttonClose)
 		Me.Controls.Add(Me.labelCategory)
+		Me.Controls.Add(Me.labelPriceTotal)
+		Me.Controls.Add(Me.labelBuyAmount)
 		Me.Controls.Add(Me.labelDepartment)
-		Me.Controls.Add(Me.labelSubGenre)
+		Me.Controls.Add(Me.buttonBuy)
+		Me.Controls.Add(Me.labelBuyPrice)
 		Me.Controls.Add(Me.labelGenre)
-		Me.Controls.Add(Me.labelManufactor)
 		Me.Controls.Add(Me.labelName)
+		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+		Me.MaximizeBox = false
+		Me.MinimizeBox = false
 		Me.Name = "formStore"
 		Me.Text = "Buying Goods"
-		Me.ResumeLayout(False)
-		Me.PerformLayout()
-
+		AddHandler Load, AddressOf Me.FormStoreLoad
+		Me.groupboxItemInfo.ResumeLayout(false)
+		Me.groupboxItemInfo.PerformLayout
+		Me.ResumeLayout(false)
+		Me.PerformLayout
   End Sub
+	Private labelQualityDisplay As System.Windows.Forms.Label
+	Private labelDepartmentDisplay As System.Windows.Forms.Label
+	Private labelGenreSubDisplay As System.Windows.Forms.Label
+	Private labelCategoryDisplay As System.Windows.Forms.Label
+	Private labelWorthBaseDisplay As System.Windows.Forms.Label
+	Private labelItemDisplay As System.Windows.Forms.Label
+	Private labelGenreDisplay As System.Windows.Forms.Label
+	Private labelManufactorerDisplay As System.Windows.Forms.Label
+	Private labelDepartmentName As System.Windows.Forms.Label
+	Private labelGenreSubName As System.Windows.Forms.Label
+	Private labelCategoryName As System.Windows.Forms.Label
+	Private labelItemName As System.Windows.Forms.Label
+	Private labelGenreName As System.Windows.Forms.Label
+	Private labelManufactorerName As System.Windows.Forms.Label
+	Private labelPriceTotal As System.Windows.Forms.Label
+	Private textboxPriceTotal As System.Windows.Forms.TextBox
+	Private groupboxItemInfo As System.Windows.Forms.GroupBox
 	Private textboxBuyAmount As System.Windows.Forms.TextBox
 	Private textboxBuyPrice As System.Windows.Forms.TextBox
-	Private textboxQuality As System.Windows.Forms.TextBox
-	Private textboxWorthMaximum As System.Windows.Forms.TextBox
-	Private textboxWorthMinimum As System.Windows.Forms.TextBox
 	Private buttonClose As System.Windows.Forms.Button
 	Private buttonBuy As System.Windows.Forms.Button
 	Private labelBuyAmount As System.Windows.Forms.Label
-	Private labelWorthMaximum As System.Windows.Forms.Label
+	Private labelWorthBaseName As System.Windows.Forms.Label
 	Private labelBuyPrice As System.Windows.Forms.Label
-	Private labelQuality As System.Windows.Forms.Label
-	Private labelWorthMinimum As System.Windows.Forms.Label
+	Private labelQualityName As System.Windows.Forms.Label
 	Private comboboxDepartment As System.Windows.Forms.ComboBox
-	Private comboboxSubGenre As System.Windows.Forms.ComboBox
 	Private comboboxName As System.Windows.Forms.ComboBox
 	Private comboboxGenre As System.Windows.Forms.ComboBox
-	Private combobocManufactor As System.Windows.Forms.ComboBox
 	Private comboboxCategory As System.Windows.Forms.ComboBox
 	Private labelCategory As System.Windows.Forms.Label
 	Private labelDepartment As System.Windows.Forms.Label
-	Private labelSubGenre As System.Windows.Forms.Label
 	Private labelGenre As System.Windows.Forms.Label
-	Private labelManufactor As System.Windows.Forms.Label
 	Private labelName As System.Windows.Forms.Label
 End Class

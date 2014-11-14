@@ -76,9 +76,6 @@
 				
 			ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
 				textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
-				textboxActionHour.Text = CType(CType(textboxActionHour.Text, Integer) - 1, String)
-				TimerHour.Start()
-				TimerCustomer.Stop()
 			End If
 			
 			IntegerCustomerNumber -= 1

@@ -12,14 +12,41 @@
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
-		
-		'
-		' TODO : Add constructor code after InitializeComponents
-		'
 	End Sub
 	
 	Sub FormInventoryClosing(sender As Object, e As EventArgs)
 		'Save all Selling prices into Last Selling in inventory
+		arrayBin1A(2) = updownPrice1A.Text
+		formGame.StoreCurrent.getsetBin(0) = arrayBin1A
+		If textboxName1B.Text = "Empty" Then GoTo SaveandExit
+		arrayBin1B(2) = updownPrice1B.Text
+		formGame.StoreCurrent.getsetBin(1) = arrayBin1B
+		If textboxName1C.Text = "Empty" Then GoTo SaveandExit
+		arrayBin1C(2) = updownPrice1C.Text
+		formGame.StoreCurrent.getsetBin(2) = arrayBin1C
+		
+		If textboxName2A.Text = "Empty" Then GoTo SaveandExit
+		arrayBin2A(2) = updownPrice2A.Text
+		formGame.StoreCurrent.getsetBin(3) = arrayBin2A
+		If textboxName2B.Text = "Empty" Then GoTo SaveandExit
+		arrayBin2B(2) = updownPrice2B.Text
+		formGame.StoreCurrent.getsetBin(4) = arrayBin2B
+		If textboxName2C.Text = "Empty" Then GoTo SaveandExit
+		arrayBin2C(2) = updownPrice2C.Text
+		formGame.StoreCurrent.getsetBin(5) = arrayBin2C
+		
+		If textboxName3A.Text = "Empty" Then GoTo SaveandExit
+		arrayBin3A(2) = updownPrice3A.Text
+		formGame.StoreCurrent.getsetBin(6) = arrayBin3A
+		If textboxName3B.Text = "Empty" Then GoTo SaveandExit
+		arrayBin3B(2) = updownPrice3B.Text
+		formGame.StoreCurrent.getsetBin(7) = arrayBin3B
+		If textboxName3C.Text = "Empty" Then GoTo SaveandExit
+		arrayBin3C(2) = updownPrice3C.Text
+		formGame.StoreCurrent.getsetBin(8) = arrayBin3C
+		
+SaveandExit:
+		formGame.StoreCurrent.SaveState()
 	End Sub
 	
 	Sub FormInventoryLoad(sender As Object, e As EventArgs)

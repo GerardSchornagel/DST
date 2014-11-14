@@ -87,6 +87,7 @@
 		Me.buttonMap = New System.Windows.Forms.Button()
 		Me.buttonInventory = New System.Windows.Forms.Button()
 		Me.buttonStore = New System.Windows.Forms.Button()
+		Me.buttonRefresh = New System.Windows.Forms.Button()
 		Me.groupboxDates.SuspendLayout
 		Me.groupboxFinances.SuspendLayout
 		Me.tabpageStatistics.SuspendLayout
@@ -364,6 +365,7 @@
 		'
 		Me.groupboxSelection.Controls.Add(Me.comboboxBins)
 		Me.groupboxSelection.Controls.Add(Me.listboxInventory)
+		Me.groupboxSelection.Controls.Add(Me.buttonRefresh)
 		Me.groupboxSelection.Controls.Add(Me.buttonExport)
 		Me.groupboxSelection.Location = New System.Drawing.Point(6, 6)
 		Me.groupboxSelection.Name = "groupboxSelection"
@@ -395,7 +397,7 @@
 		'
 		Me.buttonExport.Location = New System.Drawing.Point(127, 160)
 		Me.buttonExport.Name = "buttonExport"
-		Me.buttonExport.Size = New System.Drawing.Size(304, 23)
+		Me.buttonExport.Size = New System.Drawing.Size(244, 23)
 		Me.buttonExport.TabIndex = 2
 		Me.buttonExport.Text = "Export to Store"
 		Me.buttonExport.UseVisualStyleBackColor = true
@@ -695,6 +697,16 @@
 		Me.buttonStore.UseVisualStyleBackColor = true
 		AddHandler Me.buttonStore.Click, AddressOf Me.buttonStoreClick
 		'
+		'buttonRefresh
+		'
+		Me.buttonRefresh.Location = New System.Drawing.Point(377, 160)
+		Me.buttonRefresh.Name = "buttonRefresh"
+		Me.buttonRefresh.Size = New System.Drawing.Size(54, 23)
+		Me.buttonRefresh.TabIndex = 2
+		Me.buttonRefresh.Text = "Refresh"
+		Me.buttonRefresh.UseVisualStyleBackColor = true
+		AddHandler Me.buttonRefresh.Click, AddressOf Me.buttonRefreshClick
+		'
 		'formStatus
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -732,6 +744,7 @@
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub
+	Private buttonRefresh As System.Windows.Forms.Button
 	Private comboboxBins As System.Windows.Forms.ComboBox
 	Private buttonStore As System.Windows.Forms.Button
 	Private buttonInventory As System.Windows.Forms.Button
