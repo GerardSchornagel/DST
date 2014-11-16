@@ -10,57 +10,76 @@ Public Class customer
 	Private cDesire As Integer
 	Private cAge As Integer
 	Private cMoney As Integer
-	
-	Private ArrayEthnic As String()
+	Private stringBinaryReader As String
+	Private stringNameListPath As String
+	Private stringDetailsDataFile As String
+	Private arrayNameListF As String()
+	Private arrayNameListM As String()
+	Private arrayDetailsData As String()	
+	Private arrayEthnic As String()
 	
 	Sub New()
+		cRandom = New Random()
+		'DeFine ArrayEthnic
+		arrayEthnic = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory & "\data\customer\", "*", IO.SearchOption.TopDirectoryOnly)
+		Dim pos As Integer = 0
+		For Each line In arrayEthnic
+			arrayEthnic(pos) = line.Remove(0, (System.IO.Directory.GetCurrentDirectory & "\data\customer\").Length)
+			pos += 1
+		Next
+		cEthnic = arrayEthnic(cRandom.Next(0, arrayEthnic.GetUpperBound(0)))
+		
+		'Define ArrayNameF and ArrayNameM
+		stringBinaryReader = ""
+		stringNameListPath = system.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\NamelistM.nld"
+		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(stringNameListPath, System.IO.FileMode.Open))
+			Do
+				stringBinaryReader += (Chr(bReader.ReadInt32))
+			Loop Until bReader.PeekChar = Nothing
+		End Using
+		arrayNameListM = stringBinaryReader.Split(New String() {Chr(13)}, StringSplitOptions.None)
+		
+		stringBinaryReader = ""
+		stringNameListPath = System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\NamelistF.nld"
+		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(stringNameListPath, System.IO.FileMode.Open))
+			Do
+				stringBinaryReader += (Chr(bReader.ReadInt32))
+			Loop Until bReader.PeekChar = Nothing
+		End Using
+		arrayNameListF = stringBinaryReader.Split(New String() {Chr(13)}, StringSplitOptions.None)
+		
+		'Read AgeMin/AgeMax/MoneyMin/MoneyMax/Desire
+		stringBinaryReader = ""
+		stringDetailsDataFile = System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\Customer.cd"
+		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(stringDetailsDataFile, System.IO.FileMode.Open))
+			Do
+				stringBinaryReader += (Chr(bReader.ReadInt32))
+			Loop Until bReader.PeekChar = Nothing
+		End Using
+		arrayDetailsData = stringBinaryReader.Split(New String() {"<>"}, StringSplitOptions.None)
+		
 		newCustomer()
 	End Sub
 	''' <summary>
 	''' Creates new Customer.
 	''' </summary>
 	Public Sub newCustomer()
-		cRandom = New Random()
-		'DeFine ArrayEthnic
-		Dim pathCustomer As String = System.IO.Directory.GetCurrentDirectory & "\Data\Customer"
-		ArrayEthnic = System.IO.Directory.GetDirectories(pathCustomer, "*", IO.SearchOption.TopDirectoryOnly)
-		Dim pos As Integer = 0
-		For Each line In ArrayEthnic
-			ArrayEthnic(pos) = line.Remove(0, pathCustomer.Length + 1)
-			pos += 1
-		Next
 		'Choose Ethnic group
-		cEthnic = ArrayEthnic(cRandom.Next(0, ArrayEthnic.GetUpperBound(0)))
+		cEthnic = arrayEthnic(cRandom.Next(0, arrayEthnic.GetUpperBound(0)))
 		
 		'Choose Gender
-	If cRandom.Next(2010) <= 1000 Then cGender = "F" Else cGender = "M" 'Based on WikiPedia (101M on 100F)
-		
-		'Read & Random Name
-		Dim StringNameList As String = ""
-		Dim StringNameListPath As String = pathCustomer & "\" & cEthnic & "\Namelist" & cGender & ".nld"
-		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(StringNameListPath, System.IO.FileMode.Open))
-			Do
-				StringNameList += (Chr(bReader.ReadInt32))
-			Loop Until bReader.PeekChar = Nothing
-		End Using
-		
-		Dim ArrayNameList As String() = StringNameList.Split(New String() {Chr(13)}, StringSplitOptions.None)
-		cName = ArrayNameList(cRandom.Next(ArrayNameList.GetUpperBound(0)))
-		
-		'Read AgeMin/AgeMax/MoneyMin/MoneyMax/Desire
-		Dim StringProductDataFile As String = pathCustomer & "\" & cEthnic & "\Customer.cd"
-		Dim StringProductData As String = ""
-		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(StringProductDataFile, System.IO.FileMode.Open))
-			Do
-				StringProductData += (Chr(bReader.ReadInt32))
-			Loop Until bReader.PeekChar = Nothing
-		End Using
-		Dim ArrayProductData As String() = StringProductData.Split(New String() {"<>"}, StringSplitOptions.None)
+		If cRandom.Next(2010) <= 1000 Then  'Based on WikiPedia (101M on 100F)
+			cGender = "F"
+			cName = arrayNameListF(cRandom.Next(arrayNameListF.GetUpperBound(0)))
+		Else
+			cGender = "M"
+			cName = arrayNameListM(cRandom.Next(arrayNameListM.GetUpperBound(0)))
+		End If
 		
 		'Random Age/Money/Desire
-		cAge = cRandom.Next(CType(ArrayProductData(1), Integer), CType(ArrayProductData(2), Integer))
-		cMoney = cRandom.Next(CType(ArrayProductData(3), Integer), CType(ArrayProductData(4), Integer))
-		cDesire = cRandom.Next(CType(ArrayProductData(5), Integer))
+		cAge = cRandom.Next(CType(arrayDetailsData(1), Integer), CType(arrayDetailsData(2), Integer))
+		cMoney = cRandom.Next(CType(arrayDetailsData(3), Integer), CType(arrayDetailsData(4), Integer))
+		cDesire = cRandom.Next(CType(arrayDetailsData(5), Integer))
 	End Sub
 	''' <summary>
 	''' Returns a String with the Ethnic variable.
