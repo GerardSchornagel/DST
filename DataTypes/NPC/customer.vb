@@ -18,6 +18,7 @@ Public Class customer
 	Private arrayDetailsData As String()	
 	Private arrayEthnic As String()
 	
+	Private filehandler As New binaryFileHandler()
 	Sub New()
 		cRandom = New Random()
 		'DeFine ArrayEthnic
@@ -28,35 +29,11 @@ Public Class customer
 			pos += 1
 		Next
 		cEthnic = arrayEthnic(cRandom.Next(0, arrayEthnic.GetUpperBound(0)))
-		
 		'Define ArrayNameF and ArrayNameM
-		stringBinaryReader = ""
-		stringNameListPath = system.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\NamelistM.nld"
-		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(stringNameListPath, System.IO.FileMode.Open))
-			Do
-				stringBinaryReader += (Chr(bReader.ReadInt32))
-			Loop Until bReader.PeekChar = Nothing
-		End Using
-		arrayNameListM = stringBinaryReader.Split(New String() {Chr(13)}, StringSplitOptions.None)
-		
-		stringBinaryReader = ""
-		stringNameListPath = System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\NamelistF.nld"
-		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(stringNameListPath, System.IO.FileMode.Open))
-			Do
-				stringBinaryReader += (Chr(bReader.ReadInt32))
-			Loop Until bReader.PeekChar = Nothing
-		End Using
-		arrayNameListF = stringBinaryReader.Split(New String() {Chr(13)}, StringSplitOptions.None)
-		
+		arrayNameListM = filehandler.LoadLine(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\", "NamelistM.nld").Split(New String() {Chr(13)}, StringSplitOptions.None)
+		arrayNameListF = filehandler.LoadLine(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\", "NamelistF.nld").Split(New String() {Chr(13)}, StringSplitOptions.None)
 		'Read AgeMin/AgeMax/MoneyMin/MoneyMax/Desire
-		stringBinaryReader = ""
-		stringDetailsDataFile = System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\Customer.cd"
-		Using bReader As New System.IO.BinaryReader(System.IO.File.Open(stringDetailsDataFile, System.IO.FileMode.Open))
-			Do
-				stringBinaryReader += (Chr(bReader.ReadInt32))
-			Loop Until bReader.PeekChar = Nothing
-		End Using
-		arrayDetailsData = stringBinaryReader.Split(New String() {"<>"}, StringSplitOptions.None)
+		arrayDetailsData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\", "Customer.cd")
 		
 		newCustomer()
 	End Sub

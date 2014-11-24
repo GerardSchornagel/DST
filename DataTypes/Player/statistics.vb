@@ -1,64 +1,54 @@
 ﻿''' <summary>
-''' Get or Sets the current Player Statistics.
+''' Get or Set the current Player Statistics.
 ''' </summary>
 Public Class statistics
-	Private intID As Integer
-	Private intGlobalSaved As Integer
-	Private intGlobalHours As Integer
-	Private intGlobalCycles As Integer
-	Private strDatesCreateDate As String
-	Private strDatesCreateTime As String
-	Private intFinanceTotalEarned As Integer
-	Private intFinanceTotalSpent As Integer
-	Private intItemsTotalSold As Integer
-
-	Private strBinaryFileData As String = ""
-	''' <summary>
-	''' Retrieves Statistics Variables.
-	''' </summary>
-	''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
-	''' <param name="Template">New String() {PlayerID, TotalSaves, TotalHours, TotalCycles, CreateDate, CreateTime, TotalEarned, TotalSpent, TotalSold}.</param>
-	Friend Sub New(PlayerID As String, Optional Template As String() = Nothing)
-		If PlayerID="New" Then
+	Private filehandler As New binaryFileHandler()
+	Dim stringStatisticsData() As String
+	
+	Private integerPlayerID As Integer
+	Private integerGlobalCycles As Integer
+	Private stringDatesCreateDate As String
+	Private stringDatesCreateTime As String
+	Private integerFinanceTotalEarned As Integer
+	Private integerFinanceTotalSpent As Integer
+	Private integerItemsTotalSold As Integer
+''' <summary>
+''' Retrieves Statistics Variables.
+''' </summary>
+''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
+''' <param name="Template">New String() {PlayerID, TotalCycles, CreateDate, CreateTime, TotalEarned, TotalSpent, TotalSold}.</param>
+	Friend Sub New(PlayerID As String, Optional Template() As String = Nothing)
+		'Check for New parameter.
+		If PlayerID = "New" Then
 			NewStatistics(Template)
-			Exit Sub
-		End If
-	intID = CType(PlayerID, Integer)
-	'See if a new file has to be created with defaults
-	If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\statistics.pd") = False Then SaveState()
-	'Get all info from File
-	Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\" & intID & "\statistics.pd", System.IO.FileMode.Open))
-		Do
-			strBinaryFileData += (Chr(binReader.ReadInt32))
-		Loop Until binReader.PeekChar = Nothing
-	End Using
-	'Split info into string-array
-	Dim arrayStatisticsData As String() = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
-	'Write Private's
-	intGlobalSaved = CType(arrayStatisticsData(0), Integer)
-	intGlobalHours = CType(arrayStatisticsData(1), Integer)
-	intGlobalCycles = CType(arrayStatisticsData(2), Integer)
-	strDatesCreateDate = arrayStatisticsData(3)
-	strDatesCreateTime = arrayStatisticsData(4)
-	intFinanceTotalEarned = CType(arrayStatisticsData(5), Integer)
-	intFinanceTotalSpent = CType(arrayStatisticsData(6), Integer)
-	intItemsTotalSold = CType(arrayStatisticsData(7), Integer)
-End Sub 'Sub New
-	''' <summary>
-	''' Creates new Statistics Data and SaveState()
-	''' </summary>
-	Public Sub NewStatistics(ByVal StatisticsData() As String)
-		intID = CType(StatisticsData(0), Integer)
-		intGlobalSaved = CType(StatisticsData(1), Integer)
-		intGlobalHours = CType(StatisticsData(2), Integer)
-		intGlobalCycles = CType(StatisticsData(3), Integer)
-		strDatesCreateDate = StatisticsData(4)
-		strDatesCreateTime = StatisticsData(5)
-		intFinanceTotalEarned = CType(StatisticsData(6), Integer)
-		intFinanceTotalSpent = CType(StatisticsData(7), Integer)
-		intItemsTotalSold = CType(StatisticsData(8), Integer)
-		'Create the directory(s)
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intID)
+			
+		Else
+			integerPlayerID = CType(PlayerID, Integer)
+			ReDim stringStatisticsData(5)
+			stringStatisticsData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "statistics.pd")
+			'Write Private's
+			integerGlobalCycles = CType(stringStatisticsData(0), Integer)
+			stringDatesCreateDate = stringStatisticsData(1)
+			stringDatesCreateTime = stringStatisticsData(2)
+			integerFinanceTotalEarned = CType(stringStatisticsData(3), Integer)
+			integerFinanceTotalSpent = CType(stringStatisticsData(4), Integer)
+			integerItemsTotalSold = CType(stringStatisticsData(5), Integer)
+	End If
+End Sub
+''' <summary>
+''' Creates new Statistics Data and SaveState()
+''' </summary>
+''' <param name="Template">Pass through from Sub New()</param>
+	Public Sub NewStatistics(ByVal Template() As String)
+		integerPlayerID = CType(Template(0), Integer)
+		ReDim stringStatisticsData(5)
+		Array.ConstrainedCopy(Template, 1, stringStatisticsData, 0, Template.GetUpperBound(0))
+		integerGlobalCycles = CType(stringStatisticsData(0), Integer)
+		stringDatesCreateDate = stringStatisticsData(1)
+		stringDatesCreateTime = stringStatisticsData(2)
+		integerFinanceTotalEarned = CType(stringStatisticsData(3), Integer)
+		integerFinanceTotalSpent = CType(stringStatisticsData(4), Integer)
+		integerItemsTotalSold = CType(stringStatisticsData(5), Integer)
 		'Start Writing New Statistics
 		SaveState()
 	End Sub
@@ -66,136 +56,89 @@ End Sub 'Sub New
 ''' Saves the current state of the Player Statistics Variables.
 ''' </summary>
 	Private Sub SaveState()
-		'Make Raw data String
-		strBinaryFileData = CType(intGlobalSaved, String)
-		strBinaryFileData += "<>" & intGlobalHours
-		strBinaryFileData += "<>" & intGlobalCycles
-		strBinaryFileData += "<>" & strDatesCreateDate
-		strBinaryFileData += "<>" & strDatesCreateTime
-		strBinaryFileData += "<>" & intFinanceTotalEarned
-		strBinaryFileData += "<>" & intFinanceTotalSpent
-		strBinaryFileData += "<>" & intItemsTotalSold
-
-		'Fill Array for character per character progressing
-		Dim arrayInt32(strBinaryFileData.Length) As Int32
-		Dim intDimension As Integer = 0
-		For Each character As Char In strBinaryFileData
-			arrayInt32(intDimension) = Asc(character)
-			intDimension += 1
-		Next
-		' Create the BinaryWriter and use File.Create to create the file.
-		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\Save\" & intID & "\statistics.pd", System.IO.FileMode.Create))
-			For Each integer32 As Int32 In arrayInt32
-				binWriter.Write(integer32)
-			Next
-		End Using
-	End Sub 'Sub SaveState
+		filehandler.Save(System.IO.Directory.GetCurrentDirectory & "\Save\" & integerPlayerID & "\", "statistics.pd", , stringStatisticsData)
+	End Sub
 ''' <summary>
 ''' Returns an Integer with the current Player ID.
 ''' </summary>
 	Public Property PlayerID As Integer
 		Get
-			Return intID
+			Return integerPlayerID
 		End Get
 		Set(Value As Integer)
-			intID = Value
-			SaveState()
+			integerPlayerID = Value
 		End Set
-	End Property 'Property PlayerID
-''' <summary>
-''' Returns an Integer with the total amount of saves.
-''' </summary>
-	Public Property TotalSaveTimes As Integer
-		Get
-			Return intGlobalSaved
-		End Get
-		Set(Value As Integer)
-			intGlobalSaved = Value
-			SaveState()
-		End Set
-	End Property 'Property TotalSaveTimes
-''' <summary>
-''' Returns an Integer with the total play hours.
-''' </summary>
-	Public Property TotalHoursPlayed As Integer
-		Get
-			Return intGlobalHours
-		End Get
-		Set(Value As Integer)
-			intGlobalHours = Value
-			SaveState()
-		End Set
-	End Property 'Property TotalHoursPlayed
+	End Property
 ''' <summary>
 ''' Returns an Integer with the total Day Cycles.
 ''' </summary>
 	Public Property TotalDayCycles As Integer
 		Get
-			Return intGlobalCycles
+			Return integerGlobalCycles
 		End Get
 		Set(Value As Integer)
-			intGlobalCycles = Value
-			SaveState()
+			integerGlobalCycles = Value
+			stringStatisticsData(0) = CType(Value, String)
 		End Set
-	End Property 'Property TotalDayCycles
+	End Property
 ''' <summary>
 ''' Returns a String with the Creation Date "24-09-1985"
 ''' </summary>
 	Public Property CreationDate As String
 		Get
-			Return strDatesCreateDate
+			Return stringDatesCreateDate
 		End Get
 		Set(Value As String)
-			strDatesCreateDate = Value
-			SaveState()
+			stringDatesCreateDate = Value
+			stringStatisticsData(1) = Value
 		End Set
-	End Property 'Property CreationDate
+	End Property
 ''' <summary>
 ''' Returns a String with the Creation Time "20:15:29".
 ''' </summary>
 	Public Property CreationTime As String
 		Get
-			Return strDatesCreateTime
+			Return stringDatesCreateTime
 		End Get
 		Set(Value As String)
-			strDatesCreateTime = Value
-			SaveState()
+			stringDatesCreateTime = Value
+			stringStatisticsData(2) = Value
 		End Set
-	End Property 'Property CreationTime
+	End Property
 ''' <summary>
 ''' Returns an Integer with the total lifetime earnings.
 ''' </summary>
 	Public Property TotalEarnings As Integer
 		Get
-			Return intFinanceTotalEarned
+			Return integerFinanceTotalEarned
 		End Get
 		Set(Value As Integer)
-			intFinanceTotalEarned = Value
-			SaveState()
+			integerFinanceTotalEarned = Value
+			stringStatisticsData(3) = CType(Value, String)
 		End Set
-	End Property 'Property TotalEarnings
+	End Property
 ''' <summary>
 ''' Returns an Integer with the total lifetime Spending.
 ''' </summary>
 	Public Property TotalSpent As Integer
 		Get
-			Return intFinanceTotalSpent
+			Return integerFinanceTotalSpent
 		End Get
 		Set(Value As Integer)
-			intFinanceTotalSpent = Value
-			SaveState()
+			integerFinanceTotalSpent = Value
+			stringStatisticsData(4) = CType(Value, String)
 		End Set
-	End Property 'Property TotalSpent
+	End Property
 ''' <summary>
 ''' Returns an Integer with the total lifetime Items Sold.
 ''' </summary>
 	Public Property TotalItemsSold As Integer
 		Get
-			Return intItemsTotalSold
+			Return integerItemsTotalSold
 		End Get
 		Set(Value As Integer)
-			intItemsTotalSold = Value
-			SaveState()
+			integerItemsTotalSold = Value
+			stringStatisticsData(5) = CType(Value, String)
 		End Set
-	End Property 'Property TotalItemsSold
+	End Property
 End Class

@@ -1,8 +1,9 @@
 ﻿Public Partial Class formStore
+	Private filehandler As New binaryFileHandler()
 	Private stringPathItem As String = System.IO.Directory.GetCurrentDirectory & "\Data\Items\"
 	Private arrayDataFile As String
 	Private arrayItemSelected() As String
-	Private arrayItemBought() As String
+	Private stringItemOrder() As String
 	
 	Private RandomInteger As New Random
 	
@@ -15,7 +16,7 @@
 	' filedata = Department<>Genre<>GenreSub<>Article<>Manufactor<>Itemname<>WorthBase<>Quality
 	
 	Sub FormStoreLoad(sender As Object, e As EventArgs)
-		'Fill the dropdown's with the standard template (for now hard-coded, later through a *.prd with it's own class for communications.)
+		'Fill the dropdown's with the standard template (for now hard-coded, later through a *.pd with it's own class for communications.)
 		'	'For this function make a cache with all data loaded into it, this should make it more searchable too.
 		
 		' Restaurant; Services
@@ -44,23 +45,15 @@
 		
 		'Loop through every file in the correspondending folder and add to listbox.
 		For Each file In System.IO.Directory.GetFiles(stringPathItem & "Store\Office\" & comboboxCategory.Text & "\", "*", System.IO.SearchOption.TopDirectoryOnly)
-			comboboxName.Items.Add((New String(file.Remove(file.Length - 3, 3))).Remove(0, stringPathItem.Length + CType("Store\Office\Supplies\", String).Length))
+			comboboxName.Items.Add(CType((file.Remove(file.Length - 3, 3)).Remove(0, stringPathItem.Length + (CType("Store\Office\Supplies\", String).Length)), String))
 		Next
 	End Sub
 	
 	Sub ComboboxNameSelectedIndexChanged(sender As Object, e As EventArgs)
 		'Check for mis-click
 		If comboboxName.Text = "" Then Exit Sub
-		
-		arrayDataFile = ""
-		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(stringPathItem & "Store\Office\Supplies\" & comboboxName.Text & ".pd", System.IO.FileMode.Open))
-			Do
-				arrayDataFile += (Chr(binReader.ReadInt32))
-			Loop Until binReader.PeekChar = Nothing
-		End Using
-		
-		arrayItemSelected = arrayDataFile.Split(New String() {"<>"}, StringSplitOptions.None)
-		
+		arrayItemSelected = filehandler.LoadRow(stringPathItem & "Store\Office\Supplies\", comboboxName.Text & ".pd")
+				
 		labelDepartmentDisplay.Text = arrayItemSelected(0)
 		labelGenreDisplay.Text = arrayItemSelected(1)
 		labelGenreSubDisplay.Text = arrayItemSelected(2)
@@ -75,7 +68,7 @@
 	End Sub
 	
 	Sub ButtonCloseClick(sender As Object, e As EventArgs)
-		Me.Dispose()
+		Me.Hide()
 	End Sub
 	
 	Sub ButtonBuyClick(sender As Object, e As EventArgs)
@@ -88,25 +81,28 @@
 			
 			formStatus.classCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
 			
-			'Get product into order temponary String Array.
-			ReDim arrayItemBought(3)
-			arrayItemBought(0) = labelItemDisplay.Text 'Name
-			arrayItemBought(1) = textboxBuyAmount.Text 'Amount
-			arrayItemBought(2) = textboxBuyPrice.Text 'Last Buying Price
-			arrayItemBought(3) = "0"'Last Selling Price
+			'Get product-order into temponary String Array.
+			ReDim stringItemOrder(3)
+			stringItemOrder(0) = labelItemDisplay.Text 'Name
+			stringItemOrder(1) = textboxBuyAmount.Text 'Amount
+			stringItemOrder(2) = textboxBuyPrice.Text 'Last Buying Price
+			stringItemOrder(3) = "0"'Last Selling Price
 			
 			Dim pos As Integer = 0
 			Do Until formStatus.classInventory.GetInventorySpace(pos) Is Nothing
+				dim stringSlot() As String
+				stringSlot = formStatus.classInventory.GetInventorySpace(pos)
 				'Add To existing record.
-				If formStatus.classInventory.GetInventorySpace(pos)(0).Contains(comboboxName.Text) = True Then
-					arrayItemBought(1) = CType((CType(formStatus.classInventory.GetInventorySpace(pos)(1), Integer) + CType(arrayItemBought(1), Integer)), String)
-					formStatus.classInventory.GetInventorySpace(pos) = arrayItemBought
+				If stringSlot(0).Contains(comboboxName.Text) = True Then
+					stringItemOrder(1) = CType((CType(stringSlot(1), Integer) + CType(stringItemOrder(1), Integer)), String)
+					formStatus.classInventory.GetInventorySpace(pos) = stringItemOrder
 					Exit Sub
 				End If
 				pos += 1
 			Loop
 			'Make new record
-			formStatus.classInventory.NewSlot(arrayItemBought)
+			formStatus.classInventory.NewSlot(stringItemOrder)
+			formStatus.classInventory.SaveState()
 		End If
 	End Sub
 	

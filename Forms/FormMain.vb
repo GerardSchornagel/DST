@@ -7,7 +7,7 @@
 	End Sub
 	
 	Sub formMainLoad(sender As Object, e As EventArgs)
-		
+		If GlobalSettings.LastUser = 99 Then buttonResumeGame.Enabled = False
 	End Sub
 	
 	Sub buttonNewGameClick(sender As Object, e As EventArgs)
@@ -19,32 +19,30 @@
 			End If
 			intCheck += 1
 		Loop
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & intCheck)
 		'Make templates for all classes
+		'Update LastUser
+		GlobalSettings.LastUser = intCheck
+		GlobalSettings.SaveState()
 		'Player
 		Dim stringNewPlayer() As String
-		stringNewPlayer = New String() {CType(intCheck, String), "Nick Name", "First Name", "Last Name", "1985", "09", "24", "1"}
+		stringNewPlayer = New String() {CType(intCheck, String), "Nick Name", "First Name", "Last Name", "1985", "09", "24", "1", "FirstLocation", "FirstStore", "0", "0", "0"}
 		Dim newPlayer As New player("New", stringNewPlayer)
 		'Character
 		Dim stringNewCharacter() As String
-		stringNewCharacter = New String() {CType(intCheck, String), "250", "0", "0", "0"}
+		stringNewCharacter = New String() {CType(intCheck, String), "0", "0", "0", "0"}
 		Dim newCharacter As New character("New", stringNewCharacter)
 		'Statistics
 		Dim stringNewStatistics() As String
-		stringNewStatistics = New String() {CType(intCheck, String), "0", "0", "0", System.DateTime.Now.Date.ToShortDateString, (System.DateTime.Now.TimeOfDay.ToString).Split(CType(".", Char))(0), "0", "0", "0"}
+		stringNewStatistics = New String() {CType(intCheck, String), "0", System.DateTime.Now.Date.ToShortDateString, (System.DateTime.Now.TimeOfDay.ToString).Split(CType(".", Char))(0), "0", "0", "0"}
 		Dim newStatistics As New statistics("New", stringNewStatistics)
 		'Inventory
-		Dim arrayNewInventory(0, 3) As Object
-		arrayNewInventory(0, 0) = "Freebie Pen's"
-		arrayNewInventory(0, 1) = "25"
-		arrayNewInventory(0, 2) = "1"
-		arrayNewInventory(0, 3) = "5"
-		Dim newInventory As New inventory("New", arrayNewInventory, CType(intCheck, String))
+		Dim newInventory As New inventory("New", intCheck)
 		'Store
-		Dim newStore As New store("New", "FirstLocation", CType(intCheck, String))
-		'Update LastUser
-		GlobalSettings.LastUser = intCheck
+		Dim newStore As New store()
+		newStore.NewStore()
+		newStore.SaveState()
 		'Call ResumeGame to continue starting.
+		buttonResumeGame.Enabled = False
 		buttonResumeGameClick(nothing, nothing)
 	End Sub
 	
@@ -62,6 +60,7 @@
 		folderdialogLoadGame.ShowDialog()
 		GlobalSettings.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1),Integer)
 		'Load Game
+		buttonResumeGame.Enabled = False
 		buttonResumeGameClick(Nothing, Nothing)
 	End Sub
 	
@@ -72,6 +71,6 @@
 	
 	Sub buttonQuitClick(sender As Object, e As EventArgs)
 		'Check for WarningMessage Setting and show the warning with Yes/No, else just End
-	If GlobalSettings.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
+		If GlobalSettings.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
 	End Sub
 End Class

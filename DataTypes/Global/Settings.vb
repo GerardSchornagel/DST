@@ -1,106 +1,82 @@
-﻿	''' <summary>
-	''' Global Settings for the game, most will be handled from the Main Menu.
-	''' </summary>
+﻿''' <summary>
+''' Global Settings for the game, most will be handled from the Main Menu.
+''' </summary>
 Public Class settings
-	Private intLastUser As Integer = 0
-
-	Private bolMessagesProgramQuit As Boolean = False 'Asks if Exiting the Program is true
-	Private bolMessagesNewgameOverwrite As Boolean = False 'Inform about overwrite of Load Last Game
-	Private bolMessagesOptionsApplyrestart As Boolean = False 'Inform about restart of Game
-
-	Private strBinaryFileData As String = "" 'Used as temponary string-storage
+	Private filehandler As New binaryFileHandler()
+	Private stringSettings() As String
+	
+	Private integerLastUser As Integer
+	Private booleanMessagesProgramQuit As Boolean = False 'Asks if Exiting the Program is true
+	Private booleanMessagesNewgameOverwrite As Boolean = False 'Inform about overwrite of Load Last Game
+	Private booleanMessagesOptionsApplyrestart As Boolean = False 'Inform about restart of Game
+''' <summary>
+''' If exists it loads the GlobalSetting, else it create default.
+''' </summary>
 	Sub New()
-		'Check for existing settings.prd
-		if System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd") = False Then SaveState()
-		'Get all info from File
-		strBinaryFileData = ""
-		Using binReader As New System.IO.BinaryReader(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd", System.IO.FileMode.Open))
-			Do
-				strBinaryFileData += (Chr(binReader.ReadInt32))
-			Loop Until binReader.PeekChar = Nothing
-		End Using
-		'Split raw data in String-Array
-		Dim arraySettings As String() = strBinaryFileData.Split(New String() {"<>"}, StringSplitOptions.None)
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\settings.pd") = False Then
+			stringSettings = New String() {"99", "False", "False", "False"}
+			SaveState()
+		Else
+			stringSettings = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\", "settings.pd")
+		End If
 		'Write Private's
-		intLastUser = CType(arraySettings(0), Integer)
-		bolMessagesProgramQuit = CType(arraySettings(1), Boolean)
-		bolMessagesNewgameOverwrite = CType(arraySettings(2), Boolean)
-		bolMessagesOptionsApplyrestart = CType(arraySettings(3), Boolean)
-	End Sub 'Sub New
-	''' <summary>
-	''' Saves all changes made to Global Settings.
-	''' </summary>
-	Private Sub SaveState()
-		'Check for directory and create if false.
-		if System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save") = False Then System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save")
-		'Make Raw data String
-		strBinaryFileData = CType(intLastUser, String)
-		strBinaryFileData += "<>" & bolMessagesProgramQuit
-		strBinaryFileData += "<>" & bolMessagesNewgameOverwrite
-		strBinaryFileData += "<>" & bolMessagesOptionsApplyrestart
-
-		'Fill Array for character per character progressing
-		Dim arrayInt32(strBinaryFileData.Length) As Int32
-		Dim intDimension As Integer = 0
-		For Each character As Char In strBinaryFileData
-			arrayInt32(intDimension) = Asc(character)
-			intDimension += 1
-		Next
-		
-		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(System.IO.Directory.GetCurrentDirectory & "\save\settings.prd", System.IO.FileMode.Create))
-			For Each integer32 As Int32 In arrayInt32
-				binWriter.Write(integer32)
-			Next
-		End Using
-	End Sub 'Sub SaveState
-
-'--------PROPERTY'S---------
+		integerLastUser = CType(stringSettings(0), Integer)
+		booleanMessagesProgramQuit = CType(stringSettings(1), Boolean)
+		booleanMessagesNewgameOverwrite = CType(stringSettings(2), Boolean)
+		booleanMessagesOptionsApplyrestart = CType(stringSettings(3), Boolean)
+	End Sub
+''' <summary>
+''' Saves all changes made to Global Settings.
+''' </summary>
+	Public Sub SaveState()
+		filehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\", "settings.pd", , stringSettings)
+	End Sub
 ''' <summary>
 ''' An Integer representing the last player that has played, it is corresponding with the number in the save directory.
 ''' </summary>
 	Public Property LastUser As Integer
 		Get
-			Return intLastUser
+			Return integerLastUser
 		End Get
 		Set(Value As Integer)
-			intLastUser = Value
-			SaveState()
+			integerLastUser = CType(Value, Integer)
+			stringSettings(0) = CType(Value, String)
 		End Set
-	End Property 'Property LastUser
+	End Property
 ''' <summary>
 ''' The warning message when quitting the program.
 ''' </summary>
 	Public Property MessagesProgramQuit As Boolean
 		Get
-			Return bolMessagesProgramQuit
+			Return booleanMessagesProgramQuit
 		End Get
 		Set(Value As Boolean)
-			bolMessagesProgramQuit = Value
-			SaveState()
+			booleanMessagesProgramQuit = Value
+			stringSettings(1) = CType(Value, String)
 		End Set
-	End Property 'Property MessagesProgramQuit
+	End Property
 ''' <summary>
 ''' Warning message that the last player ID will be overwritten, in Alpha stage this means you lose your prev. game.
 ''' </summary>
 	Public Property MessagesNewgameOverwrite As Boolean
 		Get
-			Return bolMessagesNewgameOverwrite
+			Return booleanMessagesNewgameOverwrite
 		End Get
 		Set(Value As Boolean)
-			bolMessagesNewgameOverwrite = Value
-			SaveState()
+			booleanMessagesNewgameOverwrite = Value
+			stringSettings(2) = CType(Value, String)
 		End Set
-	End Property 'Property MessagesNewgameOverwrite
+	End Property
 ''' <summary>
 ''' Message if there are options are choosen via the main menu, the program has to be restarted.
 ''' </summary>
 	Public Property MessagesOptionsApplyrestart As Boolean
 		Get
-			Return bolMessagesOptionsApplyrestart
+			Return booleanMessagesOptionsApplyrestart
 		End Get
 		Set(Value As Boolean)
-			bolMessagesOptionsApplyrestart = Value
-			SaveState()
+			booleanMessagesOptionsApplyrestart = Value
+			stringSettings(3) = CType(Value, String)
 		End Set
-	End Property 'Property MessagesOptionsApplyrestart
+	End Property
 End Class

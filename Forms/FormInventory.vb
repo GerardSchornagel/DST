@@ -1,13 +1,13 @@
 ﻿Public Partial Class formInventory
-	Private arrayBin1A As Object
-	Private arrayBin1B As Object
-	Private arrayBin1C As Object
-	Private arrayBin2A As Object
-	Private arrayBin2B As Object
-	Private arrayBin2C As Object
-	Private arrayBin3A As Object
-	Private arrayBin3B As Object
-	Private arrayBin3C As Object
+	Private arrayBin1A() As String
+	Private arrayBin1B() As String
+	Private arrayBin1C() As String
+	Private arrayBin2A() As String
+	Private arrayBin2B() As String
+	Private arrayBin2C() As String
+	Private arrayBin3A() As String
+	Private arrayBin3B() As String
+	Private arrayBin3C() As String
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
@@ -18,10 +18,10 @@
 		'Save all Selling prices into Last Selling in inventory
 		arrayBin1A(2) = updownPrice1A.Text
 		formGame.StoreCurrent.getsetBin(0) = arrayBin1A
-		If textboxName1B.Text = "Empty" Then GoTo SaveandExit
+		'If textboxName1B.Text = "Empty" Then GoTo SaveandExit
 		arrayBin1B(2) = updownPrice1B.Text
 		formGame.StoreCurrent.getsetBin(1) = arrayBin1B
-		If textboxName1C.Text = "Empty" Then GoTo SaveandExit
+		'If textboxName1C.Text = "Empty" Then GoTo SaveandExit
 		arrayBin1C(2) = updownPrice1C.Text
 		formGame.StoreCurrent.getsetBin(2) = arrayBin1C
 		
@@ -61,42 +61,42 @@ SaveandExit:
 		arrayBin3C = formGame.StoreCurrent.getsetBin(8)
 	
 	'Get all info from store.vb
-		textboxName1A.Text = CType(arrayBin1A(0), String)
-		textboxQuantity1A.Text = CType(arrayBin1A(1), String)
-		updownPrice1A.Text = CType(arrayBin1A(2), String)
+		textboxName1A.Text = arrayBin1A(0)
+		textboxQuantity1A.Text = arrayBin1A(1)
+		updownPrice1A.Text = arrayBin1A(2)
 		If arrayBin1B Is Nothing Then Exit Sub
-		textboxName1B.Text = CType(arrayBin1B(0), String)
-		textboxQuantity1B.Text = CType(arrayBin1B(1), String)
-		updownPrice1B.Text = CType(arrayBin1B(2), String)
+		textboxName1B.Text = arrayBin1B(0)
+		textboxQuantity1B.Text = arrayBin1B(1)
+		updownPrice1B.Text = arrayBin1B(2)
 		If arrayBin1C Is Nothing Then Exit Sub
-		textboxName1C.Text = CType(arrayBin1C(0), String)
-		textboxQuantity1C.Text = CType(arrayBin1C(1), String)
-		updownPrice1C.Text = CType(arrayBin1C(2), String)
+		textboxName1C.Text = arrayBin1C(0)
+		textboxQuantity1C.Text = arrayBin1C(1)
+		updownPrice1C.Text = arrayBin1C(2)
 		
 		If arrayBin2A Is Nothing Then Exit Sub
-		textboxName2A.Text = CType(arrayBin2A(0), String)
-		textboxQuantity2A.Text = CType(arrayBin2A(1), String)
-		updownPrice2A.Text = CType(arrayBin2A(2), String)
+		textboxName2A.Text = arrayBin2A(0)
+		textboxQuantity2A.Text = arrayBin2A(1)
+		updownPrice2A.Text = arrayBin2A(2)
 		If arrayBin2B Is Nothing Then Exit Sub
-		textboxName2B.Text = CType(arrayBin2B(0), String)
-		textboxQuantity2B.Text = CType(arrayBin2B(1), String)
-		updownPrice2B.Text = CType(arrayBin2B(2), String)
+		textboxName2B.Text = arrayBin2B(0)
+		textboxQuantity2B.Text = arrayBin2B(1)
+		updownPrice2B.Text = arrayBin2B(2)
 		If arrayBin2C Is Nothing Then Exit Sub
-		textboxName2C.Text = CType(arrayBin2C(0), String)
-		textboxQuantity2C.Text = CType(arrayBin2C(1), String)
-		updownPrice2C.Text = CType(arrayBin2C(2), String)
+		textboxName2C.Text = arrayBin2C(0)
+		textboxQuantity2C.Text = arrayBin2C(1)
+		updownPrice2C.Text = arrayBin2C(2)
 		
 		If arrayBin3A Is Nothing Then Exit Sub
-		textboxName3A.Text = CType(arrayBin3A(0), String)
-		textboxQuantity3A.Text = CType(arrayBin3A(1), String)
-		updownPrice3A.Text = CType(arrayBin3A(2), String)
+		textboxName3A.Text = arrayBin3A(0)
+		textboxQuantity3A.Text = arrayBin3A(1)
+		updownPrice3A.Text = arrayBin3A(2)
 		If arrayBin3B Is Nothing Then Exit Sub
-		textboxName3B.Text = CType(arrayBin3B(0), String)
-		textboxQuantity3B.Text = CType(arrayBin3B(1), String)
-		updownPrice3B.Text = CType(arrayBin3B(2), String)
+		textboxName3B.Text = arrayBin3B(0)
+		textboxQuantity3B.Text = arrayBin3B(1)
+		updownPrice3B.Text = arrayBin3B(2)
 		If arrayBin3C Is Nothing Then Exit Sub
-		textboxName3C.Text = CType(arrayBin3C(0), String)
-		textboxQuantity3C.Text = CType(arrayBin3C(1), String)
-		updownPrice3C.Text = CType(arrayBin3C(2), String)
+		textboxName3C.Text = arrayBin3C(0)
+		textboxQuantity3C.Text = arrayBin3C(1)
+		updownPrice3C.Text = arrayBin3C(2)
 	End Sub
 End Class

@@ -11,10 +11,11 @@
 	End Sub
 
 	Sub buttonOKClick(sender As Object, e As EventArgs)
-		'Save all options to save\setting.prd
+		'Save all options to save\setting.pd
 		formMain.GlobalSettings.MessagesProgramQuit = CType(checkboxlistMessages.GetItemCheckState(0), Boolean)
 		formMain.GlobalSettings.MessagesNewgameOverwrite = CType(checkboxlistMessages.GetItemCheckState(1), Boolean)
 		formMain.GlobalSettings.MessagesOptionsApplyrestart = CType(checkboxlistMessages.GetItemCheckState(2), Boolean)
+		formMain.GlobalSettings.SaveState()
 		'Warn before restarting
 		If formMain.GlobalSettings.MessagesOptionsApplyrestart = False Then MsgBox("The program has to be restarted to take full effect.", MsgBoxStyle.Exclamation,"Please restart.")
 		Me.Dispose()

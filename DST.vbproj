@@ -57,6 +57,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTypes\Global\binaryFileHandler.vb" />
     <Compile Include="DataTypes\Global\settings.vb" />
     <Compile Include="DataTypes\NPC\customer.vb" />
     <Compile Include="DataTypes\Object\store.vb" />

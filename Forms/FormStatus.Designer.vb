@@ -26,12 +26,8 @@
 	''' </summary>
 	Private Sub InitializeComponent()
 		Me.groupboxDates = New System.Windows.Forms.GroupBox()
-		Me.labelPlaySaved = New System.Windows.Forms.Label()
-		Me.textboxPlaySaved = New System.Windows.Forms.TextBox()
 		Me.labelCreatedTime = New System.Windows.Forms.Label()
-		Me.labelPlayHours = New System.Windows.Forms.Label()
 		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
-		Me.textboxPlayHours = New System.Windows.Forms.TextBox()
 		Me.labelCreatedDate = New System.Windows.Forms.Label()
 		Me.textboxCreatedDate = New System.Windows.Forms.TextBox()
 		Me.labelPlaycycles = New System.Windows.Forms.Label()
@@ -55,6 +51,7 @@
 		Me.groupboxSelection = New System.Windows.Forms.GroupBox()
 		Me.comboboxBins = New System.Windows.Forms.ComboBox()
 		Me.listboxInventory = New System.Windows.Forms.ListBox()
+		Me.buttonRefresh = New System.Windows.Forms.Button()
 		Me.buttonExport = New System.Windows.Forms.Button()
 		Me.buttonExit = New System.Windows.Forms.Button()
 		Me.labelBalance = New System.Windows.Forms.Label()
@@ -87,7 +84,6 @@
 		Me.buttonMap = New System.Windows.Forms.Button()
 		Me.buttonInventory = New System.Windows.Forms.Button()
 		Me.buttonStore = New System.Windows.Forms.Button()
-		Me.buttonRefresh = New System.Windows.Forms.Button()
 		Me.groupboxDates.SuspendLayout
 		Me.groupboxFinances.SuspendLayout
 		Me.tabpageStatistics.SuspendLayout
@@ -103,39 +99,18 @@
 		'
 		'groupboxDates
 		'
-		Me.groupboxDates.Controls.Add(Me.labelPlaySaved)
-		Me.groupboxDates.Controls.Add(Me.textboxPlaySaved)
 		Me.groupboxDates.Controls.Add(Me.labelCreatedTime)
-		Me.groupboxDates.Controls.Add(Me.labelPlayHours)
 		Me.groupboxDates.Controls.Add(Me.textboxCreatedTime)
-		Me.groupboxDates.Controls.Add(Me.textboxPlayHours)
 		Me.groupboxDates.Controls.Add(Me.labelCreatedDate)
 		Me.groupboxDates.Controls.Add(Me.textboxCreatedDate)
 		Me.groupboxDates.Controls.Add(Me.labelPlaycycles)
 		Me.groupboxDates.Controls.Add(Me.textboxPlaycycles)
 		Me.groupboxDates.Location = New System.Drawing.Point(6, 6)
 		Me.groupboxDates.Name = "groupboxDates"
-		Me.groupboxDates.Size = New System.Drawing.Size(437, 139)
+		Me.groupboxDates.Size = New System.Drawing.Size(437, 166)
 		Me.groupboxDates.TabIndex = 5
 		Me.groupboxDates.TabStop = false
 		Me.groupboxDates.Text = "Time and Dates"
-		'
-		'labelPlaySaved
-		'
-		Me.labelPlaySaved.AutoSize = true
-		Me.labelPlaySaved.Location = New System.Drawing.Point(6, 94)
-		Me.labelPlaySaved.Name = "labelPlaySaved"
-		Me.labelPlaySaved.Size = New System.Drawing.Size(69, 13)
-		Me.labelPlaySaved.TabIndex = 0
-		Me.labelPlaySaved.Text = "Times Saved"
-		'
-		'textboxPlaySaved
-		'
-		Me.textboxPlaySaved.Location = New System.Drawing.Point(9, 110)
-		Me.textboxPlaySaved.Name = "textboxPlaySaved"
-		Me.textboxPlaySaved.ReadOnly = true
-		Me.textboxPlaySaved.Size = New System.Drawing.Size(169, 20)
-		Me.textboxPlaySaved.TabIndex = 1
 		'
 		'labelCreatedTime
 		'
@@ -146,15 +121,6 @@
 		Me.labelCreatedTime.TabIndex = 0
 		Me.labelCreatedTime.Text = "Time Created"
 		'
-		'labelPlayHours
-		'
-		Me.labelPlayHours.AutoSize = true
-		Me.labelPlayHours.Location = New System.Drawing.Point(6, 55)
-		Me.labelPlayHours.Name = "labelPlayHours"
-		Me.labelPlayHours.Size = New System.Drawing.Size(70, 13)
-		Me.labelPlayHours.TabIndex = 0
-		Me.labelPlayHours.Text = "Hours Played"
-		'
 		'textboxCreatedTime
 		'
 		Me.textboxCreatedTime.Location = New System.Drawing.Point(187, 71)
@@ -162,14 +128,6 @@
 		Me.textboxCreatedTime.ReadOnly = true
 		Me.textboxCreatedTime.Size = New System.Drawing.Size(169, 20)
 		Me.textboxCreatedTime.TabIndex = 1
-		'
-		'textboxPlayHours
-		'
-		Me.textboxPlayHours.Location = New System.Drawing.Point(9, 71)
-		Me.textboxPlayHours.Name = "textboxPlayHours"
-		Me.textboxPlayHours.ReadOnly = true
-		Me.textboxPlayHours.Size = New System.Drawing.Size(169, 20)
-		Me.textboxPlayHours.TabIndex = 1
 		'
 		'labelCreatedDate
 		'
@@ -213,9 +171,9 @@
 		Me.groupboxFinances.Controls.Add(Me.textboxMoneyEarned)
 		Me.groupboxFinances.Controls.Add(Me.textboxMoneySpent)
 		Me.groupboxFinances.Controls.Add(Me.labelMoneySpent)
-		Me.groupboxFinances.Location = New System.Drawing.Point(6, 151)
+		Me.groupboxFinances.Location = New System.Drawing.Point(6, 178)
 		Me.groupboxFinances.Name = "groupboxFinances"
-		Me.groupboxFinances.Size = New System.Drawing.Size(428, 158)
+		Me.groupboxFinances.Size = New System.Drawing.Size(437, 193)
 		Me.groupboxFinances.TabIndex = 0
 		Me.groupboxFinances.TabStop = false
 		Me.groupboxFinances.Text = "Finances and Items"
@@ -392,6 +350,16 @@
 		Me.listboxInventory.Size = New System.Drawing.Size(425, 134)
 		Me.listboxInventory.TabIndex = 3
 		AddHandler Me.listboxInventory.SelectedIndexChanged, AddressOf Me.ListboxInventorySelectedIndexChanged
+		'
+		'buttonRefresh
+		'
+		Me.buttonRefresh.Location = New System.Drawing.Point(377, 160)
+		Me.buttonRefresh.Name = "buttonRefresh"
+		Me.buttonRefresh.Size = New System.Drawing.Size(54, 23)
+		Me.buttonRefresh.TabIndex = 2
+		Me.buttonRefresh.Text = "Refresh"
+		Me.buttonRefresh.UseVisualStyleBackColor = true
+		AddHandler Me.buttonRefresh.Click, AddressOf Me.buttonRefreshClick
 		'
 		'buttonExport
 		'
@@ -697,16 +665,6 @@
 		Me.buttonStore.UseVisualStyleBackColor = true
 		AddHandler Me.buttonStore.Click, AddressOf Me.buttonStoreClick
 		'
-		'buttonRefresh
-		'
-		Me.buttonRefresh.Location = New System.Drawing.Point(377, 160)
-		Me.buttonRefresh.Name = "buttonRefresh"
-		Me.buttonRefresh.Size = New System.Drawing.Size(54, 23)
-		Me.buttonRefresh.TabIndex = 2
-		Me.buttonRefresh.Text = "Refresh"
-		Me.buttonRefresh.UseVisualStyleBackColor = true
-		AddHandler Me.buttonRefresh.Click, AddressOf Me.buttonRefreshClick
-		'
 		'formStatus
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -750,12 +708,8 @@
 	Private buttonInventory As System.Windows.Forms.Button
 	Private buttonMap As System.Windows.Forms.Button
 	Private groupboxDates As System.Windows.Forms.GroupBox
-	Private labelPlaySaved As System.Windows.Forms.Label
-	Private textboxPlaySaved As System.Windows.Forms.TextBox
 	Private labelCreatedTime As System.Windows.Forms.Label
-	Private labelPlayHours As System.Windows.Forms.Label
 	Private textboxCreatedTime As System.Windows.Forms.TextBox
-	Private textboxPlayHours As System.Windows.Forms.TextBox
 	Private labelCreatedDate As System.Windows.Forms.Label
 	Private textboxCreatedDate As System.Windows.Forms.TextBox
 	Private labelPlaycycles As System.Windows.Forms.Label

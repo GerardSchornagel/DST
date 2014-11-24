@@ -8,7 +8,7 @@
 	Private integerCurrentSpace As Integer
 	Private CurrentSpace As Integer
 	Private CustomerNew As New customer()
-	Shared Friend StoreCurrent As New store(CType(formStatus.classPlayer.PlayerID, String), "FirstLocation")
+	Shared Friend StoreCurrent As New store()
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
@@ -18,7 +18,7 @@
 	Sub formGameLoad(sender As Object, e As EventArgs)
 		AddHandler timerHour.Tick, AddressOf TimerHour_Tick
 		AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
-		StoreCurrent.setStore("FirstStore")
+		StoreCurrent.LoadStore()
 	End Sub
 	
 	Private Sub ButtonActionStartClick(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -49,16 +49,18 @@
 			buttonActionStart.Text = "Start Day"
 			buttonActionStart.Enabled = True
 			textboxActionHour.Text = CType(9, String)
+			formStatus.classCharacter.SaveState()
+			formStatus.classPlayer.SaveState()
 			timerHour.Stop()
 		End If
 	End Sub
 	
 	Private Sub TimerCustomer_Tick(ByVal sender As Object, ByVal e As System.EventArgs)
-		If IntegerCustomerNumber >= 0 Then 'More then Zero
+		If IntegerCustomerNumber > 0 Then 'More then Zero
 			'Make new Customer and get his/her data for log
 			CustomerNew.newCustomer
 			
-			CurrentSpace = RandomGenerator.Next(formGame.StoreCurrent.getUpperbound)
+			CurrentSpace = RandomGenerator.Next(8)
 			
 			If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
 				If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
