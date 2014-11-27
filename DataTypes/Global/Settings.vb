@@ -5,7 +5,7 @@ Public Class settings
 	Private filehandler As New binaryFileHandler()
 	Private stringSettings() As String
 	
-	Private integerLastUser As Integer
+	Private stringLastUser As String
 	Private booleanMessagesProgramQuit As Boolean = False 'Asks if Exiting the Program is true
 	Private booleanMessagesNewgameOverwrite As Boolean = False 'Inform about overwrite of Load Last Game
 	Private booleanMessagesOptionsApplyrestart As Boolean = False 'Inform about restart of Game
@@ -14,13 +14,13 @@ Public Class settings
 ''' </summary>
 	Sub New()
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\settings.pd") = False Then
-			stringSettings = New String() {"99", "False", "False", "False"}
+			stringSettings = New String() {"0", "False", "False", "False"}
 			SaveState()
 		Else
 			stringSettings = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\", "settings.pd")
 		End If
 		'Write Private's
-		integerLastUser = CType(stringSettings(0), Integer)
+		stringLastUser = stringSettings(0)
 		booleanMessagesProgramQuit = CType(stringSettings(1), Boolean)
 		booleanMessagesNewgameOverwrite = CType(stringSettings(2), Boolean)
 		booleanMessagesOptionsApplyrestart = CType(stringSettings(3), Boolean)
@@ -32,15 +32,30 @@ Public Class settings
 		filehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\", "settings.pd", , stringSettings)
 	End Sub
 ''' <summary>
+''' Updates LastUserID to nearest free number in save directory.
+''' </summary>
+	Public Sub NewPlayer()
+	'Look for nearest free number in save directory
+		Dim intCheck As Integer = 0
+		Do
+			If System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intCheck) = False Then
+				Exit Do
+			End If
+			intCheck += 1
+		Loop
+		stringLastUser = CType(intCheck, String)
+		SaveState()
+	End Sub
+''' <summary>
 ''' An Integer representing the last player that has played, it is corresponding with the number in the save directory.
 ''' </summary>
-	Public Property LastUser As Integer
+	Public Property LastUser As String
 		Get
-			Return integerLastUser
+			Return stringLastUser
 		End Get
-		Set(Value As Integer)
-			integerLastUser = CType(Value, Integer)
-			stringSettings(0) = CType(Value, String)
+		Set(Value As String)
+			stringLastUser = CType(Value, String)
+			stringSettings(0) = Value
 		End Set
 	End Property
 ''' <summary>

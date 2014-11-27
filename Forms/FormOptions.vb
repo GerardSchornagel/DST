@@ -5,19 +5,19 @@
 	End Sub
 	
 	Sub formOptionsLoad(sender As Object, e As EventArgs)
-		checkboxlistMessages.SetItemChecked(0, CType(formMain.GlobalSettings.MessagesProgramQuit, Boolean))
-		checkboxlistMessages.SetItemChecked(1, CType(formMain.GlobalSettings.MessagesNewgameOverwrite, Boolean))
-		checkboxlistMessages.SetItemChecked(2, CType(formMain.GlobalSettings.MessagesOptionsApplyrestart, Boolean))
+		checkboxlistMessages.SetItemChecked(0, CType(formMain.cache.settingsGlobal.MessagesProgramQuit, Boolean))
+		checkboxlistMessages.SetItemChecked(1, CType(formMain.cache.settingsGlobal.MessagesNewgameOverwrite, Boolean))
+		checkboxlistMessages.SetItemChecked(2, CType(formMain.cache.settingsGlobal.MessagesOptionsApplyrestart, Boolean))
 	End Sub
 
 	Sub buttonOKClick(sender As Object, e As EventArgs)
 		'Save all options to save\setting.pd
-		formMain.GlobalSettings.MessagesProgramQuit = CType(checkboxlistMessages.GetItemCheckState(0), Boolean)
-		formMain.GlobalSettings.MessagesNewgameOverwrite = CType(checkboxlistMessages.GetItemCheckState(1), Boolean)
-		formMain.GlobalSettings.MessagesOptionsApplyrestart = CType(checkboxlistMessages.GetItemCheckState(2), Boolean)
-		formMain.GlobalSettings.SaveState()
+		formMain.cache.settingsGlobal.MessagesProgramQuit = CType(checkboxlistMessages.GetItemCheckState(0), Boolean)
+		formMain.cache.settingsGlobal.MessagesNewgameOverwrite = CType(checkboxlistMessages.GetItemCheckState(1), Boolean)
+		formMain.cache.settingsGlobal.MessagesOptionsApplyrestart = CType(checkboxlistMessages.GetItemCheckState(2), Boolean)
+		formMain.cache.settingsGlobal.SaveState()
 		'Warn before restarting
-		If formMain.GlobalSettings.MessagesOptionsApplyrestart = False Then MsgBox("The program has to be restarted to take full effect.", MsgBoxStyle.Exclamation,"Please restart.")
+		If formMain.cache.settingsGlobal.MessagesOptionsApplyrestart = False Then MsgBox("The program has to be restarted to take full effect.", MsgBoxStyle.Exclamation,"Please restart.")
 		Me.Dispose()
 	End Sub
 	

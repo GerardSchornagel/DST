@@ -74,12 +74,12 @@
 	Sub ButtonBuyClick(sender As Object, e As EventArgs)
 		If textboxBuyAmount.Text = "" Then Exit Sub
 		
-		If formStatus.classCharacter.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
+		If formMain.cache.playerCharacter.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
 		
-		If formStatus.classCharacter.Balance >= CType(textboxPriceTotal.Text, Integer) Then
+		If formMain.cache.playerCharacter.Balance >= CType(textboxPriceTotal.Text, Integer) Then
 			MsgBox("Your bought goods.")
 			
-			formStatus.classCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
+			formMain.cache.playerCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
 			
 			'Get product-order into temponary String Array.
 			ReDim stringItemOrder(3)
@@ -89,20 +89,20 @@
 			stringItemOrder(3) = "0"'Last Selling Price
 			
 			Dim pos As Integer = 0
-			Do Until formStatus.classInventory.GetInventorySpace(pos) Is Nothing
+			Do Until formMain.cache.playerInventory.GetInventorySpace(pos) Is Nothing
 				dim stringSlot() As String
-				stringSlot = formStatus.classInventory.GetInventorySpace(pos)
+				stringSlot = formMain.cache.playerInventory.GetInventorySpace(pos)
 				'Add To existing record.
 				If stringSlot(0).Contains(comboboxName.Text) = True Then
 					stringItemOrder(1) = CType((CType(stringSlot(1), Integer) + CType(stringItemOrder(1), Integer)), String)
-					formStatus.classInventory.GetInventorySpace(pos) = stringItemOrder
+					formMain.cache.playerInventory.GetInventorySpace(pos) = stringItemOrder
 					Exit Sub
 				End If
 				pos += 1
 			Loop
 			'Make new record
-			formStatus.classInventory.NewSlot(stringItemOrder)
-			formStatus.classInventory.SaveState()
+			formMain.cache.playerInventory.NewSlot(stringItemOrder)
+			formMain.cache.playerInventory.SaveState()
 		End If
 	End Sub
 	

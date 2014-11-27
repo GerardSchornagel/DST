@@ -13,23 +13,27 @@ Public Class player
 	Private integerBirthMonth As Integer
 	Private integerBirthDay As Integer
 	Private integerGender As Integer
-	Private stringCurrentLocation As String
-	Private stringCurrentStore As String
-	Private integerCurrentLevel As Integer
-	Private integerCurrentShelf As Integer
+	Private stringCreateDate As String
+	Private stringCreateTime As String
+	Private integerTotalBalance As Integer
+	
 ''' <summary>
-''' Retrieves Player Variables.
+''' Initializes player class.
 ''' </summary>
-''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
-''' <param name="Template">New String() {PlayerID, NickName, FirstName, LastName, BirthYear, BirthMonth, BirthDay, Gender(0=F;1=M), Current Location, Current Store, CurrentLevel, CurrentShelf}</param>
-	Friend Sub New(PlayerID As String, Optional Template() as String = Nothing)
-		'Check for New parameter.
-		If PlayerID = "New" Then
-			NewPlayer(Template)
+	Friend Sub New()
+		
+	End Sub
+''' <summary>
+''' Loads or create a (blank) Profile.
+''' </summary>
+	Friend Sub Load()
+		'Check for if file exists, if not create; else load.
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & formMain.cache.settingsGlobal.LastUser & "\player.pd") = False Then
+			NewPlayer()
 			
 		Else
-			integerPlayerID = CType(PlayerID, Integer)
-			ReDim stringPlayerData(11)
+			integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+			ReDim stringPlayerData(10)
 			stringPlayerData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "player.pd")
 			
 			'Write Private's
@@ -40,31 +44,28 @@ Public Class player
 			integerBirthMonth = CType(stringPlayerData(5), Integer)
 			integerBirthDay = CType(stringPlayerData(6), Integer)
 			integerGender = CType(stringPlayerData(7), Integer)
-			stringCurrentLocation = stringPlayerData(8)
-			stringCurrentStore = stringPlayerData(9)
-			integerCurrentLevel = CType(stringPlayerData(10), Integer)
-			integerCurrentShelf = CType(stringPlayerData(11), Integer)
+			stringCreateDate = stringPlayerData(8)
+			stringCreateTime = stringPlayerData(9)
+			integerTotalBalance = CType(stringPlayerData(10), Integer)
 		End If
 	End Sub
 ''' <summary>
-''' Creates a new player through given template.
+''' Creates a new player.
 ''' </summary>
-''' <param name="Template">Pass through from Sub New()</param>
-	Public Sub NewPlayer(ByVal Template() As String)
-		ReDim stringPlayerData(11)
-		Array.Copy(Template, stringPlayerData, Template.GetUpperBound(0))
-		integerPlayerID = CType(stringPlayerData(0), Integer)
-		stringNameNick = stringPlayerData(1)
-		stringNameFirst = stringPlayerData(2)
-		stringNameLast = stringPlayerData(3)
-		integerBirthYear = CType(stringPlayerData(4), Integer)
-		integerBirthMonth = CType(stringPlayerData(5), Integer)
-		integerBirthDay = CType(stringPlayerData(6), Integer)
-		integerGender = CType(stringPlayerData(7), Integer)
-		stringCurrentLocation = stringPlayerData(8)
-		stringCurrentStore = stringPlayerData(9)
-		integerCurrentLevel = CType(stringPlayerData(10), Integer)
-		integerCurrentShelf = CType(stringPlayerData(11), Integer)
+	Public Sub NewPlayer()
+		integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+		ReDim stringPlayerData(10)
+		stringPlayerData(0) = CType(integerPlayerID, String)
+		stringPlayerData(1) = ""
+		stringPlayerData(2) = ""
+		stringPlayerData(3) = ""
+		stringPlayerData(4) = "0"
+		stringPlayerData(5) = "0"
+		stringPlayerData(6) = "0"
+		stringPlayerData(7) = "0"
+		stringPlayerData(8) = ""
+		stringPlayerData(9) = ""
+		stringPlayerData(10) = "0"
 		'Start Writing New Player
 		SaveState()
 	End Sub
@@ -171,51 +172,39 @@ Public Class player
 		End Set
 	End Property
 ''' <summary>
-''' Returns a String with the current location.
+''' Returns a String with the profile creation date.
 ''' </summary>
-	Public Property CurrentLocation As String
+	Public Property CreateDate As String
 		Get
-			Return stringCurrentLocation
+			Return stringCreateDate
 		End Get
 		Set(Value As String)
-			stringCurrentLocation = Value
+			stringCreateDate = Value
 			stringPlayerData(8) = Value
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the current store.
+''' Returns a String with the profile creation time.
 ''' </summary>
-	Public Property CurrentStore As String
+	Public Property CreateTime As String
 		Get
-			Return stringCurrentStore
+			Return stringCreateTime
 		End Get
 		Set(Value As String)
-			stringCurrentStore = Value
+			stringCreateTime = Value
 			stringPlayerData(9) = Value
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the current department level.
+''' Returns an Integer with the current total balance of all characters.
 ''' </summary>
-	Public Property CurrentLevel As Integer
+	Public Property BalanceTotal As Integer
 		Get
-			Return integerCurrentLevel
+			Return integerTotalBalance
 		End Get
 		Set(Value As Integer)
-			integerCurrentLevel = Value
+			integerTotalBalance = Value
 			stringPlayerData(10) = CType(Value, String)
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the current Shelf.
-''' </summary>
-	Public Property CurrentShelf As Integer
-		Get
-			Return integerCurrentShelf
-		End Get
-		Set(Value As Integer)
-			integerCurrentShelf = Value
-			stringPlayerData(11) = CType(Value, String)
 		End Set
 	End Property
 End Class

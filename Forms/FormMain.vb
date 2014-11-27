@@ -1,5 +1,5 @@
 ﻿Public Partial Class formMain
-	Friend Shared GlobalSettings As New Settings()
+	Friend Shared cache As New cacheGlobal()
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
@@ -7,36 +7,15 @@
 	End Sub
 	
 	Sub formMainLoad(sender As Object, e As EventArgs)
-		If GlobalSettings.LastUser = 99 Then buttonResumeGame.Enabled = False
+		
 	End Sub
 	
 	Sub buttonNewGameClick(sender As Object, e As EventArgs)
-		'Look for nearest free number in save directory
-		Dim intCheck As Integer = 0
-		Do
-			If System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & intCheck) = False Then
-				Exit Do
-			End If
-			intCheck += 1
-		Loop
-		'Make templates for all classes
-		'Update LastUser
-		GlobalSettings.LastUser = intCheck
-		GlobalSettings.SaveState()
-		'Player
-		Dim stringNewPlayer() As String
-		stringNewPlayer = New String() {CType(intCheck, String), "Nick Name", "First Name", "Last Name", "1985", "09", "24", "1", "FirstLocation", "FirstStore", "0", "0", "0"}
-		Dim newPlayer As New player("New", stringNewPlayer)
-		'Character
-		Dim stringNewCharacter() As String
-		stringNewCharacter = New String() {CType(intCheck, String), "0", "0", "0", "0"}
-		Dim newCharacter As New character("New", stringNewCharacter)
-		'Statistics
-		Dim stringNewStatistics() As String
-		stringNewStatistics = New String() {CType(intCheck, String), "0", System.DateTime.Now.Date.ToShortDateString, (System.DateTime.Now.TimeOfDay.ToString).Split(CType(".", Char))(0), "0", "0", "0"}
-		Dim newStatistics As New statistics("New", stringNewStatistics)
-		'Inventory
-		Dim newInventory As New inventory("New", intCheck)
+		'Resetting cache's
+		cache.settingsGlobal.NewPlayer()
+		cache.initializePlayerProfile()
+		'>'Get an Player creation sheet inbetween.
+		cache.initializePlayerCharacter()
 		'Store
 		Dim newStore As New store()
 		newStore.NewStore()
@@ -58,7 +37,7 @@
 		folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory & "\save"
 		folderdialogLoadGame.Description = "Please select one of the numbered directory's"
 		folderdialogLoadGame.ShowDialog()
-		GlobalSettings.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1),Integer)
+		cache.settingsGlobal.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1), String)
 		'Load Game
 		buttonResumeGame.Enabled = False
 		buttonResumeGameClick(Nothing, Nothing)
@@ -71,6 +50,6 @@
 	
 	Sub buttonQuitClick(sender As Object, e As EventArgs)
 		'Check for WarningMessage Setting and show the warning with Yes/No, else just End
-		If GlobalSettings.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
+		If cache.settingsGlobal.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
 	End Sub
 End Class

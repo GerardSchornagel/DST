@@ -25,21 +25,6 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.groupboxDates = New System.Windows.Forms.GroupBox()
-		Me.labelCreatedTime = New System.Windows.Forms.Label()
-		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
-		Me.labelCreatedDate = New System.Windows.Forms.Label()
-		Me.textboxCreatedDate = New System.Windows.Forms.TextBox()
-		Me.labelPlaycycles = New System.Windows.Forms.Label()
-		Me.textboxPlaycycles = New System.Windows.Forms.TextBox()
-		Me.groupboxFinances = New System.Windows.Forms.GroupBox()
-		Me.labelItemsSold = New System.Windows.Forms.Label()
-		Me.labelMoneyEarned = New System.Windows.Forms.Label()
-		Me.textboxItemsSold = New System.Windows.Forms.TextBox()
-		Me.textboxMoneyEarned = New System.Windows.Forms.TextBox()
-		Me.textboxMoneySpent = New System.Windows.Forms.TextBox()
-		Me.labelMoneySpent = New System.Windows.Forms.Label()
-		Me.tabpageStatistics = New System.Windows.Forms.TabPage()
 		Me.tabpageInventory = New System.Windows.Forms.TabPage()
 		Me.groupboxDetails = New System.Windows.Forms.GroupBox()
 		Me.labelAmount = New System.Windows.Forms.Label()
@@ -59,34 +44,53 @@
 		Me.tabcontrolStatus = New System.Windows.Forms.TabControl()
 		Me.tabpagePlayer = New System.Windows.Forms.TabPage()
 		Me.groupboxProfile = New System.Windows.Forms.GroupBox()
+		Me.labelCreateTime = New System.Windows.Forms.Label()
+		Me.textboxCreateTime = New System.Windows.Forms.TextBox()
+		Me.labelCreateDate = New System.Windows.Forms.Label()
+		Me.textboxCreateDate = New System.Windows.Forms.TextBox()
 		Me.labelPlayerID = New System.Windows.Forms.Label()
 		Me.textboxPlayerID = New System.Windows.Forms.TextBox()
 		Me.labelGender = New System.Windows.Forms.Label()
 		Me.textboxBirthYear = New System.Windows.Forms.TextBox()
+		Me.labelTotalBalance = New System.Windows.Forms.Label()
 		Me.labelNameLast = New System.Windows.Forms.Label()
 		Me.labelBirthDate = New System.Windows.Forms.Label()
 		Me.textboxNameFirst = New System.Windows.Forms.TextBox()
 		Me.labelNameNick = New System.Windows.Forms.Label()
 		Me.textboxBirthDay = New System.Windows.Forms.TextBox()
 		Me.textboxGender = New System.Windows.Forms.TextBox()
+		Me.textboxTotalBalance = New System.Windows.Forms.TextBox()
 		Me.labelNameFirst = New System.Windows.Forms.Label()
 		Me.textboxNameLast = New System.Windows.Forms.TextBox()
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
 		Me.textboxNameNick = New System.Windows.Forms.TextBox()
 		Me.tabpageCharacter = New System.Windows.Forms.TabPage()
-		Me.groupboxGrades = New System.Windows.Forms.GroupBox()
-		Me.labelGradeInventory = New System.Windows.Forms.Label()
-		Me.textboxGradeInventory = New System.Windows.Forms.TextBox()
-		Me.textboxGradeShelf = New System.Windows.Forms.TextBox()
-		Me.labelGradePopularity = New System.Windows.Forms.Label()
-		Me.labelGradeShelf = New System.Windows.Forms.Label()
-		Me.textboxGradePopularity = New System.Windows.Forms.TextBox()
+		Me.groupboxDates = New System.Windows.Forms.GroupBox()
+		Me.labelCreatedTime = New System.Windows.Forms.Label()
+		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
+		Me.labelCreatedDate = New System.Windows.Forms.Label()
+		Me.textboxCreatedDate = New System.Windows.Forms.TextBox()
+		Me.labelPlaycycles = New System.Windows.Forms.Label()
+		Me.textboxPlaycycles = New System.Windows.Forms.TextBox()
+		Me.groupboxFinances = New System.Windows.Forms.GroupBox()
+		Me.labelItemsSold = New System.Windows.Forms.Label()
+		Me.labelMoneyEarned = New System.Windows.Forms.Label()
+		Me.textboxItemsSold = New System.Windows.Forms.TextBox()
+		Me.textboxMoneyEarned = New System.Windows.Forms.TextBox()
+		Me.textboxMoneySpent = New System.Windows.Forms.TextBox()
+		Me.labelMoneySpent = New System.Windows.Forms.Label()
 		Me.buttonMap = New System.Windows.Forms.Button()
 		Me.buttonInventory = New System.Windows.Forms.Button()
 		Me.buttonStore = New System.Windows.Forms.Button()
-		Me.groupboxDates.SuspendLayout
-		Me.groupboxFinances.SuspendLayout
-		Me.tabpageStatistics.SuspendLayout
+		Me.groupboxLocation = New System.Windows.Forms.GroupBox()
+		Me.labelLevel = New System.Windows.Forms.Label()
+		Me.labelLocation = New System.Windows.Forms.Label()
+		Me.textboxLevel = New System.Windows.Forms.TextBox()
+		Me.textboxLocation = New System.Windows.Forms.TextBox()
+		Me.textboxStore = New System.Windows.Forms.TextBox()
+		Me.labelStore = New System.Windows.Forms.Label()
+		Me.textboxShelf = New System.Windows.Forms.TextBox()
+		Me.labelShelf = New System.Windows.Forms.Label()
 		Me.tabpageInventory.SuspendLayout
 		Me.groupboxDetails.SuspendLayout
 		Me.groupboxSelection.SuspendLayout
@@ -94,152 +98,10 @@
 		Me.tabpagePlayer.SuspendLayout
 		Me.groupboxProfile.SuspendLayout
 		Me.tabpageCharacter.SuspendLayout
-		Me.groupboxGrades.SuspendLayout
+		Me.groupboxDates.SuspendLayout
+		Me.groupboxFinances.SuspendLayout
+		Me.groupboxLocation.SuspendLayout
 		Me.SuspendLayout
-		'
-		'groupboxDates
-		'
-		Me.groupboxDates.Controls.Add(Me.labelCreatedTime)
-		Me.groupboxDates.Controls.Add(Me.textboxCreatedTime)
-		Me.groupboxDates.Controls.Add(Me.labelCreatedDate)
-		Me.groupboxDates.Controls.Add(Me.textboxCreatedDate)
-		Me.groupboxDates.Controls.Add(Me.labelPlaycycles)
-		Me.groupboxDates.Controls.Add(Me.textboxPlaycycles)
-		Me.groupboxDates.Location = New System.Drawing.Point(6, 6)
-		Me.groupboxDates.Name = "groupboxDates"
-		Me.groupboxDates.Size = New System.Drawing.Size(437, 166)
-		Me.groupboxDates.TabIndex = 5
-		Me.groupboxDates.TabStop = false
-		Me.groupboxDates.Text = "Time and Dates"
-		'
-		'labelCreatedTime
-		'
-		Me.labelCreatedTime.AutoSize = true
-		Me.labelCreatedTime.Location = New System.Drawing.Point(184, 55)
-		Me.labelCreatedTime.Name = "labelCreatedTime"
-		Me.labelCreatedTime.Size = New System.Drawing.Size(70, 13)
-		Me.labelCreatedTime.TabIndex = 0
-		Me.labelCreatedTime.Text = "Time Created"
-		'
-		'textboxCreatedTime
-		'
-		Me.textboxCreatedTime.Location = New System.Drawing.Point(187, 71)
-		Me.textboxCreatedTime.Name = "textboxCreatedTime"
-		Me.textboxCreatedTime.ReadOnly = true
-		Me.textboxCreatedTime.Size = New System.Drawing.Size(169, 20)
-		Me.textboxCreatedTime.TabIndex = 1
-		'
-		'labelCreatedDate
-		'
-		Me.labelCreatedDate.AutoSize = true
-		Me.labelCreatedDate.Location = New System.Drawing.Point(184, 16)
-		Me.labelCreatedDate.Name = "labelCreatedDate"
-		Me.labelCreatedDate.Size = New System.Drawing.Size(70, 13)
-		Me.labelCreatedDate.TabIndex = 0
-		Me.labelCreatedDate.Text = "Date Created"
-		'
-		'textboxCreatedDate
-		'
-		Me.textboxCreatedDate.Location = New System.Drawing.Point(187, 32)
-		Me.textboxCreatedDate.Name = "textboxCreatedDate"
-		Me.textboxCreatedDate.ReadOnly = true
-		Me.textboxCreatedDate.Size = New System.Drawing.Size(169, 20)
-		Me.textboxCreatedDate.TabIndex = 1
-		'
-		'labelPlaycycles
-		'
-		Me.labelPlaycycles.AutoSize = true
-		Me.labelPlaycycles.Location = New System.Drawing.Point(6, 16)
-		Me.labelPlaycycles.Name = "labelPlaycycles"
-		Me.labelPlaycycles.Size = New System.Drawing.Size(88, 13)
-		Me.labelPlaycycles.TabIndex = 0
-		Me.labelPlaycycles.Text = "Day's in bussines"
-		'
-		'textboxPlaycycles
-		'
-		Me.textboxPlaycycles.Location = New System.Drawing.Point(9, 32)
-		Me.textboxPlaycycles.Name = "textboxPlaycycles"
-		Me.textboxPlaycycles.ReadOnly = true
-		Me.textboxPlaycycles.Size = New System.Drawing.Size(169, 20)
-		Me.textboxPlaycycles.TabIndex = 1
-		'
-		'groupboxFinances
-		'
-		Me.groupboxFinances.Controls.Add(Me.labelItemsSold)
-		Me.groupboxFinances.Controls.Add(Me.labelMoneyEarned)
-		Me.groupboxFinances.Controls.Add(Me.textboxItemsSold)
-		Me.groupboxFinances.Controls.Add(Me.textboxMoneyEarned)
-		Me.groupboxFinances.Controls.Add(Me.textboxMoneySpent)
-		Me.groupboxFinances.Controls.Add(Me.labelMoneySpent)
-		Me.groupboxFinances.Location = New System.Drawing.Point(6, 178)
-		Me.groupboxFinances.Name = "groupboxFinances"
-		Me.groupboxFinances.Size = New System.Drawing.Size(437, 193)
-		Me.groupboxFinances.TabIndex = 0
-		Me.groupboxFinances.TabStop = false
-		Me.groupboxFinances.Text = "Finances and Items"
-		'
-		'labelItemsSold
-		'
-		Me.labelItemsSold.AutoSize = true
-		Me.labelItemsSold.Location = New System.Drawing.Point(6, 102)
-		Me.labelItemsSold.Name = "labelItemsSold"
-		Me.labelItemsSold.Size = New System.Drawing.Size(56, 13)
-		Me.labelItemsSold.TabIndex = 0
-		Me.labelItemsSold.Text = "Items Sold"
-		'
-		'labelMoneyEarned
-		'
-		Me.labelMoneyEarned.AutoSize = true
-		Me.labelMoneyEarned.Location = New System.Drawing.Point(6, 24)
-		Me.labelMoneyEarned.Name = "labelMoneyEarned"
-		Me.labelMoneyEarned.Size = New System.Drawing.Size(76, 13)
-		Me.labelMoneyEarned.TabIndex = 0
-		Me.labelMoneyEarned.Text = "Money Earned"
-		'
-		'textboxItemsSold
-		'
-		Me.textboxItemsSold.Location = New System.Drawing.Point(9, 118)
-		Me.textboxItemsSold.Name = "textboxItemsSold"
-		Me.textboxItemsSold.ReadOnly = true
-		Me.textboxItemsSold.Size = New System.Drawing.Size(169, 20)
-		Me.textboxItemsSold.TabIndex = 1
-		'
-		'textboxMoneyEarned
-		'
-		Me.textboxMoneyEarned.Location = New System.Drawing.Point(9, 40)
-		Me.textboxMoneyEarned.Name = "textboxMoneyEarned"
-		Me.textboxMoneyEarned.ReadOnly = true
-		Me.textboxMoneyEarned.Size = New System.Drawing.Size(169, 20)
-		Me.textboxMoneyEarned.TabIndex = 1
-		'
-		'textboxMoneySpent
-		'
-		Me.textboxMoneySpent.Location = New System.Drawing.Point(9, 79)
-		Me.textboxMoneySpent.Name = "textboxMoneySpent"
-		Me.textboxMoneySpent.ReadOnly = true
-		Me.textboxMoneySpent.Size = New System.Drawing.Size(169, 20)
-		Me.textboxMoneySpent.TabIndex = 1
-		'
-		'labelMoneySpent
-		'
-		Me.labelMoneySpent.AutoSize = true
-		Me.labelMoneySpent.Location = New System.Drawing.Point(6, 63)
-		Me.labelMoneySpent.Name = "labelMoneySpent"
-		Me.labelMoneySpent.Size = New System.Drawing.Size(70, 13)
-		Me.labelMoneySpent.TabIndex = 0
-		Me.labelMoneySpent.Text = "Money Spent"
-		'
-		'tabpageStatistics
-		'
-		Me.tabpageStatistics.Controls.Add(Me.groupboxDates)
-		Me.tabpageStatistics.Controls.Add(Me.groupboxFinances)
-		Me.tabpageStatistics.Location = New System.Drawing.Point(4, 22)
-		Me.tabpageStatistics.Name = "tabpageStatistics"
-		Me.tabpageStatistics.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpageStatistics.Size = New System.Drawing.Size(453, 377)
-		Me.tabpageStatistics.TabIndex = 1
-		Me.tabpageStatistics.Text = "Statistics"
-		Me.tabpageStatistics.UseVisualStyleBackColor = true
 		'
 		'tabpageInventory
 		'
@@ -402,7 +264,6 @@
 		'
 		Me.tabcontrolStatus.Controls.Add(Me.tabpagePlayer)
 		Me.tabcontrolStatus.Controls.Add(Me.tabpageCharacter)
-		Me.tabcontrolStatus.Controls.Add(Me.tabpageStatistics)
 		Me.tabcontrolStatus.Controls.Add(Me.tabpageInventory)
 		Me.tabcontrolStatus.Location = New System.Drawing.Point(8, 12)
 		Me.tabcontrolStatus.Name = "tabcontrolStatus"
@@ -418,21 +279,27 @@
 		Me.tabpagePlayer.Padding = New System.Windows.Forms.Padding(3)
 		Me.tabpagePlayer.Size = New System.Drawing.Size(453, 377)
 		Me.tabpagePlayer.TabIndex = 3
-		Me.tabpagePlayer.Text = "Player"
+		Me.tabpagePlayer.Text = "Profile"
 		Me.tabpagePlayer.UseVisualStyleBackColor = true
 		'
 		'groupboxProfile
 		'
+		Me.groupboxProfile.Controls.Add(Me.labelCreateTime)
+		Me.groupboxProfile.Controls.Add(Me.textboxCreateTime)
+		Me.groupboxProfile.Controls.Add(Me.labelCreateDate)
+		Me.groupboxProfile.Controls.Add(Me.textboxCreateDate)
 		Me.groupboxProfile.Controls.Add(Me.labelPlayerID)
 		Me.groupboxProfile.Controls.Add(Me.textboxPlayerID)
 		Me.groupboxProfile.Controls.Add(Me.labelGender)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthYear)
+		Me.groupboxProfile.Controls.Add(Me.labelTotalBalance)
 		Me.groupboxProfile.Controls.Add(Me.labelNameLast)
 		Me.groupboxProfile.Controls.Add(Me.labelBirthDate)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameFirst)
 		Me.groupboxProfile.Controls.Add(Me.labelNameNick)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthDay)
 		Me.groupboxProfile.Controls.Add(Me.textboxGender)
+		Me.groupboxProfile.Controls.Add(Me.textboxTotalBalance)
 		Me.groupboxProfile.Controls.Add(Me.labelNameFirst)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameLast)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthMonth)
@@ -443,6 +310,40 @@
 		Me.groupboxProfile.TabIndex = 3
 		Me.groupboxProfile.TabStop = false
 		Me.groupboxProfile.Text = "Profile"
+		'
+		'labelCreateTime
+		'
+		Me.labelCreateTime.AutoSize = true
+		Me.labelCreateTime.Location = New System.Drawing.Point(3, 211)
+		Me.labelCreateTime.Name = "labelCreateTime"
+		Me.labelCreateTime.Size = New System.Drawing.Size(70, 13)
+		Me.labelCreateTime.TabIndex = 3
+		Me.labelCreateTime.Text = "Time Created"
+		'
+		'textboxCreateTime
+		'
+		Me.textboxCreateTime.Location = New System.Drawing.Point(6, 227)
+		Me.textboxCreateTime.Name = "textboxCreateTime"
+		Me.textboxCreateTime.ReadOnly = true
+		Me.textboxCreateTime.Size = New System.Drawing.Size(169, 20)
+		Me.textboxCreateTime.TabIndex = 5
+		'
+		'labelCreateDate
+		'
+		Me.labelCreateDate.AutoSize = true
+		Me.labelCreateDate.Location = New System.Drawing.Point(3, 172)
+		Me.labelCreateDate.Name = "labelCreateDate"
+		Me.labelCreateDate.Size = New System.Drawing.Size(70, 13)
+		Me.labelCreateDate.TabIndex = 2
+		Me.labelCreateDate.Text = "Date Created"
+		'
+		'textboxCreateDate
+		'
+		Me.textboxCreateDate.Location = New System.Drawing.Point(6, 188)
+		Me.textboxCreateDate.Name = "textboxCreateDate"
+		Me.textboxCreateDate.ReadOnly = true
+		Me.textboxCreateDate.Size = New System.Drawing.Size(169, 20)
+		Me.textboxCreateDate.TabIndex = 4
 		'
 		'labelPlayerID
 		'
@@ -477,6 +378,15 @@
 		Me.textboxBirthYear.Size = New System.Drawing.Size(39, 20)
 		Me.textboxBirthYear.TabIndex = 1
 		Me.textboxBirthYear.Text = "1985"
+		'
+		'labelTotalBalance
+		'
+		Me.labelTotalBalance.AutoSize = true
+		Me.labelTotalBalance.Location = New System.Drawing.Point(178, 133)
+		Me.labelTotalBalance.Name = "labelTotalBalance"
+		Me.labelTotalBalance.Size = New System.Drawing.Size(73, 13)
+		Me.labelTotalBalance.TabIndex = 0
+		Me.labelTotalBalance.Text = "Total Balance"
 		'
 		'labelNameLast
 		'
@@ -527,6 +437,13 @@
 		Me.textboxGender.Size = New System.Drawing.Size(169, 20)
 		Me.textboxGender.TabIndex = 1
 		'
+		'textboxTotalBalance
+		'
+		Me.textboxTotalBalance.Location = New System.Drawing.Point(181, 149)
+		Me.textboxTotalBalance.Name = "textboxTotalBalance"
+		Me.textboxTotalBalance.Size = New System.Drawing.Size(169, 20)
+		Me.textboxTotalBalance.TabIndex = 1
+		'
 		'labelNameFirst
 		'
 		Me.labelNameFirst.AutoSize = true
@@ -560,7 +477,9 @@
 		'
 		'tabpageCharacter
 		'
-		Me.tabpageCharacter.Controls.Add(Me.groupboxGrades)
+		Me.tabpageCharacter.Controls.Add(Me.groupboxLocation)
+		Me.tabpageCharacter.Controls.Add(Me.groupboxDates)
+		Me.tabpageCharacter.Controls.Add(Me.groupboxFinances)
 		Me.tabpageCharacter.Location = New System.Drawing.Point(4, 22)
 		Me.tabpageCharacter.Name = "tabpageCharacter"
 		Me.tabpageCharacter.Padding = New System.Windows.Forms.Padding(3)
@@ -569,71 +488,137 @@
 		Me.tabpageCharacter.Text = "Character"
 		Me.tabpageCharacter.UseVisualStyleBackColor = true
 		'
-		'groupboxGrades
+		'groupboxDates
 		'
-		Me.groupboxGrades.Controls.Add(Me.labelGradeInventory)
-		Me.groupboxGrades.Controls.Add(Me.textboxGradeInventory)
-		Me.groupboxGrades.Controls.Add(Me.textboxGradeShelf)
-		Me.groupboxGrades.Controls.Add(Me.labelGradePopularity)
-		Me.groupboxGrades.Controls.Add(Me.labelGradeShelf)
-		Me.groupboxGrades.Controls.Add(Me.textboxGradePopularity)
-		Me.groupboxGrades.Location = New System.Drawing.Point(6, 6)
-		Me.groupboxGrades.Name = "groupboxGrades"
-		Me.groupboxGrades.Size = New System.Drawing.Size(437, 365)
-		Me.groupboxGrades.TabIndex = 3
-		Me.groupboxGrades.TabStop = false
-		Me.groupboxGrades.Text = "Grades"
+		Me.groupboxDates.Controls.Add(Me.labelCreatedTime)
+		Me.groupboxDates.Controls.Add(Me.textboxCreatedTime)
+		Me.groupboxDates.Controls.Add(Me.labelCreatedDate)
+		Me.groupboxDates.Controls.Add(Me.textboxCreatedDate)
+		Me.groupboxDates.Controls.Add(Me.labelPlaycycles)
+		Me.groupboxDates.Controls.Add(Me.textboxPlaycycles)
+		Me.groupboxDates.Location = New System.Drawing.Point(6, 6)
+		Me.groupboxDates.Name = "groupboxDates"
+		Me.groupboxDates.Size = New System.Drawing.Size(437, 101)
+		Me.groupboxDates.TabIndex = 7
+		Me.groupboxDates.TabStop = false
+		Me.groupboxDates.Text = "Time and Dates"
 		'
-		'labelGradeInventory
+		'labelCreatedTime
 		'
-		Me.labelGradeInventory.AutoSize = true
-		Me.labelGradeInventory.Location = New System.Drawing.Point(3, 16)
-		Me.labelGradeInventory.Name = "labelGradeInventory"
-		Me.labelGradeInventory.Size = New System.Drawing.Size(83, 13)
-		Me.labelGradeInventory.TabIndex = 0
-		Me.labelGradeInventory.Text = "Inventory Grade"
+		Me.labelCreatedTime.AutoSize = true
+		Me.labelCreatedTime.Location = New System.Drawing.Point(184, 55)
+		Me.labelCreatedTime.Name = "labelCreatedTime"
+		Me.labelCreatedTime.Size = New System.Drawing.Size(70, 13)
+		Me.labelCreatedTime.TabIndex = 0
+		Me.labelCreatedTime.Text = "Time Created"
 		'
-		'textboxGradeInventory
+		'textboxCreatedTime
 		'
-		Me.textboxGradeInventory.Location = New System.Drawing.Point(6, 32)
-		Me.textboxGradeInventory.Name = "textboxGradeInventory"
-		Me.textboxGradeInventory.ReadOnly = true
-		Me.textboxGradeInventory.Size = New System.Drawing.Size(169, 20)
-		Me.textboxGradeInventory.TabIndex = 1
+		Me.textboxCreatedTime.Location = New System.Drawing.Point(187, 71)
+		Me.textboxCreatedTime.Name = "textboxCreatedTime"
+		Me.textboxCreatedTime.ReadOnly = true
+		Me.textboxCreatedTime.Size = New System.Drawing.Size(169, 20)
+		Me.textboxCreatedTime.TabIndex = 1
 		'
-		'textboxGradeShelf
+		'labelCreatedDate
 		'
-		Me.textboxGradeShelf.Location = New System.Drawing.Point(6, 71)
-		Me.textboxGradeShelf.Name = "textboxGradeShelf"
-		Me.textboxGradeShelf.ReadOnly = true
-		Me.textboxGradeShelf.Size = New System.Drawing.Size(169, 20)
-		Me.textboxGradeShelf.TabIndex = 1
+		Me.labelCreatedDate.AutoSize = true
+		Me.labelCreatedDate.Location = New System.Drawing.Point(184, 16)
+		Me.labelCreatedDate.Name = "labelCreatedDate"
+		Me.labelCreatedDate.Size = New System.Drawing.Size(70, 13)
+		Me.labelCreatedDate.TabIndex = 0
+		Me.labelCreatedDate.Text = "Date Created"
 		'
-		'labelGradePopularity
+		'textboxCreatedDate
 		'
-		Me.labelGradePopularity.AutoSize = true
-		Me.labelGradePopularity.Location = New System.Drawing.Point(3, 94)
-		Me.labelGradePopularity.Name = "labelGradePopularity"
-		Me.labelGradePopularity.Size = New System.Drawing.Size(85, 13)
-		Me.labelGradePopularity.TabIndex = 0
-		Me.labelGradePopularity.Text = "Popularity Grade"
+		Me.textboxCreatedDate.Location = New System.Drawing.Point(187, 32)
+		Me.textboxCreatedDate.Name = "textboxCreatedDate"
+		Me.textboxCreatedDate.ReadOnly = true
+		Me.textboxCreatedDate.Size = New System.Drawing.Size(169, 20)
+		Me.textboxCreatedDate.TabIndex = 1
 		'
-		'labelGradeShelf
+		'labelPlaycycles
 		'
-		Me.labelGradeShelf.AutoSize = true
-		Me.labelGradeShelf.Location = New System.Drawing.Point(3, 55)
-		Me.labelGradeShelf.Name = "labelGradeShelf"
-		Me.labelGradeShelf.Size = New System.Drawing.Size(63, 13)
-		Me.labelGradeShelf.TabIndex = 0
-		Me.labelGradeShelf.Text = "Shelf Grade"
+		Me.labelPlaycycles.AutoSize = true
+		Me.labelPlaycycles.Location = New System.Drawing.Point(6, 16)
+		Me.labelPlaycycles.Name = "labelPlaycycles"
+		Me.labelPlaycycles.Size = New System.Drawing.Size(88, 13)
+		Me.labelPlaycycles.TabIndex = 0
+		Me.labelPlaycycles.Text = "Day's in bussines"
 		'
-		'textboxGradePopularity
+		'textboxPlaycycles
 		'
-		Me.textboxGradePopularity.Location = New System.Drawing.Point(6, 110)
-		Me.textboxGradePopularity.Name = "textboxGradePopularity"
-		Me.textboxGradePopularity.ReadOnly = true
-		Me.textboxGradePopularity.Size = New System.Drawing.Size(169, 20)
-		Me.textboxGradePopularity.TabIndex = 1
+		Me.textboxPlaycycles.Location = New System.Drawing.Point(9, 32)
+		Me.textboxPlaycycles.Name = "textboxPlaycycles"
+		Me.textboxPlaycycles.ReadOnly = true
+		Me.textboxPlaycycles.Size = New System.Drawing.Size(169, 20)
+		Me.textboxPlaycycles.TabIndex = 1
+		'
+		'groupboxFinances
+		'
+		Me.groupboxFinances.Controls.Add(Me.labelItemsSold)
+		Me.groupboxFinances.Controls.Add(Me.labelMoneyEarned)
+		Me.groupboxFinances.Controls.Add(Me.textboxItemsSold)
+		Me.groupboxFinances.Controls.Add(Me.textboxMoneyEarned)
+		Me.groupboxFinances.Controls.Add(Me.textboxMoneySpent)
+		Me.groupboxFinances.Controls.Add(Me.labelMoneySpent)
+		Me.groupboxFinances.Location = New System.Drawing.Point(6, 113)
+		Me.groupboxFinances.Name = "groupboxFinances"
+		Me.groupboxFinances.Size = New System.Drawing.Size(437, 109)
+		Me.groupboxFinances.TabIndex = 6
+		Me.groupboxFinances.TabStop = false
+		Me.groupboxFinances.Text = "Finances and Items"
+		'
+		'labelItemsSold
+		'
+		Me.labelItemsSold.AutoSize = true
+		Me.labelItemsSold.Location = New System.Drawing.Point(184, 63)
+		Me.labelItemsSold.Name = "labelItemsSold"
+		Me.labelItemsSold.Size = New System.Drawing.Size(56, 13)
+		Me.labelItemsSold.TabIndex = 0
+		Me.labelItemsSold.Text = "Items Sold"
+		'
+		'labelMoneyEarned
+		'
+		Me.labelMoneyEarned.AutoSize = true
+		Me.labelMoneyEarned.Location = New System.Drawing.Point(6, 24)
+		Me.labelMoneyEarned.Name = "labelMoneyEarned"
+		Me.labelMoneyEarned.Size = New System.Drawing.Size(76, 13)
+		Me.labelMoneyEarned.TabIndex = 0
+		Me.labelMoneyEarned.Text = "Money Earned"
+		'
+		'textboxItemsSold
+		'
+		Me.textboxItemsSold.Location = New System.Drawing.Point(187, 79)
+		Me.textboxItemsSold.Name = "textboxItemsSold"
+		Me.textboxItemsSold.ReadOnly = true
+		Me.textboxItemsSold.Size = New System.Drawing.Size(169, 20)
+		Me.textboxItemsSold.TabIndex = 1
+		'
+		'textboxMoneyEarned
+		'
+		Me.textboxMoneyEarned.Location = New System.Drawing.Point(9, 40)
+		Me.textboxMoneyEarned.Name = "textboxMoneyEarned"
+		Me.textboxMoneyEarned.ReadOnly = true
+		Me.textboxMoneyEarned.Size = New System.Drawing.Size(169, 20)
+		Me.textboxMoneyEarned.TabIndex = 1
+		'
+		'textboxMoneySpent
+		'
+		Me.textboxMoneySpent.Location = New System.Drawing.Point(187, 40)
+		Me.textboxMoneySpent.Name = "textboxMoneySpent"
+		Me.textboxMoneySpent.ReadOnly = true
+		Me.textboxMoneySpent.Size = New System.Drawing.Size(169, 20)
+		Me.textboxMoneySpent.TabIndex = 1
+		'
+		'labelMoneySpent
+		'
+		Me.labelMoneySpent.AutoSize = true
+		Me.labelMoneySpent.Location = New System.Drawing.Point(184, 24)
+		Me.labelMoneySpent.Name = "labelMoneySpent"
+		Me.labelMoneySpent.Size = New System.Drawing.Size(70, 13)
+		Me.labelMoneySpent.TabIndex = 0
+		Me.labelMoneySpent.Text = "Money Spent"
 		'
 		'buttonMap
 		'
@@ -665,6 +650,91 @@
 		Me.buttonStore.UseVisualStyleBackColor = true
 		AddHandler Me.buttonStore.Click, AddressOf Me.buttonStoreClick
 		'
+		'groupboxLocation
+		'
+		Me.groupboxLocation.Controls.Add(Me.labelShelf)
+		Me.groupboxLocation.Controls.Add(Me.labelLevel)
+		Me.groupboxLocation.Controls.Add(Me.labelLocation)
+		Me.groupboxLocation.Controls.Add(Me.textboxShelf)
+		Me.groupboxLocation.Controls.Add(Me.textboxLevel)
+		Me.groupboxLocation.Controls.Add(Me.textboxLocation)
+		Me.groupboxLocation.Controls.Add(Me.textboxStore)
+		Me.groupboxLocation.Controls.Add(Me.labelStore)
+		Me.groupboxLocation.Location = New System.Drawing.Point(6, 228)
+		Me.groupboxLocation.Name = "groupboxLocation"
+		Me.groupboxLocation.Size = New System.Drawing.Size(437, 109)
+		Me.groupboxLocation.TabIndex = 7
+		Me.groupboxLocation.TabStop = false
+		Me.groupboxLocation.Text = "Current Location"
+		'
+		'labelLevel
+		'
+		Me.labelLevel.AutoSize = true
+		Me.labelLevel.Location = New System.Drawing.Point(181, 24)
+		Me.labelLevel.Name = "labelLevel"
+		Me.labelLevel.Size = New System.Drawing.Size(33, 13)
+		Me.labelLevel.TabIndex = 0
+		Me.labelLevel.Text = "Level"
+		'
+		'labelLocation
+		'
+		Me.labelLocation.AutoSize = true
+		Me.labelLocation.Location = New System.Drawing.Point(6, 24)
+		Me.labelLocation.Name = "labelLocation"
+		Me.labelLocation.Size = New System.Drawing.Size(48, 13)
+		Me.labelLocation.TabIndex = 0
+		Me.labelLocation.Text = "Location"
+		'
+		'textboxLevel
+		'
+		Me.textboxLevel.Location = New System.Drawing.Point(184, 40)
+		Me.textboxLevel.Name = "textboxLevel"
+		Me.textboxLevel.ReadOnly = true
+		Me.textboxLevel.Size = New System.Drawing.Size(169, 20)
+		Me.textboxLevel.TabIndex = 1
+		'
+		'textboxLocation
+		'
+		Me.textboxLocation.Location = New System.Drawing.Point(9, 40)
+		Me.textboxLocation.Name = "textboxLocation"
+		Me.textboxLocation.ReadOnly = true
+		Me.textboxLocation.Size = New System.Drawing.Size(169, 20)
+		Me.textboxLocation.TabIndex = 1
+		'
+		'textboxStore
+		'
+		Me.textboxStore.Location = New System.Drawing.Point(9, 79)
+		Me.textboxStore.Name = "textboxStore"
+		Me.textboxStore.ReadOnly = true
+		Me.textboxStore.Size = New System.Drawing.Size(169, 20)
+		Me.textboxStore.TabIndex = 1
+		'
+		'labelStore
+		'
+		Me.labelStore.AutoSize = true
+		Me.labelStore.Location = New System.Drawing.Point(6, 63)
+		Me.labelStore.Name = "labelStore"
+		Me.labelStore.Size = New System.Drawing.Size(32, 13)
+		Me.labelStore.TabIndex = 0
+		Me.labelStore.Text = "Store"
+		'
+		'textboxShelf
+		'
+		Me.textboxShelf.Location = New System.Drawing.Point(184, 79)
+		Me.textboxShelf.Name = "textboxShelf"
+		Me.textboxShelf.ReadOnly = true
+		Me.textboxShelf.Size = New System.Drawing.Size(169, 20)
+		Me.textboxShelf.TabIndex = 1
+		'
+		'labelShelf
+		'
+		Me.labelShelf.AutoSize = true
+		Me.labelShelf.Location = New System.Drawing.Point(181, 63)
+		Me.labelShelf.Name = "labelShelf"
+		Me.labelShelf.Size = New System.Drawing.Size(31, 13)
+		Me.labelShelf.TabIndex = 0
+		Me.labelShelf.Text = "Shelf"
+		'
 		'formStatus
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
@@ -683,11 +753,6 @@
 		Me.Name = "formStatus"
 		Me.Text = "Status"
 		AddHandler Load, AddressOf Me.FormStatusLoad
-		Me.groupboxDates.ResumeLayout(false)
-		Me.groupboxDates.PerformLayout
-		Me.groupboxFinances.ResumeLayout(false)
-		Me.groupboxFinances.PerformLayout
-		Me.tabpageStatistics.ResumeLayout(false)
 		Me.tabpageInventory.ResumeLayout(false)
 		Me.groupboxDetails.ResumeLayout(false)
 		Me.groupboxDetails.PerformLayout
@@ -697,11 +762,30 @@
 		Me.groupboxProfile.ResumeLayout(false)
 		Me.groupboxProfile.PerformLayout
 		Me.tabpageCharacter.ResumeLayout(false)
-		Me.groupboxGrades.ResumeLayout(false)
-		Me.groupboxGrades.PerformLayout
+		Me.groupboxDates.ResumeLayout(false)
+		Me.groupboxDates.PerformLayout
+		Me.groupboxFinances.ResumeLayout(false)
+		Me.groupboxFinances.PerformLayout
+		Me.groupboxLocation.ResumeLayout(false)
+		Me.groupboxLocation.PerformLayout
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub
+	Private labelStore As System.Windows.Forms.Label
+	Private textboxStore As System.Windows.Forms.TextBox
+	Private textboxLocation As System.Windows.Forms.TextBox
+	Private textboxLevel As System.Windows.Forms.TextBox
+	Private textboxShelf As System.Windows.Forms.TextBox
+	Private labelLocation As System.Windows.Forms.Label
+	Private labelLevel As System.Windows.Forms.Label
+	Private labelShelf As System.Windows.Forms.Label
+	Private groupboxLocation As System.Windows.Forms.GroupBox
+	Private textboxCreateDate As System.Windows.Forms.TextBox
+	Private labelCreateDate As System.Windows.Forms.Label
+	Private textboxCreateTime As System.Windows.Forms.TextBox
+	Private labelCreateTime As System.Windows.Forms.Label
+	Private textboxTotalBalance As System.Windows.Forms.TextBox
+	Private labelTotalBalance As System.Windows.Forms.Label
 	Private buttonRefresh As System.Windows.Forms.Button
 	Private comboboxBins As System.Windows.Forms.ComboBox
 	Private buttonStore As System.Windows.Forms.Button
@@ -721,7 +805,6 @@
 	Private textboxMoneyEarned As System.Windows.Forms.TextBox
 	Private textboxMoneySpent As System.Windows.Forms.TextBox
 	Private labelMoneySpent As System.Windows.Forms.Label
-	Private tabpageStatistics As System.Windows.Forms.TabPage
 	Private tabpageInventory As System.Windows.Forms.TabPage
 	Private groupboxDetails As System.Windows.Forms.GroupBox
 	Private labelAmount As System.Windows.Forms.Label
@@ -738,13 +821,6 @@
 	Private textboxBalance As System.Windows.Forms.TextBox
 	Private tabcontrolStatus As System.Windows.Forms.TabControl
 	Private tabpageCharacter As System.Windows.Forms.TabPage
-	Private groupboxGrades As System.Windows.Forms.GroupBox
-	Private labelGradeInventory As System.Windows.Forms.Label
-	Private textboxGradeInventory As System.Windows.Forms.TextBox
-	Private textboxGradeShelf As System.Windows.Forms.TextBox
-	Private labelGradePopularity As System.Windows.Forms.Label
-	Private labelGradeShelf As System.Windows.Forms.Label
-	Private textboxGradePopularity As System.Windows.Forms.TextBox
 	Private tabpagePlayer As System.Windows.Forms.TabPage
 	Private groupboxProfile As System.Windows.Forms.GroupBox
 	Private labelPlayerID As System.Windows.Forms.Label

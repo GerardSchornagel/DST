@@ -9,17 +9,19 @@ Public Class inventory
 ''' <summary>
 ''' Retrieves Inventory Array.
 ''' </summary>
-''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
-''' <param name="Template">2d String-Array. Name, Quantity, LastBuy, LastSell.</param>
-''' <param name="NewPlayerID">Use intCheck for new ID String.</param>
-	Friend Sub New(PlayerID As String, Optional NewPlayerID As Integer = Nothing)
-		'Check for new parameter and re-direct.
-		If PlayerID = "New" Then
-			integerPlayerID = CType(NewPlayerID, Integer)
+	Friend Sub New()
+		
+	End Sub
+	''' <summary>
+	''' Loads or create a (blank) Profile.
+	''' </summary>
+	Public Sub Load()
+		'Check for if file exists, if not create; else load.
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & formMain.cache.settingsGlobal.LastUser & "\inventory.pd") = False Then
 			NewInventory()
 			
 		Else
-			integerPlayerID = CType(PlayerID, Integer)
+			integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
 			stringInventory = filehandler.LoadTable(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "inventory.pd", 3)
 		End If
 	End Sub

@@ -21,7 +21,8 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>42017</NoWarn>
+    <NoWarn>42017, 42025, 42304 </NoWarn>
+    <DocumentationFile>bin\Debug\DST.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,14 +58,14 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\cacheGlobal.vb" />
     <Compile Include="DataTypes\Global\binaryFileHandler.vb" />
     <Compile Include="DataTypes\Global\settings.vb" />
     <Compile Include="DataTypes\NPC\customer.vb" />
-    <Compile Include="DataTypes\Object\store.vb" />
+    <Compile Include="DataTypes\Layout\store.vb" />
     <Compile Include="DataTypes\Player\character.vb" />
     <Compile Include="DataTypes\Player\inventory.vb" />
     <Compile Include="DataTypes\Player\player.vb" />
-    <Compile Include="DataTypes\Player\statistics.vb" />
     <Compile Include="Forms\formGame.Designer.vb">
       <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
@@ -104,11 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataTypes\Global" />
-    <Folder Include="DataTypes\Object" />
+    <Folder Include="DataTypes\Layout" />
     <Folder Include="DataTypes\NPC" />
     <Folder Include="DataTypes\Player" />
     <Folder Include="Forms" />
     <Folder Include="DataTypes" />
+    <Folder Include="Cache" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\formGame.resx">

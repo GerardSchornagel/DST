@@ -45,12 +45,11 @@
 			
 		Else 'Beneath zero
 			'Pass information for procces to/through formStatus
-			formStatus.classStatistics.TotalDayCycles += 1
+			formMain.cache.playerCharacter.TotalDayCycles += 1
 			buttonActionStart.Text = "Start Day"
 			buttonActionStart.Enabled = True
 			textboxActionHour.Text = CType(9, String)
-			formStatus.classCharacter.SaveState()
-			formStatus.classPlayer.SaveState()
+			formMain.cache.playerCharacter.SaveState()
 			timerHour.Stop()
 		End If
 	End Sub
@@ -65,12 +64,12 @@
 			If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
 				If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
 					textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & CurrentSpace & Chr(10))
-					formStatus.classCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
+					formMain.cache.playerCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
 					Dim setBin(2) As String
 					setBin = CType(StoreCurrent.getsetBin(CurrentSpace), String())
 					setBin(1) = CType(CType(setBin(1), Integer) - 1, String)
 					StoreCurrent.getsetBin(CurrentSpace) = setBin
-					formStatus.classStatistics.TotalItemsSold += 1
+					formMain.cache.playerCharacter.TotalItemsSold += 1
 					
 				ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
 					textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot" & CurrentSpace & Chr(10))

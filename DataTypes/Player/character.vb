@@ -6,43 +6,69 @@ Public Class character
 	Dim stringCharacterData() As String
 	
 	Private integerPlayerID As Integer
+	
+	Private stringCurrentLocation As String
+	Private stringCurrentStore As String
+	Private integerCurrentLevel As Integer
+	Private integerCurrentShelf As Integer
+	
 	Private integerBalance As Integer
-	Private integerGradeInventory As Integer
-	Private integerGradeShelf As Integer
-	Private integerGradePopularity As Integer
+	Private integerFinanceTotalEarned As Integer
+	Private integerFinanceTotalSpent As Integer
+	Private integerItemsTotalSold As Integer
+	Private integerGlobalCycles As Integer
+	Private stringDatesCreateDate As String
+	Private stringDatesCreateTime As String
 ''' <summary>
 ''' Retrieves Character Variables.
 ''' </summary>
-''' <param name="PlayerID">Use "New" for creation, otherwise GlobalSettings.LastUser.</param>
-''' <param name="Template">New String() {PlayerID, Balance, GradeInventory, GradeShelf, GradePopularity}</param>
-	Friend Sub New(PlayerID As String, Optional Template() As String = Nothing)
-		'Check for New parameter.
-		If PlayerID = "New" Then
-			NewCharacter(Template)
+	Friend Sub New()
+	
+	End Sub
+''' <summary>
+''' Loads or create a (blank) Profile.
+''' </summary>
+	Public Sub Load()
+		'Check for if file exists, if not create; else load.
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & formMain.cache.settingsGlobal.LastUser & "\character.pd") = False Then
+		NewCharacter()
 			
 		Else
-			integerPlayerID = CType(PlayerID, Integer)
-			ReDim stringCharacterData(3)
+			integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+			ReDim stringCharacterData(10)
 			stringCharacterData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "character.pd")
 			'Write Private's
-			integerBalance = CType(stringCharacterData(0), Integer)
-			integerGradeInventory = CType(stringCharacterData(1), Integer)
-			integerGradeShelf = CType(stringCharacterData(2), Integer)
-			integerGradePopularity = CType(stringCharacterData(3), Integer)
+			stringCurrentLocation = stringCharacterData(0)
+			stringCurrentStore = stringCharacterData(1)
+			integerCurrentLevel = CType(stringCharacterData(2), Integer)
+			integerCurrentShelf = CType(stringCharacterData(3), Integer)
+			
+			integerBalance = CType(stringCharacterData(4), Integer)
+			integerFinanceTotalEarned = CType(stringCharacterData(5), Integer)
+			integerFinanceTotalSpent = CType(stringCharacterData(6), Integer)
+			integerItemsTotalSold = CType(stringCharacterData(7), Integer)
+			integerGlobalCycles = CType(stringCharacterData(8), Integer)
+			stringDatesCreateDate = stringCharacterData(9)
+			stringDatesCreateTime = stringCharacterData(10)
 		End If
 	End Sub
 ''' <summary>
-''' Creates new Character Data and SaveState()
+''' Creates a new Character.
 ''' </summary>
-''' <param name="Template">Pass through from Sub New()</param>
-	Public Sub NewCharacter(ByVal Template() As String)
-		ReDim stringCharacterData(3)
-		Array.ConstrainedCopy(Template, 1, stringCharacterData, 0, Template.GetUpperBound(0))
-		integerPlayerID = CType(Template(0), Integer)
-		integerBalance = CType(stringCharacterData(0), Integer)
-		integerGradeInventory = CType(stringCharacterData(1), Integer)
-		integerGradeShelf = CType(stringCharacterData(2), Integer)
-		integerGradePopularity = CType(stringCharacterData(3), Integer)
+	Public Sub NewCharacter()
+		integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+		ReDim stringCharacterData(10)
+		stringCharacterData(0) = ""
+		stringCharacterData(1) = ""
+		stringCharacterData(2) = "0"
+		stringCharacterData(3) = "0"
+		stringCharacterData(4) = "0"
+		stringCharacterData(5) = "0"
+		stringCharacterData(6) = "0"
+		stringCharacterData(7) = "0"
+		stringCharacterData(8) = "0"
+		stringCharacterData(9) = ""
+		stringCharacterData(10) = ""
 		'Start Writing New Player
 		SaveState()
 	End Sub
@@ -64,6 +90,54 @@ Public Class character
 		End Set
 	End Property
 ''' <summary>
+''' Returns a String with the current Location.
+''' </summary>
+	Public Property CurrentLocation As String
+		Get
+			Return stringCurrentLocation
+		End Get
+		Set(Value As String)
+			stringCurrentLocation = Value
+			stringCharacterData(0) = Value
+		End Set
+	End Property
+''' <summary>
+''' Returns a String with the current store.
+''' </summary>
+	Public Property CurrentStore As String
+		Get
+			Return stringCurrentStore
+		End Get
+		Set(Value As String)
+			stringCurrentStore = Value
+			stringCharacterData(1) = Value
+		End Set
+	End Property
+''' <summary>
+''' Returns an Integer with the current level.
+''' </summary>
+	Public Property CurrentLevel As Integer
+		Get
+			Return integerCurrentLevel
+		End Get
+		Set(Value As Integer)
+			integerCurrentLevel = Value
+			stringCharacterData(2) = CType(Value, String)
+		End Set
+	End Property
+''' <summary>
+''' Returns an Integer with the Shelf.
+''' </summary>
+	Public Property CurrentShelf As Integer
+		Get
+			Return integerCurrentShelf
+		End Get
+		Set(Value As Integer)
+			integerCurrentShelf = Value
+			stringCharacterData(3) = CType(Value, String)
+		End Set
+	End Property
+''' <summary>
 ''' Returns an Integer with the current balance.
 ''' </summary>
 	Public Property Balance As Integer
@@ -72,43 +146,79 @@ Public Class character
 		End Get
 		Set(Value As Integer)
 			integerBalance = Value
-			stringCharacterData(0) = CType(Value, String)
+			stringCharacterData(4) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the Inventory Grade.
+''' Returns an Integer with total character Earnings.
 ''' </summary>
-	Public Property GradeInventory As Integer
+	Public Property TotalEarnings As Integer
 		Get
-			Return integerGradeInventory
+			Return integerFinanceTotalEarned
 		End Get
 		Set(Value As Integer)
-			integerGradeInventory = Value
-			stringCharacterData(1) = CType(Value, String)
+			integerFinanceTotalEarned = Value
+			stringCharacterData(5) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the Shelf Grade.
+''' Returns an Integer with the total character Spendings.
 ''' </summary>
-	Public Property GradeShelf As Integer
+	Public Property TotalSpendings As Integer
 		Get
-			Return integerGradeShelf
+			Return integerFinanceTotalSpent
 		End Get
 		Set(Value As Integer)
-			integerGradeShelf = Value
-			stringCharacterData(2) = CType(Value, String)
+			integerFinanceTotalSpent = Value
+			stringCharacterData(6) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the Popularity Grade.
+''' Returns an Integer with the total character Item Sellings.
 ''' </summary>
-	Public Property GradePopularity As Integer
+	Public Property TotalItemsSold As Integer
 		Get
-			Return integerGradePopularity
+			Return integerItemsTotalSold
 		End Get
 		Set(Value As Integer)
-			integerGradePopularity = Value
-			stringCharacterData(3) = CType(Value, String)
+			integerItemsTotalSold = Value
+			stringCharacterData(7) = CType(Value, String)
+		End Set
+	End Property
+''' <summary>
+''' Returns an Integer with total Day cycles.
+''' </summary>
+	Public Property TotalDayCycles As Integer
+		Get
+			Return integerGlobalCycles
+		End Get
+		Set(Value As Integer)
+			integerGlobalCycles = Value
+			stringCharacterData(8) = CType(Value, String)
+		End Set
+	End Property
+''' <summary>
+''' Returns a String with the creation date of the character.
+''' </summary>
+	Public Property CreateDate As String
+		Get
+			Return stringDatesCreateDate
+		End Get
+		Set(Value As String)
+			stringDatesCreateDate = Value
+			stringCharacterData(9) = Value
+		End Set
+	End Property
+''' <summary>
+''' Returns a String with the creation date of the character.
+''' </summary>
+	Public Property CreateTime As String
+		Get
+			Return stringDatesCreateTime
+		End Get
+		Set(Value As String)
+			stringDatesCreateTime = Value
+			stringCharacterData(10) = Value
 		End Set
 	End Property
 End Class

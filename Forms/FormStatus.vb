@@ -1,9 +1,4 @@
-﻿Public Partial Class formStatus
-	Friend Shared classPlayer As New player(CType(formMain.GlobalSettings.LastUser, String))
-	Friend Shared classCharacter As New character(CType(formMain.GlobalSettings.LastUser, String))
-	Friend Shared classInventory As New inventory(CType(formMain.GlobalSettings.LastUser, String))
-	Friend Shared classStatistics As New statistics(CType(formMain.GlobalSettings.LastUser, String))
-	
+﻿Public Partial Class formStatus	
 	Friend Shared GameForm As New formGame()
 	Friend Shared InventoryForm As New formInventory()
 	Friend Shared MapForm As New formMap()
@@ -23,36 +18,39 @@
 		timerUpdate.Interval = 2500
 		timerUpdate.Start()
 		
-		textboxBalance.Text = CType(classCharacter.Balance, String)
-		'Player Tab
-		textboxPlayerID.Text = CType(classPlayer.PlayerID, String)
-		textboxNameNick.Text = classPlayer.NickName
-		textboxNameFirst.Text = classPlayer.FirstName
-		textboxNameLast.Text = classPlayer.LastName
-		textboxBirthYear.Text = CType(classPlayer.BirthYear, String)
-		textboxBirthMonth.Text = CType(classPlayer.BirthMonth, String)
-		textboxBirthDay.Text = CType(classPlayer.BirthDay, String)
-		textboxGender.Text = CType(classPlayer.Gender, String)
+		textboxBalance.Text = CType(formMain.cache.playerCharacter.Balance, String)
+		'Profile Tab
+		textboxPlayerID.Text = CType(formMain.cache.playerCharacter.PlayerID, String)
+		textboxNameNick.Text = formMain.cache.playerProfile.NickName
+		textboxNameFirst.Text = formMain.cache.playerProfile.FirstName
+		textboxNameLast.Text = formMain.cache.playerProfile.LastName
+		textboxBirthYear.Text = CType(formMain.cache.playerProfile.BirthYear, String)
+		textboxBirthMonth.Text = CType(formMain.cache.playerProfile.BirthMonth, String)
+		textboxBirthDay.Text = CType(formMain.cache.playerProfile.BirthDay, String)
+		textboxGender.Text = CType(formMain.cache.playerProfile.Gender, String)
+		textboxCreatedDate.Text = formMain.cache.playerProfile.CreateDate
+		textboxCreatedTime.Text = formMain.cache.playerProfile.CreateTime
+		textboxTotalBalance.Text = CType(formMain.cache.playerProfile.BalanceTotal, String)
 		'Character Tab
-		textboxGradeInventory.Text = CType(classCharacter.GradeInventory, String)
-		textboxGradeShelf.Text = CType(classCharacter.GradeShelf, String)
-		textboxGradePopularity.Text = CType(classCharacter.GradePopularity, String)
-		'Statistics Tab
-		textboxCreatedDate.Text = classStatistics.CreationDate
-		textboxCreatedTime.Text = classStatistics.CreationTime
-		textboxPlaycycles.Text = CType(classStatistics.TotalDayCycles, String)
-		textboxMoneyEarned.Text = CType(classStatistics.TotalEarnings, String)
-		textboxMoneySpent.Text = CType(classStatistics.TotalSpent, String)
-		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)		
+		textboxLocation.Text = formMain.cache.playerCharacter.CurrentLocation
+		textboxStore.Text = formMain.cache.playerCharacter.CurrentStore
+		textboxLevel.Text = CType(formMain.cache.playerCharacter.CurrentLevel, String)
+		textboxShelf.Text = CType(formMain.cache.playerCharacter.CurrentShelf, String)
+		textboxMoneyEarned.Text = CType(formMain.cache.playerCharacter.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(formMain.cache.playerCharacter.TotalSpendings, String)
+		textboxItemsSold.Text = CType(formMain.cache.playerCharacter.TotalItemsSold, String)
+		textboxPlaycycles.Text = CType(formMain.cache.playerCharacter.TotalDayCycles, String)
+		textboxCreatedDate.Text = formMain.cache.playerCharacter.CreateDate
+		textboxCreatedTime.Text = formMain.cache.playerCharacter.CreateTime
 		'Inventory Tab
 		Dim intDimension As Integer = 0
 		listboxInventory.Items.Clear()
 		Do
-			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
+			If formMain.cache.playerInventory.GetInventorySpace(intDimension) Is Nothing Then
 				Exit Do
 			End If
 			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
-			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
+			listboxInventory.Items.Add((formMain.cache.playerInventory.GetInventorySpace(intDimension))(0))
 			intDimension += 1
 		Loop
 		
@@ -63,11 +61,11 @@
 		Dim intDimension As Integer = 0
 		listboxInventory.Items.Clear()
 		Do
-			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
+			If formMain.cache.playerInventory.GetInventorySpace(intDimension) Is Nothing Then
 				Exit Do
 			End If
 			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
-			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
+			listboxInventory.Items.Add((formMain.cache.playerInventory.GetInventorySpace(intDimension))(0))
 			intDimension += 1
 		Loop
 	End Sub
@@ -84,48 +82,48 @@
 		'Compare StoreBin name to all InventorySlots
 		Dim integerCounterSearch As Integer = 0
 		Do
-			stringSlot = classInventory.GetInventorySpace(integerCounterSearch)
+			stringSlot = formMain.cache.playerInventory.GetInventorySpace(integerCounterSearch)
 			'If true then add InventorySlot with StoreBin amount and Save
 			If stringBin(0) = stringSlot(0) Then
 				stringSlot(1) = CType(CType(stringSlot(1), Integer) + CType(stringBin(1), Integer), String)
-				classInventory.GetInventorySpace(integerCounterSearch) = stringSlot
-				classInventory.SaveState()
+				formMain.cache.playerInventory.GetInventorySpace(integerCounterSearch) = stringSlot
+				formMain.cache.playerInventory.SaveState()
 				Exit Do
 			End If
 			integerCounterSearch += 1
-		Loop Until integerCounterSearch > classInventory.GetUpperbound()
+		Loop Until integerCounterSearch > formMain.cache.playerInventory.GetUpperbound()
 		'Get InventorySlot and paste Data to StoreBin and Save
 		stringBin = stringSlot
 		formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex) = stringBin
 		formGame.StoreCurrent.SaveState()
 		'Set InventorySlot Amount to 0 and Save
 		stringSlot(1) = "0"
-		classInventory.GetInventorySpace(integerCounterSearch - 1) = stringSlot
+		formMain.cache.playerInventory.GetInventorySpace(integerCounterSearch - 1) = stringSlot
 		formGame.StoreCurrent.SaveState()
 		'Refresh formStatus				
-		textboxAmount.Text = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)(1)
-		textboxLastBuying.Text = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)(2)
-		textboxLastSelling.Text = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)(3)
+		textboxAmount.Text = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(1)
+		textboxLastBuying.Text = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(2)
+		textboxLastSelling.Text = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(3)
 		
 		'Inventory Tab
 		Dim intDimension As Integer = 0
 		listboxInventory.Items.Clear()
 		Do
-			If classInventory.GetInventorySpace(intDimension) Is Nothing Then
+			If formMain.cache.playerInventory.GetInventorySpace(intDimension) Is Nothing Then
 				Exit Do
 			End If
 			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
-			listboxInventory.Items.Add((classInventory.GetInventorySpace(intDimension))(0))
+			listboxInventory.Items.Add((formMain.cache.playerInventory.GetInventorySpace(intDimension))(0))
 			intDimension += 1
 		Loop
 	End Sub
 	
 	Sub ListboxInventorySelectedIndexChanged(sender As Object, e As EventArgs)
 		If listboxInventory.SelectedIndex = -1 Then Exit Sub
-		stringInventorySelected = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)
-		textboxAmount.Text = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)(1)
-		textboxLastBuying.Text = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)(2)
-		textboxLastSelling.Text = classInventory.GetInventorySpace(listboxInventory.SelectedIndex)(3)
+		stringInventorySelected = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)
+		textboxAmount.Text = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(1)
+		textboxLastBuying.Text = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(2)
+		textboxLastSelling.Text = formMain.cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(3)
 	End Sub
 	
 	Sub ButtonMapClick(sender As Object, e As EventArgs)
@@ -146,10 +144,10 @@
 	End Sub
 	
 	Private Sub Reload()
-		textboxBalance.Text = CType(classCharacter.Balance, String)
-		textboxPlaycycles.Text = CType(classStatistics.TotalDayCycles, String)
-		textboxMoneyEarned.Text = CType(classStatistics.TotalEarnings, String)
-		textboxMoneySpent.Text = CType(classStatistics.TotalSpent, String)
-		textboxItemsSold.Text = CType(classStatistics.TotalItemsSold, String)
+		textboxBalance.Text = CType(formMain.cache.playerCharacter.Balance, String)
+		textboxPlaycycles.Text = CType(formMain.cache.playerCharacter.TotalDayCycles, String)
+		textboxMoneyEarned.Text = CType(formMain.cache.playerCharacter.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(formMain.cache.playerCharacter.TotalSpendings, String)
+		textboxItemsSold.Text = CType(formMain.cache.playerCharacter.TotalItemsSold, String)
 	End Sub
 End Class
