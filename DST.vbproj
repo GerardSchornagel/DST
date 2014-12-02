@@ -59,13 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\cacheGlobal.vb" />
-    <Compile Include="DataTypes\Global\binaryFileHandler.vb" />
-    <Compile Include="DataTypes\Global\settings.vb" />
+    <Compile Include="Functions\binaryFileHandler.vb" />
+    <Compile Include="Functions\iniHandler.vb" />
     <Compile Include="DataTypes\NPC\customer.vb" />
     <Compile Include="DataTypes\Layout\store.vb" />
     <Compile Include="DataTypes\Player\character.vb" />
     <Compile Include="DataTypes\Player\inventory.vb" />
     <Compile Include="DataTypes\Player\player.vb" />
+    <Compile Include="Properties\settings.vb" />
     <Compile Include="Forms\formGame.Designer.vb">
       <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
@@ -104,8 +105,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataTypes\Global" />
+    <Folder Include="Functions" />
     <Folder Include="DataTypes\Layout" />
+    <Folder Include="Properties" />
     <Folder Include="DataTypes\NPC" />
     <Folder Include="DataTypes\Player" />
     <Folder Include="Forms" />
