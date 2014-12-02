@@ -17,11 +17,11 @@ Public Class inventory
 	''' </summary>
 	Public Sub Load()
 		'Check for if file exists, if not create; else load.
-		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & formMain.cache.settingsGlobal.LastUser & "\inventory.pd") = False Then
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & cache.settingsGlobal.LastUser & "\inventory.pd") = False Then
 			NewInventory()
 			
 		Else
-			integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+			integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
 			stringInventory = filehandler.LoadTable(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "inventory.pd", 3)
 		End If
 	End Sub

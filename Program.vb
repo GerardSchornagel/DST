@@ -12,7 +12,7 @@ Namespace My
 		End Sub
 		
 		Protected Overrides Sub OnCreateMainForm()
-			Me.MainForm = My.Forms.formMain
+			Me.MainForm = My.Forms.cache
 		End Sub
 	End Class
 End Namespace

@@ -58,7 +58,10 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\cacheGlobal.vb" />
+    <Compile Include="Forms\cache.Designer.vb">
+      <DependentUpon>cache.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\cache.vb" />
     <Compile Include="Functions\binaryFileHandler.vb" />
     <Compile Include="Functions\iniHandler.vb" />
     <Compile Include="DataTypes\NPC\customer.vb" />
@@ -112,9 +115,11 @@
     <Folder Include="DataTypes\Player" />
     <Folder Include="Forms" />
     <Folder Include="DataTypes" />
-    <Folder Include="Cache" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\cache.resx">
+      <DependentUpon>cache.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\formGame.resx">
       <DependentUpon>formGame.vb</DependentUpon>
     </EmbeddedResource>

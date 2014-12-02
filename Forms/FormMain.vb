@@ -1,6 +1,7 @@
-﻿Public Partial Class formMain
-	Friend Shared cache As New cacheGlobal()
-	
+﻿''' <summary>
+''' Main Menu.
+''' </summary>
+Public Partial Class formMain
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
@@ -11,18 +12,8 @@
 	End Sub
 	
 	Sub buttonNewGameClick(sender As Object, e As EventArgs)
-		'Resetting cache's
-		cache.settingsGlobal.NewPlayer()
-		cache.initializePlayerProfile()
-		'>'Get an Player creation sheet inbetween.
-		cache.initializePlayerCharacter()
-		'Store
-		Dim newStore As New store()
-		newStore.NewStore()
-		newStore.SaveState()
-		'Call ResumeGame to continue starting.
-		buttonResumeGame.Enabled = False
-		buttonResumeGameClick(nothing, nothing)
+		'Create New player through Cache
+		cache.NewPlayer()
 	End Sub
 	
 	Sub buttonResumeGameClick(sender As Object, e As EventArgs)

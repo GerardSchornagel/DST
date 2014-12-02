@@ -18,7 +18,7 @@ Public Class store
 ''' Retrieves and Sets the current Store array.
 ''' </summary>
 	Friend Sub New()
-		integerPlayerID = formMain.cache.playerProfile.PlayerID
+		integerPlayerID = cache.playerProfile.PlayerID
 	End Sub
 ''' <summary>
 ''' Creates a new first player store.
@@ -101,10 +101,10 @@ Public Class store
 	''' </summary>
 	''' <returns>String</returns>
 	Private Function WorkingDir() As String
-		stringCurrentLocation = formMain.cache.playerCharacter.CurrentLocation
-		stringCurrentStore = formMain.cache.playerCharacter.CurrentStore
-		integerCurrentLevel = formMain.cache.playerCharacter.CurrentLevel
-		integerCurrentShelf = formMain.cache.playerCharacter.CurrentShelf
+		stringCurrentLocation = cache.playerCharacter.CurrentLocation
+		stringCurrentStore = cache.playerCharacter.CurrentStore
+		integerCurrentLevel = cache.playerCharacter.CurrentLevel
+		integerCurrentShelf = cache.playerCharacter.CurrentShelf
 		'ex.:C:\Users\Administrator\Saved Games\DST\save\PlayerID\Location\Store\Level\Shelf\
 		Return System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\" & stringCurrentLocation & "\" & stringCurrentStore & "\" & integerCurrentLevel & "\" & integerCurrentShelf & "\"
 	End Function

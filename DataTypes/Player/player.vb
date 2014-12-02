@@ -28,11 +28,11 @@ Public Class player
 ''' </summary>
 	Friend Sub Load()
 		'Check for if file exists, if not create; else load.
-		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & formMain.cache.settingsGlobal.LastUser & "\player.pd") = False Then
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & cache.settingsGlobal.LastUser & "\player.pd") = False Then
 			NewPlayer()
 			
 		Else
-			integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+			integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
 			ReDim stringPlayerData(10)
 			stringPlayerData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "player.pd")
 			
@@ -53,7 +53,7 @@ Public Class player
 ''' Creates a new player.
 ''' </summary>
 	Public Sub NewPlayer()
-		integerPlayerID = CType(formMain.cache.settingsGlobal.LastUser, Integer)
+		integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
 		ReDim stringPlayerData(10)
 		stringPlayerData(0) = CType(integerPlayerID, String)
 		stringPlayerData(1) = ""
