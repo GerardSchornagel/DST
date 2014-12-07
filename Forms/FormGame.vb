@@ -8,7 +8,7 @@
 	Private integerCurrentSpace As Integer
 	Private CurrentSpace As Integer
 	Private CustomerNew As New customer()
-	Shared Friend StoreCurrent As New store()
+	Shared Friend StoreCurrent As New OLDstore()
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.

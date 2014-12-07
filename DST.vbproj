@@ -58,18 +58,22 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Player\settings.vb" />
+    <Compile Include="Classes\Structure\Bin.vb" />
+    <Compile Include="Classes\Structure\Level.vb" />
+    <Compile Include="Classes\Structure\Shelf.vb" />
+    <Compile Include="Classes\Structure\Store.vb" />
     <Compile Include="Forms\cache.Designer.vb">
       <DependentUpon>cache.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\cache.vb" />
-    <Compile Include="Functions\binaryFileHandler.vb" />
-    <Compile Include="Functions\iniHandler.vb" />
-    <Compile Include="DataTypes\NPC\customer.vb" />
-    <Compile Include="DataTypes\Layout\store.vb" />
-    <Compile Include="DataTypes\Player\character.vb" />
-    <Compile Include="DataTypes\Player\inventory.vb" />
-    <Compile Include="DataTypes\Player\player.vb" />
-    <Compile Include="Properties\settings.vb" />
+    <Compile Include="Classes\Functions\binaryFileHandler.vb" />
+    <Compile Include="Classes\Functions\iniHandler.vb" />
+    <Compile Include="Classes\NPC\customer.vb" />
+    <Compile Include="Classes\Layout\OLDstore.vb" />
+    <Compile Include="Classes\Player\character.vb" />
+    <Compile Include="Classes\Player\inventory.vb" />
+    <Compile Include="Classes\Player\player.vb" />
     <Compile Include="Forms\formGame.Designer.vb">
       <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
@@ -108,13 +112,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Functions" />
-    <Folder Include="DataTypes\Layout" />
+    <Folder Include="Classes\Structure" />
+    <Folder Include="Classes\Functions" />
+    <Folder Include="Classes\Layout" />
     <Folder Include="Properties" />
-    <Folder Include="DataTypes\NPC" />
-    <Folder Include="DataTypes\Player" />
+    <Folder Include="Classes\NPC" />
+    <Folder Include="Classes\Player" />
     <Folder Include="Forms" />
-    <Folder Include="DataTypes" />
+    <Folder Include="Classes" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\cache.resx">

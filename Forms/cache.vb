@@ -41,7 +41,7 @@ Public Partial Class cache
 		playerInventory.Load()
 		progressbarLoading.Value = 6
 		labelDescription.Text = "Creating Store Layout."
-		Dim newStore As New store()
+		Dim newStore As New OLDstore()
 		newStore.NewStore()
 		newStore.SaveState()
 		progressbarLoading.Value = 9
@@ -61,5 +61,4 @@ Public Partial Class cache
 		GameForm.Show()
 		StatusForm.Show()
 	End Sub
-	
 End Class

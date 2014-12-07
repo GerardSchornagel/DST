@@ -1,7 +1,7 @@
 ﻿''' <summary>
 ''' Handles the Selecting and get/set functions for the Store Inventory.
 ''' </summary>
-Public Class store
+Public Class OLDstore
 	Private filehandler As New binaryFileHandler()
 	
 	Private integerPlayerID As Integer
