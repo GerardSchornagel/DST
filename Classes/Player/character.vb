@@ -9,8 +9,6 @@ Public Class character
 	
 	Private stringCurrentLocation As String
 	Private stringCurrentStore As String
-	Private integerCurrentLevel As Integer
-	Private integerCurrentShelf As Integer
 	
 	Private integerBalance As Integer
 	Private integerFinanceTotalEarned As Integer
@@ -35,21 +33,19 @@ Public Class character
 			
 		Else
 			integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
-			ReDim stringCharacterData(10)
+			ReDim stringCharacterData(8)
 			stringCharacterData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "character.pd")
 			'Write Private's
 			stringCurrentLocation = stringCharacterData(0)
 			stringCurrentStore = stringCharacterData(1)
-			integerCurrentLevel = CType(stringCharacterData(2), Integer)
-			integerCurrentShelf = CType(stringCharacterData(3), Integer)
 			
-			integerBalance = CType(stringCharacterData(4), Integer)
-			integerFinanceTotalEarned = CType(stringCharacterData(5), Integer)
-			integerFinanceTotalSpent = CType(stringCharacterData(6), Integer)
-			integerItemsTotalSold = CType(stringCharacterData(7), Integer)
-			integerGlobalCycles = CType(stringCharacterData(8), Integer)
-			stringDatesCreateDate = stringCharacterData(9)
-			stringDatesCreateTime = stringCharacterData(10)
+			integerBalance = CType(stringCharacterData(2), Integer)
+			integerFinanceTotalEarned = CType(stringCharacterData(3), Integer)
+			integerFinanceTotalSpent = CType(stringCharacterData(4), Integer)
+			integerItemsTotalSold = CType(stringCharacterData(5), Integer)
+			integerGlobalCycles = CType(stringCharacterData(6), Integer)
+			stringDatesCreateDate = stringCharacterData(7)
+			stringDatesCreateTime = stringCharacterData(8)
 		End If
 	End Sub
 ''' <summary>
@@ -57,20 +53,19 @@ Public Class character
 ''' </summary>
 	Public Sub NewCharacter()
 		integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
-		ReDim stringCharacterData(10)
+		ReDim stringCharacterData(8)
 		stringCharacterData(0) = ""
 		stringCharacterData(1) = ""
-		stringCharacterData(2) = "0"
+		stringCharacterData(2) = "100"
 		stringCharacterData(3) = "0"
 		stringCharacterData(4) = "0"
 		stringCharacterData(5) = "0"
 		stringCharacterData(6) = "0"
-		stringCharacterData(7) = "0"
-		stringCharacterData(8) = "0"
-		stringCharacterData(9) = ""
-		stringCharacterData(10) = ""
+		stringCharacterData(7) = ""
+		stringCharacterData(8) = ""
 		'Start Writing New Player
 		SaveState()
+		Load()
 	End Sub
 ''' <summary>
 ''' Saves the current state of character.vb Variables to file.
@@ -114,30 +109,6 @@ Public Class character
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the current level.
-''' </summary>
-	Public Property CurrentLevel As Integer
-		Get
-			Return integerCurrentLevel
-		End Get
-		Set(Value As Integer)
-			integerCurrentLevel = Value
-			stringCharacterData(2) = CType(Value, String)
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the Shelf.
-''' </summary>
-	Public Property CurrentShelf As Integer
-		Get
-			Return integerCurrentShelf
-		End Get
-		Set(Value As Integer)
-			integerCurrentShelf = Value
-			stringCharacterData(3) = CType(Value, String)
-		End Set
-	End Property
-''' <summary>
 ''' Returns an Integer with the current balance.
 ''' </summary>
 	Public Property Balance As Integer
@@ -146,7 +117,7 @@ Public Class character
 		End Get
 		Set(Value As Integer)
 			integerBalance = Value
-			stringCharacterData(4) = CType(Value, String)
+			stringCharacterData(2) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
@@ -158,7 +129,7 @@ Public Class character
 		End Get
 		Set(Value As Integer)
 			integerFinanceTotalEarned = Value
-			stringCharacterData(5) = CType(Value, String)
+			stringCharacterData(3) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
@@ -170,7 +141,7 @@ Public Class character
 		End Get
 		Set(Value As Integer)
 			integerFinanceTotalSpent = Value
-			stringCharacterData(6) = CType(Value, String)
+			stringCharacterData(4) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
@@ -182,7 +153,7 @@ Public Class character
 		End Get
 		Set(Value As Integer)
 			integerItemsTotalSold = Value
-			stringCharacterData(7) = CType(Value, String)
+			stringCharacterData(5) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
@@ -194,7 +165,7 @@ Public Class character
 		End Get
 		Set(Value As Integer)
 			integerGlobalCycles = Value
-			stringCharacterData(8) = CType(Value, String)
+			stringCharacterData(6) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
@@ -206,7 +177,7 @@ Public Class character
 		End Get
 		Set(Value As String)
 			stringDatesCreateDate = Value
-			stringCharacterData(9) = Value
+			stringCharacterData(7) = Value
 		End Set
 	End Property
 ''' <summary>
@@ -218,7 +189,7 @@ Public Class character
 		End Get
 		Set(Value As String)
 			stringDatesCreateTime = Value
-			stringCharacterData(10) = Value
+			stringCharacterData(8) = Value
 		End Set
 	End Property
 End Class

@@ -21,7 +21,7 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>42017, 42025, 42304 </NoWarn>
+    <NoWarn>42017, 42025, 42304</NoWarn>
     <DocumentationFile>bin\Debug\DST.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
@@ -59,10 +59,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Player\settings.vb" />
-    <Compile Include="Classes\Structure\Bin.vb" />
-    <Compile Include="Classes\Structure\Level.vb" />
-    <Compile Include="Classes\Structure\Shelf.vb" />
-    <Compile Include="Classes\Structure\Store.vb" />
+    <Compile Include="Classes\Structure\Storage\article.vb" />
+    <Compile Include="Classes\Structure\Storage\storage.vb" />
+    <Compile Include="Classes\Structure\Storage\section.vb" />
+    <Compile Include="Classes\Structure\Store\bin.vb" />
+    <Compile Include="Classes\Structure\Store\level.vb" />
+    <Compile Include="Classes\Structure\Store\shelf.vb" />
+    <Compile Include="Classes\Structure\Store\store.vb" />
     <Compile Include="Forms\cache.Designer.vb">
       <DependentUpon>cache.vb</DependentUpon>
     </Compile>
@@ -70,18 +73,12 @@
     <Compile Include="Classes\Functions\binaryFileHandler.vb" />
     <Compile Include="Classes\Functions\iniHandler.vb" />
     <Compile Include="Classes\NPC\customer.vb" />
-    <Compile Include="Classes\Layout\OLDstore.vb" />
     <Compile Include="Classes\Player\character.vb" />
-    <Compile Include="Classes\Player\inventory.vb" />
     <Compile Include="Classes\Player\player.vb" />
     <Compile Include="Forms\formGame.Designer.vb">
       <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\formGame.vb" />
-    <Compile Include="Forms\formInventory.Designer.vb">
-      <DependentUpon>formInventory.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\formInventory.vb" />
     <Compile Include="Forms\formMain.Designer.vb">
       <DependentUpon>formMain.vb</DependentUpon>
     </Compile>
@@ -98,10 +95,14 @@
       <DependentUpon>formStatus.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\formStatus.vb" />
-    <Compile Include="Forms\formStore.Designer.vb">
-      <DependentUpon>formStore.vb</DependentUpon>
+    <Compile Include="Forms\formDC.Designer.vb">
+      <DependentUpon>formDC.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\formStore.vb" />
+    <Compile Include="Forms\formDC.vb" />
+    <Compile Include="Forms\formItemManagement.Designer.vb">
+      <DependentUpon>formItemManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formItemManagement.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />
   </ItemGroup>
@@ -114,7 +115,8 @@
   <ItemGroup>
     <Folder Include="Classes\Structure" />
     <Folder Include="Classes\Functions" />
-    <Folder Include="Classes\Layout" />
+    <Folder Include="Classes\Structure\Store" />
+    <Folder Include="Classes\Structure\Storage" />
     <Folder Include="Properties" />
     <Folder Include="Classes\NPC" />
     <Folder Include="Classes\Player" />
@@ -128,9 +130,6 @@
     <EmbeddedResource Include="Forms\formGame.resx">
       <DependentUpon>formGame.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\formInventory.resx">
-      <DependentUpon>formInventory.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -140,8 +139,11 @@
     <EmbeddedResource Include="Forms\formStatus.resx">
       <DependentUpon>formStatus.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\formStore.resx">
-      <DependentUpon>formStore.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\formDC.resx">
+      <DependentUpon>formDC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formItemManagement.resx">
+      <DependentUpon>formItemManagement.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

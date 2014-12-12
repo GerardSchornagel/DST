@@ -8,13 +8,8 @@ Public Class store
 ''' <summary>
 ''' Empty Sub.
 ''' </summary>
-Public Sub New()
-'		'Use this code for creating first Store.
-'		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\MyFirstStore")
-'		playerStore.StorePath = System.IO.Directory.GetCurrentDirectory & "\MyFirstStore"
-'		playerStore.LevelInitialize()
-'		playerStore.LevelLoad()
-'		playerStore.LevelAdd()
+	Public Sub New()
+	
 	End Sub
 ''' <summary>
 ''' Get/Adjust the path of the Store without Initialize() and Load().
@@ -30,7 +25,7 @@ Public Sub New()
 ''' <summary>
 ''' Resizes arrayLevel and fill with New Level(s).
 ''' </summary>
-	Public Sub LevelInitialize()
+	Public Sub StoreInitialize()
 		integerLevelCounter = 0
 		ReDim arrayLevel(System.IO.Directory.GetDirectories(stringPathStore, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
 		For Each folder As String In System.IO.Directory.GetDirectories(stringPathStore, "*", System.IO.SearchOption.TopDirectoryOnly)
@@ -42,7 +37,7 @@ Public Sub New()
 ''' <summary>
 ''' Loads all Levels with all Shelves with all Bin's and all Item's.
 ''' </summary>
-	Public Sub LevelLoad()
+	Public Sub StoreLoad()
 		For Each item As Level In arrayLevel
 			item.ShelfInitialize()
 			item.ShelfLoad()

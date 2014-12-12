@@ -1,9 +1,5 @@
 ﻿Public Partial Class formStatus	
-	Friend Shared InventoryForm As New formInventory()
-	Friend Shared MapForm As New formMap()
-	Friend Shared StoreForm As New formStore()
-	
-	Private stringInventorySelected() As String
+	Private stringStorageSelected() As String
 	Private timerUpdate As New System.Windows.Forms.Timer
 	
 	Public Sub New()
@@ -33,107 +29,34 @@
 		'Character Tab
 		textboxLocation.Text = cache.playerCharacter.CurrentLocation
 		textboxStore.Text = cache.playerCharacter.CurrentStore
-		textboxLevel.Text = CType(cache.playerCharacter.CurrentLevel, String)
-		textboxShelf.Text = CType(cache.playerCharacter.CurrentShelf, String)
 		textboxMoneyEarned.Text = CType(cache.playerCharacter.TotalEarnings, String)
 		textboxMoneySpent.Text = CType(cache.playerCharacter.TotalSpendings, String)
 		textboxItemsSold.Text = CType(cache.playerCharacter.TotalItemsSold, String)
 		textboxPlaycycles.Text = CType(cache.playerCharacter.TotalDayCycles, String)
 		textboxCreatedDate.Text = cache.playerCharacter.CreateDate
 		textboxCreatedTime.Text = cache.playerCharacter.CreateTime
-		'Inventory Tab
-		Dim intDimension As Integer = 0
-		listboxInventory.Items.Clear()
-		Do
-			If cache.playerInventory.GetInventorySpace(intDimension) Is Nothing Then
-				Exit Do
-			End If
-			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
-			listboxInventory.Items.Add((cache.playerInventory.GetInventorySpace(intDimension))(0))
-			intDimension += 1
-		Loop
-	End Sub
-	
-	Sub buttonRefreshClick(sender As Object, e As EventArgs)
-		Dim intDimension As Integer = 0
-		listboxInventory.Items.Clear()
-		Do
-			If cache.playerInventory.GetInventorySpace(intDimension) Is Nothing Then
-				Exit Do
-			End If
-			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
-			listboxInventory.Items.Add((cache.playerInventory.GetInventorySpace(intDimension))(0))
-			intDimension += 1
-		Loop
 	End Sub
 	
 	Sub buttonExitClick(sender As Object, e As EventArgs)
-		'Add code for closing formGame, formMap, formInventory, formStore & Me(formStatus)
-	End Sub
-	
-	Sub buttonExportClick(sender As Object, e As EventArgs)
-		'Get selected StoreBin
-		Dim stringBin() As String = formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex)
-		Dim stringSlot() As String
-		ReDim stringSlot(3)
-		'Compare StoreBin name to all InventorySlots
-		Dim integerCounterSearch As Integer = 0
-		Do
-			stringSlot = cache.playerInventory.GetInventorySpace(integerCounterSearch)
-			'If true then add InventorySlot with StoreBin amount and Save
-			If stringBin(0) = stringSlot(0) Then
-				stringSlot(1) = CType(CType(stringSlot(1), Integer) + CType(stringBin(1), Integer), String)
-				cache.playerInventory.GetInventorySpace(integerCounterSearch) = stringSlot
-				cache.playerInventory.SaveState()
-				Exit Do
-			End If
-			integerCounterSearch += 1
-		Loop Until integerCounterSearch > cache.playerInventory.GetUpperbound()
-		'Get InventorySlot and paste Data to StoreBin and Save
-		stringBin = stringSlot
-		formGame.StoreCurrent.getsetBin(comboboxBins.SelectedIndex) = stringBin
-		formGame.StoreCurrent.SaveState()
-		'Set InventorySlot Amount to 0 and Save
-		stringSlot(1) = "0"
-		cache.playerInventory.GetInventorySpace(integerCounterSearch - 1) = stringSlot
-		formGame.StoreCurrent.SaveState()
-		'Refresh formStatus				
-		textboxAmount.Text = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(1)
-		textboxLastBuying.Text = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(2)
-		textboxLastSelling.Text = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(3)
-		
-		'Inventory Tab
-		Dim intDimension As Integer = 0
-		listboxInventory.Items.Clear()
-		Do
-			If cache.playerInventory.GetInventorySpace(intDimension) Is Nothing Then
-				Exit Do
-			End If
-			'load through classInventory with incrementing Dimension adding the first sub-dimension to the listbox.
-			listboxInventory.Items.Add((cache.playerInventory.GetInventorySpace(intDimension))(0))
-			intDimension += 1
-		Loop
-	End Sub
-	
-	Sub ListboxInventorySelectedIndexChanged(sender As Object, e As EventArgs)
-		If listboxInventory.SelectedIndex = -1 Then Exit Sub
-		stringInventorySelected = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)
-		textboxAmount.Text = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(1)
-		textboxLastBuying.Text = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(2)
-		textboxLastSelling.Text = cache.playerInventory.GetInventorySpace(listboxInventory.SelectedIndex)(3)
+		'Add code for clearing and 'Resetting' the cache.
 	End Sub
 	
 	Sub ButtonMapClick(sender As Object, e As EventArgs)
-		MapForm.Show()
+		cache.MapForm.Show()
+		cache.MapForm.ShowInTaskbar = True
+		cache.MapForm.WindowState = System.Windows.Forms.FormWindowState.Normal
 	End Sub
 	
-	Sub buttonStoreClick(sender As Object, e As EventArgs)
-		StoreForm.Show()
+	Sub buttonDCClick(sender As Object, e As EventArgs)
+		cache.DCForm.Show()
+		cache.DCForm.ShowInTaskbar = True
+		cache.DCForm.WindowState = System.Windows.Forms.FormWindowState.Normal
 	End Sub
 	
-	Sub ButtonInventoryClick(sender As Object, e As EventArgs)
-		InventoryForm = New formInventory()
-		InventoryForm.Show()
+	Sub buttonItemManagementClick(sender As Object, e As EventArgs)
+		cache.ItemManagementForm.Show()
+		cache.ItemManagementForm.ShowInTaskbar = True
+		cache.ItemManagementForm.WindowState = System.Windows.Forms.FormWindowState.Normal
 	End Sub
 	
 	Private Sub timerUpdateTick(sender As Object, e As system.EventArgs)

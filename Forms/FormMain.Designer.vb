@@ -44,6 +44,7 @@
 		'
 		'buttonResumeGame
 		'
+		Me.buttonResumeGame.Enabled = false
 		Me.buttonResumeGame.Location = New System.Drawing.Point(12, 41)
 		Me.buttonResumeGame.Name = "buttonResumeGame"
 		Me.buttonResumeGame.Size = New System.Drawing.Size(157, 23)
@@ -74,6 +75,7 @@
 		'
 		'buttonLoad
 		'
+		Me.buttonLoad.Enabled = false
 		Me.buttonLoad.Location = New System.Drawing.Point(11, 70)
 		Me.buttonLoad.Name = "buttonLoad"
 		Me.buttonLoad.Size = New System.Drawing.Size(157, 23)

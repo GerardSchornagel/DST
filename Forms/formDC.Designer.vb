@@ -1,4 +1,4 @@
-﻿Partial Class formStore
+﻿Partial Class formDC
 	Inherits System.Windows.Forms.Form
 	
 	''' <summary>
@@ -63,9 +63,9 @@
 		'
 		'textboxBuyAmount
 		'
-		Me.textboxBuyAmount.Location = New System.Drawing.Point(131, 313)
+		Me.textboxBuyAmount.Location = New System.Drawing.Point(181, 313)
 		Me.textboxBuyAmount.Name = "textboxBuyAmount"
-		Me.textboxBuyAmount.Size = New System.Drawing.Size(113, 20)
+		Me.textboxBuyAmount.Size = New System.Drawing.Size(95, 20)
 		Me.textboxBuyAmount.TabIndex = 72
 		AddHandler Me.textboxBuyAmount.TextChanged, AddressOf Me.TextboxBuyAmountTextChanged
 		'
@@ -74,7 +74,7 @@
 		Me.textboxBuyPrice.Location = New System.Drawing.Point(12, 313)
 		Me.textboxBuyPrice.Name = "textboxBuyPrice"
 		Me.textboxBuyPrice.ReadOnly = true
-		Me.textboxBuyPrice.Size = New System.Drawing.Size(113, 20)
+		Me.textboxBuyPrice.Size = New System.Drawing.Size(163, 20)
 		Me.textboxBuyPrice.TabIndex = 71
 		'
 		'buttonClose
@@ -91,7 +91,7 @@
 		'
 		Me.buttonBuy.Location = New System.Drawing.Point(12, 339)
 		Me.buttonBuy.Name = "buttonBuy"
-		Me.buttonBuy.Size = New System.Drawing.Size(178, 25)
+		Me.buttonBuy.Size = New System.Drawing.Size(181, 25)
 		Me.buttonBuy.TabIndex = 66
 		Me.buttonBuy.Text = "Buy"
 		Me.buttonBuy.UseVisualStyleBackColor = true
@@ -100,7 +100,7 @@
 		'labelBuyAmount
 		'
 		Me.labelBuyAmount.AutoSize = true
-		Me.labelBuyAmount.Location = New System.Drawing.Point(131, 297)
+		Me.labelBuyAmount.Location = New System.Drawing.Point(181, 297)
 		Me.labelBuyAmount.Name = "labelBuyAmount"
 		Me.labelBuyAmount.Size = New System.Drawing.Size(75, 13)
 		Me.labelBuyAmount.TabIndex = 65
@@ -120,9 +120,9 @@
 		Me.labelBuyPrice.AutoSize = true
 		Me.labelBuyPrice.Location = New System.Drawing.Point(12, 297)
 		Me.labelBuyPrice.Name = "labelBuyPrice"
-		Me.labelBuyPrice.Size = New System.Drawing.Size(89, 13)
+		Me.labelBuyPrice.Size = New System.Drawing.Size(146, 13)
 		Me.labelBuyPrice.TabIndex = 62
-		Me.labelBuyPrice.Text = "Current Buy Price"
+		Me.labelBuyPrice.Text = "Current Buy Price -50%\+25%"
 		'
 		'labelQualityName
 		'
@@ -353,22 +353,22 @@
 		'
 		'textboxPriceTotal
 		'
-		Me.textboxPriceTotal.Location = New System.Drawing.Point(250, 313)
+		Me.textboxPriceTotal.Location = New System.Drawing.Point(282, 313)
 		Me.textboxPriceTotal.Name = "textboxPriceTotal"
 		Me.textboxPriceTotal.ReadOnly = true
-		Me.textboxPriceTotal.Size = New System.Drawing.Size(113, 20)
+		Me.textboxPriceTotal.Size = New System.Drawing.Size(95, 20)
 		Me.textboxPriceTotal.TabIndex = 72
 		'
 		'labelPriceTotal
 		'
 		Me.labelPriceTotal.AutoSize = true
-		Me.labelPriceTotal.Location = New System.Drawing.Point(250, 297)
+		Me.labelPriceTotal.Location = New System.Drawing.Point(282, 297)
 		Me.labelPriceTotal.Name = "labelPriceTotal"
 		Me.labelPriceTotal.Size = New System.Drawing.Size(58, 13)
 		Me.labelPriceTotal.TabIndex = 65
 		Me.labelPriceTotal.Text = "Total Price"
 		'
-		'formStore
+		'formDC
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -393,9 +393,9 @@
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
 		Me.MaximizeBox = false
 		Me.MinimizeBox = false
-		Me.Name = "formStore"
+		Me.Name = "formDC"
 		Me.Text = "Buying Goods"
-		AddHandler Load, AddressOf Me.FormStoreLoad
+		AddHandler Load, AddressOf Me.formItemManagementLoad
 		Me.groupboxItemInfo.ResumeLayout(false)
 		Me.groupboxItemInfo.PerformLayout
 		Me.ResumeLayout(false)

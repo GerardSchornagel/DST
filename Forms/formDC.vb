@@ -1,9 +1,11 @@
-﻿Public Partial Class formStore
+﻿Public Partial Class formDC
 	Private filehandler As New binaryFileHandler()
 	Private stringPathItem As String = System.IO.Directory.GetCurrentDirectory & "\Data\Items\"
 	Private arrayDataFile As String
 	Private arrayItemSelected() As String
 	Private stringItemOrder() As String
+	Private integerCounterArticle As Integer
+	Private integerCounterSearch As Integer
 	
 	Private RandomInteger As New Random
 	
@@ -15,7 +17,7 @@
 	' filename = [Department]\[Genre]\[Category]\[Itemname].pd
 	' filedata = Department<>Genre<>GenreSub<>Article<>Manufactor<>Itemname<>WorthBase<>Quality
 	
-	Sub FormStoreLoad(sender As Object, e As EventArgs)
+	Sub formItemManagementLoad(sender As Object, e As EventArgs)
 		'Fill the dropdown's with the standard template (for now hard-coded, later through a *.pd with it's own class for communications.)
 		'	'For this function make a cache with all data loaded into it, this should make it more searchable too.
 		
@@ -63,7 +65,7 @@
 		labelWorthBaseDisplay.Text = arrayItemSelected(6)
 		labelQualityDisplay.Text = arrayItemSelected(7)
 		
-		textboxBuyPrice.Text = CType(RandomInteger.Next(CType(CType(labelWorthBaseDisplay.Text, Double) - (CType(labelWorthBaseDisplay.Text, Double) * 0.25), Integer), CType(CType(labelWorthBaseDisplay.Text, Double) + (CType(labelWorthBaseDisplay.Text, Double) * 0.25), Integer)
+		textboxBuyPrice.Text = CType(RandomInteger.Next(CType(CType(labelWorthBaseDisplay.Text, Double) - (CType(labelWorthBaseDisplay.Text, Double) * 0.50), Integer), CType(CType(labelWorthBaseDisplay.Text, Double) + (CType(labelWorthBaseDisplay.Text, Double) * 0.25), Integer)
 		), String)
 	End Sub
 	
@@ -81,32 +83,38 @@
 			
 			cache.playerCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
 			
+			'[Department]\[Genre]\[SubGenre]\[Itemname].pd
 			'Get product-order into temponary String Array.
-			ReDim stringItemOrder(3)
-			stringItemOrder(0) = labelItemDisplay.Text 'Name
-			stringItemOrder(1) = textboxBuyAmount.Text 'Amount
-			stringItemOrder(2) = textboxBuyPrice.Text 'Last Buying Price
+			ReDim stringItemOrder(4)
+			stringItemOrder(0) = System.IO.Directory.GetCurrentDirectory & "\Data\Items\" & labelDepartmentDisplay.Text & "\" &  labelGenreDisplay.Text & "\" & labelGenreSubDisplay.Text & "\" 'ItemPath
+			stringItemOrder(1) = labelItemDisplay.Text & ".pd" 'ItemFile
+			stringItemOrder(2) = textboxBuyAmount.Text 'Quantity
 			stringItemOrder(3) = "0"'Last Selling Price
+			stringItemOrder(4) = textboxBuyPrice.Text 'Last Buying Price
 			
-			Dim pos As Integer = 0
-			Do Until cache.playerInventory.GetInventorySpace(pos) Is Nothing
-				dim stringSlot() As String
-				stringSlot = cache.playerInventory.GetInventorySpace(pos)
-				'Add To existing record.
-				If stringSlot(0).Contains(comboboxName.Text) = True Then
-					stringItemOrder(1) = CType((CType(stringSlot(1), Integer) + CType(stringItemOrder(1), Integer)), String)
-					cache.playerInventory.GetInventorySpace(pos) = stringItemOrder
-					Exit Sub
-				End If
-				pos += 1
-			Loop
-			'Make new record
-			cache.playerInventory.NewSlot(stringItemOrder)
-			cache.playerInventory.SaveState()
+			integerCounterSearch = 0
+			integerCounterArticle = 0
+			Do
+				If cache.playerStorage.arraySection(integerCounterSearch).arrayArticle Is Nothing Then Exit Do
+				For Each Article As article In cache.playerStorage.arraySection(integerCounterSearch).arrayArticle
+					If Article.ItemName = labelItemDisplay.Text Then
+						cache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).Quantity += CType(stringItemOrder(2), Integer)
+						cache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).LastBuy = CType(stringItemOrder(4), Integer)
+						cache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).ArticleSave(cache.playerStorage.arraySection(integerCounterSearch).SectionPath)
+						Exit Sub
+					End If
+					integerCounterArticle += 1
+				Next
+				integerCounterArticle = 0
+				integerCounterSearch += 1
+			Loop Until integerCounterSearch >= cache.playerStorage.arraySection.GetUpperBound(0)
+			
+			cache.playerStorage.arraySection(0).ArticleAdd(stringItemOrder)
 		End If
 	End Sub
 	
 	Sub TextboxBuyAmountTextChanged(sender As Object, e As EventArgs)
+		If textboxBuyAmount.Text = "" Then Exit Sub
 		textboxPriceTotal.Text = CType(CType(textboxBuyAmount.Text, Integer) * CType(textboxBuyPrice.Text, Integer), String)
 	End Sub
 End Class

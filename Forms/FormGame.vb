@@ -1,14 +1,16 @@
 ﻿Public Partial Class formGame
-	Dim LayoutData As String(,)
 	Private randomGenerator As New Random()
 	Private timerHour As New System.Windows.Forms.Timer
 	Private timerCustomer As New System.Windows.Forms.Timer
 	Private integerCustomerNumber As Integer
-	Private stringCurrentShelf(5) As String
-	Private integerCurrentSpace As Integer
-	Private CurrentSpace As Integer
+	Private integerStoreLevels As Integer
+	Private integerStoreShelfs As Integer
+	Private integerStoreBins As Integer
+	Private stringBinName As String
+	Private integerBinQuantity As Integer
+	Private integerBinPrice As Integer
+	
 	Private CustomerNew As New customer()
-	Shared Friend StoreCurrent As New OLDstore()
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
@@ -18,7 +20,6 @@
 	Sub formGameLoad(sender As Object, e As EventArgs)
 		AddHandler timerHour.Tick, AddressOf TimerHour_Tick
 		AddHandler TimerCustomer.Tick, AddressOf TimerCustomer_Tick
-		StoreCurrent.LoadStore()
 	End Sub
 	
 	Private Sub ButtonActionStartClick(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -59,24 +60,27 @@
 			'Make new Customer and get his/her data for log
 			CustomerNew.newCustomer
 			
-			CurrentSpace = RandomGenerator.Next(8)
-			
-			If CType(StoreCurrent.getsetBin(CurrentSpace)(1), Integer) > 0 Then 'Check for inventory true
-				If CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) < CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
-					textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & CurrentSpace & Chr(10))
-					cache.playerCharacter.Balance += CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer)
-					Dim setBin(2) As String
-					setBin = CType(StoreCurrent.getsetBin(CurrentSpace), String())
-					setBin(1) = CType(CType(setBin(1), Integer) - 1, String)
-					StoreCurrent.getsetBin(CurrentSpace) = setBin
+			integerStoreLevels = randomGenerator.Next(store.arrayLevel.GetUpperBound(0))
+			integerStoreShelfs = randomGenerator.Next(store.arrayLevel(integerStoreLevels).arrayShelf.GetUpperBound(0))
+			integerStoreBins = randomGenerator.Next(store.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).arrayBin.GetUpperBound(0))
+			stringBinName = cache.playerStore.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).arrayBin(integerStoreBins).ArticleName
+			integerBinQuantity = cache.playerStore.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).arrayBin(integerStoreBins).BinQuantity
+			integerBinPrice = cache.playerStore.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).arrayBin(integerStoreBins).ArticleLastSell
+						
+			If integerBinQuantity > 0 Then 'Check for available quantity.
+				If integerBinPrice <= CustomerNew.Money Then 'BUY:Check for customer-money and item sell-price
+					textboxActionLog.AppendText("[" & textboxActionHour.Text & "] " & stringBinName & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & integerStoreBins & Chr(10))
+					cache.playerCharacter.Balance += integerBinPrice
+					cache.playerStore.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).arrayBin(integerStoreBins).BinQuantity -= 1
+					cache.playerStore.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).arrayBin(integerStoreBins).BinSave(cache.playerStore.arrayLevel(integerStoreLevels).arrayShelf(integerStoreShelfs).ShelfPath)
 					cache.playerCharacter.TotalItemsSold += 1
-					
-				ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(2), Integer) >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
-					textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot" & CurrentSpace & Chr(10))
+'					
+				ElseIf integerBinPrice >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
+					textboxActionLog.AppendText("[" & textboxActionHour.Text & "] " & stringBinName & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & integerStoreBins & Chr(10))
 				End If
 				
-			ElseIf CType(StoreCurrent.getsetBin(CurrentSpace)(1), String) = "0" Then 'NOSTASH:Check for customer-money and item sell-price
-				textboxActionLog.AppendText("[" & textboxActionHour.Text & "]" & CType(StoreCurrent.getsetBin(CurrentSpace)(0), String) & " stock Depleted" & Chr(10))
+			ElseIf integerBinQuantity = 0 Then 'NOSTASH:Check for customer-money and item sell-price
+				textboxActionLog.AppendText("[" & textboxActionHour.Text & "] " & stringBinName & " stock Depleted on slot " & integerStoreBins & Chr(10))
 			End If
 			
 			IntegerCustomerNumber -= 1

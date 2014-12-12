@@ -63,7 +63,7 @@ Public Class binaryFileHandler
 			integerRowCounter += 1
 		Next
 		'Use BinaryWriter with the int32Stream to write to path & file.
-		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(path & file, System.IO.FileMode.Create))
+		Using binWriter As System.IO.BinaryWriter = New System.IO.BinaryWriter(System.IO.File.Open(path & "\" & file, System.IO.FileMode.Create))
 			For Each integer32 As Int32 In int32Stream
 				binWriter.Write(integer32)
 			Next

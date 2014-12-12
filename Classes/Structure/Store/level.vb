@@ -30,7 +30,7 @@ Public Class level
 		ReDim arrayShelf(System.IO.Directory.GetDirectories(stringPathLevel, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
 		For Each folder As String In System.IO.Directory.GetDirectories(stringPathLevel, "*", System.IO.SearchOption.TopDirectoryOnly)
 			arrayShelf(integerShelfCounter) = New Shelf
-			arrayShelf(integerShelfCounter).ShelfPath = folder
+			arrayShelf(integerShelfCounter).ShelfPath = folder & "\"
 			integerShelfCounter += 1
 		Next
 	End Sub
@@ -39,8 +39,8 @@ Public Class level
 ''' </summary>
 	Public Sub ShelfLoad()
 		For Each item As Shelf In arrayShelf
-			item.BinInitialize()
-			item.BinLoad()
+			item.ShelfInitialize()
+			item.ShelfLoad()
 		Next
 	End Sub
 ''' <summary>
@@ -58,6 +58,5 @@ Public Class level
 		System.IO.Directory.CreateDirectory(stringPathLevel & "\" & intCheck)
 		arrayShelf(arrayShelf.GetUpperBound(0)) = New Shelf
 		arrayShelf(arrayShelf.GetUpperBound(0)).ShelfPath = stringPathLevel & "\" & intCheck
-		arrayShelf(arrayShelf.GetUpperBound(0)).BinAdd()
 	End Sub
 End Class

@@ -25,19 +25,6 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.tabpageInventory = New System.Windows.Forms.TabPage()
-		Me.groupboxDetails = New System.Windows.Forms.GroupBox()
-		Me.labelAmount = New System.Windows.Forms.Label()
-		Me.textboxLastBuying = New System.Windows.Forms.TextBox()
-		Me.textboxLastSelling = New System.Windows.Forms.TextBox()
-		Me.labelLastBuying = New System.Windows.Forms.Label()
-		Me.labelLastSelling = New System.Windows.Forms.Label()
-		Me.textboxAmount = New System.Windows.Forms.TextBox()
-		Me.groupboxSelection = New System.Windows.Forms.GroupBox()
-		Me.comboboxBins = New System.Windows.Forms.ComboBox()
-		Me.listboxInventory = New System.Windows.Forms.ListBox()
-		Me.buttonRefresh = New System.Windows.Forms.Button()
-		Me.buttonExport = New System.Windows.Forms.Button()
 		Me.buttonExit = New System.Windows.Forms.Button()
 		Me.labelBalance = New System.Windows.Forms.Label()
 		Me.textboxBalance = New System.Windows.Forms.TextBox()
@@ -65,6 +52,15 @@
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
 		Me.textboxNameNick = New System.Windows.Forms.TextBox()
 		Me.tabpageCharacter = New System.Windows.Forms.TabPage()
+		Me.groupboxLocation = New System.Windows.Forms.GroupBox()
+		Me.labelShelf = New System.Windows.Forms.Label()
+		Me.labelLevel = New System.Windows.Forms.Label()
+		Me.labelLocation = New System.Windows.Forms.Label()
+		Me.textboxShelf = New System.Windows.Forms.TextBox()
+		Me.textboxLevel = New System.Windows.Forms.TextBox()
+		Me.textboxLocation = New System.Windows.Forms.TextBox()
+		Me.textboxStore = New System.Windows.Forms.TextBox()
+		Me.labelStore = New System.Windows.Forms.Label()
 		Me.groupboxDates = New System.Windows.Forms.GroupBox()
 		Me.labelCreatedTime = New System.Windows.Forms.Label()
 		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
@@ -80,162 +76,20 @@
 		Me.textboxMoneySpent = New System.Windows.Forms.TextBox()
 		Me.labelMoneySpent = New System.Windows.Forms.Label()
 		Me.buttonMap = New System.Windows.Forms.Button()
-		Me.buttonInventory = New System.Windows.Forms.Button()
-		Me.buttonStore = New System.Windows.Forms.Button()
-		Me.groupboxLocation = New System.Windows.Forms.GroupBox()
-		Me.labelLevel = New System.Windows.Forms.Label()
-		Me.labelLocation = New System.Windows.Forms.Label()
-		Me.textboxLevel = New System.Windows.Forms.TextBox()
-		Me.textboxLocation = New System.Windows.Forms.TextBox()
-		Me.textboxStore = New System.Windows.Forms.TextBox()
-		Me.labelStore = New System.Windows.Forms.Label()
-		Me.textboxShelf = New System.Windows.Forms.TextBox()
-		Me.labelShelf = New System.Windows.Forms.Label()
-		Me.tabpageInventory.SuspendLayout
-		Me.groupboxDetails.SuspendLayout
-		Me.groupboxSelection.SuspendLayout
+		Me.buttonItemManagement = New System.Windows.Forms.Button()
+		Me.buttonDC = New System.Windows.Forms.Button()
 		Me.tabcontrolStatus.SuspendLayout
 		Me.tabpagePlayer.SuspendLayout
 		Me.groupboxProfile.SuspendLayout
 		Me.tabpageCharacter.SuspendLayout
+		Me.groupboxLocation.SuspendLayout
 		Me.groupboxDates.SuspendLayout
 		Me.groupboxFinances.SuspendLayout
-		Me.groupboxLocation.SuspendLayout
 		Me.SuspendLayout
-		'
-		'tabpageInventory
-		'
-		Me.tabpageInventory.Controls.Add(Me.groupboxDetails)
-		Me.tabpageInventory.Controls.Add(Me.groupboxSelection)
-		Me.tabpageInventory.Location = New System.Drawing.Point(4, 22)
-		Me.tabpageInventory.Name = "tabpageInventory"
-		Me.tabpageInventory.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpageInventory.Size = New System.Drawing.Size(453, 377)
-		Me.tabpageInventory.TabIndex = 2
-		Me.tabpageInventory.Text = "Inventory"
-		Me.tabpageInventory.UseVisualStyleBackColor = true
-		'
-		'groupboxDetails
-		'
-		Me.groupboxDetails.Controls.Add(Me.labelAmount)
-		Me.groupboxDetails.Controls.Add(Me.textboxLastBuying)
-		Me.groupboxDetails.Controls.Add(Me.textboxLastSelling)
-		Me.groupboxDetails.Controls.Add(Me.labelLastBuying)
-		Me.groupboxDetails.Controls.Add(Me.labelLastSelling)
-		Me.groupboxDetails.Controls.Add(Me.textboxAmount)
-		Me.groupboxDetails.Location = New System.Drawing.Point(6, 201)
-		Me.groupboxDetails.Name = "groupboxDetails"
-		Me.groupboxDetails.Size = New System.Drawing.Size(437, 169)
-		Me.groupboxDetails.TabIndex = 0
-		Me.groupboxDetails.TabStop = false
-		Me.groupboxDetails.Text = "Details"
-		'
-		'labelAmount
-		'
-		Me.labelAmount.AutoSize = true
-		Me.labelAmount.Location = New System.Drawing.Point(6, 16)
-		Me.labelAmount.Name = "labelAmount"
-		Me.labelAmount.Size = New System.Drawing.Size(43, 13)
-		Me.labelAmount.TabIndex = 0
-		Me.labelAmount.Text = "Amount"
-		'
-		'textboxLastBuying
-		'
-		Me.textboxLastBuying.Location = New System.Drawing.Point(9, 110)
-		Me.textboxLastBuying.Name = "textboxLastBuying"
-		Me.textboxLastBuying.ReadOnly = true
-		Me.textboxLastBuying.Size = New System.Drawing.Size(135, 20)
-		Me.textboxLastBuying.TabIndex = 1
-		'
-		'textboxLastSelling
-		'
-		Me.textboxLastSelling.Location = New System.Drawing.Point(9, 71)
-		Me.textboxLastSelling.Name = "textboxLastSelling"
-		Me.textboxLastSelling.ReadOnly = true
-		Me.textboxLastSelling.Size = New System.Drawing.Size(135, 20)
-		Me.textboxLastSelling.TabIndex = 1
-		'
-		'labelLastBuying
-		'
-		Me.labelLastBuying.AutoSize = true
-		Me.labelLastBuying.Location = New System.Drawing.Point(6, 94)
-		Me.labelLastBuying.Name = "labelLastBuying"
-		Me.labelLastBuying.Size = New System.Drawing.Size(89, 13)
-		Me.labelLastBuying.TabIndex = 0
-		Me.labelLastBuying.Text = "Last Buying Price"
-		'
-		'labelLastSelling
-		'
-		Me.labelLastSelling.AutoSize = true
-		Me.labelLastSelling.Location = New System.Drawing.Point(6, 55)
-		Me.labelLastSelling.Name = "labelLastSelling"
-		Me.labelLastSelling.Size = New System.Drawing.Size(88, 13)
-		Me.labelLastSelling.TabIndex = 0
-		Me.labelLastSelling.Text = "Last Selling Price"
-		'
-		'textboxAmount
-		'
-		Me.textboxAmount.Location = New System.Drawing.Point(9, 32)
-		Me.textboxAmount.Name = "textboxAmount"
-		Me.textboxAmount.ReadOnly = true
-		Me.textboxAmount.Size = New System.Drawing.Size(135, 20)
-		Me.textboxAmount.TabIndex = 1
-		'
-		'groupboxSelection
-		'
-		Me.groupboxSelection.Controls.Add(Me.comboboxBins)
-		Me.groupboxSelection.Controls.Add(Me.listboxInventory)
-		Me.groupboxSelection.Controls.Add(Me.buttonRefresh)
-		Me.groupboxSelection.Controls.Add(Me.buttonExport)
-		Me.groupboxSelection.Location = New System.Drawing.Point(6, 6)
-		Me.groupboxSelection.Name = "groupboxSelection"
-		Me.groupboxSelection.Size = New System.Drawing.Size(437, 189)
-		Me.groupboxSelection.TabIndex = 0
-		Me.groupboxSelection.TabStop = false
-		Me.groupboxSelection.Text = "Selection"
-		'
-		'comboboxBins
-		'
-		Me.comboboxBins.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-		Me.comboboxBins.FormattingEnabled = true
-		Me.comboboxBins.Items.AddRange(New Object() {"1A", "1B", "1C", "2A", "2B", "2C", "3A", "3B", "3C"})
-		Me.comboboxBins.Location = New System.Drawing.Point(6, 160)
-		Me.comboboxBins.Name = "comboboxBins"
-		Me.comboboxBins.Size = New System.Drawing.Size(115, 21)
-		Me.comboboxBins.TabIndex = 4
-		'
-		'listboxInventory
-		'
-		Me.listboxInventory.FormattingEnabled = true
-		Me.listboxInventory.Location = New System.Drawing.Point(6, 19)
-		Me.listboxInventory.Name = "listboxInventory"
-		Me.listboxInventory.Size = New System.Drawing.Size(425, 134)
-		Me.listboxInventory.TabIndex = 3
-		AddHandler Me.listboxInventory.SelectedIndexChanged, AddressOf Me.ListboxInventorySelectedIndexChanged
-		'
-		'buttonRefresh
-		'
-		Me.buttonRefresh.Location = New System.Drawing.Point(377, 160)
-		Me.buttonRefresh.Name = "buttonRefresh"
-		Me.buttonRefresh.Size = New System.Drawing.Size(54, 23)
-		Me.buttonRefresh.TabIndex = 2
-		Me.buttonRefresh.Text = "Refresh"
-		Me.buttonRefresh.UseVisualStyleBackColor = true
-		AddHandler Me.buttonRefresh.Click, AddressOf Me.buttonRefreshClick
-		'
-		'buttonExport
-		'
-		Me.buttonExport.Location = New System.Drawing.Point(127, 160)
-		Me.buttonExport.Name = "buttonExport"
-		Me.buttonExport.Size = New System.Drawing.Size(244, 23)
-		Me.buttonExport.TabIndex = 2
-		Me.buttonExport.Text = "Export to Store"
-		Me.buttonExport.UseVisualStyleBackColor = true
-		AddHandler Me.buttonExport.Click, AddressOf Me.buttonExportClick
 		'
 		'buttonExit
 		'
-		Me.buttonExit.Location = New System.Drawing.Point(243, 442)
+		Me.buttonExit.Location = New System.Drawing.Point(245, 456)
 		Me.buttonExit.Name = "buttonExit"
 		Me.buttonExit.Size = New System.Drawing.Size(223, 23)
 		Me.buttonExit.TabIndex = 6
@@ -264,11 +118,10 @@
 		'
 		Me.tabcontrolStatus.Controls.Add(Me.tabpagePlayer)
 		Me.tabcontrolStatus.Controls.Add(Me.tabpageCharacter)
-		Me.tabcontrolStatus.Controls.Add(Me.tabpageInventory)
 		Me.tabcontrolStatus.Location = New System.Drawing.Point(8, 12)
 		Me.tabcontrolStatus.Name = "tabcontrolStatus"
 		Me.tabcontrolStatus.SelectedIndex = 0
-		Me.tabcontrolStatus.Size = New System.Drawing.Size(461, 403)
+		Me.tabcontrolStatus.Size = New System.Drawing.Size(460, 409)
 		Me.tabcontrolStatus.TabIndex = 7
 		'
 		'tabpagePlayer
@@ -277,7 +130,7 @@
 		Me.tabpagePlayer.Location = New System.Drawing.Point(4, 22)
 		Me.tabpagePlayer.Name = "tabpagePlayer"
 		Me.tabpagePlayer.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpagePlayer.Size = New System.Drawing.Size(453, 377)
+		Me.tabpagePlayer.Size = New System.Drawing.Size(452, 383)
 		Me.tabpagePlayer.TabIndex = 3
 		Me.tabpagePlayer.Text = "Profile"
 		Me.tabpagePlayer.UseVisualStyleBackColor = true
@@ -483,10 +336,95 @@
 		Me.tabpageCharacter.Location = New System.Drawing.Point(4, 22)
 		Me.tabpageCharacter.Name = "tabpageCharacter"
 		Me.tabpageCharacter.Padding = New System.Windows.Forms.Padding(3)
-		Me.tabpageCharacter.Size = New System.Drawing.Size(453, 377)
+		Me.tabpageCharacter.Size = New System.Drawing.Size(452, 383)
 		Me.tabpageCharacter.TabIndex = 0
 		Me.tabpageCharacter.Text = "Character"
 		Me.tabpageCharacter.UseVisualStyleBackColor = true
+		'
+		'groupboxLocation
+		'
+		Me.groupboxLocation.Controls.Add(Me.labelShelf)
+		Me.groupboxLocation.Controls.Add(Me.labelLevel)
+		Me.groupboxLocation.Controls.Add(Me.labelLocation)
+		Me.groupboxLocation.Controls.Add(Me.textboxShelf)
+		Me.groupboxLocation.Controls.Add(Me.textboxLevel)
+		Me.groupboxLocation.Controls.Add(Me.textboxLocation)
+		Me.groupboxLocation.Controls.Add(Me.textboxStore)
+		Me.groupboxLocation.Controls.Add(Me.labelStore)
+		Me.groupboxLocation.Location = New System.Drawing.Point(6, 256)
+		Me.groupboxLocation.Name = "groupboxLocation"
+		Me.groupboxLocation.Size = New System.Drawing.Size(437, 121)
+		Me.groupboxLocation.TabIndex = 7
+		Me.groupboxLocation.TabStop = false
+		Me.groupboxLocation.Text = "Current Location"
+		'
+		'labelShelf
+		'
+		Me.labelShelf.AutoSize = true
+		Me.labelShelf.Location = New System.Drawing.Point(181, 63)
+		Me.labelShelf.Name = "labelShelf"
+		Me.labelShelf.Size = New System.Drawing.Size(31, 13)
+		Me.labelShelf.TabIndex = 0
+		Me.labelShelf.Text = "Shelf"
+		'
+		'labelLevel
+		'
+		Me.labelLevel.AutoSize = true
+		Me.labelLevel.Location = New System.Drawing.Point(181, 24)
+		Me.labelLevel.Name = "labelLevel"
+		Me.labelLevel.Size = New System.Drawing.Size(33, 13)
+		Me.labelLevel.TabIndex = 0
+		Me.labelLevel.Text = "Level"
+		'
+		'labelLocation
+		'
+		Me.labelLocation.AutoSize = true
+		Me.labelLocation.Location = New System.Drawing.Point(6, 24)
+		Me.labelLocation.Name = "labelLocation"
+		Me.labelLocation.Size = New System.Drawing.Size(48, 13)
+		Me.labelLocation.TabIndex = 0
+		Me.labelLocation.Text = "Location"
+		'
+		'textboxShelf
+		'
+		Me.textboxShelf.Location = New System.Drawing.Point(184, 79)
+		Me.textboxShelf.Name = "textboxShelf"
+		Me.textboxShelf.ReadOnly = true
+		Me.textboxShelf.Size = New System.Drawing.Size(169, 20)
+		Me.textboxShelf.TabIndex = 1
+		'
+		'textboxLevel
+		'
+		Me.textboxLevel.Location = New System.Drawing.Point(184, 40)
+		Me.textboxLevel.Name = "textboxLevel"
+		Me.textboxLevel.ReadOnly = true
+		Me.textboxLevel.Size = New System.Drawing.Size(169, 20)
+		Me.textboxLevel.TabIndex = 1
+		'
+		'textboxLocation
+		'
+		Me.textboxLocation.Location = New System.Drawing.Point(9, 40)
+		Me.textboxLocation.Name = "textboxLocation"
+		Me.textboxLocation.ReadOnly = true
+		Me.textboxLocation.Size = New System.Drawing.Size(169, 20)
+		Me.textboxLocation.TabIndex = 1
+		'
+		'textboxStore
+		'
+		Me.textboxStore.Location = New System.Drawing.Point(9, 79)
+		Me.textboxStore.Name = "textboxStore"
+		Me.textboxStore.ReadOnly = true
+		Me.textboxStore.Size = New System.Drawing.Size(169, 20)
+		Me.textboxStore.TabIndex = 1
+		'
+		'labelStore
+		'
+		Me.labelStore.AutoSize = true
+		Me.labelStore.Location = New System.Drawing.Point(6, 63)
+		Me.labelStore.Name = "labelStore"
+		Me.labelStore.Size = New System.Drawing.Size(32, 13)
+		Me.labelStore.TabIndex = 0
+		Me.labelStore.Text = "Store"
 		'
 		'groupboxDates
 		'
@@ -498,7 +436,7 @@
 		Me.groupboxDates.Controls.Add(Me.textboxPlaycycles)
 		Me.groupboxDates.Location = New System.Drawing.Point(6, 6)
 		Me.groupboxDates.Name = "groupboxDates"
-		Me.groupboxDates.Size = New System.Drawing.Size(437, 101)
+		Me.groupboxDates.Size = New System.Drawing.Size(437, 112)
 		Me.groupboxDates.TabIndex = 7
 		Me.groupboxDates.TabStop = false
 		Me.groupboxDates.Text = "Time and Dates"
@@ -562,9 +500,9 @@
 		Me.groupboxFinances.Controls.Add(Me.textboxMoneyEarned)
 		Me.groupboxFinances.Controls.Add(Me.textboxMoneySpent)
 		Me.groupboxFinances.Controls.Add(Me.labelMoneySpent)
-		Me.groupboxFinances.Location = New System.Drawing.Point(6, 113)
+		Me.groupboxFinances.Location = New System.Drawing.Point(6, 124)
 		Me.groupboxFinances.Name = "groupboxFinances"
-		Me.groupboxFinances.Size = New System.Drawing.Size(437, 109)
+		Me.groupboxFinances.Size = New System.Drawing.Size(437, 126)
 		Me.groupboxFinances.TabIndex = 6
 		Me.groupboxFinances.TabStop = false
 		Me.groupboxFinances.Text = "Finances and Items"
@@ -622,129 +560,45 @@
 		'
 		'buttonMap
 		'
-		Me.buttonMap.Location = New System.Drawing.Point(10, 442)
+		Me.buttonMap.Enabled = false
+		Me.buttonMap.Location = New System.Drawing.Point(8, 456)
 		Me.buttonMap.Name = "buttonMap"
-		Me.buttonMap.Size = New System.Drawing.Size(228, 23)
+		Me.buttonMap.Size = New System.Drawing.Size(232, 23)
 		Me.buttonMap.TabIndex = 8
 		Me.buttonMap.Text = "Map"
 		Me.buttonMap.UseVisualStyleBackColor = true
 		AddHandler Me.buttonMap.Click, AddressOf Me.ButtonMapClick
 		'
-		'buttonInventory
+		'buttonItemManagement
 		'
-		Me.buttonInventory.Location = New System.Drawing.Point(244, 416)
-		Me.buttonInventory.Name = "buttonInventory"
-		Me.buttonInventory.Size = New System.Drawing.Size(223, 23)
-		Me.buttonInventory.TabIndex = 8
-		Me.buttonInventory.Text = "Inventory"
-		Me.buttonInventory.UseVisualStyleBackColor = true
-		AddHandler Me.buttonInventory.Click, AddressOf Me.ButtonInventoryClick
+		Me.buttonItemManagement.Location = New System.Drawing.Point(245, 427)
+		Me.buttonItemManagement.Name = "buttonItemManagement"
+		Me.buttonItemManagement.Size = New System.Drawing.Size(223, 23)
+		Me.buttonItemManagement.TabIndex = 8
+		Me.buttonItemManagement.Text = "Item Management"
+		Me.buttonItemManagement.UseVisualStyleBackColor = true
+		AddHandler Me.buttonItemManagement.Click, AddressOf Me.buttonItemManagementClick
 		'
-		'buttonStore
+		'buttonDC
 		'
-		Me.buttonStore.Location = New System.Drawing.Point(8, 416)
-		Me.buttonStore.Name = "buttonStore"
-		Me.buttonStore.Size = New System.Drawing.Size(232, 23)
-		Me.buttonStore.TabIndex = 6
-		Me.buttonStore.Text = "Buy Items"
-		Me.buttonStore.UseVisualStyleBackColor = true
-		AddHandler Me.buttonStore.Click, AddressOf Me.buttonStoreClick
-		'
-		'groupboxLocation
-		'
-		Me.groupboxLocation.Controls.Add(Me.labelShelf)
-		Me.groupboxLocation.Controls.Add(Me.labelLevel)
-		Me.groupboxLocation.Controls.Add(Me.labelLocation)
-		Me.groupboxLocation.Controls.Add(Me.textboxShelf)
-		Me.groupboxLocation.Controls.Add(Me.textboxLevel)
-		Me.groupboxLocation.Controls.Add(Me.textboxLocation)
-		Me.groupboxLocation.Controls.Add(Me.textboxStore)
-		Me.groupboxLocation.Controls.Add(Me.labelStore)
-		Me.groupboxLocation.Location = New System.Drawing.Point(6, 228)
-		Me.groupboxLocation.Name = "groupboxLocation"
-		Me.groupboxLocation.Size = New System.Drawing.Size(437, 109)
-		Me.groupboxLocation.TabIndex = 7
-		Me.groupboxLocation.TabStop = false
-		Me.groupboxLocation.Text = "Current Location"
-		'
-		'labelLevel
-		'
-		Me.labelLevel.AutoSize = true
-		Me.labelLevel.Location = New System.Drawing.Point(181, 24)
-		Me.labelLevel.Name = "labelLevel"
-		Me.labelLevel.Size = New System.Drawing.Size(33, 13)
-		Me.labelLevel.TabIndex = 0
-		Me.labelLevel.Text = "Level"
-		'
-		'labelLocation
-		'
-		Me.labelLocation.AutoSize = true
-		Me.labelLocation.Location = New System.Drawing.Point(6, 24)
-		Me.labelLocation.Name = "labelLocation"
-		Me.labelLocation.Size = New System.Drawing.Size(48, 13)
-		Me.labelLocation.TabIndex = 0
-		Me.labelLocation.Text = "Location"
-		'
-		'textboxLevel
-		'
-		Me.textboxLevel.Location = New System.Drawing.Point(184, 40)
-		Me.textboxLevel.Name = "textboxLevel"
-		Me.textboxLevel.ReadOnly = true
-		Me.textboxLevel.Size = New System.Drawing.Size(169, 20)
-		Me.textboxLevel.TabIndex = 1
-		'
-		'textboxLocation
-		'
-		Me.textboxLocation.Location = New System.Drawing.Point(9, 40)
-		Me.textboxLocation.Name = "textboxLocation"
-		Me.textboxLocation.ReadOnly = true
-		Me.textboxLocation.Size = New System.Drawing.Size(169, 20)
-		Me.textboxLocation.TabIndex = 1
-		'
-		'textboxStore
-		'
-		Me.textboxStore.Location = New System.Drawing.Point(9, 79)
-		Me.textboxStore.Name = "textboxStore"
-		Me.textboxStore.ReadOnly = true
-		Me.textboxStore.Size = New System.Drawing.Size(169, 20)
-		Me.textboxStore.TabIndex = 1
-		'
-		'labelStore
-		'
-		Me.labelStore.AutoSize = true
-		Me.labelStore.Location = New System.Drawing.Point(6, 63)
-		Me.labelStore.Name = "labelStore"
-		Me.labelStore.Size = New System.Drawing.Size(32, 13)
-		Me.labelStore.TabIndex = 0
-		Me.labelStore.Text = "Store"
-		'
-		'textboxShelf
-		'
-		Me.textboxShelf.Location = New System.Drawing.Point(184, 79)
-		Me.textboxShelf.Name = "textboxShelf"
-		Me.textboxShelf.ReadOnly = true
-		Me.textboxShelf.Size = New System.Drawing.Size(169, 20)
-		Me.textboxShelf.TabIndex = 1
-		'
-		'labelShelf
-		'
-		Me.labelShelf.AutoSize = true
-		Me.labelShelf.Location = New System.Drawing.Point(181, 63)
-		Me.labelShelf.Name = "labelShelf"
-		Me.labelShelf.Size = New System.Drawing.Size(31, 13)
-		Me.labelShelf.TabIndex = 0
-		Me.labelShelf.Text = "Shelf"
+		Me.buttonDC.Location = New System.Drawing.Point(8, 427)
+		Me.buttonDC.Name = "buttonDC"
+		Me.buttonDC.Size = New System.Drawing.Size(232, 23)
+		Me.buttonDC.TabIndex = 6
+		Me.buttonDC.Text = "Distribution Center"
+		Me.buttonDC.UseVisualStyleBackColor = true
+		AddHandler Me.buttonDC.Click, AddressOf Me.buttonDCClick
 		'
 		'formStatus
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(475, 472)
-		Me.Controls.Add(Me.buttonInventory)
+		Me.ClientSize = New System.Drawing.Size(477, 487)
+		Me.Controls.Add(Me.buttonItemManagement)
 		Me.Controls.Add(Me.buttonMap)
 		Me.Controls.Add(Me.labelBalance)
 		Me.Controls.Add(Me.textboxBalance)
-		Me.Controls.Add(Me.buttonStore)
+		Me.Controls.Add(Me.buttonDC)
 		Me.Controls.Add(Me.buttonExit)
 		Me.Controls.Add(Me.tabcontrolStatus)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -753,21 +607,17 @@
 		Me.Name = "formStatus"
 		Me.Text = "Status"
 		AddHandler Load, AddressOf Me.FormStatusLoad
-		Me.tabpageInventory.ResumeLayout(false)
-		Me.groupboxDetails.ResumeLayout(false)
-		Me.groupboxDetails.PerformLayout
-		Me.groupboxSelection.ResumeLayout(false)
 		Me.tabcontrolStatus.ResumeLayout(false)
 		Me.tabpagePlayer.ResumeLayout(false)
 		Me.groupboxProfile.ResumeLayout(false)
 		Me.groupboxProfile.PerformLayout
 		Me.tabpageCharacter.ResumeLayout(false)
+		Me.groupboxLocation.ResumeLayout(false)
+		Me.groupboxLocation.PerformLayout
 		Me.groupboxDates.ResumeLayout(false)
 		Me.groupboxDates.PerformLayout
 		Me.groupboxFinances.ResumeLayout(false)
 		Me.groupboxFinances.PerformLayout
-		Me.groupboxLocation.ResumeLayout(false)
-		Me.groupboxLocation.PerformLayout
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub
@@ -786,10 +636,8 @@
 	Private labelCreateTime As System.Windows.Forms.Label
 	Private textboxTotalBalance As System.Windows.Forms.TextBox
 	Private labelTotalBalance As System.Windows.Forms.Label
-	Private buttonRefresh As System.Windows.Forms.Button
-	Private comboboxBins As System.Windows.Forms.ComboBox
-	Private buttonStore As System.Windows.Forms.Button
-	Private buttonInventory As System.Windows.Forms.Button
+	Private buttonDC As System.Windows.Forms.Button
+	Private buttonItemManagement As System.Windows.Forms.Button
 	Private buttonMap As System.Windows.Forms.Button
 	Private groupboxDates As System.Windows.Forms.GroupBox
 	Private labelCreatedTime As System.Windows.Forms.Label
@@ -805,17 +653,6 @@
 	Private textboxMoneyEarned As System.Windows.Forms.TextBox
 	Private textboxMoneySpent As System.Windows.Forms.TextBox
 	Private labelMoneySpent As System.Windows.Forms.Label
-	Private tabpageInventory As System.Windows.Forms.TabPage
-	Private groupboxDetails As System.Windows.Forms.GroupBox
-	Private labelAmount As System.Windows.Forms.Label
-	Private textboxLastBuying As System.Windows.Forms.TextBox
-	Private textboxLastSelling As System.Windows.Forms.TextBox
-	Private labelLastBuying As System.Windows.Forms.Label
-	Private labelLastSelling As System.Windows.Forms.Label
-	Private textboxAmount As System.Windows.Forms.TextBox
-	Private groupboxSelection As System.Windows.Forms.GroupBox
-	Private listboxInventory As System.Windows.Forms.ListBox
-	Private buttonExport As System.Windows.Forms.Button
 	Private buttonExit As System.Windows.Forms.Button
 	Private labelBalance As System.Windows.Forms.Label
 	Private textboxBalance As System.Windows.Forms.TextBox
