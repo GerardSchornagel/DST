@@ -12,8 +12,7 @@ Public Partial Class formMain
 	End Sub
 	
 	Sub buttonNewGameClick(sender As Object, e As EventArgs)
-		'Create New player through Cache
-		cache.NewPlayer()
+		cache.NewGame()
 	End Sub
 	
 	Sub buttonResumeGameClick(sender As Object, e As EventArgs)

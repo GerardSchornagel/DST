@@ -22,10 +22,9 @@
 		textboxBirthYear.Text = CType(cache.playerProfile.BirthYear, String)
 		textboxBirthMonth.Text = CType(cache.playerProfile.BirthMonth, String)
 		textboxBirthDay.Text = CType(cache.playerProfile.BirthDay, String)
-		textboxGender.Text = CType(cache.playerProfile.Gender, String)
-		textboxCreatedDate.Text = cache.playerProfile.CreateDate
-		textboxCreatedTime.Text = cache.playerProfile.CreateTime
-		textboxTotalBalance.Text = CType(cache.playerProfile.BalanceTotal, String)
+		textboxGender.Text = cache.playerProfile.Gender
+		textboxCreateDate.Text = cache.playerProfile.CreateDate
+		textboxCreateTime.Text = cache.playerProfile.CreateTime
 		'Character Tab
 		textboxLocation.Text = cache.playerCharacter.CurrentLocation
 		textboxStore.Text = cache.playerCharacter.CurrentStore
@@ -33,8 +32,6 @@
 		textboxMoneySpent.Text = CType(cache.playerCharacter.TotalSpendings, String)
 		textboxItemsSold.Text = CType(cache.playerCharacter.TotalItemsSold, String)
 		textboxPlaycycles.Text = CType(cache.playerCharacter.TotalDayCycles, String)
-		textboxCreatedDate.Text = cache.playerCharacter.CreateDate
-		textboxCreatedTime.Text = cache.playerCharacter.CreateTime
 	End Sub
 	
 	Sub buttonExitClick(sender As Object, e As EventArgs)

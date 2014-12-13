@@ -8,6 +8,7 @@ Public Partial Class cache
 	Friend Shared ItemManagementForm As System.Windows.Forms.Form
 	Friend Shared MapForm As System.Windows.Forms.Form
 	Friend Shared DCForm As System.Windows.Forms.Form
+	Friend Shared NewGameForm As System.Windows.Forms.Form
 
 	Friend Shared settingsGlobal As New settings()
 	Friend Shared playerProfile As New player()
@@ -28,15 +29,21 @@ Public Partial Class cache
 		Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
 	End Sub
 	
-	Public Sub NewPlayer()
+	Public Sub NewGame()
+		NewGameForm = New formNewGame
+		NewGameForm.Show()
 		MainMenu.Hide()
+	End Sub
+	
+	Public Sub NewPlayer(Template() As String)
+		NewGameForm.Hide()
 		progressbarLoading.Value = 0
 		labelDescription.Text = "Creating New Player."
 		Me.WindowState = System.Windows.Forms.FormWindowState.Normal
 		settingsGlobal.NewPlayer()
 		progressbarLoading.Value = 1
 		labelDescription.Text = "Making new Profile."
-		playerProfile.Load()
+		playerProfile.Load(Template)
 		progressbarLoading.Value = 2
 		labelDescription.Text = "Making new Character."
 		playerCharacter.Load()

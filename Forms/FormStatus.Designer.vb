@@ -39,14 +39,12 @@
 		Me.textboxPlayerID = New System.Windows.Forms.TextBox()
 		Me.labelGender = New System.Windows.Forms.Label()
 		Me.textboxBirthYear = New System.Windows.Forms.TextBox()
-		Me.labelTotalBalance = New System.Windows.Forms.Label()
 		Me.labelNameLast = New System.Windows.Forms.Label()
 		Me.labelBirthDate = New System.Windows.Forms.Label()
 		Me.textboxNameFirst = New System.Windows.Forms.TextBox()
 		Me.labelNameNick = New System.Windows.Forms.Label()
 		Me.textboxBirthDay = New System.Windows.Forms.TextBox()
 		Me.textboxGender = New System.Windows.Forms.TextBox()
-		Me.textboxTotalBalance = New System.Windows.Forms.TextBox()
 		Me.labelNameFirst = New System.Windows.Forms.Label()
 		Me.textboxNameLast = New System.Windows.Forms.TextBox()
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
@@ -62,10 +60,6 @@
 		Me.textboxStore = New System.Windows.Forms.TextBox()
 		Me.labelStore = New System.Windows.Forms.Label()
 		Me.groupboxDates = New System.Windows.Forms.GroupBox()
-		Me.labelCreatedTime = New System.Windows.Forms.Label()
-		Me.textboxCreatedTime = New System.Windows.Forms.TextBox()
-		Me.labelCreatedDate = New System.Windows.Forms.Label()
-		Me.textboxCreatedDate = New System.Windows.Forms.TextBox()
 		Me.labelPlaycycles = New System.Windows.Forms.Label()
 		Me.textboxPlaycycles = New System.Windows.Forms.TextBox()
 		Me.groupboxFinances = New System.Windows.Forms.GroupBox()
@@ -145,14 +139,12 @@
 		Me.groupboxProfile.Controls.Add(Me.textboxPlayerID)
 		Me.groupboxProfile.Controls.Add(Me.labelGender)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthYear)
-		Me.groupboxProfile.Controls.Add(Me.labelTotalBalance)
 		Me.groupboxProfile.Controls.Add(Me.labelNameLast)
 		Me.groupboxProfile.Controls.Add(Me.labelBirthDate)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameFirst)
 		Me.groupboxProfile.Controls.Add(Me.labelNameNick)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthDay)
 		Me.groupboxProfile.Controls.Add(Me.textboxGender)
-		Me.groupboxProfile.Controls.Add(Me.textboxTotalBalance)
 		Me.groupboxProfile.Controls.Add(Me.labelNameFirst)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameLast)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthMonth)
@@ -228,18 +220,10 @@
 		'
 		Me.textboxBirthYear.Location = New System.Drawing.Point(181, 32)
 		Me.textboxBirthYear.Name = "textboxBirthYear"
+		Me.textboxBirthYear.ReadOnly = true
 		Me.textboxBirthYear.Size = New System.Drawing.Size(39, 20)
 		Me.textboxBirthYear.TabIndex = 1
 		Me.textboxBirthYear.Text = "1985"
-		'
-		'labelTotalBalance
-		'
-		Me.labelTotalBalance.AutoSize = true
-		Me.labelTotalBalance.Location = New System.Drawing.Point(178, 133)
-		Me.labelTotalBalance.Name = "labelTotalBalance"
-		Me.labelTotalBalance.Size = New System.Drawing.Size(73, 13)
-		Me.labelTotalBalance.TabIndex = 0
-		Me.labelTotalBalance.Text = "Total Balance"
 		'
 		'labelNameLast
 		'
@@ -263,6 +247,7 @@
 		'
 		Me.textboxNameFirst.Location = New System.Drawing.Point(6, 110)
 		Me.textboxNameFirst.Name = "textboxNameFirst"
+		Me.textboxNameFirst.ReadOnly = true
 		Me.textboxNameFirst.Size = New System.Drawing.Size(169, 20)
 		Me.textboxNameFirst.TabIndex = 1
 		'
@@ -279,6 +264,7 @@
 		'
 		Me.textboxBirthDay.Location = New System.Drawing.Point(258, 32)
 		Me.textboxBirthDay.Name = "textboxBirthDay"
+		Me.textboxBirthDay.ReadOnly = true
 		Me.textboxBirthDay.Size = New System.Drawing.Size(24, 20)
 		Me.textboxBirthDay.TabIndex = 1
 		Me.textboxBirthDay.Text = "24"
@@ -287,15 +273,9 @@
 		'
 		Me.textboxGender.Location = New System.Drawing.Point(181, 71)
 		Me.textboxGender.Name = "textboxGender"
+		Me.textboxGender.ReadOnly = true
 		Me.textboxGender.Size = New System.Drawing.Size(169, 20)
 		Me.textboxGender.TabIndex = 1
-		'
-		'textboxTotalBalance
-		'
-		Me.textboxTotalBalance.Location = New System.Drawing.Point(181, 149)
-		Me.textboxTotalBalance.Name = "textboxTotalBalance"
-		Me.textboxTotalBalance.Size = New System.Drawing.Size(169, 20)
-		Me.textboxTotalBalance.TabIndex = 1
 		'
 		'labelNameFirst
 		'
@@ -310,6 +290,7 @@
 		'
 		Me.textboxNameLast.Location = New System.Drawing.Point(6, 149)
 		Me.textboxNameLast.Name = "textboxNameLast"
+		Me.textboxNameLast.ReadOnly = true
 		Me.textboxNameLast.Size = New System.Drawing.Size(169, 20)
 		Me.textboxNameLast.TabIndex = 1
 		'
@@ -317,6 +298,7 @@
 		'
 		Me.textboxBirthMonth.Location = New System.Drawing.Point(226, 32)
 		Me.textboxBirthMonth.Name = "textboxBirthMonth"
+		Me.textboxBirthMonth.ReadOnly = true
 		Me.textboxBirthMonth.Size = New System.Drawing.Size(26, 20)
 		Me.textboxBirthMonth.TabIndex = 1
 		Me.textboxBirthMonth.Text = "09"
@@ -325,6 +307,7 @@
 		'
 		Me.textboxNameNick.Location = New System.Drawing.Point(6, 71)
 		Me.textboxNameNick.Name = "textboxNameNick"
+		Me.textboxNameNick.ReadOnly = true
 		Me.textboxNameNick.Size = New System.Drawing.Size(169, 20)
 		Me.textboxNameNick.TabIndex = 1
 		'
@@ -428,10 +411,6 @@
 		'
 		'groupboxDates
 		'
-		Me.groupboxDates.Controls.Add(Me.labelCreatedTime)
-		Me.groupboxDates.Controls.Add(Me.textboxCreatedTime)
-		Me.groupboxDates.Controls.Add(Me.labelCreatedDate)
-		Me.groupboxDates.Controls.Add(Me.textboxCreatedDate)
 		Me.groupboxDates.Controls.Add(Me.labelPlaycycles)
 		Me.groupboxDates.Controls.Add(Me.textboxPlaycycles)
 		Me.groupboxDates.Location = New System.Drawing.Point(6, 6)
@@ -440,40 +419,6 @@
 		Me.groupboxDates.TabIndex = 7
 		Me.groupboxDates.TabStop = false
 		Me.groupboxDates.Text = "Time and Dates"
-		'
-		'labelCreatedTime
-		'
-		Me.labelCreatedTime.AutoSize = true
-		Me.labelCreatedTime.Location = New System.Drawing.Point(184, 55)
-		Me.labelCreatedTime.Name = "labelCreatedTime"
-		Me.labelCreatedTime.Size = New System.Drawing.Size(70, 13)
-		Me.labelCreatedTime.TabIndex = 0
-		Me.labelCreatedTime.Text = "Time Created"
-		'
-		'textboxCreatedTime
-		'
-		Me.textboxCreatedTime.Location = New System.Drawing.Point(187, 71)
-		Me.textboxCreatedTime.Name = "textboxCreatedTime"
-		Me.textboxCreatedTime.ReadOnly = true
-		Me.textboxCreatedTime.Size = New System.Drawing.Size(169, 20)
-		Me.textboxCreatedTime.TabIndex = 1
-		'
-		'labelCreatedDate
-		'
-		Me.labelCreatedDate.AutoSize = true
-		Me.labelCreatedDate.Location = New System.Drawing.Point(184, 16)
-		Me.labelCreatedDate.Name = "labelCreatedDate"
-		Me.labelCreatedDate.Size = New System.Drawing.Size(70, 13)
-		Me.labelCreatedDate.TabIndex = 0
-		Me.labelCreatedDate.Text = "Date Created"
-		'
-		'textboxCreatedDate
-		'
-		Me.textboxCreatedDate.Location = New System.Drawing.Point(187, 32)
-		Me.textboxCreatedDate.Name = "textboxCreatedDate"
-		Me.textboxCreatedDate.ReadOnly = true
-		Me.textboxCreatedDate.Size = New System.Drawing.Size(169, 20)
-		Me.textboxCreatedDate.TabIndex = 1
 		'
 		'labelPlaycycles
 		'
@@ -634,16 +579,10 @@
 	Private labelCreateDate As System.Windows.Forms.Label
 	Private textboxCreateTime As System.Windows.Forms.TextBox
 	Private labelCreateTime As System.Windows.Forms.Label
-	Private textboxTotalBalance As System.Windows.Forms.TextBox
-	Private labelTotalBalance As System.Windows.Forms.Label
 	Private buttonDC As System.Windows.Forms.Button
 	Private buttonItemManagement As System.Windows.Forms.Button
 	Private buttonMap As System.Windows.Forms.Button
 	Private groupboxDates As System.Windows.Forms.GroupBox
-	Private labelCreatedTime As System.Windows.Forms.Label
-	Private textboxCreatedTime As System.Windows.Forms.TextBox
-	Private labelCreatedDate As System.Windows.Forms.Label
-	Private textboxCreatedDate As System.Windows.Forms.TextBox
 	Private labelPlaycycles As System.Windows.Forms.Label
 	Private textboxPlaycycles As System.Windows.Forms.TextBox
 	Private groupboxFinances As System.Windows.Forms.GroupBox

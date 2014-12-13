@@ -87,6 +87,10 @@
       <DependentUpon>formMap.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\formMap.vb" />
+    <Compile Include="Forms\formNewGame.Designer.vb">
+      <DependentUpon>formNewGame.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formNewGame.vb" />
     <Compile Include="Forms\formOptions.Designer.vb">
       <DependentUpon>formOptions.vb</DependentUpon>
     </Compile>
@@ -132,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formNewGame.resx">
+      <DependentUpon>formNewGame.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formOptions.resx">
       <DependentUpon>formOptions.vb</DependentUpon>

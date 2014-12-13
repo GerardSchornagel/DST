@@ -12,10 +12,9 @@ Public Class player
 	Private integerBirthYear As Integer
 	Private integerBirthMonth As Integer
 	Private integerBirthDay As Integer
-	Private integerGender As Integer
+	Private stringGender As String
 	Private stringCreateDate As String
 	Private stringCreateTime As String
-	Private integerTotalBalance As Integer
 	
 ''' <summary>
 ''' Initializes player class.
@@ -26,14 +25,14 @@ Public Class player
 ''' <summary>
 ''' Loads or create a (blank) Profile.
 ''' </summary>
-	Friend Sub Load()
+	Friend Sub Load(Template() As String)
 		'Check for if file exists, if not create; else load.
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & cache.settingsGlobal.LastUser & "\player.pd") = False Then
-			NewPlayer()
+			NewPlayer(Template)
 			
 		Else
 			integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
-			ReDim stringPlayerData(10)
+			ReDim stringPlayerData(9)
 			stringPlayerData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "player.pd")
 			
 			'Write Private's
@@ -43,31 +42,39 @@ Public Class player
 			integerBirthYear = CType(stringPlayerData(4), Integer)
 			integerBirthMonth = CType(stringPlayerData(5), Integer)
 			integerBirthDay = CType(stringPlayerData(6), Integer)
-			integerGender = CType(stringPlayerData(7), Integer)
+			stringGender = stringPlayerData(7)
 			stringCreateDate = stringPlayerData(8)
 			stringCreateTime = stringPlayerData(9)
-			integerTotalBalance = CType(stringPlayerData(10), Integer)
 		End If
 	End Sub
 ''' <summary>
 ''' Creates a new player.
 ''' </summary>
-	Public Sub NewPlayer()
+	Public Sub NewPlayer(Template() As String)
 		integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
-		ReDim stringPlayerData(10)
+		ReDim stringPlayerData(9)
 		stringPlayerData(0) = CType(integerPlayerID, String)
-		stringPlayerData(1) = ""
-		stringPlayerData(2) = ""
-		stringPlayerData(3) = ""
-		stringPlayerData(4) = "0"
-		stringPlayerData(5) = "0"
-		stringPlayerData(6) = "0"
-		stringPlayerData(7) = "0"
-		stringPlayerData(8) = ""
-		stringPlayerData(9) = ""
-		stringPlayerData(10) = "0"
+		stringPlayerData(1) = Template(1)
+		stringPlayerData(2) = Template(2)
+		stringPlayerData(3) = Template(3)
+		stringPlayerData(4) = Template(4)
+		stringPlayerData(5) = Template(5)
+		stringPlayerData(6) = Template(6)
+		stringPlayerData(7) = Template(7)
+		stringPlayerData(8) = Template(8)
+		stringPlayerData(9) = Template(9)
 		'Start Writing New Player
 		SaveState()
+		'Write Private's
+		stringNameNick = stringPlayerData(1)
+		stringNameFirst = stringPlayerData(2)
+		stringNameLast = stringPlayerData(3)
+		integerBirthYear = CType(stringPlayerData(4), Integer)
+		integerBirthMonth = CType(stringPlayerData(5), Integer)
+		integerBirthDay = CType(stringPlayerData(6), Integer)
+		stringGender = stringPlayerData(7)
+		stringCreateDate = stringPlayerData(8)
+		stringCreateTime = stringPlayerData(9)
 	End Sub
 ''' <summary>
 ''' Saves the current state of the Player data.
@@ -160,15 +167,15 @@ Public Class player
 		End Set
 	End Property
 ''' <summary>
-''' Returns an Integer with the Gender (0=F 1=M)
+''' Returns an String with the Gender
 ''' </summary>
-	Public Property Gender As Integer
+	Public Property Gender As String
 		Get
-			Return integerGender
+			Return stringGender
 		End Get
-		Set(Value As Integer)
-			integerGender = Value
-			stringPlayerData(7) = CType(Value, String)
+		Set(Value As String)
+			stringGender = Value
+			stringPlayerData(7) = Value
 		End Set
 	End Property
 ''' <summary>
@@ -193,18 +200,6 @@ Public Class player
 		Set(Value As String)
 			stringCreateTime = Value
 			stringPlayerData(9) = Value
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the current total balance of all characters.
-''' </summary>
-	Public Property BalanceTotal As Integer
-		Get
-			Return integerTotalBalance
-		End Get
-		Set(Value As Integer)
-			integerTotalBalance = Value
-			stringPlayerData(10) = CType(Value, String)
 		End Set
 	End Property
 End Class
