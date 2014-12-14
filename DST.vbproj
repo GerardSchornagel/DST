@@ -58,6 +58,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Functions\mathematics.vb" />
     <Compile Include="Classes\Player\settings.vb" />
     <Compile Include="Classes\Structure\Storage\article.vb" />
     <Compile Include="Classes\Structure\Storage\storage.vb" />
