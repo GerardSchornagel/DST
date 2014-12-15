@@ -12,7 +12,8 @@ Public Module mathematics
 			
 			integerStoreLevel = randomGenerator.Next(store.arrayLevel.GetUpperBound(0))
 			integerStoreShelf = randomGenerator.Next(store.arrayLevel(integerStoreLevel).arrayShelf.GetUpperBound(0))
-			integerStoreBin = randomGenerator.Next(store.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin.GetUpperBound(0))
+			Dim temp As Integer = (store.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin.GetUpperBound(0))			
+			integerStoreBin = randomGenerator.Next(temp + 1)
 			stringBinName = cache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).ArticleName
 			integerBinQuantity = cache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity
 			integerBinPrice = cache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).ArticleLastSell
