@@ -76,6 +76,10 @@
     <Compile Include="Classes\NPC\customer.vb" />
     <Compile Include="Classes\Player\character.vb" />
     <Compile Include="Classes\Player\player.vb" />
+    <Compile Include="Forms\formEditor.Designer.vb">
+      <DependentUpon>formEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formEditor.vb" />
     <Compile Include="Forms\formGame.Designer.vb">
       <DependentUpon>formGame.vb</DependentUpon>
     </Compile>
@@ -131,6 +135,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\cache.resx">
       <DependentUpon>cache.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formEditor.resx">
+      <DependentUpon>formEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formGame.resx">
       <DependentUpon>formGame.vb</DependentUpon>

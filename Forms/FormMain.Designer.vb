@@ -30,6 +30,7 @@
 		Me.buttonOptions = New System.Windows.Forms.Button()
 		Me.buttonQuit = New System.Windows.Forms.Button()
 		Me.buttonLoad = New System.Windows.Forms.Button()
+		Me.buttonEditor = New System.Windows.Forms.Button()
 		Me.SuspendLayout
 		'
 		'buttonNewGame
@@ -65,7 +66,7 @@
 		'
 		'buttonQuit
 		'
-		Me.buttonQuit.Location = New System.Drawing.Point(12, 128)
+		Me.buttonQuit.Location = New System.Drawing.Point(13, 157)
 		Me.buttonQuit.Name = "buttonQuit"
 		Me.buttonQuit.Size = New System.Drawing.Size(157, 23)
 		Me.buttonQuit.TabIndex = 0
@@ -76,7 +77,7 @@
 		'buttonLoad
 		'
 		Me.buttonLoad.Enabled = false
-		Me.buttonLoad.Location = New System.Drawing.Point(11, 70)
+		Me.buttonLoad.Location = New System.Drawing.Point(12, 70)
 		Me.buttonLoad.Name = "buttonLoad"
 		Me.buttonLoad.Size = New System.Drawing.Size(157, 23)
 		Me.buttonLoad.TabIndex = 0
@@ -84,15 +85,26 @@
 		Me.buttonLoad.UseVisualStyleBackColor = true
 		AddHandler Me.buttonLoad.Click, AddressOf Me.buttonLoadClick
 		'
+		'buttonEditor
+		'
+		Me.buttonEditor.Location = New System.Drawing.Point(12, 128)
+		Me.buttonEditor.Name = "buttonEditor"
+		Me.buttonEditor.Size = New System.Drawing.Size(157, 23)
+		Me.buttonEditor.TabIndex = 0
+		Me.buttonEditor.Text = "Editor..."
+		Me.buttonEditor.UseVisualStyleBackColor = true
+		AddHandler Me.buttonEditor.Click, AddressOf Me.buttonEditorClick
+		'
 		'formMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(182, 161)
+		Me.ClientSize = New System.Drawing.Size(182, 191)
 		Me.Controls.Add(Me.buttonNewGame)
 		Me.Controls.Add(Me.buttonResumeGame)
 		Me.Controls.Add(Me.buttonLoad)
 		Me.Controls.Add(Me.buttonOptions)
+		Me.Controls.Add(Me.buttonEditor)
 		Me.Controls.Add(Me.buttonQuit)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
 		Me.MaximizeBox = false
@@ -102,6 +114,7 @@
 		AddHandler Load, AddressOf Me.formMainLoad
 		Me.ResumeLayout(false)
 	End Sub
+	Private buttonEditor As System.Windows.Forms.Button
 	Private buttonNewGame As System.Windows.Forms.Button
 	Private buttonResumeGame As System.Windows.Forms.Button
 	Private buttonLoad As System.Windows.Forms.Button

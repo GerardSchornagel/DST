@@ -9,7 +9,8 @@ Public Partial Class cache
 	Friend Shared MapForm As System.Windows.Forms.Form
 	Friend Shared DCForm As System.Windows.Forms.Form
 	Friend Shared NewGameForm As System.Windows.Forms.Form
-
+	Friend Shared EditorForm As System.Windows.Forms.Form
+	
 	Friend Shared settingsGlobal As New settings()
 	Friend Shared playerProfile As New player()
 	Friend Shared playerCharacter As New character()

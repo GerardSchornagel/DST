@@ -99,7 +99,7 @@ Public Class iniHandler
 			If stringMediator(integerMediator) = "" Then
 				integerMediator += 1
 				Continue Do
-			ElseIf stringMediator(integerMediator).Substring(0, 1) = "[" Then
+			ElseIf stringMediator(integerMediator).Substring(0, 1) = "<" Then
 				integerColumn += 1
 				integerRow = 0
 				stringOutput(integerColumn, integerRow) = stringMediator(integerMediator)

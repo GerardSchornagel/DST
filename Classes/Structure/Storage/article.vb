@@ -10,7 +10,7 @@ Public Class article
 	Private integerArticleLastSell As Integer = 0
 	Private integerArticleLastBuy As Integer = 0
 	Private stringItemName As String = "Nothing"
-		
+	
 	Private fileHandler As New binaryFileHandler
 	Private stringDataItem() As String
 	Public stringDataArticle() As String = New String() {"Nothing", "Nothing", "0", "0", "0"}

@@ -10,6 +10,7 @@ Public Module mathematics
 			Dim CustomerNew As New customer
 			CustomerNew.newCustomer()
 			
+			stringReturn = 0
 			integerStoreLevel = randomGenerator.Next(store.arrayLevel.GetUpperBound(0))
 			integerStoreShelf = randomGenerator.Next(store.arrayLevel(integerStoreLevel).arrayShelf.GetUpperBound(0))
 			Dim temp As Integer = (store.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin.GetUpperBound(0))			

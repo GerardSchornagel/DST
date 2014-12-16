@@ -42,4 +42,9 @@ Public Partial Class formMain
 		'Check for WarningMessage Setting and show the warning with Yes/No, else just End
 		If cache.settingsGlobal.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
 	End Sub
+	
+	Sub buttonEditorClick(sender As Object, e As EventArgs)
+		cache.EditorForm = New formEditor
+		cache.EditorForm.Show()
+	End Sub
 End Class
