@@ -5,8 +5,8 @@ Public Class player
 	Private filehandler As New binaryFileHandler()
 	Dim stringPlayerData() As String
 	
-	Private integerPlayerID As Integer
-	Private stringNameNick As String
+	Private integerPlayerId As Integer
+	Private stringNickname As String
 	Private stringNameFirst As String
 	Private stringNameLast As String
 	Private integerBirthYear As Integer
@@ -25,18 +25,18 @@ Public Class player
 ''' <summary>
 ''' Loads or create a (blank) Profile.
 ''' </summary>
-	Friend Sub Load(Template() As String)
+	Friend Sub Load(PlayerInfo() As String)
 		'Check for if file exists, if not create; else load.
-		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & cache.settingsGlobal.LastUser & "\player.pd") = False Then
-			NewPlayer(Template)
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastUser & "\player.pd") = False Then
+			NewPlayer(PlayerInfo)
 			
 		Else
-			integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
+			integerPlayerId = CType(gamecache.settingsGlobal.LastUser, Integer)
 			ReDim stringPlayerData(9)
-			stringPlayerData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "player.pd")
+			stringPlayerData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerId & "\", "player.pd")
 			
 			'Write Private's
-			stringNameNick = stringPlayerData(1)
+			stringNickname = stringPlayerData(1)
 			stringNameFirst = stringPlayerData(2)
 			stringNameLast = stringPlayerData(3)
 			integerBirthYear = CType(stringPlayerData(4), Integer)
@@ -50,23 +50,23 @@ Public Class player
 ''' <summary>
 ''' Creates a new player.
 ''' </summary>
-	Public Sub NewPlayer(Template() As String)
-		integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
+	Public Sub NewPlayer(PlayerInfo() As String)
+		integerPlayerId = CType(gamecache.settingsGlobal.LastUser, Integer)
 		ReDim stringPlayerData(9)
-		stringPlayerData(0) = CType(integerPlayerID, String)
-		stringPlayerData(1) = Template(1)
-		stringPlayerData(2) = Template(2)
-		stringPlayerData(3) = Template(3)
-		stringPlayerData(4) = Template(4)
-		stringPlayerData(5) = Template(5)
-		stringPlayerData(6) = Template(6)
-		stringPlayerData(7) = Template(7)
-		stringPlayerData(8) = Template(8)
-		stringPlayerData(9) = Template(9)
+		stringPlayerData(0) = CType(integerPlayerId, String)
+		stringPlayerData(1) = PlayerInfo(1)
+		stringPlayerData(2) = PlayerInfo(2)
+		stringPlayerData(3) = PlayerInfo(3)
+		stringPlayerData(4) = PlayerInfo(4)
+		stringPlayerData(5) = PlayerInfo(5)
+		stringPlayerData(6) = PlayerInfo(6)
+		stringPlayerData(7) = PlayerInfo(7)
+		stringPlayerData(8) = PlayerInfo(8)
+		stringPlayerData(9) = PlayerInfo(9)
 		'Start Writing New Player
 		SaveState()
 		'Write Private's
-		stringNameNick = stringPlayerData(1)
+		stringNickname = stringPlayerData(1)
 		stringNameFirst = stringPlayerData(2)
 		stringNameLast = stringPlayerData(3)
 		integerBirthYear = CType(stringPlayerData(4), Integer)
@@ -80,29 +80,29 @@ Public Class player
 ''' Saves the current state of the Player data.
 ''' </summary>
 	Public Sub SaveState()
-		filehandler.Save(System.IO.Directory.GetCurrentDirectory & "\Save\" & integerPlayerID & "\", "player.pd", , stringPlayerData)
+		filehandler.Save(System.IO.Directory.GetCurrentDirectory & "\Save\" & integerPlayerId & "\", "player.pd", , stringPlayerData)
 	End Sub
 ''' <summary>
 ''' Returns an Integer with the Player ID.
 ''' </summary>
-	Public Property PlayerID As Integer
+	Public Property PlayerId As Integer
 		Get
-			Return integerPlayerID
+			Return integerPlayerId
 		End Get
 		Set(Value As Integer)
-			integerPlayerID = Value
+			integerPlayerId = Value
 			stringPlayerData(0) = CType(Value, String)
 		End Set
 	End Property
 ''' <summary>
 ''' Returns a String with the Nick name.
 ''' </summary>
-	Public Property NickName As String
+	Public Property Nickname As String
 		Get
-			Return stringNameNick
+			Return stringNickname
 		End Get
 		Set(Value As String)
-			stringNameNick = Value
+			stringNickname = Value
 			stringPlayerData(1) = Value
 		End Set
 	End Property

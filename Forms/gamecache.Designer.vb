@@ -1,4 +1,4 @@
-﻿Partial Class cache
+﻿Partial Class gamecache
 	Inherits System.Windows.Forms.Form
 	
 	''' <summary>

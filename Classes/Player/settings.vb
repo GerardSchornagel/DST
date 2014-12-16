@@ -114,7 +114,7 @@ Public Class settings
 ''' <summary>
 ''' Message if there are options are choosen via the main menu, the program has to be restarted.
 ''' </summary>
-	Public Property MessagesOptionsApplyrestart As Boolean
+	Public Property MessagesOptionsApplyRestart As Boolean
 		Get
 			Return CType(ReturnValue("OptionsApplyRestart"), Boolean)
 		End Get

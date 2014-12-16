@@ -13,45 +13,45 @@ Public Partial Class formNewGame
 	End Sub
 	
 	Sub ButtonCreateClick(sender As Object, e As EventArgs)
-		Dim Template(9) As String
-		Template(0) = ""
-		Template(1) = textboxNameNick.Text
-		Template(2) = textboxNameFirst.Text
-		Template(3) = textboxNameLast.Text
-		Template(4) = textboxBirthYear.Text
-		Template(5) = textboxBirthMonth.Text
-		Template(6) = textboxBirthDay.Text
-		Template(7) = checkboxGender.Text
-		Template(8) = textboxCreateDate.Text
-		Template(9) = textboxCreateTime.Text
-		cache.NewPlayer(Template)
+		Dim PlayerInfo(9) As String
+		PlayerInfo(0) = ""
+		PlayerInfo(1) = textboxNameNick.Text
+		PlayerInfo(2) = textboxNameFirst.Text
+		PlayerInfo(3) = textboxNameLast.Text
+		PlayerInfo(4) = textboxBirthYear.Text
+		PlayerInfo(5) = textboxBirthMonth.Text
+		PlayerInfo(6) = textboxBirthDay.Text
+		PlayerInfo(7) = checkboxGender.Text
+		PlayerInfo(8) = textboxCreateDate.Text
+		PlayerInfo(9) = textboxCreateTime.Text
+		gamecache.NewPlayer(PlayerInfo)
 	End Sub
 	
-	Sub TextboxBirthYearLostFocus(sender As Object, e As EventArgs)
+	Sub TextBoxBirthYearLostFocus(sender As Object, e As EventArgs)
 				Try
 			textboxBirthYear.Text = CType(CType(textboxBirthYear.Text, Integer), String)
-		Catch ex As Exception
+		Catch ex As System.FormatException
 			textboxBirthYear.Text = ""
 		End Try
 	End Sub
 	
-	Sub TextboxBirthMonthLostFocus(sender As Object, e As EventArgs)
+	Sub TextBoxBirthMonthLostFocus(sender As Object, e As EventArgs)
 				Try
 			TextboxBirthMonth.Text = CType(CType(TextboxBirthMonth.Text, Integer), String)
-		Catch ex As Exception
+		Catch ex As System.FormatException
 			TextboxBirthMonth.Text = ""
 		End Try
 	End Sub
 	
-	Sub TextboxBirthDayLostFocus(sender As Object, e As EventArgs)
+	Sub TextBoxBirthDayLostFocus(sender As Object, e As EventArgs)
 				Try
 			TextboxBirthDay.Text = CType(CType(TextboxBirthDay.Text, Integer), String)
-		Catch ex As Exception
+		Catch ex As System.FormatException
 			TextboxBirthDay.Text = ""
 		End Try
 	End Sub
 	
-	Sub CheckboxGenderCheckedChanged(sender As Object, e As EventArgs)
+	Sub CheckBoxGenderCheckedChanged(sender As Object, e As EventArgs)
 		If checkboxGender.Checked = True Then
 			checkboxGender.Text = "Female"
 		Else

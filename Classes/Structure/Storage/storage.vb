@@ -37,7 +37,7 @@ Public Class storage
 ''' <summary>
 ''' Loads all Shelves with all Bin's with all Items.
 ''' </summary>
-	Public Sub StorageLoad()
+	Public Shared Sub StorageLoad()
 		For Each Section As section In arraySection
 			Section.SectionInitialize()
 			Section.SectionLoad()

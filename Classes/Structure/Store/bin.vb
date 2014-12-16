@@ -30,8 +30,8 @@ Public Class bin
 		integerLinkArticle = CType(stringBinData(2), Integer)
 		integerBinQuantity = CType(stringBinData(3), Integer)
 		
-		stringLinkPath = cache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticlePath
-		stringLinkFile = cache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticleFile
+		stringLinkPath = gamecache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticlePath
+		stringLinkFile = gamecache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticleFile
 	End Sub
 ''' <summary>
 ''' Saves the Bin and loads the linked Item Data.
@@ -44,8 +44,8 @@ Public Class bin
 		stringBinData(3) = CType(integerBinQuantity, String)
 		fileHandler.Save(PathShelf, stringBinFile, , stringBinData)
 		
-		stringLinkPath = cache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticlePath
-		stringLinkFile = cache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticleFile
+		stringLinkPath = gamecache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticlePath
+		stringLinkFile = gamecache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ArticleFile
 	End Sub
 ''' <summary>
 ''' Get/Adjust the path of the Bin without ItemLoad().
@@ -118,7 +118,7 @@ Public Class bin
 	''' </summary>
 	ReadOnly Public Property ArticleName As String
 		Get
-			Return cache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ItemName
+			Return gamecache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).ItemLink.Name_Title
 		End Get
 	End Property
 	''' <summary>
@@ -126,7 +126,7 @@ Public Class bin
 	''' </summary>
 	ReadOnly Public Property ArticleLastSell As Integer
 		Get
-			Return cache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).LastSell
+			Return gamecache.playerStorage.arraySection(integerLinkSection).arrayArticle(integerLinkArticle).LastSell
 		End Get
 	End Property
 End Class

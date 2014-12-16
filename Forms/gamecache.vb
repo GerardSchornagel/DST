@@ -1,7 +1,7 @@
 ﻿''' <summary>
 ''' Description of form/class/etc.
 ''' </summary>
-Public Partial Class cache
+Public Partial Class gamecache
 	Friend Shared MainMenu as New formMain()
 	Friend Shared StatusForm As System.Windows.Forms.Form
 	Friend Shared GameForm As System.Windows.Forms.Form
@@ -30,13 +30,13 @@ Public Partial Class cache
 		Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
 	End Sub
 	
-	Public Sub NewGame()
+	Public Shared Sub NewGame()
 		NewGameForm = New formNewGame
 		NewGameForm.Show()
 		MainMenu.Hide()
 	End Sub
 	
-	Public Sub NewPlayer(Template() As String)
+	Public Sub NewPlayer(PlayerInfo() As String)
 		NewGameForm.Hide()
 		progressbarLoading.Value = 0
 		labelDescription.Text = "Creating New Player."
@@ -44,7 +44,7 @@ Public Partial Class cache
 		settingsGlobal.NewPlayer()
 		progressbarLoading.Value = 1
 		labelDescription.Text = "Making new Profile."
-		playerProfile.Load(Template)
+		playerProfile.Load(PlayerInfo)
 		progressbarLoading.Value = 2
 		labelDescription.Text = "Making new Character."
 		playerCharacter.Load()
@@ -70,7 +70,7 @@ Public Partial Class cache
 		Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
 	End Sub
 	
-	Public Sub StartGame()
+	Public Shared Sub StartGame()
 		StatusForm = New formStatus()
 		GameForm = New formGame()
 		ItemManagementForm = New formItemManagement()

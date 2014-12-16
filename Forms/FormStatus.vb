@@ -1,5 +1,4 @@
 ﻿Public Partial Class formStatus	
-	Private stringStorageSelected() As String
 	Private timerUpdate As New System.Windows.Forms.Timer
 	
 	Public Sub New()
@@ -13,47 +12,47 @@
 		timerUpdate.Interval = 2500
 		timerUpdate.Start()
 		
-		textboxBalance.Text = CType(cache.playerCharacter.Balance, String)
+		textboxBalance.Text = CType(gamecache.playerCharacter.Balance, String)
 		'Profile Tab
-		textboxPlayerID.Text = CType(cache.playerCharacter.PlayerID, String)
-		textboxNameNick.Text = cache.playerProfile.NickName
-		textboxNameFirst.Text = cache.playerProfile.FirstName
-		textboxNameLast.Text = cache.playerProfile.LastName
-		textboxBirthYear.Text = CType(cache.playerProfile.BirthYear, String)
-		textboxBirthMonth.Text = CType(cache.playerProfile.BirthMonth, String)
-		textboxBirthDay.Text = CType(cache.playerProfile.BirthDay, String)
-		textboxGender.Text = cache.playerProfile.Gender
-		textboxCreateDate.Text = cache.playerProfile.CreateDate
-		textboxCreateTime.Text = cache.playerProfile.CreateTime
+		textboxPlayerID.Text = CType(gamecache.playerCharacter.PlayerID, String)
+		textboxNameNick.Text = gamecache.playerProfile.NickName
+		textboxNameFirst.Text = gamecache.playerProfile.FirstName
+		textboxNameLast.Text = gamecache.playerProfile.LastName
+		textboxBirthYear.Text = CType(gamecache.playerProfile.BirthYear, String)
+		textboxBirthMonth.Text = CType(gamecache.playerProfile.BirthMonth, String)
+		textboxBirthDay.Text = CType(gamecache.playerProfile.BirthDay, String)
+		textboxGender.Text = gamecache.playerProfile.Gender
+		textboxCreateDate.Text = gamecache.playerProfile.CreateDate
+		textboxCreateTime.Text = gamecache.playerProfile.CreateTime
 		'Character Tab
-		textboxLocation.Text = cache.playerCharacter.CurrentLocation
-		textboxStore.Text = cache.playerCharacter.CurrentStore
-		textboxMoneyEarned.Text = CType(cache.playerCharacter.TotalEarnings, String)
-		textboxMoneySpent.Text = CType(cache.playerCharacter.TotalSpendings, String)
-		textboxItemsSold.Text = CType(cache.playerCharacter.TotalItemsSold, String)
-		textboxPlaycycles.Text = CType(cache.playerCharacter.TotalDayCycles, String)
+		textboxLocation.Text = gamecache.playerCharacter.CurrentLocation
+		textboxStore.Text = gamecache.playerCharacter.CurrentStore
+		textboxMoneyEarned.Text = CType(gamecache.playerCharacter.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(gamecache.playerCharacter.TotalSpendings, String)
+		textboxItemsSold.Text = CType(gamecache.playerCharacter.TotalItemsSold, String)
+		textboxPlaycycles.Text = CType(gamecache.playerCharacter.TotalDayCycles, String)
 	End Sub
 	
 	Sub buttonExitClick(sender As Object, e As EventArgs)
-		'Add code for clearing and 'Resetting' the cache.
+		'Add code for clearing and 'Resetting' the gamecache.
 	End Sub
 	
 	Sub ButtonMapClick(sender As Object, e As EventArgs)
-		cache.MapForm.Show()
-		cache.MapForm.ShowInTaskbar = True
-		cache.MapForm.WindowState = System.Windows.Forms.FormWindowState.Normal
+		gamecache.MapForm.Show()
+		gamecache.MapForm.ShowInTaskbar = True
+		gamecache.MapForm.WindowState = System.Windows.Forms.FormWindowState.Normal
 	End Sub
 	
 	Sub buttonDCClick(sender As Object, e As EventArgs)
-		cache.DCForm.Show()
-		cache.DCForm.ShowInTaskbar = True
-		cache.DCForm.WindowState = System.Windows.Forms.FormWindowState.Normal
+		gamecache.DCForm.Show()
+		gamecache.DCForm.ShowInTaskbar = True
+		gamecache.DCForm.WindowState = System.Windows.Forms.FormWindowState.Normal
 	End Sub
 	
 	Sub buttonItemManagementClick(sender As Object, e As EventArgs)
-		cache.ItemManagementForm.Show()
-		cache.ItemManagementForm.ShowInTaskbar = True
-		cache.ItemManagementForm.WindowState = System.Windows.Forms.FormWindowState.Normal
+		gamecache.ItemManagementForm.Show()
+		gamecache.ItemManagementForm.ShowInTaskbar = True
+		gamecache.ItemManagementForm.WindowState = System.Windows.Forms.FormWindowState.Normal
 	End Sub
 	
 	Private Sub timerUpdateTick(sender As Object, e As system.EventArgs)
@@ -61,10 +60,10 @@
 	End Sub
 	
 	Private Sub Reload()
-		textboxBalance.Text = CType(cache.playerCharacter.Balance, String)
-		textboxPlaycycles.Text = CType(cache.playerCharacter.TotalDayCycles, String)
-		textboxMoneyEarned.Text = CType(cache.playerCharacter.TotalEarnings, String)
-		textboxMoneySpent.Text = CType(cache.playerCharacter.TotalSpendings, String)
-		textboxItemsSold.Text = CType(cache.playerCharacter.TotalItemsSold, String)
+		textboxBalance.Text = CType(gamecache.playerCharacter.Balance, String)
+		textboxPlaycycles.Text = CType(gamecache.playerCharacter.TotalDayCycles, String)
+		textboxMoneyEarned.Text = CType(gamecache.playerCharacter.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(gamecache.playerCharacter.TotalSpendings, String)
+		textboxItemsSold.Text = CType(gamecache.playerCharacter.TotalItemsSold, String)
 	End Sub
 End Class

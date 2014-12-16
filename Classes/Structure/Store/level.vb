@@ -37,7 +37,7 @@ Public Class level
 ''' <summary>
 ''' Loads all Shelves with all Bin's with all Items.
 ''' </summary>
-	Public Sub ShelfLoad()
+	Public Shared Sub ShelfLoad()
 		For Each item As Shelf In arrayShelf
 			item.ShelfInitialize()
 			item.ShelfLoad()

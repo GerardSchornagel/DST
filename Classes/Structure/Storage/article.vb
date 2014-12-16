@@ -1,19 +1,18 @@
 ﻿''' <summary>
 ''' DataType representing 1 item with 1 article through string().
 ''' </summary>
-Public Class article	
+Public Class Article
 	Private stringArticlePath As String = "Nothing"
 	Private stringArticleFile As String = "Nothing"
 	Private stringItemPath As String = "Nothing"
 	Private stringItemFile As String = "Nothing"
+	Private itemSelected As item
 	Private integerArticleQuantity As Integer = 0
 	Private integerArticleLastSell As Integer = 0
 	Private integerArticleLastBuy As Integer = 0
-	Private stringItemName As String = "Nothing"
 	
 	Private fileHandler As New binaryFileHandler
-	Private stringDataItem() As String
-	Public stringDataArticle() As String = New String() {"Nothing", "Nothing", "0", "0", "0"}
+	Private stringDataArticle() As String = New String() {"Nothing", "Nothing", "0", "0", "0"}
 ''' <summary>
 ''' Resizes stringDataArticle to 4 (PathItem, FileItem, Quantity, LastSell, LastBuy).
 ''' </summary>
@@ -33,8 +32,7 @@ Public Class article
 		integerArticleLastBuy = CType(stringDataArticle(4), Integer)
 		
 		If stringItemPath = "Nothing" then Exit Sub
-		stringDataItem = fileHandler.LoadRow(stringItemPath, stringItemFile)
-		stringItemName = stringDataItem(5)
+		itemSelected = New item(stringItemPath & stringItemFile)
 	End Sub
 ''' <summary>
 ''' Saves the item and loads the linked Item Data.
@@ -49,8 +47,7 @@ Public Class article
 		fileHandler.Save(PathShelf, stringArticleFile, , stringDataArticle)
 		
 		If stringItemPath = "Nothing" then Exit Sub
-		stringDataItem = fileHandler.LoadRow(stringItemPath, stringItemFile)
-		stringItemName = stringDataItem(5)
+		itemSelected = New item(stringItemPath & stringItemFile)
 	End Sub
 ''' <summary>
 ''' Get/Adjust the path of the article in storage without ItemLoad().
@@ -99,13 +96,10 @@ Public Class article
 ''' <summary>
 ''' Get the Name of the Item Data.
 ''' </summary>
-	Public Property ItemName As String
+	Public ReadOnly Property ItemLink As item
 		Get
-			Return stringItemName
+			Return itemSelected
 		End Get
-		Set (Value As String)
-			stringItemName = Value
-		End Set
 	End Property
 ''' <summary>
 ''' Get/Adjust the Quantity without itemSave().

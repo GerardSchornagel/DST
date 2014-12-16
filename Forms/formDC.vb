@@ -1,72 +1,74 @@
 ﻿Public Partial Class formDC
-	Private filehandler As New binaryFileHandler()
-	Private stringPathItem As String = System.IO.Directory.GetCurrentDirectory & "\Data\Items\"
-	Private arrayDataFile As String
-	Private arrayItemSelected() As String
+	Private RandomInteger As New Random
+	Private stringItemSelected(,) As String
 	Private stringItemOrder() As String
+	
+	Private stringPathItem As String = System.IO.Directory.GetCurrentDirectory & "\Data\Items\"
+	
 	Private integerCounterArticle As Integer
 	Private integerCounterSearch As Integer
-	
-	Private RandomInteger As New Random
 	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
 	End Sub
-	
-	' filename = [Department]\[Genre]\[Category]\[Itemname].pd
-	' filedata = Department<>Genre<>GenreSub<>Article<>Manufactor<>Itemname<>WorthBase<>Quality
-	
+		
 	Sub formItemManagementLoad(sender As Object, e As EventArgs)
 		'Fill the dropdown's with the standard template (for now hard-coded, later through a *.pd with it's own class for communications.)
 		'	'For this function make a cache with all data loaded into it, this should make it more searchable too.
 		
 		' Restaurant; Services
-		comboboxDepartment.Items.Add("Store")
+		comboboxFamily.Items.Add("Office")
 		
 		' AnimalCare; AudioVisual; Bathroom; Bedroom; Candy; Clothing; Cosmetics; Decorative; Kitchenware; MajorDomesticAppliances; Media; SmallDomesticAppliances; Toy
-		comboboxGenre.Items.Add("Office")
-		
 		comboboxCategory.Items.Add("Supplies")
+		
+		comboboxGenre.Items.Add("Writing")
 	End Sub
 	
-	Sub ComboboxDepartmentSelectedIndexChanged(sender As Object, e As EventArgs)
+	Sub ComboboxFamilySelectedIndexChanged(sender As Object, e As EventArgs)
 		'ComboboxProductName.Items.Clear()		
 		'Loop through every file in the correspondending folder and add to listbox.
 		'StringPathProducts & Department
 	End Sub
 	
-	Sub ComboboxGenreSelectedIndexChanged(sender As Object, e As EventArgs)
+	Sub ComboboxCategorySelectedIndexChanged(sender As Object, e As EventArgs)
 		'ComboboxProductName.Items.Clear()		
 		'Loop through every file in the correspondending folder and add to listbox.
 		'StringPathProducts & Department & "\" & Genre
 	End Sub
 	
-	Sub ComboboxCategorySelectedIndexChanged(sender As Object, e As EventArgs)
+	Sub ComboboxGenreSelectedIndexChanged(sender As Object, e As EventArgs)
 		comboboxName.Items.Clear()
 		
 		'Loop through every file in the correspondending folder and add to listbox.
-		For Each file In System.IO.Directory.GetFiles(stringPathItem & "Store\Office\" & comboboxCategory.Text & "\", "*", System.IO.SearchOption.TopDirectoryOnly)
-			comboboxName.Items.Add(CType((file.Remove(file.Length - 3, 3)).Remove(0, stringPathItem.Length + (CType("Store\Office\Supplies\", String).Length)), String))
+		For Each file In System.IO.Directory.GetFiles(stringPathItem & "Store\Office\Supplies\" & comboboxGenre.Text & "\", "*.pd", System.IO.SearchOption.TopDirectoryOnly)
+			comboboxName.Items.Add(CType((file.Remove(file.Length - 3, 3)).Remove(0, stringPathItem.Length + (CType("Store\Office\Supplies\Writing\", String).Length)), String))
 		Next
 	End Sub
 	
 	Sub ComboboxNameSelectedIndexChanged(sender As Object, e As EventArgs)
-		'Check for mis-click
+		'Check for miss-click
 		If comboboxName.Text = "" Then Exit Sub
-		arrayItemSelected = filehandler.LoadRow(stringPathItem & "Store\Office\Supplies\", comboboxName.Text & ".pd")
-				
-		labelDepartmentDisplay.Text = arrayItemSelected(0)
-		labelGenreDisplay.Text = arrayItemSelected(1)
-		labelGenreSubDisplay.Text = arrayItemSelected(2)
-		labelCategoryDisplay.Text = arrayItemSelected(3)
-		labelManufactorerDisplay.Text = arrayItemSelected(4)
-		labelItemDisplay.Text = arrayItemSelected(5)
-		labelWorthBaseDisplay.Text = arrayItemSelected(6)
-		labelQualityDisplay.Text = arrayItemSelected(7)
+		Dim itemSelected As New item(stringPathItem & "Store\Office\Supplies\" & comboboxGenre.Text & "\" & comboboxName.Text & ".pd")
 		
-		textboxBuyPrice.Text = CType(RandomInteger.Next(CType(CType(labelWorthBaseDisplay.Text, Double) - (CType(labelWorthBaseDisplay.Text, Double) * 0.50), Integer), CType(CType(labelWorthBaseDisplay.Text, Double) + (CType(labelWorthBaseDisplay.Text, Double) * 0.25), Integer)
-		), String)
+		labelItemFamilyDisplay.Text = itemSelected.Family
+		labelItemCategoryDisplay.Text = itemSelected.Category
+		labelItemGenreDisplay.Text = itemSelected.Genre
+		labelItemCompanyDisplay.Text = itemSelected.Company_Publisher
+		labelItemBrandDisplay.Text = itemSelected.Brand_Author
+		labelItemItemNameDisplay.Text = itemSelected.Name_Title
+		
+		labelStatisticsQualityDisplay.Text = itemSelected.Quality
+		labelStatisticsPopularityDisplay.Text = itemSelected.Popularity
+		labelStatisticsRarityDisplay.Text = itemSelected.Rarity
+		labelStatisticsBaseWorthDisplay.Text = itemSelected.BaseWorth
+		labelStatisticsItemTierDisplay.Text = itemSelected.ItemTier
+		
+		labelVariousPicturePathDisplay.Text = itemSelected.PictureFilename
+		labelVariousDescriptionDisplay.Text = itemSelected.Description
+		
+		textboxBuyPrice.Text = CType(RandomInteger.Next(CType(CType(labelStatisticsBaseWorthDisplay.Text, Double) - (CType(labelStatisticsBaseWorthDisplay.Text, Double) * 0.50), Integer), CType(CType(labelStatisticsBaseWorthDisplay.Text, Double) + (CType(labelStatisticsBaseWorthDisplay.Text, Double) * 0.25), Integer)), String)
 	End Sub
 	
 	Sub ButtonCloseClick(sender As Object, e As EventArgs)
@@ -76,18 +78,18 @@
 	Sub ButtonBuyClick(sender As Object, e As EventArgs)
 		If textboxBuyAmount.Text = "" Then Exit Sub
 		
-		If cache.playerCharacter.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
+		If gamecache.playerCharacter.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
 		
-		If cache.playerCharacter.Balance >= CType(textboxPriceTotal.Text, Integer) Then
+		If gamecache.playerCharacter.Balance >= CType(textboxPriceTotal.Text, Integer) Then
 			MsgBox("Your bought goods.")
 			
-			cache.playerCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
+			gamecache.playerCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
 			
 			'[Department]\[Genre]\[SubGenre]\[Itemname].pd
 			'Get product-order into temponary String Array.
 			ReDim stringItemOrder(4)
-			stringItemOrder(0) = System.IO.Directory.GetCurrentDirectory & "\Data\Items\" & labelDepartmentDisplay.Text & "\" &  labelGenreDisplay.Text & "\" & labelGenreSubDisplay.Text & "\" 'ItemPath
-			stringItemOrder(1) = labelItemDisplay.Text & ".pd" 'ItemFile
+			stringItemOrder(0) = System.IO.Directory.GetCurrentDirectory & "\Data\Items\Store\" & labelItemFamilyDisplay.Text & "\" &  labelItemCategoryDisplay.Text & "\" & labelItemGenreDisplay.Text & "\" 'ItemPath
+			stringItemOrder(1) = labelItemItemNameDisplay.Text & ".pd" 'ItemFile
 			stringItemOrder(2) = textboxBuyAmount.Text 'Quantity
 			stringItemOrder(3) = "0"'Last Selling Price
 			stringItemOrder(4) = textboxBuyPrice.Text 'Last Buying Price
@@ -95,25 +97,25 @@
 			integerCounterSearch = 0
 			integerCounterArticle = 0
 			Do
-				If cache.playerStorage.arraySection(integerCounterSearch).arrayArticle Is Nothing Then Exit Do
-				For Each Article As article In cache.playerStorage.arraySection(integerCounterSearch).arrayArticle
-					If Article.ItemName = labelItemDisplay.Text Then
-						cache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).Quantity += CType(stringItemOrder(2), Integer)
-						cache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).LastBuy = CType(stringItemOrder(4), Integer)
-						cache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).ArticleSave(cache.playerStorage.arraySection(integerCounterSearch).SectionPath)
+				If gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle Is Nothing Then Exit Do
+				For Each Article As Article In gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle
+					If Article.ItemLink.Name_Title = labelItemItemNameDisplay.Text Then
+						gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).Quantity += CType(stringItemOrder(2), Integer)
+						gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).LastBuy = CType(stringItemOrder(4), Integer)
+						gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).ArticleSave(gamecache.playerStorage.arraySection(integerCounterSearch).SectionPath)
 						Exit Sub
 					End If
 					integerCounterArticle += 1
 				Next
 				integerCounterArticle = 0
 				integerCounterSearch += 1
-			Loop Until integerCounterSearch >= cache.playerStorage.arraySection.GetUpperBound(0)
+			Loop Until integerCounterSearch >= gamecache.playerStorage.arraySection.GetUpperBound(0)
 			
-			cache.playerStorage.arraySection(0).ArticleAdd(stringItemOrder)
+			gamecache.playerStorage.arraySection(0).ArticleAdd(stringItemOrder)
 		End If
 	End Sub
 	
-	Sub TextboxBuyAmountTextChanged(sender As Object, e As EventArgs)
+	Sub TextBoxBuyAmountTextChanged(sender As Object, e As EventArgs)
 		If textboxBuyAmount.Text = "" Then Exit Sub
 		textboxPriceTotal.Text = CType(CType(textboxBuyAmount.Text, Integer) * CType(textboxBuyPrice.Text, Integer), String)
 	End Sub

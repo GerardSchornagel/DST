@@ -56,7 +56,7 @@ Public Class iniHandler
 			stringIO &= stringMediator(integerMediator) & Chr(13) & Chr(10)
 			integerMediator += 1
 		Loop Until integerMediator > stringMediator.GetUpperBound(0)
-		stringIO.Remove(stringIO.Length - 2, 2) 'Remove last two Chr's
+		'REMOVE:stringIO.Remove(stringIO.Length - 2, 2) 'Remove last two Chr's
 		'Use StringBuilder for writing
 		Dim stringbuilderIO As New System.Text.StringBuilder()
 		Using streamreaderIO As New System.IO.StringReader(stringIO)

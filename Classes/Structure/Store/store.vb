@@ -37,7 +37,7 @@ Public Class store
 ''' <summary>
 ''' Loads all Levels with all Shelves with all Bin's and all Item's.
 ''' </summary>
-	Public Sub StoreLoad()
+	Public Shared Sub StoreLoad()
 		For Each item As Level In arrayLevel
 			item.ShelfInitialize()
 			item.ShelfLoad()

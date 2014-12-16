@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Functions\mathematics.vb" />
+    <Compile Include="Classes\Objects\item.vb" />
     <Compile Include="Classes\Player\settings.vb" />
     <Compile Include="Classes\Structure\Storage\article.vb" />
     <Compile Include="Classes\Structure\Storage\storage.vb" />
@@ -67,13 +68,13 @@
     <Compile Include="Classes\Structure\Store\level.vb" />
     <Compile Include="Classes\Structure\Store\shelf.vb" />
     <Compile Include="Classes\Structure\Store\store.vb" />
-    <Compile Include="Forms\cache.Designer.vb">
-      <DependentUpon>cache.vb</DependentUpon>
+    <Compile Include="Forms\gamecache.Designer.vb">
+      <DependentUpon>gamecache.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\cache.vb" />
+    <Compile Include="Forms\gamecache.vb" />
     <Compile Include="Classes\Functions\binaryFileHandler.vb" />
     <Compile Include="Classes\Functions\iniHandler.vb" />
-    <Compile Include="Classes\NPC\customer.vb" />
+    <Compile Include="Classes\Objects\customer.vb" />
     <Compile Include="Classes\Player\character.vb" />
     <Compile Include="Classes\Player\player.vb" />
     <Compile Include="Forms\formEditor.Designer.vb">
@@ -127,14 +128,14 @@
     <Folder Include="Classes\Structure\Store" />
     <Folder Include="Classes\Structure\Storage" />
     <Folder Include="Properties" />
-    <Folder Include="Classes\NPC" />
+    <Folder Include="Classes\Objects" />
     <Folder Include="Classes\Player" />
     <Folder Include="Forms" />
     <Folder Include="Classes" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\cache.resx">
-      <DependentUpon>cache.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\gamecache.resx">
+      <DependentUpon>gamecache.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formEditor.resx">
       <DependentUpon>formEditor.vb</DependentUpon>

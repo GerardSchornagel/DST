@@ -28,11 +28,11 @@ Public Class character
 ''' </summary>
 	Public Sub Load()
 		'Check for if file exists, if not create; else load.
-		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & cache.settingsGlobal.LastUser & "\character.pd") = False Then
+		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastUser & "\character.pd") = False Then
 		NewCharacter()
 			
 		Else
-			integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
+			integerPlayerID = CType(gamecache.settingsGlobal.LastUser, Integer)
 			ReDim stringCharacterData(8)
 			stringCharacterData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\save\" & integerPlayerID & "\", "character.pd")
 			'Write Private's
@@ -52,7 +52,7 @@ Public Class character
 ''' Creates a new Character.
 ''' </summary>
 	Public Sub NewCharacter()
-		integerPlayerID = CType(cache.settingsGlobal.LastUser, Integer)
+		integerPlayerID = CType(gamecache.settingsGlobal.LastUser, Integer)
 		ReDim stringCharacterData(8)
 		stringCharacterData(0) = ""
 		stringCharacterData(1) = ""

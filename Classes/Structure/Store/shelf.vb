@@ -45,8 +45,8 @@ Public Class shelf
 ''' <summary>
 ''' Makes new Bin with the given template.
 ''' </summary>
-''' <param name="Template">New String() {LinkStorage, LinkSection, LinkArticle, Quantity}</param>
-	Public Sub BinAdd(Template() As String)
+''' <param name="ArticleInfo">New String() {LinkStorage, LinkSection, LinkArticle, Quantity}</param>
+	Public Sub BinAdd(ArticleInfo() As String)
 		Dim intCheck As Integer = 0
 		Do
 			If System.IO.File.Exists(stringPathShelf & "\" & intCheck & ".pd") = False Then
@@ -58,10 +58,10 @@ Public Class shelf
 		arrayBin(arrayBin.GetUpperBound(0)) = New Bin
 		arrayBin(arrayBin.GetUpperBound(0)).BinPath = stringPathShelf & "\"
 		arrayBin(arrayBin.GetUpperBound(0)).BinFile = intCheck & ".pd"
-		arrayBin(arrayBin.GetUpperBound(0)).LinkStorage = CType(Template(0), Integer)
-		arrayBin(arrayBin.GetUpperBound(0)).LinkSection = CType(Template(1), Integer)
-		arrayBin(arrayBin.GetUpperBound(0)).LinkArticle = CType(Template(2), Integer)
-		arrayBin(arrayBin.GetUpperBound(0)).BinQuantity = CType(Template(3), Integer)
+		arrayBin(arrayBin.GetUpperBound(0)).LinkStorage = CType(ArticleInfo(0), Integer)
+		arrayBin(arrayBin.GetUpperBound(0)).LinkSection = CType(ArticleInfo(1), Integer)
+		arrayBin(arrayBin.GetUpperBound(0)).LinkArticle = CType(ArticleInfo(2), Integer)
+		arrayBin(arrayBin.GetUpperBound(0)).BinQuantity = CType(ArticleInfo(3), Integer)
 		
 		arrayBin(arrayBin.GetUpperBound(0)).BinSave(stringPathShelf)
 	End Sub

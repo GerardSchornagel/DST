@@ -2,7 +2,7 @@
 ''' DataType representing any number of Item's as a section().
 ''' </summary>
 Public Class section
-	Public Shared arrayArticle() As article
+	Public Shared arrayArticle() As Article
 	Private stringPathSection As String
 	Private integerArticleCounter As Integer
 ''' <summary>
@@ -29,7 +29,7 @@ Public Class section
 		integerArticleCounter = 0
 		ReDim arrayArticle(System.IO.Directory.GetFiles(stringPathSection, "*.pd", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
 		For Each file As String In System.IO.Directory.GetFiles(stringPathSection, "*.pd", System.IO.SearchOption.TopDirectoryOnly)
-			arrayArticle(integerArticleCounter) = New article
+			arrayArticle(integerArticleCounter) = New Article
 			arrayArticle(integerArticleCounter).ItemPath = file
 			integerArticleCounter += 1
 		Next
@@ -38,15 +38,15 @@ Public Class section
 ''' Loads all Item's with Item Info.
 ''' </summary>
 	Public Sub SectionLoad()
-		For Each Article As article In arrayArticle
+		For Each Article As Article In arrayArticle
 			Article.ArticleLoad(stringPathSection)
 		Next
 	End Sub
 ''' <summary>
 ''' Makes new Article with the given template. With ArticleSave().
 ''' </summary>
-''' <param name="Template">New String() {ItemPath, ItemFile, Quantity, LastSell, LastBuy}</param>
-	Public Sub ArticleAdd(Template() As String)
+''' <param name="ArticleInfo">New String() {ItemPath, ItemFile, Quantity, LastSell, LastBuy}</param>
+	Public Sub ArticleAdd(ArticleInfo() As String)
 		Dim intCheck As Integer = 0
 		Do
 			If System.IO.File.Exists(stringPathSection & "\" & intCheck & ".pd") = False Then
@@ -55,14 +55,14 @@ Public Class section
 			intCheck += 1
 		Loop
 		ReDim Preserve arrayArticle(intCheck)
-		arrayArticle(arrayArticle.GetUpperBound(0)) = New article
+		arrayArticle(arrayArticle.GetUpperBound(0)) = New Article
 		arrayArticle(arrayArticle.GetUpperBound(0)).ArticlePath = stringPathSection & "\"
 		arrayArticle(arrayArticle.GetUpperBound(0)).ArticleFile = intCheck & ".pd"
-		arrayArticle(arrayArticle.GetUpperBound(0)).ItemPath = Template(0)
-		arrayArticle(arrayArticle.GetUpperBound(0)).ItemFile = Template(1)
-		arrayArticle(arrayArticle.GetUpperBound(0)).Quantity = CType(Template(2), Integer)
-		arrayArticle(arrayArticle.GetUpperBound(0)).LastSell = CType(Template(3), Integer)
-		arrayArticle(arrayArticle.GetUpperBound(0)).LastBuy = CType(Template(4), Integer)
+		arrayArticle(arrayArticle.GetUpperBound(0)).ItemPath = ArticleInfo(0)
+		arrayArticle(arrayArticle.GetUpperBound(0)).ItemFile = ArticleInfo(1)
+		arrayArticle(arrayArticle.GetUpperBound(0)).Quantity = CType(ArticleInfo(2), Integer)
+		arrayArticle(arrayArticle.GetUpperBound(0)).LastSell = CType(ArticleInfo(3), Integer)
+		arrayArticle(arrayArticle.GetUpperBound(0)).LastBuy = CType(ArticleInfo(4), Integer)
 		arrayArticle(arrayArticle.GetUpperBound(0)).ArticleSave(stringPathSection)
 	End Sub
 End Class

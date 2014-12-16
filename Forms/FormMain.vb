@@ -12,7 +12,7 @@ Public Partial Class formMain
 	End Sub
 	
 	Sub buttonNewGameClick(sender As Object, e As EventArgs)
-		cache.NewGame()
+		gamecache.NewGame()
 	End Sub
 	
 	Sub buttonResumeGameClick(sender As Object, e As EventArgs)
@@ -27,7 +27,7 @@ Public Partial Class formMain
 		folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory & "\save"
 		folderdialogLoadGame.Description = "Please select one of the numbered directory's"
 		folderdialogLoadGame.ShowDialog()
-		cache.settingsGlobal.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1), String)
+		gamecache.settingsGlobal.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1), String)
 		'Load Game
 		buttonResumeGame.Enabled = False
 		buttonResumeGameClick(Nothing, Nothing)
@@ -40,11 +40,11 @@ Public Partial Class formMain
 	
 	Sub buttonQuitClick(sender As Object, e As EventArgs)
 		'Check for WarningMessage Setting and show the warning with Yes/No, else just End
-		If cache.settingsGlobal.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
+		If gamecache.settingsGlobal.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
 	End Sub
 	
 	Sub buttonEditorClick(sender As Object, e As EventArgs)
-		cache.EditorForm = New formEditor
-		cache.EditorForm.Show()
+		gamecache.EditorForm = New formEditor
+		gamecache.EditorForm.Show()
 	End Sub
 End Class
