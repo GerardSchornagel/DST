@@ -81,7 +81,7 @@ Public Partial Class formEditor
 		ElseIf listboxDescription.SelectedIndex = 1 Then 'Customers
 			textboxDescription.Text = "[Age]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Money]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Desire]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>"
 		ElseIf listboxDescription.SelectedIndex = 2 Then 'Settings
-			textboxDescription.Text = "[WarningMessages]" & Chr(13) & Chr(10) & "<ProgramQuit>" & Chr(13) & Chr(10) & "<NewgameOverwrite>" & Chr(13) & Chr(10) & "<OptionsApplyRestart>"
+			textboxDescription.Text = "[WarningMessages]" & Chr(13) & Chr(10) & "<LastUserID>" & Chr(13) & Chr(10) & "<ProgramQuit>" & Chr(13) & Chr(10) & "<NewgameOverwrite>" & Chr(13) & Chr(10) & "<OptionsApplyRestart>"
 		End If
 	End Sub
 End Class
