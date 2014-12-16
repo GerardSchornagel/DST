@@ -16,69 +16,72 @@ Public Partial Class formEditor
 	End Sub
 	
 	Sub ButtonSaveClick(sender As Object, e As EventArgs)
-		ReDim stringExport(11, 1)
-		stringExport(0, 0) = textboxSetting0.Text
-		stringExport(0, 1) = textboxValue0.Text
-		stringExport(1, 0) = textboxSetting1.Text
-		stringExport(1, 1) = textboxValue1.Text
-		stringExport(2, 0) = textboxSetting2.Text
-		stringExport(2, 1) = textboxValue2.Text
-		stringExport(3, 0) = textboxSetting3.Text
-		stringExport(3, 1) = textboxValue3.Text
-		stringExport(4, 0) = textboxSetting4.Text
-		stringExport(4, 1) = textboxValue4.Text
-		stringExport(5, 0) = textboxSetting5.Text
-		stringExport(5, 1) = textboxValue5.Text
-		stringExport(6, 0) = textboxSetting6.Text
-		stringExport(6, 1) = textboxValue6.Text
-		stringExport(7, 0) = textboxSetting7.Text
-		stringExport(7, 1) = textboxValue7.Text
-		stringExport(8, 0) = textboxSetting8.Text
-		stringExport(8, 1) = textboxValue8.Text
-		stringExport(9, 0) = textboxSetting9.Text
-		stringExport(9, 1) = textboxValue9.Text
-		stringExport(10, 0) = textboxSetting10.Text
-		stringExport(10, 1) = textboxValue10.Text
-		stringExport(11, 0) = textboxSetting11.Text
-		stringExport(11, 1) = textboxValue11.Text
+		textboxEdit.AppendText(Chr(13))
+		Dim stringMediator() As String = textboxEdit.Text.Split(Chr(10))
+		Dim integerCount As Integer = 0
+		Do
+			stringMediator(integerCount) = stringMediator(integerCount).Remove(stringMediator(integerCount).Length - 1, 1)
+			integerCount += 1
+		Loop Until integerCount > stringMediator.GetUpperBound(0)
+		
+		Dim integerColumn As Integer = -1
+		Dim integerRow As Integer = 0
+		
+		Dim stringColumns As String()
+		stringColumns = textboxEdit.Text.Split(Chr(91))
+		For Each line As String In stringColumns
+			Dim stringRow() As String = line.Split(Chr(60))
+			If integerRow < stringRow.GetUpperBound(0) Then integerRow = stringRow.GetUpperBound(0)
+		Next
+		ReDim stringExport(stringColumns.GetUpperBound(0) - 1, (integerRow * 2))
+		
+		integerRow = 0
+		For Each line As String In stringMediator
+			If line.StartsWith("[") = True Then
+				integerColumn += 1
+				integerRow = 0
+				stringExport(integerColumn, integerRow) = line
+			ElseIf line = "" Then
+				
+			Else
+				integerRow += 1
+				stringExport(integerColumn, integerRow) = line
+			End If
+		Next
 		iniFilehandler.Save(textboxFilename.Text, stringExport)
 	End Sub
 	
 	Sub ButtonLoadClick(sender As Object, e As EventArgs)
+		textboxEdit.Text = ""
 		stringExport = iniFilehandler.Load(textboxFilename.Text)
-		textboxSetting0.Text = stringExport(0 ,0)
-		textboxValue0.Text = stringExport(0, 1)
-		textboxSetting1.Text = stringExport(1, 0)
-		textboxValue1.Text = stringExport(1, 1)
-		textboxSetting2.Text = stringExport(2, 0)
-		textboxValue2.Text = stringExport(2, 1)
-		textboxSetting3.Text = stringExport(3, 0)
-		textboxValue3.Text = stringExport(3, 1)
-		textboxSetting4.Text = stringExport(4, 0)
-		textboxValue4.Text = stringExport(4, 1)
-		textboxSetting5.Text = stringExport(5, 0)
-		textboxValue5.Text = stringExport(5, 1)
-		textboxSetting6.Text = stringExport(6, 0)
-		textboxValue6.Text = stringExport(6, 1)
-		textboxSetting7.Text = stringExport(7, 0)
-		textboxValue7.Text = stringExport(7, 1)
-		textboxSetting8.Text = stringExport(8, 0)
-		textboxValue8.Text = stringExport(8, 1)
-		textboxSetting9.Text = stringExport(9, 0)
-		textboxValue9.Text = stringExport(9, 1)
-		textboxSetting10.Text = stringExport(10, 0)
-		textboxValue10.Text = stringExport(10, 1)
-		textboxSetting11.Text = stringExport(11, 0)
-		textboxValue11.Text = stringExport(11, 1)
+		For Each line As String In stringExport
+			textboxEdit.AppendText(line & Chr(13) & Chr(10))
+		Next
 	End Sub
 	
 	Sub ButtonBrowseClick(sender As Object, e As EventArgs)
 		Dim filebrowser As New System.Windows.Forms.SaveFileDialog
 		filebrowser.AddExtension = False
 		filebrowser.DefaultExt = "pd"
-		filebrowser.InitialDirectory = System.IO.Directory.GetCurrentDirectory & "\data\"
+		filebrowser.InitialDirectory = System.IO.Directory.GetCurrentDirectory & "\data"
 		filebrowser.Title = "Choose new name or edit existing one."
 		filebrowser.ShowDialog()
 		textboxFilename.Text = filebrowser.FileName
+	End Sub
+	
+	Sub FormEditorLoad(sender As Object, e As EventArgs)
+		listboxDescription.Items.Add("Items")
+		listboxDescription.Items.Add("Customers")
+		listboxDescription.Items.Add("Settings")
+	End Sub
+	
+	Sub ListboxDescriptionSelectedIndexChanged(sender As Object, e As EventArgs)
+		If listboxDescription.SelectedIndex = 0 Then 'Items
+			textboxDescription.Text = "[ItemInformation]" & Chr(13) & Chr(10) & "<Name/Title>" & Chr(13) & Chr(10) & "<Brand/Author>" & Chr(13) & Chr(10) & "<Company/Publisher>" & Chr(13) & Chr(10) & "<Genre>" & Chr(13) & Chr(10) & "<Category>" & Chr(13) & Chr(10) & "<Family>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Statistics]" & Chr(13) & Chr(10) & "<Quality>" & Chr(13) & Chr(10) & "<Popularity>" & Chr(13) & Chr(10) & "<Rarity>" & Chr(13) & Chr(10) & "<BaseWorth>" & Chr(13) & Chr(10) & "<ItemTier>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Various]" & Chr(13) & Chr(10) & "<PictureFilename>" & Chr(13) & Chr(10) & "<Description>"
+		ElseIf listboxDescription.SelectedIndex = 1 Then 'Customers
+			textboxDescription.Text = "[Age]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Money]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Desire]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>"
+		ElseIf listboxDescription.SelectedIndex = 2 Then 'Settings
+			textboxDescription.Text = "[WarningMessages]" & Chr(13) & Chr(10) & "<ProgramQuit>" & Chr(13) & Chr(10) & "<NewgameOverwrite>" & Chr(13) & Chr(10) & "<OptionsApplyRestart>"
+		End If
 	End Sub
 End Class
