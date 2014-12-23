@@ -24,6 +24,10 @@ Public Class Article
 ''' </summary>
 ''' <param name="PathShelf">Needed for path and file seperation.</param>
 	Public Sub ArticleLoad(PathShelf As String)
+		Dim stringMediator() As String
+		stringMediator = stringArticlePath.Split(Chr(92))
+		stringArticleFile = stringMediator(stringMediator.GetUpperBound(0))
+		stringArticlePath = stringArticlePath.Remove(stringArticlePath.Length - stringArticleFile.Length, stringArticleFile.Length)
 		stringDataArticle = fileHandler.LoadRow(PathShelf, stringArticleFile)
 		stringItemPath = stringDataArticle(0)
 		stringItemFile = stringDataArticle(1)

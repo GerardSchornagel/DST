@@ -24,6 +24,10 @@ Public Class bin
 ''' </summary>
 ''' <param name="PathShelf">Needed for path and file seperation.</param>
 	Public Sub BinLoad(PathShelf As String)
+		Dim stringMediator() As String
+		stringMediator = stringBinPath.Split(Chr(92))
+		stringBinFile = stringMediator(stringMediator.GetUpperBound(0))
+		stringBinPath = stringBinPath.Remove(stringBinPath.Length - stringBinFile.Length, stringBinFile.Length)
 		stringBinData = fileHandler.LoadRow(PathShelf, stringBinFile)
 		integerLinkStorage = CType(stringBinData(0), Integer)
 		integerLinkSection = CType(stringBinData(1), Integer)

@@ -30,7 +30,8 @@ Public Class section
 		ReDim arrayArticle(System.IO.Directory.GetFiles(stringPathSection, "*.pd", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
 		For Each file As String In System.IO.Directory.GetFiles(stringPathSection, "*.pd", System.IO.SearchOption.TopDirectoryOnly)
 			arrayArticle(integerArticleCounter) = New Article
-			arrayArticle(integerArticleCounter).ItemPath = file
+			arrayArticle(integerArticleCounter).ArticlePath = file
+			
 			integerArticleCounter += 1
 		Next
 	End Sub
@@ -39,7 +40,7 @@ Public Class section
 ''' </summary>
 	Public Sub SectionLoad()
 		For Each Article As Article In arrayArticle
-			Article.ArticleLoad(stringPathSection)
+			Article.ArticleLoad(stringPathSection & "\")
 		Next
 	End Sub
 ''' <summary>

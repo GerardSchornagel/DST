@@ -35,7 +35,7 @@ Partial Class formGame
 		'
 		'buttonActionStart
 		'
-		Me.buttonActionStart.AutoSize = true
+		Me.buttonActionStart.AutoSize = False
 		Me.buttonActionStart.Location = New System.Drawing.Point(93, 25)
 		Me.buttonActionStart.Name = "buttonActionStart"
 		Me.buttonActionStart.Size = New System.Drawing.Size(79, 23)

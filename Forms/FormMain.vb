@@ -16,8 +16,7 @@ Public Partial Class formMain
 	End Sub
 	
 	Sub buttonResumeGameClick(sender As Object, e As EventArgs)
-		Dim StatusForm As New formStatus
-		StatusForm.Show()
+		gamecache.ResumeGame()
 	End Sub
 	
 	Sub buttonLoadClick(sender As Object, e As EventArgs)
@@ -29,7 +28,6 @@ Public Partial Class formMain
 		folderdialogLoadGame.ShowDialog()
 		gamecache.settingsGlobal.LastUser = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1), String)
 		'Load Game
-		buttonResumeGame.Enabled = False
 		buttonResumeGameClick(Nothing, Nothing)
 	End Sub
 	

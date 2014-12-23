@@ -35,6 +35,7 @@
 	
 	Sub buttonExitClick(sender As Object, e As EventArgs)
 		'Add code for clearing and 'Resetting' the gamecache.
+		Application.Exit()
 	End Sub
 	
 	Sub ButtonMapClick(sender As Object, e As EventArgs)

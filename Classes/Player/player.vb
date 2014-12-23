@@ -25,7 +25,7 @@ Public Class player
 ''' <summary>
 ''' Loads or create a (blank) Profile.
 ''' </summary>
-	Friend Sub Load(PlayerInfo() As String)
+	Friend Sub Load(Optional PlayerInfo() As String = Nothing)
 		'Check for if file exists, if not create; else load.
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastUser & "\player.pd") = False Then
 			NewPlayer(PlayerInfo)

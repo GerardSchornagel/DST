@@ -36,6 +36,35 @@ Public Partial Class gamecache
 		MainMenu.Hide()
 	End Sub
 	
+	Public Sub ResumeGame()
+		MainMenu.Hide()
+		progressbarLoading.Value = 0
+		labelDescription.Text = "Loading Player."
+		Me.WindowState = System.Windows.Forms.FormWindowState.Normal
+		progressbarLoading.Value = 1
+		labelDescription.Text = "Making new Profile."
+		playerProfile.Load()
+		progressbarLoading.Value = 2
+		labelDescription.Text = "Making new Character."
+		playerCharacter.Load()
+		progressbarLoading.Value = 3
+		labelDescription.Text = "Making new Storage."
+		playerStorage.StoragePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & playerProfile.PlayerID & "\Storage\0"
+		playerStorage.StorageInitialize()
+		playerStorage.StorageLoad()
+		progressbarLoading.Value = 6
+		labelDescription.Text = "Creating Store Layout."
+		playerStore.StorePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & playerProfile.PlayerID & "\MyFirstStore"
+		playerStore.StoreInitialize()
+		playerStore.StoreLoad()
+		progressbarLoading.Value = 9
+		labelDescription.Text = "Opening Forms."
+		StartGame()
+		progressbarLoading.Value = 10
+		labelDescription.Text = ""
+		Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+	End Sub
+	
 	Public Sub NewPlayer(PlayerInfo() As String)
 		NewGameForm.Hide()
 		progressbarLoading.Value = 0
