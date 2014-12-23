@@ -61,8 +61,8 @@ Public Class character
 		stringCharacterData(4) = "0"
 		stringCharacterData(5) = "0"
 		stringCharacterData(6) = "0"
-		stringCharacterData(7) = ""
-		stringCharacterData(8) = ""
+		stringCharacterData(7) = gamecache.playerProfile.CreateDate
+		stringCharacterData(8) = gamecache.playerProfile.CreateTime
 		'Start Writing New Player
 		SaveState()
 		Load()

@@ -26,6 +26,7 @@ Public Module mathematics
 					gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity -= 1
 					gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
 					gamecache.playerCharacter.TotalItemsSold += 1
+					gamecache.playerCharacter.TotalEarnings += integerBinPrice
 '					
 				ElseIf integerBinPrice >= CustomerNew.Money Then 'NOCASH:Check for customer-money and item sell-price
 					stringReturn = stringBinName & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & integerStoreBin & Chr(10)

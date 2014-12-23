@@ -81,10 +81,10 @@
 		If gamecache.playerCharacter.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
 		
 		If gamecache.playerCharacter.Balance >= CType(textboxPriceTotal.Text, Integer) Then
-			MsgBox("Your bought goods.")
+			MsgBox("You bought goods.")
 			
 			gamecache.playerCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
-			
+			gamecache.playerCharacter.TotalSpendings += CType(textboxPriceTotal.Text, Integer)
 			'[Department]\[Genre]\[SubGenre]\[Itemname].pd
 			'Get product-order into temponary String Array.
 			ReDim stringItemOrder(4)
