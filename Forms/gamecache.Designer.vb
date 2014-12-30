@@ -59,7 +59,7 @@
 		Me.labelDescription.TabIndex = 2
 		Me.labelDescription.Text = "Description"
 		'
-		'cache
+		'gamecache
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -68,7 +68,8 @@
 		Me.Controls.Add(Me.labelLoading)
 		Me.Controls.Add(Me.progressbarLoading)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-		Me.Name = "cache"
+		Me.Name = "gamecache"
+		Me.ShowIcon = false
 		Me.ShowInTaskbar = false
 		Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
 		Me.Text = "cache"

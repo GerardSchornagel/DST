@@ -35,30 +35,28 @@
 		Me.textboxCreateTime = New System.Windows.Forms.TextBox()
 		Me.labelCreateDate = New System.Windows.Forms.Label()
 		Me.textboxCreateDate = New System.Windows.Forms.TextBox()
-		Me.labelPlayerID = New System.Windows.Forms.Label()
-		Me.textboxPlayerID = New System.Windows.Forms.TextBox()
+		Me.labelProfileID = New System.Windows.Forms.Label()
+		Me.textboxProfileID = New System.Windows.Forms.TextBox()
 		Me.labelGender = New System.Windows.Forms.Label()
 		Me.textboxBirthYear = New System.Windows.Forms.TextBox()
 		Me.labelNameLast = New System.Windows.Forms.Label()
 		Me.labelBirthDate = New System.Windows.Forms.Label()
 		Me.textboxNameFirst = New System.Windows.Forms.TextBox()
-		Me.labelNameNick = New System.Windows.Forms.Label()
 		Me.textboxBirthDay = New System.Windows.Forms.TextBox()
 		Me.textboxGender = New System.Windows.Forms.TextBox()
 		Me.labelNameFirst = New System.Windows.Forms.Label()
 		Me.textboxNameLast = New System.Windows.Forms.TextBox()
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
-		Me.textboxNameNick = New System.Windows.Forms.TextBox()
 		Me.tabpageCharacter = New System.Windows.Forms.TabPage()
 		Me.groupboxLocation = New System.Windows.Forms.GroupBox()
-		Me.labelShelf = New System.Windows.Forms.Label()
-		Me.labelLevel = New System.Windows.Forms.Label()
-		Me.labelLocation = New System.Windows.Forms.Label()
-		Me.textboxShelf = New System.Windows.Forms.TextBox()
-		Me.textboxLevel = New System.Windows.Forms.TextBox()
-		Me.textboxLocation = New System.Windows.Forms.TextBox()
-		Me.textboxStore = New System.Windows.Forms.TextBox()
 		Me.labelStore = New System.Windows.Forms.Label()
+		Me.labelCountry = New System.Windows.Forms.Label()
+		Me.labelWorld = New System.Windows.Forms.Label()
+		Me.textboxStore = New System.Windows.Forms.TextBox()
+		Me.textboxCountry = New System.Windows.Forms.TextBox()
+		Me.textboxWorld = New System.Windows.Forms.TextBox()
+		Me.textboxPlace = New System.Windows.Forms.TextBox()
+		Me.labelPlace = New System.Windows.Forms.Label()
 		Me.groupboxDates = New System.Windows.Forms.GroupBox()
 		Me.labelPlaycycles = New System.Windows.Forms.Label()
 		Me.textboxPlaycycles = New System.Windows.Forms.TextBox()
@@ -135,20 +133,18 @@
 		Me.groupboxProfile.Controls.Add(Me.textboxCreateTime)
 		Me.groupboxProfile.Controls.Add(Me.labelCreateDate)
 		Me.groupboxProfile.Controls.Add(Me.textboxCreateDate)
-		Me.groupboxProfile.Controls.Add(Me.labelPlayerID)
-		Me.groupboxProfile.Controls.Add(Me.textboxPlayerID)
+		Me.groupboxProfile.Controls.Add(Me.labelProfileID)
+		Me.groupboxProfile.Controls.Add(Me.textboxProfileID)
 		Me.groupboxProfile.Controls.Add(Me.labelGender)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthYear)
 		Me.groupboxProfile.Controls.Add(Me.labelNameLast)
 		Me.groupboxProfile.Controls.Add(Me.labelBirthDate)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameFirst)
-		Me.groupboxProfile.Controls.Add(Me.labelNameNick)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthDay)
 		Me.groupboxProfile.Controls.Add(Me.textboxGender)
 		Me.groupboxProfile.Controls.Add(Me.labelNameFirst)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameLast)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthMonth)
-		Me.groupboxProfile.Controls.Add(Me.textboxNameNick)
 		Me.groupboxProfile.Location = New System.Drawing.Point(6, 6)
 		Me.groupboxProfile.Name = "groupboxProfile"
 		Me.groupboxProfile.Size = New System.Drawing.Size(437, 365)
@@ -159,7 +155,7 @@
 		'labelCreateTime
 		'
 		Me.labelCreateTime.AutoSize = true
-		Me.labelCreateTime.Location = New System.Drawing.Point(3, 211)
+		Me.labelCreateTime.Location = New System.Drawing.Point(181, 55)
 		Me.labelCreateTime.Name = "labelCreateTime"
 		Me.labelCreateTime.Size = New System.Drawing.Size(70, 13)
 		Me.labelCreateTime.TabIndex = 3
@@ -167,7 +163,7 @@
 		'
 		'textboxCreateTime
 		'
-		Me.textboxCreateTime.Location = New System.Drawing.Point(6, 227)
+		Me.textboxCreateTime.Location = New System.Drawing.Point(184, 71)
 		Me.textboxCreateTime.Name = "textboxCreateTime"
 		Me.textboxCreateTime.ReadOnly = true
 		Me.textboxCreateTime.Size = New System.Drawing.Size(169, 20)
@@ -176,7 +172,7 @@
 		'labelCreateDate
 		'
 		Me.labelCreateDate.AutoSize = true
-		Me.labelCreateDate.Location = New System.Drawing.Point(3, 172)
+		Me.labelCreateDate.Location = New System.Drawing.Point(181, 16)
 		Me.labelCreateDate.Name = "labelCreateDate"
 		Me.labelCreateDate.Size = New System.Drawing.Size(70, 13)
 		Me.labelCreateDate.TabIndex = 2
@@ -184,33 +180,33 @@
 		'
 		'textboxCreateDate
 		'
-		Me.textboxCreateDate.Location = New System.Drawing.Point(6, 188)
+		Me.textboxCreateDate.Location = New System.Drawing.Point(184, 32)
 		Me.textboxCreateDate.Name = "textboxCreateDate"
 		Me.textboxCreateDate.ReadOnly = true
 		Me.textboxCreateDate.Size = New System.Drawing.Size(169, 20)
 		Me.textboxCreateDate.TabIndex = 4
 		'
-		'labelPlayerID
+		'labelProfileID
 		'
-		Me.labelPlayerID.AutoSize = true
-		Me.labelPlayerID.Location = New System.Drawing.Point(3, 16)
-		Me.labelPlayerID.Name = "labelPlayerID"
-		Me.labelPlayerID.Size = New System.Drawing.Size(50, 13)
-		Me.labelPlayerID.TabIndex = 0
-		Me.labelPlayerID.Text = "Player ID"
+		Me.labelProfileID.AutoSize = true
+		Me.labelProfileID.Location = New System.Drawing.Point(3, 16)
+		Me.labelProfileID.Name = "labelProfileID"
+		Me.labelProfileID.Size = New System.Drawing.Size(50, 13)
+		Me.labelProfileID.TabIndex = 0
+		Me.labelProfileID.Text = "Profile ID"
 		'
-		'textboxPlayerID
+		'textboxProfileID
 		'
-		Me.textboxPlayerID.Location = New System.Drawing.Point(6, 32)
-		Me.textboxPlayerID.Name = "textboxPlayerID"
-		Me.textboxPlayerID.ReadOnly = true
-		Me.textboxPlayerID.Size = New System.Drawing.Size(169, 20)
-		Me.textboxPlayerID.TabIndex = 1
+		Me.textboxProfileID.Location = New System.Drawing.Point(6, 32)
+		Me.textboxProfileID.Name = "textboxProfileID"
+		Me.textboxProfileID.ReadOnly = true
+		Me.textboxProfileID.Size = New System.Drawing.Size(169, 20)
+		Me.textboxProfileID.TabIndex = 1
 		'
 		'labelGender
 		'
 		Me.labelGender.AutoSize = true
-		Me.labelGender.Location = New System.Drawing.Point(178, 55)
+		Me.labelGender.Location = New System.Drawing.Point(6, 133)
 		Me.labelGender.Name = "labelGender"
 		Me.labelGender.Size = New System.Drawing.Size(42, 13)
 		Me.labelGender.TabIndex = 0
@@ -218,7 +214,7 @@
 		'
 		'textboxBirthYear
 		'
-		Me.textboxBirthYear.Location = New System.Drawing.Point(181, 32)
+		Me.textboxBirthYear.Location = New System.Drawing.Point(10, 188)
 		Me.textboxBirthYear.Name = "textboxBirthYear"
 		Me.textboxBirthYear.ReadOnly = true
 		Me.textboxBirthYear.Size = New System.Drawing.Size(39, 20)
@@ -228,41 +224,32 @@
 		'labelNameLast
 		'
 		Me.labelNameLast.AutoSize = true
-		Me.labelNameLast.Location = New System.Drawing.Point(3, 133)
+		Me.labelNameLast.Location = New System.Drawing.Point(3, 94)
 		Me.labelNameLast.Name = "labelNameLast"
-		Me.labelNameLast.Size = New System.Drawing.Size(75, 13)
+		Me.labelNameLast.Size = New System.Drawing.Size(58, 13)
 		Me.labelNameLast.TabIndex = 0
-		Me.labelNameLast.Text = "RL Last Name"
+		Me.labelNameLast.Text = "Last Name"
 		'
 		'labelBirthDate
 		'
 		Me.labelBirthDate.AutoSize = true
-		Me.labelBirthDate.Location = New System.Drawing.Point(178, 16)
+		Me.labelBirthDate.Location = New System.Drawing.Point(7, 172)
 		Me.labelBirthDate.Name = "labelBirthDate"
-		Me.labelBirthDate.Size = New System.Drawing.Size(53, 13)
+		Me.labelBirthDate.Size = New System.Drawing.Size(54, 13)
 		Me.labelBirthDate.TabIndex = 0
-		Me.labelBirthDate.Text = "Birth Year"
+		Me.labelBirthDate.Text = "Birth Date"
 		'
 		'textboxNameFirst
 		'
-		Me.textboxNameFirst.Location = New System.Drawing.Point(6, 110)
+		Me.textboxNameFirst.Location = New System.Drawing.Point(6, 71)
 		Me.textboxNameFirst.Name = "textboxNameFirst"
 		Me.textboxNameFirst.ReadOnly = true
 		Me.textboxNameFirst.Size = New System.Drawing.Size(169, 20)
 		Me.textboxNameFirst.TabIndex = 1
 		'
-		'labelNameNick
-		'
-		Me.labelNameNick.AutoSize = true
-		Me.labelNameNick.Location = New System.Drawing.Point(3, 55)
-		Me.labelNameNick.Name = "labelNameNick"
-		Me.labelNameNick.Size = New System.Drawing.Size(60, 13)
-		Me.labelNameNick.TabIndex = 0
-		Me.labelNameNick.Text = "Nick Name"
-		'
 		'textboxBirthDay
 		'
-		Me.textboxBirthDay.Location = New System.Drawing.Point(258, 32)
+		Me.textboxBirthDay.Location = New System.Drawing.Point(87, 188)
 		Me.textboxBirthDay.Name = "textboxBirthDay"
 		Me.textboxBirthDay.ReadOnly = true
 		Me.textboxBirthDay.Size = New System.Drawing.Size(24, 20)
@@ -271,7 +258,7 @@
 		'
 		'textboxGender
 		'
-		Me.textboxGender.Location = New System.Drawing.Point(181, 71)
+		Me.textboxGender.Location = New System.Drawing.Point(9, 149)
 		Me.textboxGender.Name = "textboxGender"
 		Me.textboxGender.ReadOnly = true
 		Me.textboxGender.Size = New System.Drawing.Size(169, 20)
@@ -280,15 +267,15 @@
 		'labelNameFirst
 		'
 		Me.labelNameFirst.AutoSize = true
-		Me.labelNameFirst.Location = New System.Drawing.Point(3, 94)
+		Me.labelNameFirst.Location = New System.Drawing.Point(3, 55)
 		Me.labelNameFirst.Name = "labelNameFirst"
-		Me.labelNameFirst.Size = New System.Drawing.Size(74, 13)
+		Me.labelNameFirst.Size = New System.Drawing.Size(57, 13)
 		Me.labelNameFirst.TabIndex = 0
-		Me.labelNameFirst.Text = "RL First Name"
+		Me.labelNameFirst.Text = "First Name"
 		'
 		'textboxNameLast
 		'
-		Me.textboxNameLast.Location = New System.Drawing.Point(6, 149)
+		Me.textboxNameLast.Location = New System.Drawing.Point(6, 110)
 		Me.textboxNameLast.Name = "textboxNameLast"
 		Me.textboxNameLast.ReadOnly = true
 		Me.textboxNameLast.Size = New System.Drawing.Size(169, 20)
@@ -296,20 +283,12 @@
 		'
 		'textboxBirthMonth
 		'
-		Me.textboxBirthMonth.Location = New System.Drawing.Point(226, 32)
+		Me.textboxBirthMonth.Location = New System.Drawing.Point(55, 188)
 		Me.textboxBirthMonth.Name = "textboxBirthMonth"
 		Me.textboxBirthMonth.ReadOnly = true
 		Me.textboxBirthMonth.Size = New System.Drawing.Size(26, 20)
 		Me.textboxBirthMonth.TabIndex = 1
 		Me.textboxBirthMonth.Text = "09"
-		'
-		'textboxNameNick
-		'
-		Me.textboxNameNick.Location = New System.Drawing.Point(6, 71)
-		Me.textboxNameNick.Name = "textboxNameNick"
-		Me.textboxNameNick.ReadOnly = true
-		Me.textboxNameNick.Size = New System.Drawing.Size(169, 20)
-		Me.textboxNameNick.TabIndex = 1
 		'
 		'tabpageCharacter
 		'
@@ -326,14 +305,15 @@
 		'
 		'groupboxLocation
 		'
-		Me.groupboxLocation.Controls.Add(Me.labelShelf)
-		Me.groupboxLocation.Controls.Add(Me.labelLevel)
-		Me.groupboxLocation.Controls.Add(Me.labelLocation)
-		Me.groupboxLocation.Controls.Add(Me.textboxShelf)
-		Me.groupboxLocation.Controls.Add(Me.textboxLevel)
-		Me.groupboxLocation.Controls.Add(Me.textboxLocation)
-		Me.groupboxLocation.Controls.Add(Me.textboxStore)
 		Me.groupboxLocation.Controls.Add(Me.labelStore)
+		Me.groupboxLocation.Controls.Add(Me.labelCountry)
+		Me.groupboxLocation.Controls.Add(Me.labelWorld)
+		Me.groupboxLocation.Controls.Add(Me.textboxStore)
+		Me.groupboxLocation.Controls.Add(Me.textboxCountry)
+		Me.groupboxLocation.Controls.Add(Me.textboxWorld)
+		Me.groupboxLocation.Controls.Add(Me.textboxPlace)
+		Me.groupboxLocation.Controls.Add(Me.labelPlace)
+		Me.groupboxLocation.Enabled = false
 		Me.groupboxLocation.Location = New System.Drawing.Point(6, 256)
 		Me.groupboxLocation.Name = "groupboxLocation"
 		Me.groupboxLocation.Size = New System.Drawing.Size(437, 121)
@@ -341,73 +321,73 @@
 		Me.groupboxLocation.TabStop = false
 		Me.groupboxLocation.Text = "Current Location"
 		'
-		'labelShelf
+		'labelStore
 		'
-		Me.labelShelf.AutoSize = true
-		Me.labelShelf.Location = New System.Drawing.Point(181, 63)
-		Me.labelShelf.Name = "labelShelf"
-		Me.labelShelf.Size = New System.Drawing.Size(31, 13)
-		Me.labelShelf.TabIndex = 0
-		Me.labelShelf.Text = "Shelf"
+		Me.labelStore.AutoSize = true
+		Me.labelStore.Location = New System.Drawing.Point(181, 63)
+		Me.labelStore.Name = "labelStore"
+		Me.labelStore.Size = New System.Drawing.Size(32, 13)
+		Me.labelStore.TabIndex = 0
+		Me.labelStore.Text = "Store"
 		'
-		'labelLevel
+		'labelCountry
 		'
-		Me.labelLevel.AutoSize = true
-		Me.labelLevel.Location = New System.Drawing.Point(181, 24)
-		Me.labelLevel.Name = "labelLevel"
-		Me.labelLevel.Size = New System.Drawing.Size(33, 13)
-		Me.labelLevel.TabIndex = 0
-		Me.labelLevel.Text = "Level"
+		Me.labelCountry.AutoSize = true
+		Me.labelCountry.Location = New System.Drawing.Point(181, 24)
+		Me.labelCountry.Name = "labelCountry"
+		Me.labelCountry.Size = New System.Drawing.Size(43, 13)
+		Me.labelCountry.TabIndex = 0
+		Me.labelCountry.Text = "Country"
 		'
-		'labelLocation
+		'labelWorld
 		'
-		Me.labelLocation.AutoSize = true
-		Me.labelLocation.Location = New System.Drawing.Point(6, 24)
-		Me.labelLocation.Name = "labelLocation"
-		Me.labelLocation.Size = New System.Drawing.Size(48, 13)
-		Me.labelLocation.TabIndex = 0
-		Me.labelLocation.Text = "Location"
-		'
-		'textboxShelf
-		'
-		Me.textboxShelf.Location = New System.Drawing.Point(184, 79)
-		Me.textboxShelf.Name = "textboxShelf"
-		Me.textboxShelf.ReadOnly = true
-		Me.textboxShelf.Size = New System.Drawing.Size(169, 20)
-		Me.textboxShelf.TabIndex = 1
-		'
-		'textboxLevel
-		'
-		Me.textboxLevel.Location = New System.Drawing.Point(184, 40)
-		Me.textboxLevel.Name = "textboxLevel"
-		Me.textboxLevel.ReadOnly = true
-		Me.textboxLevel.Size = New System.Drawing.Size(169, 20)
-		Me.textboxLevel.TabIndex = 1
-		'
-		'textboxLocation
-		'
-		Me.textboxLocation.Location = New System.Drawing.Point(9, 40)
-		Me.textboxLocation.Name = "textboxLocation"
-		Me.textboxLocation.ReadOnly = true
-		Me.textboxLocation.Size = New System.Drawing.Size(169, 20)
-		Me.textboxLocation.TabIndex = 1
+		Me.labelWorld.AutoSize = true
+		Me.labelWorld.Location = New System.Drawing.Point(6, 24)
+		Me.labelWorld.Name = "labelWorld"
+		Me.labelWorld.Size = New System.Drawing.Size(35, 13)
+		Me.labelWorld.TabIndex = 0
+		Me.labelWorld.Text = "World"
 		'
 		'textboxStore
 		'
-		Me.textboxStore.Location = New System.Drawing.Point(9, 79)
+		Me.textboxStore.Location = New System.Drawing.Point(184, 79)
 		Me.textboxStore.Name = "textboxStore"
 		Me.textboxStore.ReadOnly = true
 		Me.textboxStore.Size = New System.Drawing.Size(169, 20)
 		Me.textboxStore.TabIndex = 1
 		'
-		'labelStore
+		'textboxCountry
 		'
-		Me.labelStore.AutoSize = true
-		Me.labelStore.Location = New System.Drawing.Point(6, 63)
-		Me.labelStore.Name = "labelStore"
-		Me.labelStore.Size = New System.Drawing.Size(32, 13)
-		Me.labelStore.TabIndex = 0
-		Me.labelStore.Text = "Store"
+		Me.textboxCountry.Location = New System.Drawing.Point(184, 40)
+		Me.textboxCountry.Name = "textboxCountry"
+		Me.textboxCountry.ReadOnly = true
+		Me.textboxCountry.Size = New System.Drawing.Size(169, 20)
+		Me.textboxCountry.TabIndex = 1
+		'
+		'textboxWorld
+		'
+		Me.textboxWorld.Location = New System.Drawing.Point(9, 40)
+		Me.textboxWorld.Name = "textboxWorld"
+		Me.textboxWorld.ReadOnly = true
+		Me.textboxWorld.Size = New System.Drawing.Size(169, 20)
+		Me.textboxWorld.TabIndex = 1
+		'
+		'textboxPlace
+		'
+		Me.textboxPlace.Location = New System.Drawing.Point(9, 79)
+		Me.textboxPlace.Name = "textboxPlace"
+		Me.textboxPlace.ReadOnly = true
+		Me.textboxPlace.Size = New System.Drawing.Size(169, 20)
+		Me.textboxPlace.TabIndex = 1
+		'
+		'labelPlace
+		'
+		Me.labelPlace.AutoSize = true
+		Me.labelPlace.Location = New System.Drawing.Point(6, 63)
+		Me.labelPlace.Name = "labelPlace"
+		Me.labelPlace.Size = New System.Drawing.Size(34, 13)
+		Me.labelPlace.TabIndex = 0
+		Me.labelPlace.Text = "Place"
 		'
 		'groupboxDates
 		'
@@ -566,14 +546,14 @@
 		Me.ResumeLayout(false)
 		Me.PerformLayout
 	End Sub
-	Private labelStore As System.Windows.Forms.Label
+	Private labelPlace As System.Windows.Forms.Label
+	Private textboxPlace As System.Windows.Forms.TextBox
+	Private textboxWorld As System.Windows.Forms.TextBox
+	Private textboxCountry As System.Windows.Forms.TextBox
 	Private textboxStore As System.Windows.Forms.TextBox
-	Private textboxLocation As System.Windows.Forms.TextBox
-	Private textboxLevel As System.Windows.Forms.TextBox
-	Private textboxShelf As System.Windows.Forms.TextBox
-	Private labelLocation As System.Windows.Forms.Label
-	Private labelLevel As System.Windows.Forms.Label
-	Private labelShelf As System.Windows.Forms.Label
+	Private labelWorld As System.Windows.Forms.Label
+	Private labelCountry As System.Windows.Forms.Label
+	Private labelStore As System.Windows.Forms.Label
 	Private groupboxLocation As System.Windows.Forms.GroupBox
 	Private textboxCreateDate As System.Windows.Forms.TextBox
 	Private labelCreateDate As System.Windows.Forms.Label
@@ -599,18 +579,16 @@
 	Private tabpageCharacter As System.Windows.Forms.TabPage
 	Private tabpagePlayer As System.Windows.Forms.TabPage
 	Private groupboxProfile As System.Windows.Forms.GroupBox
-	Private labelPlayerID As System.Windows.Forms.Label
-	Private textboxPlayerID As System.Windows.Forms.TextBox
+	Private labelProfileID As System.Windows.Forms.Label
+	Private textboxProfileID As System.Windows.Forms.TextBox
 	Private labelGender As System.Windows.Forms.Label
 	Private textboxBirthYear As System.Windows.Forms.TextBox
 	Private labelNameLast As System.Windows.Forms.Label
 	Private labelBirthDate As System.Windows.Forms.Label
 	Private textboxNameFirst As System.Windows.Forms.TextBox
-	Private labelNameNick As System.Windows.Forms.Label
 	Private textboxBirthDay As System.Windows.Forms.TextBox
 	Private textboxGender As System.Windows.Forms.TextBox
 	Private labelNameFirst As System.Windows.Forms.Label
 	Private textboxNameLast As System.Windows.Forms.TextBox
 	Private textboxBirthMonth As System.Windows.Forms.TextBox
-	Private textboxNameNick As System.Windows.Forms.TextBox
 End Class

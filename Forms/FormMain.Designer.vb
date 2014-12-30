@@ -25,84 +25,85 @@
 	''' not be able to load this method if it was changed manually.
 	''' </summary>
 	Private Sub InitializeComponent()
-		Me.buttonNewGame = New System.Windows.Forms.Button()
-		Me.buttonResumeGame = New System.Windows.Forms.Button()
+		Me.buttonProfileManagement = New System.Windows.Forms.Button()
+		Me.buttonCharacterManagement = New System.Windows.Forms.Button()
+		Me.buttonLastCharacter = New System.Windows.Forms.Button()
+		Me.buttonEditor = New System.Windows.Forms.Button()
 		Me.buttonOptions = New System.Windows.Forms.Button()
 		Me.buttonQuit = New System.Windows.Forms.Button()
-		Me.buttonLoad = New System.Windows.Forms.Button()
-		Me.buttonEditor = New System.Windows.Forms.Button()
 		Me.SuspendLayout
 		'
-		'buttonNewGame
+		'buttonProfileManagement
 		'
-		Me.buttonNewGame.Location = New System.Drawing.Point(12, 12)
-		Me.buttonNewGame.Name = "buttonNewGame"
-		Me.buttonNewGame.Size = New System.Drawing.Size(157, 23)
-		Me.buttonNewGame.TabIndex = 0
-		Me.buttonNewGame.Text = "New Game"
-		Me.buttonNewGame.UseVisualStyleBackColor = true
-		AddHandler Me.buttonNewGame.Click, AddressOf Me.buttonNewGameClick
+		Me.buttonProfileManagement.Location = New System.Drawing.Point(12, 12)
+		Me.buttonProfileManagement.Name = "buttonProfileManagement"
+		Me.buttonProfileManagement.Size = New System.Drawing.Size(157, 23)
+		Me.buttonProfileManagement.TabIndex = 0
+		Me.buttonProfileManagement.Text = "Profile Management..."
+		Me.buttonProfileManagement.UseVisualStyleBackColor = true
+		AddHandler Me.buttonProfileManagement.Click, AddressOf Me.buttonProfileManagementClick
 		'
-		'buttonResumeGame
+		'buttonCharacterManagement
 		'
-		Me.buttonResumeGame.Location = New System.Drawing.Point(12, 41)
-		Me.buttonResumeGame.Name = "buttonResumeGame"
-		Me.buttonResumeGame.Size = New System.Drawing.Size(157, 23)
-		Me.buttonResumeGame.TabIndex = 0
-		Me.buttonResumeGame.Text = "Load Last Game"
-		Me.buttonResumeGame.UseVisualStyleBackColor = true
-		AddHandler Me.buttonResumeGame.Click, AddressOf Me.buttonResumeGameClick
+		Me.buttonCharacterManagement.Enabled = false
+		Me.buttonCharacterManagement.Location = New System.Drawing.Point(12, 41)
+		Me.buttonCharacterManagement.Name = "buttonCharacterManagement"
+		Me.buttonCharacterManagement.Size = New System.Drawing.Size(157, 23)
+		Me.buttonCharacterManagement.TabIndex = 3
+		Me.buttonCharacterManagement.Text = "Character Management..."
+		Me.buttonCharacterManagement.UseVisualStyleBackColor = true
+		AddHandler Me.buttonCharacterManagement.Click, AddressOf Me.buttonCharacterManagementClick
+		'
+		'buttonLastCharacter
+		'
+		Me.buttonLastCharacter.Location = New System.Drawing.Point(12, 85)
+		Me.buttonLastCharacter.Name = "buttonLastCharacter"
+		Me.buttonLastCharacter.Size = New System.Drawing.Size(157, 23)
+		Me.buttonLastCharacter.TabIndex = 2
+		Me.buttonLastCharacter.Text = "Continue Character/Game"
+		Me.buttonLastCharacter.UseVisualStyleBackColor = true
+		AddHandler Me.buttonLastCharacter.Click, AddressOf Me.buttonLastCharacterClick
+		'
+		'buttonEditor
+		'
+		Me.buttonEditor.Location = New System.Drawing.Point(12, 178)
+		Me.buttonEditor.Name = "buttonEditor"
+		Me.buttonEditor.Size = New System.Drawing.Size(157, 23)
+		Me.buttonEditor.TabIndex = 4
+		Me.buttonEditor.Text = "Editor..."
+		Me.buttonEditor.UseVisualStyleBackColor = true
+		AddHandler Me.buttonEditor.Click, AddressOf Me.buttonEditorClick
 		'
 		'buttonOptions
 		'
-		Me.buttonOptions.Location = New System.Drawing.Point(12, 99)
+		Me.buttonOptions.Location = New System.Drawing.Point(12, 207)
 		Me.buttonOptions.Name = "buttonOptions"
 		Me.buttonOptions.Size = New System.Drawing.Size(157, 23)
-		Me.buttonOptions.TabIndex = 0
+		Me.buttonOptions.TabIndex = 5
 		Me.buttonOptions.Text = "Options..."
 		Me.buttonOptions.UseVisualStyleBackColor = true
 		AddHandler Me.buttonOptions.Click, AddressOf Me.buttonOptionsClick
 		'
 		'buttonQuit
 		'
-		Me.buttonQuit.Location = New System.Drawing.Point(13, 157)
+		Me.buttonQuit.Location = New System.Drawing.Point(12, 236)
 		Me.buttonQuit.Name = "buttonQuit"
 		Me.buttonQuit.Size = New System.Drawing.Size(157, 23)
-		Me.buttonQuit.TabIndex = 0
+		Me.buttonQuit.TabIndex = 6
 		Me.buttonQuit.Text = "Quit"
 		Me.buttonQuit.UseVisualStyleBackColor = true
 		AddHandler Me.buttonQuit.Click, AddressOf Me.buttonQuitClick
-		'
-		'buttonLoad
-		'
-		Me.buttonLoad.Location = New System.Drawing.Point(12, 70)
-		Me.buttonLoad.Name = "buttonLoad"
-		Me.buttonLoad.Size = New System.Drawing.Size(157, 23)
-		Me.buttonLoad.TabIndex = 0
-		Me.buttonLoad.Text = "Load Game..."
-		Me.buttonLoad.UseVisualStyleBackColor = true
-		AddHandler Me.buttonLoad.Click, AddressOf Me.buttonLoadClick
-		'
-		'buttonEditor
-		'
-		Me.buttonEditor.Location = New System.Drawing.Point(12, 128)
-		Me.buttonEditor.Name = "buttonEditor"
-		Me.buttonEditor.Size = New System.Drawing.Size(157, 23)
-		Me.buttonEditor.TabIndex = 0
-		Me.buttonEditor.Text = "Editor..."
-		Me.buttonEditor.UseVisualStyleBackColor = true
-		AddHandler Me.buttonEditor.Click, AddressOf Me.buttonEditorClick
 		'
 		'formMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(182, 191)
-		Me.Controls.Add(Me.buttonNewGame)
-		Me.Controls.Add(Me.buttonResumeGame)
-		Me.Controls.Add(Me.buttonLoad)
-		Me.Controls.Add(Me.buttonOptions)
+		Me.ClientSize = New System.Drawing.Size(182, 272)
+		Me.Controls.Add(Me.buttonProfileManagement)
+		Me.Controls.Add(Me.buttonLastCharacter)
+		Me.Controls.Add(Me.buttonCharacterManagement)
 		Me.Controls.Add(Me.buttonEditor)
+		Me.Controls.Add(Me.buttonOptions)
 		Me.Controls.Add(Me.buttonQuit)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
 		Me.MaximizeBox = false
@@ -112,10 +113,10 @@
 		AddHandler Load, AddressOf Me.formMainLoad
 		Me.ResumeLayout(false)
 	End Sub
+	Private buttonProfileManagement As System.Windows.Forms.Button
+	Private buttonLastCharacter As System.Windows.Forms.Button
+	Private buttonCharacterManagement As System.Windows.Forms.Button
 	Private buttonEditor As System.Windows.Forms.Button
-	Private buttonNewGame As System.Windows.Forms.Button
-	Private buttonResumeGame As System.Windows.Forms.Button
-	Private buttonLoad As System.Windows.Forms.Button
 	Private buttonOptions As System.Windows.Forms.Button
 	Private buttonQuit As System.Windows.Forms.Button
 End Class

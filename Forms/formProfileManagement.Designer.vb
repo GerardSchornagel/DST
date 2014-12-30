@@ -1,4 +1,4 @@
-﻿Partial Class formNewGame
+﻿Partial Class formProfileManagement
 	Inherits System.Windows.Forms.Form
 	
 	''' <summary>
@@ -26,48 +26,58 @@
 	''' </summary>
 	Private Sub InitializeComponent()
 		Me.groupboxProfile = New System.Windows.Forms.GroupBox()
+		Me.checkboxNotification = New System.Windows.Forms.CheckBox()
 		Me.checkboxGender = New System.Windows.Forms.CheckBox()
-		Me.labelCreateTime = New System.Windows.Forms.Label()
-		Me.textboxCreateTime = New System.Windows.Forms.TextBox()
-		Me.labelCreateDate = New System.Windows.Forms.Label()
-		Me.textboxCreateDate = New System.Windows.Forms.TextBox()
 		Me.textboxBirthYear = New System.Windows.Forms.TextBox()
 		Me.labelNameLast = New System.Windows.Forms.Label()
 		Me.labelBirthDate = New System.Windows.Forms.Label()
+		Me.textboxEMail = New System.Windows.Forms.TextBox()
 		Me.textboxNameFirst = New System.Windows.Forms.TextBox()
-		Me.labelNameNick = New System.Windows.Forms.Label()
+		Me.labelProfileID = New System.Windows.Forms.Label()
 		Me.textboxBirthDay = New System.Windows.Forms.TextBox()
+		Me.labelEMail = New System.Windows.Forms.Label()
 		Me.labelNameFirst = New System.Windows.Forms.Label()
 		Me.textboxNameLast = New System.Windows.Forms.TextBox()
 		Me.textboxBirthMonth = New System.Windows.Forms.TextBox()
-		Me.textboxNameNick = New System.Windows.Forms.TextBox()
+		Me.textboxProfileID = New System.Windows.Forms.TextBox()
 		Me.buttonCreate = New System.Windows.Forms.Button()
+		Me.listboxProfile = New System.Windows.Forms.ListBox()
+		Me.buttonLoad = New System.Windows.Forms.Button()
 		Me.groupboxProfile.SuspendLayout
 		Me.SuspendLayout
 		'
 		'groupboxProfile
 		'
+		Me.groupboxProfile.Controls.Add(Me.checkboxNotification)
 		Me.groupboxProfile.Controls.Add(Me.checkboxGender)
-		Me.groupboxProfile.Controls.Add(Me.labelCreateTime)
-		Me.groupboxProfile.Controls.Add(Me.textboxCreateTime)
-		Me.groupboxProfile.Controls.Add(Me.labelCreateDate)
-		Me.groupboxProfile.Controls.Add(Me.textboxCreateDate)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthYear)
 		Me.groupboxProfile.Controls.Add(Me.labelNameLast)
 		Me.groupboxProfile.Controls.Add(Me.labelBirthDate)
+		Me.groupboxProfile.Controls.Add(Me.textboxEMail)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameFirst)
-		Me.groupboxProfile.Controls.Add(Me.labelNameNick)
+		Me.groupboxProfile.Controls.Add(Me.labelProfileID)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthDay)
+		Me.groupboxProfile.Controls.Add(Me.labelEMail)
 		Me.groupboxProfile.Controls.Add(Me.labelNameFirst)
 		Me.groupboxProfile.Controls.Add(Me.textboxNameLast)
 		Me.groupboxProfile.Controls.Add(Me.textboxBirthMonth)
-		Me.groupboxProfile.Controls.Add(Me.textboxNameNick)
+		Me.groupboxProfile.Controls.Add(Me.textboxProfileID)
 		Me.groupboxProfile.Location = New System.Drawing.Point(12, 12)
 		Me.groupboxProfile.Name = "groupboxProfile"
-		Me.groupboxProfile.Size = New System.Drawing.Size(146, 295)
+		Me.groupboxProfile.Size = New System.Drawing.Size(146, 292)
 		Me.groupboxProfile.TabIndex = 6
 		Me.groupboxProfile.TabStop = false
 		Me.groupboxProfile.Text = "Profile"
+		'
+		'checkboxNotification
+		'
+		Me.checkboxNotification.Location = New System.Drawing.Point(6, 253)
+		Me.checkboxNotification.Name = "checkboxNotification"
+		Me.checkboxNotification.Size = New System.Drawing.Size(127, 33)
+		Me.checkboxNotification.TabIndex = 8
+		Me.checkboxNotification.Text = "E-Mail Notification"
+		Me.checkboxNotification.UseVisualStyleBackColor = true
+		AddHandler Me.checkboxNotification.CheckedChanged, AddressOf Me.CheckboxGenderCheckedChanged
 		'
 		'checkboxGender
 		'
@@ -78,42 +88,6 @@
 		Me.checkboxGender.Text = "Male"
 		Me.checkboxGender.UseVisualStyleBackColor = true
 		AddHandler Me.checkboxGender.CheckedChanged, AddressOf Me.CheckboxGenderCheckedChanged
-		'
-		'labelCreateTime
-		'
-		Me.labelCreateTime.AutoSize = true
-		Me.labelCreateTime.Location = New System.Drawing.Point(6, 250)
-		Me.labelCreateTime.Name = "labelCreateTime"
-		Me.labelCreateTime.Size = New System.Drawing.Size(70, 13)
-		Me.labelCreateTime.TabIndex = 3
-		Me.labelCreateTime.Text = "Time Created"
-		'
-		'textboxCreateTime
-		'
-		Me.textboxCreateTime.Location = New System.Drawing.Point(9, 266)
-		Me.textboxCreateTime.Name = "textboxCreateTime"
-		Me.textboxCreateTime.ReadOnly = true
-		Me.textboxCreateTime.Size = New System.Drawing.Size(128, 20)
-		Me.textboxCreateTime.TabIndex = 5
-		Me.textboxCreateTime.TabStop = false
-		'
-		'labelCreateDate
-		'
-		Me.labelCreateDate.AutoSize = true
-		Me.labelCreateDate.Location = New System.Drawing.Point(6, 211)
-		Me.labelCreateDate.Name = "labelCreateDate"
-		Me.labelCreateDate.Size = New System.Drawing.Size(70, 13)
-		Me.labelCreateDate.TabIndex = 2
-		Me.labelCreateDate.Text = "Date Created"
-		'
-		'textboxCreateDate
-		'
-		Me.textboxCreateDate.Location = New System.Drawing.Point(9, 227)
-		Me.textboxCreateDate.Name = "textboxCreateDate"
-		Me.textboxCreateDate.ReadOnly = true
-		Me.textboxCreateDate.Size = New System.Drawing.Size(128, 20)
-		Me.textboxCreateDate.TabIndex = 4
-		Me.textboxCreateDate.TabStop = false
 		'
 		'textboxBirthYear
 		'
@@ -128,9 +102,9 @@
 		Me.labelNameLast.AutoSize = true
 		Me.labelNameLast.Location = New System.Drawing.Point(6, 94)
 		Me.labelNameLast.Name = "labelNameLast"
-		Me.labelNameLast.Size = New System.Drawing.Size(75, 13)
+		Me.labelNameLast.Size = New System.Drawing.Size(58, 13)
 		Me.labelNameLast.TabIndex = 0
-		Me.labelNameLast.Text = "RL Last Name"
+		Me.labelNameLast.Text = "Last Name"
 		'
 		'labelBirthDate
 		'
@@ -141,21 +115,29 @@
 		Me.labelBirthDate.TabIndex = 0
 		Me.labelBirthDate.Text = "Birth Date (YYYY-MM-DD)"
 		'
+		'textboxEMail
+		'
+		Me.textboxEMail.Location = New System.Drawing.Point(9, 227)
+		Me.textboxEMail.Name = "textboxEMail"
+		Me.textboxEMail.Size = New System.Drawing.Size(128, 20)
+		Me.textboxEMail.TabIndex = 7
+		'
 		'textboxNameFirst
 		'
 		Me.textboxNameFirst.Location = New System.Drawing.Point(9, 71)
 		Me.textboxNameFirst.Name = "textboxNameFirst"
 		Me.textboxNameFirst.Size = New System.Drawing.Size(128, 20)
 		Me.textboxNameFirst.TabIndex = 1
+		AddHandler Me.textboxNameFirst.TextChanged, AddressOf Me.TextboxNameFirstTextChanged
 		'
-		'labelNameNick
+		'labelProfileID
 		'
-		Me.labelNameNick.AutoSize = true
-		Me.labelNameNick.Location = New System.Drawing.Point(6, 16)
-		Me.labelNameNick.Name = "labelNameNick"
-		Me.labelNameNick.Size = New System.Drawing.Size(60, 13)
-		Me.labelNameNick.TabIndex = 0
-		Me.labelNameNick.Text = "Nick Name"
+		Me.labelProfileID.AutoSize = true
+		Me.labelProfileID.Location = New System.Drawing.Point(6, 16)
+		Me.labelProfileID.Name = "labelProfileID"
+		Me.labelProfileID.Size = New System.Drawing.Size(67, 13)
+		Me.labelProfileID.TabIndex = 0
+		Me.labelProfileID.Text = "Profile Name"
 		'
 		'textboxBirthDay
 		'
@@ -165,14 +147,23 @@
 		Me.textboxBirthDay.TabIndex = 5
 		AddHandler Me.textboxBirthDay.LostFocus, AddressOf Me.TextboxBirthDayLostFocus
 		'
+		'labelEMail
+		'
+		Me.labelEMail.AutoSize = true
+		Me.labelEMail.Location = New System.Drawing.Point(6, 211)
+		Me.labelEMail.Name = "labelEMail"
+		Me.labelEMail.Size = New System.Drawing.Size(36, 13)
+		Me.labelEMail.TabIndex = 0
+		Me.labelEMail.Text = "E-Mail"
+		'
 		'labelNameFirst
 		'
 		Me.labelNameFirst.AutoSize = true
 		Me.labelNameFirst.Location = New System.Drawing.Point(6, 55)
 		Me.labelNameFirst.Name = "labelNameFirst"
-		Me.labelNameFirst.Size = New System.Drawing.Size(74, 13)
+		Me.labelNameFirst.Size = New System.Drawing.Size(57, 13)
 		Me.labelNameFirst.TabIndex = 0
-		Me.labelNameFirst.Text = "RL First Name"
+		Me.labelNameFirst.Text = "First Name"
 		'
 		'textboxNameLast
 		'
@@ -180,6 +171,7 @@
 		Me.textboxNameLast.Name = "textboxNameLast"
 		Me.textboxNameLast.Size = New System.Drawing.Size(128, 20)
 		Me.textboxNameLast.TabIndex = 2
+		AddHandler Me.textboxNameLast.TextChanged, AddressOf Me.TextboxNameLastTextChanged
 		'
 		'textboxBirthMonth
 		'
@@ -189,55 +181,77 @@
 		Me.textboxBirthMonth.TabIndex = 4
 		AddHandler Me.textboxBirthMonth.LostFocus, AddressOf Me.TextboxBirthMonthLostFocus
 		'
-		'textboxNameNick
+		'textboxProfileID
 		'
-		Me.textboxNameNick.Location = New System.Drawing.Point(9, 32)
-		Me.textboxNameNick.Name = "textboxNameNick"
-		Me.textboxNameNick.Size = New System.Drawing.Size(128, 20)
-		Me.textboxNameNick.TabIndex = 0
+		Me.textboxProfileID.Location = New System.Drawing.Point(9, 32)
+		Me.textboxProfileID.Name = "textboxProfileID"
+		Me.textboxProfileID.ReadOnly = true
+		Me.textboxProfileID.Size = New System.Drawing.Size(128, 20)
+		Me.textboxProfileID.TabIndex = 0
 		'
 		'buttonCreate
 		'
-		Me.buttonCreate.Location = New System.Drawing.Point(12, 313)
+		Me.buttonCreate.Location = New System.Drawing.Point(12, 310)
 		Me.buttonCreate.Name = "buttonCreate"
-		Me.buttonCreate.Size = New System.Drawing.Size(146, 23)
-		Me.buttonCreate.TabIndex = 8
+		Me.buttonCreate.Size = New System.Drawing.Size(71, 29)
+		Me.buttonCreate.TabIndex = 9
 		Me.buttonCreate.Text = "Create"
 		Me.buttonCreate.UseVisualStyleBackColor = true
 		AddHandler Me.buttonCreate.Click, AddressOf Me.ButtonCreateClick
 		'
-		'formNewGame
+		'listboxProfile
+		'
+		Me.listboxProfile.FormattingEnabled = true
+		Me.listboxProfile.Location = New System.Drawing.Point(164, 13)
+		Me.listboxProfile.Name = "listboxProfile"
+		Me.listboxProfile.Size = New System.Drawing.Size(130, 329)
+		Me.listboxProfile.TabIndex = 10
+		'
+		'buttonLoad
+		'
+		Me.buttonLoad.Location = New System.Drawing.Point(89, 310)
+		Me.buttonLoad.Name = "buttonLoad"
+		Me.buttonLoad.Size = New System.Drawing.Size(69, 29)
+		Me.buttonLoad.TabIndex = 11
+		Me.buttonLoad.Text = "Use"
+		Me.buttonLoad.UseVisualStyleBackColor = true
+		AddHandler Me.buttonLoad.Click, AddressOf Me.ButtonLoadClick
+		'
+		'formProfileManagement
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(171, 348)
+		Me.ClientSize = New System.Drawing.Size(309, 353)
+		Me.Controls.Add(Me.buttonLoad)
+		Me.Controls.Add(Me.listboxProfile)
 		Me.Controls.Add(Me.buttonCreate)
 		Me.Controls.Add(Me.groupboxProfile)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
 		Me.MaximizeBox = false
 		Me.MinimizeBox = false
-		Me.Name = "formNewGame"
-		Me.Text = "New Player"
-		AddHandler Load, AddressOf Me.FormNewGameLoad
+		Me.Name = "formProfileManagement"
+		Me.Text = "New Profile"
+		AddHandler Load, AddressOf Me.formProfileManagementLoad
 		Me.groupboxProfile.ResumeLayout(false)
 		Me.groupboxProfile.PerformLayout
 		Me.ResumeLayout(false)
 	End Sub
+	Private buttonLoad As System.Windows.Forms.Button
+	Private listboxProfile As System.Windows.Forms.ListBox
+	Private textboxProfileID As System.Windows.Forms.TextBox
+	Private labelEMail As System.Windows.Forms.Label
+	Private labelProfileID As System.Windows.Forms.Label
+	Private textboxEMail As System.Windows.Forms.TextBox
+	Private checkboxNotification As System.Windows.Forms.CheckBox
 	Private checkboxGender As System.Windows.Forms.CheckBox
 	Private buttonCreate As System.Windows.Forms.Button
-	Private textboxNameNick As System.Windows.Forms.TextBox
 	Private textboxBirthMonth As System.Windows.Forms.TextBox
 	Private textboxNameLast As System.Windows.Forms.TextBox
 	Private labelNameFirst As System.Windows.Forms.Label
 	Private textboxBirthDay As System.Windows.Forms.TextBox
-	Private labelNameNick As System.Windows.Forms.Label
 	Private textboxNameFirst As System.Windows.Forms.TextBox
 	Private labelBirthDate As System.Windows.Forms.Label
 	Private labelNameLast As System.Windows.Forms.Label
 	Private textboxBirthYear As System.Windows.Forms.TextBox
-	Private textboxCreateDate As System.Windows.Forms.TextBox
-	Private labelCreateDate As System.Windows.Forms.Label
-	Private textboxCreateTime As System.Windows.Forms.TextBox
-	Private labelCreateTime As System.Windows.Forms.Label
 	Private groupboxProfile As System.Windows.Forms.GroupBox
 End Class

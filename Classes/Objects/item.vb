@@ -30,10 +30,10 @@ Public Class item
 						Exit Property
 					End If
 					integerRow += 1
-				Loop Until integerRow >= stringItem.GetUpperBound(1)
+				Loop Until integerRow > stringItem.GetUpperBound(1)
 				integerColumn += 1
 				integerRow = 0
-			Loop Until integerColumn >= stringItem.GetUpperBound(0)
+			Loop Until integerColumn > stringItem.GetUpperBound(0)
 			Return ""
 		End Get
 	End Property

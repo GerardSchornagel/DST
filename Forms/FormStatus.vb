@@ -14,18 +14,19 @@
 		
 		textboxBalance.Text = CType(gamecache.playerCharacter.Balance, String)
 		'Profile Tab
-		textboxPlayerID.Text = CType(gamecache.playerCharacter.PlayerID, String)
-		textboxNameNick.Text = gamecache.playerProfile.NickName
-		textboxNameFirst.Text = gamecache.playerProfile.FirstName
-		textboxNameLast.Text = gamecache.playerProfile.LastName
-		textboxBirthYear.Text = CType(gamecache.playerProfile.BirthYear, String)
-		textboxBirthMonth.Text = CType(gamecache.playerProfile.BirthMonth, String)
-		textboxBirthDay.Text = CType(gamecache.playerProfile.BirthDay, String)
-		textboxGender.Text = gamecache.playerProfile.Gender
-		textboxCreateDate.Text = gamecache.playerProfile.CreateDate
-		textboxCreateTime.Text = gamecache.playerProfile.CreateTime
+		textboxProfileID.Text = CType(gamecache.profileInformation.ProfileID, String)
+		textboxNameFirst.Text = gamecache.profileInformation.FirstName
+		textboxNameLast.Text = gamecache.profileInformation.LastName
+		textboxBirthYear.Text = CType(gamecache.profileInformation.BirthYear, String)
+		textboxBirthMonth.Text = CType(gamecache.profileInformation.BirthMonth, String)
+		textboxBirthDay.Text = CType(gamecache.profileInformation.BirthDay, String)
+		textboxGender.Text = gamecache.profileInformation.Gender
+		textboxCreateDate.Text = gamecache.profileStats.CreateDate
+		textboxCreateTime.Text = gamecache.profileStats.CreateTime
 		'Character Tab
-		textboxLocation.Text = gamecache.playerCharacter.CurrentLocation
+		textboxWorld.Text = gamecache.playerCharacter.CurrentWorld
+		textboxCountry.Text = gamecache.playerCharacter.CurrentCountry
+		textboxPlace.Text = gamecache.playerCharacter.CurrentPlace
 		textboxStore.Text = gamecache.playerCharacter.CurrentStore
 		textboxMoneyEarned.Text = CType(gamecache.playerCharacter.TotalEarnings, String)
 		textboxMoneySpent.Text = CType(gamecache.playerCharacter.TotalSpendings, String)
@@ -62,9 +63,13 @@
 	
 	Private Sub Reload()
 		textboxBalance.Text = CType(gamecache.playerCharacter.Balance, String)
-		textboxPlaycycles.Text = CType(gamecache.playerCharacter.TotalDayCycles, String)
+		textboxWorld.Text = gamecache.playerCharacter.CurrentWorld
+		textboxCountry.Text = gamecache.playerCharacter.CurrentCountry
+		textboxPlace.Text = gamecache.playerCharacter.CurrentPlace
+		textboxStore.Text = gamecache.playerCharacter.CurrentStore
 		textboxMoneyEarned.Text = CType(gamecache.playerCharacter.TotalEarnings, String)
 		textboxMoneySpent.Text = CType(gamecache.playerCharacter.TotalSpendings, String)
 		textboxItemsSold.Text = CType(gamecache.playerCharacter.TotalItemsSold, String)
+		textboxPlaycycles.Text = CType(gamecache.playerCharacter.TotalDayCycles, String)
 	End Sub
 End Class

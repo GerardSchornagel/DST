@@ -60,6 +60,9 @@
   <ItemGroup>
     <Compile Include="Classes\Functions\mathematics.vb" />
     <Compile Include="Classes\Objects\item.vb" />
+    <Compile Include="Classes\Player\Character\character.vb" />
+    <Compile Include="Classes\Player\Profile\profile.vb" />
+    <Compile Include="Classes\Player\Profile\profileStatistics.vb" />
     <Compile Include="Classes\Player\settings.vb" />
     <Compile Include="Classes\Structure\Storage\article.vb" />
     <Compile Include="Classes\Structure\Storage\storage.vb" />
@@ -75,8 +78,6 @@
     <Compile Include="Classes\Functions\binaryFileHandler.vb" />
     <Compile Include="Classes\Functions\iniHandler.vb" />
     <Compile Include="Classes\Objects\customer.vb" />
-    <Compile Include="Classes\Player\character.vb" />
-    <Compile Include="Classes\Player\player.vb" />
     <Compile Include="Forms\formEditor.Designer.vb">
       <DependentUpon>formEditor.vb</DependentUpon>
     </Compile>
@@ -93,10 +94,10 @@
       <DependentUpon>formMap.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\formMap.vb" />
-    <Compile Include="Forms\formNewGame.Designer.vb">
-      <DependentUpon>formNewGame.vb</DependentUpon>
+    <Compile Include="Forms\formProfileManagement.Designer.vb">
+      <DependentUpon>formProfileManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\formNewGame.vb" />
+    <Compile Include="Forms\formProfileManagement.vb" />
     <Compile Include="Forms\formOptions.Designer.vb">
       <DependentUpon>formOptions.vb</DependentUpon>
     </Compile>
@@ -123,6 +124,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\Player\Character" />
+    <Folder Include="Classes\Player\Profile" />
     <Folder Include="Classes\Structure" />
     <Folder Include="Classes\Functions" />
     <Folder Include="Classes\Structure\Store" />
@@ -146,8 +149,8 @@
     <EmbeddedResource Include="Forms\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\formNewGame.resx">
-      <DependentUpon>formNewGame.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\formProfileManagement.resx">
+      <DependentUpon>formProfileManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formOptions.resx">
       <DependentUpon>formOptions.vb</DependentUpon>
