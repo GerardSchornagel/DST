@@ -73,6 +73,7 @@ Public Partial Class formEditor
 		listboxDescription.Items.Add("Items")
 		listboxDescription.Items.Add("Customers")
 		listboxDescription.Items.Add("Settings")
+		listboxDescription.Items.Add("Namelist")
 	End Sub
 	
 	Sub ListboxDescriptionSelectedIndexChanged(sender As Object, e As EventArgs)
@@ -82,6 +83,8 @@ Public Partial Class formEditor
 			textboxDescription.Text = "[Age]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Money]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & "[Desire]" & Chr(13) & Chr(10) & "<Min>" & Chr(13) & Chr(10) & "<Max>"
 		ElseIf listboxDescription.SelectedIndex = 2 Then 'Settings
 			textboxDescription.Text = "[WarningMessages]" & Chr(13) & Chr(10) & "<LastProfileID>" & Chr(13) & Chr(10) & "<ProgramQuit>" & Chr(13) & Chr(10) & "<NewgameOverwrite>" & Chr(13) & Chr(10) & "<OptionsApplyRestart>"
+		ElseIf listboxDescription.SelectedIndex = 3 Then 'Namelist
+			textboxDescription.Text = "[Name List Data]" & Chr(13) & Chr(10) & "<Male>" & Chr(13) & Chr(10) & "<Female>"
 		End If
 	End Sub
 End Class

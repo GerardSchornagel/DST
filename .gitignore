@@ -22,3 +22,6 @@
 /src/AddIns/Misc/PackageManagement/Packages/AvalonEdit/lib
 /packages/
 /src/Tools/ResGet/*.log
+
+.dropbox
+desktop.ini

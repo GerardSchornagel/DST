@@ -1,101 +1,46 @@
 ﻿''' <summary>
-''' Creates a Random customer via Ethnic>Gender=Name&Desire>Age>Money
-''' Can be reused through newCustomer()
+''' Creates a Customer database with individuals for storing all Ehtnics.
 ''' </summary>
 Public Class customer
-	Private cRandom As Random
-	Private cEthnic As String
-	Private cName As String
-	Private cGender As String
-	Private cDesire As Integer
-	Private cAge As Integer
-	Private cMoney As Integer
-	Private stringBinaryReader As String
-	Private stringNameListPath As String
-	Private stringDetailsDataFile As String
-	Private arrayNameListF As String()
-	Private arrayNameListM As String()
-	Private arrayDetailsData As String()	
-	Private arrayEthnic As String()
-	
-	Private filehandler As New binaryFileHandler()
+	Private individualDatabase() As individual
+	Private individualCurrent As individual
+	Private stringCurrent As String
 	Sub New()
-		cRandom = New Random()
-		'DeFine ArrayEthnic
-		arrayEthnic = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory & "\data\customer\", "*", IO.SearchOption.TopDirectoryOnly)
-		Dim pos As Integer = 0
-		For Each line In arrayEthnic
-			arrayEthnic(pos) = line.Remove(0, (System.IO.Directory.GetCurrentDirectory & "\data\customer\").Length)
-			pos += 1
+		'Check for quantity data\customer-Folder.
+		Dim stringEthnics() As String = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory & "\data\customer\", "*", System.IO.SearchOption.TopDirectoryOnly)
+		'ReDim individualDatabase accordingly.
+		ReDim individualDatabase(stringEthnics.GetUpperBound(0))
+		'Load all individual's
+		Dim integerCounter As integer = 0
+		For Each line As String In stringEthnics
+			individualDatabase(integerCounter) = New individual()
+			individualDatabase(integerCounter).Load(line)
+			integerCounter += 1
 		Next
-		cEthnic = arrayEthnic(cRandom.Next(0, arrayEthnic.GetUpperBound(0)))
-		'Define ArrayNameF and ArrayNameM
-		arrayNameListM = filehandler.LoadLine(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\", "NamelistM.nld").Split(New String() {Chr(13)}, StringSplitOptions.None)
-		arrayNameListF = filehandler.LoadLine(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\", "NamelistF.nld").Split(New String() {Chr(13)}, StringSplitOptions.None)
-		'Read AgeMin/AgeMax/MoneyMin/MoneyMax/Desire
-		arrayDetailsData = filehandler.LoadRow(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & cEthnic & "\", "Customer.cd")
-		
-		newCustomer()
 	End Sub
-	''' <summary>
-	''' Creates new Customer.
-	''' </summary>
-	Public Sub newCustomer()
-		'Choose Ethnic group
-		cEthnic = arrayEthnic(cRandom.Next(0, arrayEthnic.GetUpperBound(0)))
-		
-		'Choose Gender
-		If cRandom.Next(2010) <= 1000 Then  'Based on WikiPedia (101M on 100F)
-			cGender = "F"
-			cName = arrayNameListF(cRandom.Next(arrayNameListF.GetUpperBound(0)))
-		Else
-			cGender = "M"
-			cName = arrayNameListM(cRandom.Next(arrayNameListM.GetUpperBound(0)))
-		End If
-		
-		'Random Age/Money/Desire
-		cAge = cRandom.Next(CType(arrayDetailsData(1), Integer), CType(arrayDetailsData(2), Integer))
-		cMoney = cRandom.Next(CType(arrayDetailsData(3), Integer), CType(arrayDetailsData(4), Integer))
-		cDesire = cRandom.Next(CType(arrayDetailsData(5), Integer))
-	End Sub
-	''' <summary>
-	''' Returns a String with the Ethnic variable.
-	''' </summary>
-	Public ReadOnly Property Ethnic() As String
+	
+	'Make Function for choosing Random & Specified Ethic-individual.
+''' <summary>
+''' Gets the current Individual. Empty Parameters will be random.
+''' (Ethnic, Name, Gender, Age, Money, Desire) as String(5)
+''' </summary>
+	Public Property GetCurrentCustomer() As String()
 		Get
-			Return cEthnic
+			Return New String() {stringCurrent, individualCurrent.ToStrings(0), individualCurrent.ToStrings(1), individualCurrent.ToStrings(2), individualCurrent.ToStrings(3), individualCurrent.ToStrings(4)} 'test for correct output.
 		End Get
-	End Property
-	''' <summary>
-	''' Returns a String with the Name.
-	''' </summary>
-	Public ReadOnly Property Name() As String
-		Get
-			Return cName
-		End Get
-	End Property
-	''' <summary>
-	''' Returns an Integer with the Age.
-	''' </summary>
-	Public ReadOnly Property Age() As Integer
-		Get
-			Return cAge
-		End Get
-	End Property
-	''' <summary>
-	''' Returns an Integer with the Money on Customer.
-	''' </summary>
-	Public ReadOnly Property Money() As Integer
-		Get
-			Return cMoney
-		End Get
-	End Property
-	''' <summary>
-	''' Returns an Integer with the Desire rate.
-	''' </summary>
-	Public ReadOnly Property Desire() As Integer
-		Get
-			Return cDesire
-		End Get
+		Set (Value As String())
+			Dim stringCurrentCustomer(4) As String
+			Dim randomGenerator As New Random()
+			Dim stringEthnic As String
+			If Value(0) <> Nothing Then stringEthnic = individualDatabase(randomGenerator.Next(individualDatabase.GetUpperBound(0))).Ethnic Else stringEthnic = Value(0)
+			individualCurrent= New individual()
+			individualCurrent.Load(System.IO.Directory.GetCurrentDirectory & "\data\customer\" & stringEthnic)
+			stringCurrentCustomer(0) = Value(1)
+			stringCurrentCustomer(1) = Value(2)
+			stringCurrentCustomer(2) = Value(3)
+			stringCurrentCustomer(3) = Value(4)
+			stringCurrentCustomer(4) = Value(5)
+			individualCurrent.ToStrings = stringCurrentCustomer
+		End Set
 	End Property
 End Class

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Functions\mathematics.vb" />
+    <Compile Include="Classes\Objects\individual.vb" />
     <Compile Include="Classes\Objects\item.vb" />
     <Compile Include="Classes\Player\Character\character.vb" />
     <Compile Include="Classes\Player\Profile\profile.vb" />

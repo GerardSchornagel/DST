@@ -7,8 +7,12 @@ Public Module mathematics
 			Dim integerStoreLevel, integerStoreShelf, integerStoreBin, integerBinQuantity, integerBinPrice As Integer
 			Dim stringBinName, stringReturn As String
 			Dim randomGenerator As New Random()
-			Dim CustomerNew As New customer
-			CustomerNew.newCustomer()
+			Dim CustomerNew(5) As String
+			'CustomerNew(0) = gamecache.playerCharacter.CurrentCountry
+			'HACK: Delete next line when locationCounrty is fixed & UnComment above.
+			CustomerNew(0) = "English"
+			gamecache.cacheCustomer.GetCurrentCustomer = CustomerNew
+			CustomerNew = gamecache.cacheCustomer.GetCurrentCustomer 'Ethnic, Name, Gender, Age, Money, Desire
 			'Setting Random's for slot choosing.
 			stringReturn = "0"
 			integerStoreLevel = randomGenerator.Next(store.arrayLevel.GetUpperBound(0))
@@ -21,10 +25,10 @@ Public Module mathematics
 			'First check for quantity in Bin
 			If integerBinQuantity > 0 Then 'STASH
 				'Check for enough CustomerMoney
-				If integerBinPrice <= CustomerNew.Money Then 'BUY
-					If ((CustomerNew.Money / 100) * CustomerNew.Desire) >= integerBinPrice Then 'INTRESTED
+				If integerBinPrice <= CType(CustomerNew(4), Integer) Then 'BUY
+					If ((CType(CustomerNew(4), Integer) / 100) * CType(CustomerNew(5), Integer)) >= integerBinPrice Then 'INTRESTED
 						'set Return for formStatus.textboxLog
-						stringReturn = stringBinName & " sold to " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & integerStoreBin & Chr(10)
+						stringReturn = stringBinName & " sold to " & CustomerNew(1) & " ($ " & CustomerNew(4) & ") from slot " & integerStoreBin & Chr(10)
 						'Add Article Sell price to Balance
 						gamecache.playerCharacter.Balance += integerBinPrice
 						'Remove 1 item from selected Bin and Saves.
@@ -34,12 +38,12 @@ Public Module mathematics
 						gamecache.playerCharacter.TotalItemsSold += 1
 						gamecache.playerCharacter.TotalEarnings += integerBinPrice
 					Else 'NOTINTRESTRED
-						stringReturn = stringBinName & " didn't sell to " & CustomerNew.Name & ", because of no desire from slot " & integerStoreBin & Chr(10)
+						stringReturn = stringBinName & " didn't sell to " & CustomerNew(1) & ", because of no desire from slot " & integerStoreBin & Chr(10)
 					End If
 					
-				ElseIf integerBinPrice >= CustomerNew.Money Then 'TOOEXPENSIVE
+				ElseIf integerBinPrice >= CType(CustomerNew(4), Integer) Then 'TOOEXPENSIVE
 					'Set Return for formStatus.textboxLog
-					stringReturn = stringBinName & " too Expensive for " & CustomerNew.Name & " ($ " & CustomerNew.Money & ") from slot " & integerStoreBin & Chr(10)
+					stringReturn = stringBinName & " too Expensive for " & CustomerNew(1) & " ($ " & CustomerNew(4) & ") from slot " & integerStoreBin & Chr(10)
 				End If
 				
 			ElseIf integerBinQuantity = 0 Then 'NOSTASH

@@ -20,6 +20,8 @@ Public Partial Class gamecache
 	Friend Shared playerStorage As New storage()
 	Friend Shared playerStore As New store()
 	
+	Friend Shared cacheCustomer As New customer()
+	
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
