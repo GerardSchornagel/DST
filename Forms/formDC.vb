@@ -3,8 +3,6 @@
 	Private stringItemSelected(,) As String
 	Private stringItemOrder() As String
 	
-	Private stringPathItem As String = System.IO.Directory.GetCurrentDirectory & "\Data\Items\"
-	
 	Private integerCounterArticle As Integer
 	Private integerCounterSearch As Integer
 	
@@ -14,43 +12,60 @@
 	End Sub
 		
 	Sub formItemManagementLoad(sender As Object, e As EventArgs)
-		'Fill the dropdown's with the standard template (for now hard-coded, later through a *.pd with it's own class for communications.)
-		'	'For this function make a cache with all data loaded into it, this should make it more searchable too.
+		'Fill the first dropdown with the Store preset.
+		comboboxFamily.Items.Clear()
 		
-		' Restaurant; Services
-		comboboxFamily.Items.Add("Office")
-		
-		' AnimalCare; AudioVisual; Bathroom; Bedroom; Candy; Clothing; Cosmetics; Decorative; Kitchenware; MajorDomesticAppliances; Media; SmallDomesticAppliances; Toy
-		comboboxCategory.Items.Add("Supplies")
-		
-		comboboxGenre.Items.Add("Writing")
+		Dim stringDirectories() As String
+		Dim stringMediator() As String
+		stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory & "\data\items\store\", "*", System.IO.SearchOption.TopDirectoryOnly)
+		For Each directory As String In stringDirectories
+			stringMediator = directory.Split(Chr(92))
+			comboboxFamily.Items.Add(stringMediator(stringMediator.GetUpperBound(0)))
+		Next
 	End Sub
 	
 	Sub ComboboxFamilySelectedIndexChanged(sender As Object, e As EventArgs)
-		'ComboboxProductName.Items.Clear()		
 		'Loop through every file in the correspondending folder and add to listbox.
-		'StringPathProducts & Department
+		comboboxCategory.Items.Clear()
+		
+		Dim stringDirectories() As String
+		Dim stringMediator() As String
+		stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly)
+		For Each directory As String In stringDirectories
+			stringMediator = directory.Split(Chr(92))
+			comboboxCategory.Items.Add(stringMediator(stringMediator.GetUpperBound(0)))
+		Next
 	End Sub
 	
 	Sub ComboboxCategorySelectedIndexChanged(sender As Object, e As EventArgs)
-		'ComboboxProductName.Items.Clear()		
 		'Loop through every file in the correspondending folder and add to listbox.
-		'StringPathProducts & Department & "\" & Genre
+		comboboxGenre.Items.Clear()
+		
+		Dim stringDirectories() As String
+		Dim stringMediator() As String
+		stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString & "\" & comboboxCategory.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly)
+		For Each directory As String In stringDirectories
+			stringMediator = directory.Split(Chr(92))
+			comboboxGenre.Items.Add(stringMediator(stringMediator.GetUpperBound(0)))
+		Next
 	End Sub
 	
 	Sub ComboboxGenreSelectedIndexChanged(sender As Object, e As EventArgs)
 		comboboxName.Items.Clear()
 		
-		'Loop through every file in the correspondending folder and add to listbox.
-		For Each file In System.IO.Directory.GetFiles(stringPathItem & "Store\Office\Supplies\" & comboboxGenre.Text & "\", "*.pd", System.IO.SearchOption.TopDirectoryOnly)
-			comboboxName.Items.Add(CType((file.Remove(file.Length - 3, 3)).Remove(0, stringPathItem.Length + (CType("Store\Office\Supplies\Writing\", String).Length)), String))
+		Dim stringFiles() As String
+		Dim stringMediator() As String
+		stringFiles = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString & "\" & comboboxCategory.SelectedItem.ToString & "\" & comboboxGenre.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly)
+		For Each file As String In stringFiles
+			stringMediator = file.Split(Chr(92))
+			comboboxName.Items.Add((stringMediator(stringMediator.GetUpperBound(0))).Remove(stringMediator(stringMediator.GetUpperBound(0)).Length - 3, 3))
 		Next
 	End Sub
 	
 	Sub ComboboxNameSelectedIndexChanged(sender As Object, e As EventArgs)
 		'Check for miss-click
 		If comboboxName.Text = "" Then Exit Sub
-		Dim itemSelected As New item(stringPathItem & "Store\Office\Supplies\" & comboboxGenre.Text & "\" & comboboxName.Text & ".pd")
+		Dim itemSelected As New item(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString & "\" & comboboxCategory.SelectedItem.ToString & "\" & comboboxGenre.Text & "\" & comboboxName.Text & ".pd")
 		
 		labelItemFamilyDisplay.Text = itemSelected.Family
 		labelItemCategoryDisplay.Text = itemSelected.Category

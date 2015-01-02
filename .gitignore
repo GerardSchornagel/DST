@@ -23,5 +23,5 @@
 /packages/
 /src/Tools/ResGet/*.log
 
-.dropbox
+.dropbox*
 desktop.ini
