@@ -11,15 +11,16 @@ Public Partial Class gamecache
 	Friend Shared InfoProfileForm As System.Windows.Forms.Form
 	Friend Shared EditorForm As System.Windows.Forms.Form
 	
-	Friend Shared settingsGlobal As New settings()
+	Friend Shared currentSettings As New settings()
 	
-	Friend Shared profileInformation As New profile()
-	Friend Shared profileStats As New profileStatistics()
+	Friend Shared currentPlayerProfile As New playerProfile()
+	Friend Shared currentPlayerStatistics As New playerStatistics()
+	Friend Shared currentCharacterStorage As New storage()
+	Friend Shared currentCharacterStore As New store()
 	
-	Friend Shared playerCharacter As New character()
-	Friend Shared playerStorage As New storage()
-	Friend Shared playerStore As New store()
-	
+	Friend Shared currentCharacterProfile As New characterProfile()
+	Friend Shared currentCharacterStatistics As New characterStatistics()
+		
 	Friend Shared cacheCustomer As New customer()
 	
 	Public Sub New()
@@ -28,18 +29,18 @@ Public Partial Class gamecache
 		
 		If System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory & "\save\settings.ini") = False Then
 			'Create new settings and opens New Profile window.
-			settingsGlobal.NewSettings()
-			InfoProfileForm = New formProfileManagement()
+			currentSettings.NewSettings()
+			InfoProfileForm = New formPlayerManagement()
 			InfoProfileForm.Show()
 		Else
 			labelDescription.Text = "Loading Global Settings"
 			progressbarLoading.Value = 4
 			'Load settings
-			settingsGlobal.LoadSettings()
+			currentSettings.LoadSettings()
 			labelDescription.Text = "Load Latest Profile"
 			progressbarLoading.Value = 8
 			'Load latest Profile
-			profileStats.LoadStatistics()
+			currentPlayerStatistics.LoadPlayerStatistics()
 			labelDescription.Text = "Opening Main Menu"
 			progressbarLoading.Value = 10
 			MainMenu.Show()
@@ -48,7 +49,7 @@ Public Partial Class gamecache
 	End Sub
 	
 	Public Shared Sub InfoProfile()
-		InfoProfileForm = New formProfileManagement
+		InfoProfileForm = New formPlayerManagement
 		InfoProfileForm.Show()
 		MainMenu.Hide()
 		gamecache.WindowState = System.Windows.Forms.FormWindowState.Minimized
@@ -61,20 +62,21 @@ Public Partial Class gamecache
 		Me.WindowState = System.Windows.Forms.FormWindowState.Normal
 		progressbarLoading.Value = 1
 		labelDescription.Text = "Making new Profile."
-		profileInformation.LoadProfile()
+		currentPlayerProfile.LoadPlayerProfile()
 		progressbarLoading.Value = 2
 		labelDescription.Text = "Making new Character."
-		playerCharacter.LoadCharacter()
+		currentCharacterProfile.LoadCharacterProfile()
+		currentCharacterStatistics.LoadCharacterStatistics()
 		progressbarLoading.Value = 3
 		labelDescription.Text = "Making new Storage."
-		playerStorage.StoragePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.settingsGlobal.LastProfile & "\Storage\0"
-		playerStorage.StorageInitialize()
-		playerStorage.StorageLoad()
+		currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.currentSettings.LastProfile & "\Storage\0"
+		currentCharacterStorage.StorageInitialize()
+		currentCharacterStorage.StorageLoad()
 		progressbarLoading.Value = 6
 		labelDescription.Text = "Creating Store Layout."
-		playerStore.StorePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.settingsGlobal.LastProfile & "\MyFirstStore"
-		playerStore.StoreInitialize()
-		playerStore.StoreLoad()
+		currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.currentSettings.LastProfile & "\MyFirstStore"
+		currentCharacterStore.StoreInitialize()
+		currentCharacterStore.StoreLoad()
 		progressbarLoading.Value = 9
 		labelDescription.Text = "Opening Forms."
 		StartGame()
@@ -87,21 +89,22 @@ Public Partial Class gamecache
 		InfoProfileForm.Hide()
 		progressbarLoading.Value = 2
 		labelDescription.Text = "Making new Character."
-		playerCharacter.LoadCharacter()
+		currentCharacterProfile.LoadCharacterProfile()
+		currentCharacterStatistics.LoadCharacterStatistics()
 		progressbarLoading.Value = 3
 		labelDescription.Text = "Making new Storage."
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.settingsGlobal.LastProfile & "\Storage\0")
-		playerStorage.StoragePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.settingsGlobal.LastProfile & "\Storage\0"
-		playerStorage.StorageInitialize()
-		playerStorage.StorageLoad()
-		playerStorage.SectionAdd()
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.currentSettings.LastProfile & "\Storage\0")
+		currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.currentSettings.LastProfile & "\Storage\0"
+		currentCharacterStorage.StorageInitialize()
+		currentCharacterStorage.StorageLoad()
+		currentCharacterStorage.SectionAdd()
 		progressbarLoading.Value = 6
 		labelDescription.Text = "Creating Store Layout."
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.settingsGlobal.LastProfile & "\MyFirstStore")
-		playerStore.StorePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.settingsGlobal.LastProfile & "\MyFirstStore"
-		playerStore.StoreInitialize()
-		playerStore.StoreLoad()
-		playerStore.LevelAdd()
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.currentSettings.LastProfile & "\MyFirstStore")
+		currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory & "\Save\" & gamecache.currentSettings.LastProfile & "\MyFirstStore"
+		currentCharacterStore.StoreInitialize()
+		currentCharacterStore.StoreLoad()
+		currentCharacterStore.LevelAdd()
 		progressbarLoading.Value = 9
 		labelDescription.Text = "Opening Forms."
 		StartGame()

@@ -1,7 +1,7 @@
 ﻿''' <summary>
 ''' Get or Set the current Player data.
 ''' </summary>
-Public Class profile
+Public Class playerProfile
 	Private iniFileHandler As New iniHandler()
 	Dim stringProfileData(,) As String
 ''' <summary>
@@ -13,17 +13,17 @@ Public Class profile
 ''' <summary>
 ''' Creates a new Profile.
 ''' </summary>
-	Public Sub NewProfile(ProfileInfo() As String)
-		stringProfileData = New String(,) {{"[Player Info]", "<ProfileID>", ProfileInfo(0), "<NameFirst>", ProfileInfo(1), "<NameLast>", ProfileInfo(2), "<BirthYear>", ProfileInfo(3), "<BirthMonth>", ProfileInfo(4), "<BirthDay>", ProfileInfo(5), "<Gender>", ProfileInfo(6), "<E-Mail>", ProfileInfo(7), "<E-Mail Notification>", ProfileInfo(8)}}
-		gamecache.settingsGlobal.LastProfile = ProfileInfo(0)
+	Public Sub NewPlayerProfile(ProfileInfo() As String)
+		stringProfileData = New String(,) {{"[Player Profile]", "<ProfileID>", ProfileInfo(0), "<NameFirst>", ProfileInfo(1), "<NameLast>", ProfileInfo(2), "<BirthYear>", ProfileInfo(3), "<BirthMonth>", ProfileInfo(4), "<BirthDay>", ProfileInfo(5), "<Gender>", ProfileInfo(6), "<E-Mail>", ProfileInfo(7), "<E-Mail Notification>", ProfileInfo(8)}}
+		gamecache.currentSettings.LastProfile = ProfileInfo(0)
 		'Start Writing New Profile
 		SaveState()
 	End Sub
 ''' <summary>
 ''' Loads a Profile file.
 ''' </summary>
-	Friend Sub LoadProfile()
-		stringProfileData = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile & "\profile.pd")
+	Friend Sub LoadPlayerProfile()
+		stringProfileData = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\player\profile.ini")
 	End Sub
 ''' <summary>
 ''' Searches in stringProfileData for requested Setting and set/returns that value.
@@ -67,8 +67,8 @@ Public Class profile
 ''' Saves all changes made to the Profile data.
 ''' </summary>
 	Private Sub SaveState()
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile)
-		iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile & "\profile.pd", stringProfileData)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\player")
+		iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\player\profile.ini", stringProfileData)
 	End Sub
 ''' <summary>
 ''' Returns a String with the ProfileID.

@@ -27,8 +27,8 @@ Public Class shelf
 ''' </summary>
 	Public Sub ShelfInitialize()
 		integerBinCounter = 0
-		ReDim arrayBin(System.IO.Directory.GetFiles(stringPathShelf, "*.pd", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
-		For Each file As String In System.IO.Directory.GetFiles(stringPathShelf, "*.pd", System.IO.SearchOption.TopDirectoryOnly)
+		ReDim arrayBin(System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
+		For Each file As String In System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly)
 			arrayBin(integerBinCounter) = New Bin
 			arrayBin(integerBinCounter).BinPath = file
 			integerBinCounter += 1
@@ -49,7 +49,7 @@ Public Class shelf
 	Public Sub BinAdd(ArticleInfo() As String)
 		Dim intCheck As Integer = 0
 		Do
-			If System.IO.File.Exists(stringPathShelf & "\" & intCheck & ".pd") = False Then
+			If System.IO.File.Exists(stringPathShelf & "\" & intCheck & ".ini") = False Then
 				Exit Do
 			End If
 			intCheck += 1
@@ -57,7 +57,7 @@ Public Class shelf
 		ReDim Preserve arrayBin(intCheck)
 		arrayBin(arrayBin.GetUpperBound(0)) = New Bin
 		arrayBin(arrayBin.GetUpperBound(0)).BinPath = stringPathShelf & "\"
-		arrayBin(arrayBin.GetUpperBound(0)).BinFile = intCheck & ".pd"
+		arrayBin(arrayBin.GetUpperBound(0)).BinFile = intCheck & ".ini"
 		arrayBin(arrayBin.GetUpperBound(0)).LinkStorage = CType(ArticleInfo(0), Integer)
 		arrayBin(arrayBin.GetUpperBound(0)).LinkSection = CType(ArticleInfo(1), Integer)
 		arrayBin(arrayBin.GetUpperBound(0)).LinkArticle = CType(ArticleInfo(2), Integer)

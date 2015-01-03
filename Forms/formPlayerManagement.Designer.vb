@@ -1,4 +1,4 @@
-﻿Partial Class formProfileManagement
+﻿Partial Class formPlayerManagement
 	Inherits System.Windows.Forms.Form
 	
 	''' <summary>
@@ -229,9 +229,9 @@
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
 		Me.MaximizeBox = false
 		Me.MinimizeBox = false
-		Me.Name = "formProfileManagement"
-		Me.Text = "New Profile"
-		AddHandler Load, AddressOf Me.formProfileManagementLoad
+		Me.Name = "formPlayerManagement"
+		Me.Text = "New Player"
+		AddHandler Load, AddressOf Me.formPlayerManagementLoad
 		Me.groupboxProfile.ResumeLayout(false)
 		Me.groupboxProfile.PerformLayout
 		Me.ResumeLayout(false)

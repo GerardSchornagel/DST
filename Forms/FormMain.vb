@@ -18,7 +18,7 @@ Public Partial Class formMain
 		folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory & "\save"
 		folderdialogLoadGame.Description = "Please select one of the numbered directory's"
 		folderdialogLoadGame.ShowDialog()
-		gamecache.settingsGlobal.LastProfile = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1), String)
+		gamecache.currentSettings.LastProfile = CType(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1), String)
 		'Load Game
 		buttonLastCharacterClick(Nothing, Nothing)
 	End Sub
@@ -47,6 +47,6 @@ Public Partial Class formMain
 	
 	Sub buttonQuitClick(sender As Object, e As EventArgs)
 		'Check for WarningMessage Setting and show the warning with Yes/No, else just End
-		If gamecache.settingsGlobal.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
+		If gamecache.currentSettings.MessagesProgramQuit = False Then If MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit") = MsgBoxResult.No Then Exit Sub Else End Else End
 	End Sub
 End Class

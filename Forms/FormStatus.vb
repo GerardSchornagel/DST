@@ -12,26 +12,26 @@
 		timerUpdate.Interval = 2500
 		timerUpdate.Start()
 		
-		textboxBalance.Text = CType(gamecache.playerCharacter.Balance, String)
+		textboxBalance.Text = CType(gamecache.currentCharacterStatistics.Balance, String)
 		'Profile Tab
-		textboxProfileID.Text = CType(gamecache.profileInformation.ProfileID, String)
-		textboxNameFirst.Text = gamecache.profileInformation.FirstName
-		textboxNameLast.Text = gamecache.profileInformation.LastName
-		textboxBirthYear.Text = CType(gamecache.profileInformation.BirthYear, String)
-		textboxBirthMonth.Text = CType(gamecache.profileInformation.BirthMonth, String)
-		textboxBirthDay.Text = CType(gamecache.profileInformation.BirthDay, String)
-		textboxGender.Text = gamecache.profileInformation.Gender
-		textboxCreateDate.Text = gamecache.profileStats.CreateDate
-		textboxCreateTime.Text = gamecache.profileStats.CreateTime
+		textboxProfileID.Text = CType(gamecache.currentPlayerProfile.ProfileID, String)
+		textboxNameFirst.Text = gamecache.currentPlayerProfile.FirstName
+		textboxNameLast.Text = gamecache.currentPlayerProfile.LastName
+		textboxBirthYear.Text = CType(gamecache.currentPlayerProfile.BirthYear, String)
+		textboxBirthMonth.Text = CType(gamecache.currentPlayerProfile.BirthMonth, String)
+		textboxBirthDay.Text = CType(gamecache.currentPlayerProfile.BirthDay, String)
+		textboxGender.Text = gamecache.currentPlayerProfile.Gender
+		textboxCreateDate.Text = gamecache.currentPlayerStatistics.CreateDate
+		textboxCreateTime.Text = gamecache.currentPlayerStatistics.CreateTime
 		'Character Tab
-		textboxWorld.Text = gamecache.playerCharacter.CurrentWorld
-		textboxCountry.Text = gamecache.playerCharacter.CurrentCountry
-		textboxPlace.Text = gamecache.playerCharacter.CurrentPlace
-		textboxStore.Text = gamecache.playerCharacter.CurrentStore
-		textboxMoneyEarned.Text = CType(gamecache.playerCharacter.TotalEarnings, String)
-		textboxMoneySpent.Text = CType(gamecache.playerCharacter.TotalSpendings, String)
-		textboxItemsSold.Text = CType(gamecache.playerCharacter.TotalItemsSold, String)
-		textboxPlaycycles.Text = CType(gamecache.playerCharacter.TotalDayCycles, String)
+		textboxWorld.Text = gamecache.currentCharacterProfile.CurrentWorld
+		textboxCountry.Text = gamecache.currentCharacterProfile.CurrentCountry
+		textboxPlace.Text = gamecache.currentCharacterProfile.CurrentPlace
+		textboxStore.Text = gamecache.currentCharacterProfile.CurrentStore
+		textboxMoneyEarned.Text = CType(gamecache.currentCharacterStatistics.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(gamecache.currentCharacterStatistics.TotalSpendings, String)
+		textboxItemsSold.Text = CType(gamecache.currentCharacterStatistics.TotalItemsSold, String)
+		textboxPlaycycles.Text = CType(gamecache.currentCharacterStatistics.TotalDayCycles, String)
 	End Sub
 	
 	Sub buttonExitClick(sender As Object, e As EventArgs)
@@ -62,14 +62,14 @@
 	End Sub
 	
 	Private Sub Reload()
-		textboxBalance.Text = CType(gamecache.playerCharacter.Balance, String)
-		textboxWorld.Text = gamecache.playerCharacter.CurrentWorld
-		textboxCountry.Text = gamecache.playerCharacter.CurrentCountry
-		textboxPlace.Text = gamecache.playerCharacter.CurrentPlace
-		textboxStore.Text = gamecache.playerCharacter.CurrentStore
-		textboxMoneyEarned.Text = CType(gamecache.playerCharacter.TotalEarnings, String)
-		textboxMoneySpent.Text = CType(gamecache.playerCharacter.TotalSpendings, String)
-		textboxItemsSold.Text = CType(gamecache.playerCharacter.TotalItemsSold, String)
-		textboxPlaycycles.Text = CType(gamecache.playerCharacter.TotalDayCycles, String)
+		textboxBalance.Text = CType(gamecache.currentCharacterStatistics.Balance, String)
+		textboxWorld.Text = gamecache.currentCharacterProfile.CurrentWorld
+		textboxCountry.Text = gamecache.currentCharacterProfile.CurrentCountry
+		textboxPlace.Text = gamecache.currentCharacterProfile.CurrentPlace
+		textboxStore.Text = gamecache.currentCharacterProfile.CurrentStore
+		textboxMoneyEarned.Text = CType(gamecache.currentCharacterStatistics.TotalEarnings, String)
+		textboxMoneySpent.Text = CType(gamecache.currentCharacterStatistics.TotalSpendings, String)
+		textboxItemsSold.Text = CType(gamecache.currentCharacterStatistics.TotalItemsSold, String)
+		textboxPlaycycles.Text = CType(gamecache.currentCharacterStatistics.TotalDayCycles, String)
 	End Sub
 End Class

@@ -26,7 +26,7 @@ Public Class individual
 		Dim stringConversion() As String = pathEthnic.Split(Chr(92))
 		stringEthnic = stringConversion(stringConversion.GetUpperBound(0))
 		'Fill stringDetails with pathEthnic
-		stringDetails = iniFilehandler.Load(pathEthnic & "\details.pd")
+		stringDetails = iniFilehandler.Load(pathEthnic & "\details.ini")
 		'Fill stringNamelistM with pathEthnic
 		stringNamelistM = LoadNamelist(pathEthnic & "\NamelistM.nld")
 		'Fill stringNamelistF with pathEthnic
@@ -57,7 +57,7 @@ Public Class individual
 		Return stringMediator
 	End Function
 ''' <summary>
-''' Gets or Sets an Individual, empty variable's will be random according to [Ethnic]\details.pd.
+''' Gets or Sets an Individual, empty variable's will be random according to [Ethnic]\details.ini.
 ''' (Name, Gender, Age, Money, Desire) as String(4)
 ''' </summary>
 	Public Property ToStrings() As String()

@@ -27,8 +27,8 @@ Public Class section
 ''' </summary>
 	Public Sub SectionInitialize()
 		integerArticleCounter = 0
-		ReDim arrayArticle(System.IO.Directory.GetFiles(stringPathSection, "*.pd", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
-		For Each file As String In System.IO.Directory.GetFiles(stringPathSection, "*.pd", System.IO.SearchOption.TopDirectoryOnly)
+		ReDim arrayArticle(System.IO.Directory.GetFiles(stringPathSection, "*.ini", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0))
+		For Each file As String In System.IO.Directory.GetFiles(stringPathSection, "*.ini", System.IO.SearchOption.TopDirectoryOnly)
 			arrayArticle(integerArticleCounter) = New Article
 			arrayArticle(integerArticleCounter).ArticlePath = file
 			
@@ -50,7 +50,7 @@ Public Class section
 	Public Sub ArticleAdd(ArticleInfo() As String)
 		Dim intCheck As Integer = 0
 		Do
-			If System.IO.File.Exists(stringPathSection & "\" & intCheck & ".pd") = False Then
+			If System.IO.File.Exists(stringPathSection & "\" & intCheck & ".ini") = False Then
 				Exit Do
 			End If
 			intCheck += 1
@@ -58,7 +58,7 @@ Public Class section
 		ReDim Preserve arrayArticle(intCheck)
 		arrayArticle(arrayArticle.GetUpperBound(0)) = New Article
 		arrayArticle(arrayArticle.GetUpperBound(0)).ArticlePath = stringPathSection & "\"
-		arrayArticle(arrayArticle.GetUpperBound(0)).ArticleFile = intCheck & ".pd"
+		arrayArticle(arrayArticle.GetUpperBound(0)).ArticleFile = intCheck & ".ini"
 		arrayArticle(arrayArticle.GetUpperBound(0)).ItemPath = ArticleInfo(0)
 		arrayArticle(arrayArticle.GetUpperBound(0)).ItemFile = ArticleInfo(1)
 		arrayArticle(arrayArticle.GetUpperBound(0)).Quantity = CType(ArticleInfo(2), Integer)

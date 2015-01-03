@@ -1,16 +1,16 @@
 ﻿''' <summary>
 ''' Used for creating new Profiles and characters.
 ''' </summary>
-Public Partial Class formProfileManagement
+Public Partial Class formPlayerManagement
 	Private stringProfile(,) As String
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()
 	End Sub
 	
-	Sub formProfileManagementLoad(sender As Object, e As EventArgs)
+	Sub formPlayerManagementLoad(sender As Object, e As EventArgs)
 		listboxProfile.Items.Clear()
-		If gamecache.settingsGlobal.LastProfile = "0" Then
+		If gamecache.currentSettings.LastProfile = "0" Then
 			MsgBox("Please create a first Player Profile to enter the MainMenu.", MsgBoxStyle.OkOnly)
 			
 		Else
@@ -32,9 +32,10 @@ Public Partial Class formProfileManagement
 		ProfileInfo(6) = checkboxGender.Text
 		ProfileInfo(7) = textboxEMail.Text
 		ProfileInfo(8) = CType(checkboxNotification.Checked.ToString, String)
-		gamecache.profileInformation.NewProfile(ProfileInfo)
-		gamecache.profileStats.NewStatistics(New String() {CType((System.DateTime.Now.Day & "-" & System.DateTime.Now.Month & "-" & System.DateTime.Now.Year), String), CType(System.DateTime.Now.Hour & ":" & System.DateTime.Now.Minute, String)})
-		gamecache.playerCharacter.NewCharacter(New String() {CType((System.DateTime.Now.Day & "-" & System.DateTime.Now.Month & "-" & System.DateTime.Now.Year), String), CType(System.DateTime.Now.Hour & ":" & System.DateTime.Now.Minute, String)})
+		gamecache.currentPlayerProfile.NewPlayerProfile(ProfileInfo)
+		gamecache.currentPlayerStatistics.NewPlayerStatistics(New String() {CType((System.DateTime.Now.Day & "-" & System.DateTime.Now.Month & "-" & System.DateTime.Now.Year), String), CType(System.DateTime.Now.Hour & ":" & System.DateTime.Now.Minute, String)})
+		gamecache.currentCharacterProfile.NewCharacterProfile(New String() {CType((System.DateTime.Now.Day & "-" & System.DateTime.Now.Month & "-" & System.DateTime.Now.Year), String), CType(System.DateTime.Now.Hour & ":" & System.DateTime.Now.Minute, String)})
+		gamecache.currentCharacterStatistics.NewCharacterStatistics()
 		gamecache.NewProfile()
 	End Sub
 	
@@ -79,7 +80,7 @@ Public Partial Class formProfileManagement
 	End Sub
 	
 	Sub ButtonLoadClick(sender As Object, e As EventArgs)
-		gamecache.settingsGlobal.LastProfile = listboxProfile.SelectedItem.ToString
+		gamecache.currentSettings.LastProfile = listboxProfile.SelectedItem.ToString
 		gamecache.ResumeGame()
 	End Sub
 End Class

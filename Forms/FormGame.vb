@@ -38,11 +38,11 @@
 			
 		Else 'Beneath zero
 			'Pass information for procces to/through formStatus
-			gamecache.playerCharacter.TotalDayCycles += 1
+			gamecache.currentCharacterStatistics.TotalDayCycles += 1
 			buttonActionStart.Text = "Start Day"
 			buttonActionStart.Enabled = True
 			textboxActionHour.Text = CType(9, String)
-			gamecache.playerCharacter.SaveState()
+			gamecache.currentCharacterProfile.SaveState()
 			timerHour.Stop()
 		End If
 	End Sub

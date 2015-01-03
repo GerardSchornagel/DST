@@ -18,130 +18,130 @@ Public Partial Class formItemManagement
 		timerUpdate.Start()
 
 		'groupboxStorage
-		labelStorageTotalSection.Text = "\ "& gamecache.playerStorage.arraySection.GetUpperBound(0)
-		updownStorageSection.Maximum = gamecache.playerStorage.arraySection.GetUpperBound(0)
-		If gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
-			labelStorageTotalArticle.Text = "\ "& gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
-			updownStorageArticle.Maximum = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
+		labelStorageTotalSection.Text = "\ "& gamecache.currentCharacterStorage.arraySection.GetUpperBound(0)
+		updownStorageSection.Maximum = gamecache.currentCharacterStorage.arraySection.GetUpperBound(0)
+		If gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
+			labelStorageTotalArticle.Text = "\ "& gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
+			updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
 			
-			textboxStoragePhItem.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
-			textboxStorageName.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
-			textboxStorageQuantity.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
-			textboxStorageLastSell.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
-			textboxStorageLastBuy.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
+			textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
+			textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
+			textboxStorageQuantity.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
+			textboxStorageLastSell.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
+			textboxStorageLastBuy.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
 		End If
 		
 		'groupboxStore
-		labelStoreTotalLevel.Text = "\ "& gamecache.playerStore.arrayLevel.GetUpperBound(0)
-		updownStoreLevel.Maximum = gamecache.playerStore.arrayLevel.GetUpperBound(0)
-		labelStoreTotalShelf.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
-		updownStoreShelf.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
-		If gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
-			labelStoreTotalBin.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
-			updownStoreBin.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+		labelStoreTotalLevel.Text = "\ "& gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0)
+		updownStoreLevel.Maximum = gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0)
+		labelStoreTotalShelf.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
+		updownStoreShelf.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
+		If gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
+			labelStoreTotalBin.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+			updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
 			
-			textboxStorePhItem.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
-			textboxStoreName.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
-			textboxStoreQuantity.Text = CType((gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
-			updownStorePrice.Value = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
+			textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
+			textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
+			textboxStoreQuantity.Text = CType((gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
+			updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
 		End If
 	End Sub
 	
 	Private Sub timerUpdateTick(sender As Object, e As system.EventArgs)
 		'groupboxStorage
-		labelStorageTotalSection.Text = "\ "& gamecache.playerStorage.arraySection.GetUpperBound(0)
-		updownStorageSection.Maximum = gamecache.playerStorage.arraySection.GetUpperBound(0)
-		If gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
-			labelStorageTotalArticle.Text = "\ "& gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
-			updownStorageArticle.Maximum = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
+		labelStorageTotalSection.Text = "\ "& gamecache.currentCharacterStorage.arraySection.GetUpperBound(0)
+		updownStorageSection.Maximum = gamecache.currentCharacterStorage.arraySection.GetUpperBound(0)
+		If gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
+			labelStorageTotalArticle.Text = "\ "& gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
+			updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
 			
-			textboxStoragePhItem.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
-			textboxStorageName.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
-			textboxStorageQuantity.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
-			textboxStorageLastSell.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
-			textboxStorageLastBuy.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
+			textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
+			textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
+			textboxStorageQuantity.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
+			textboxStorageLastSell.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
+			textboxStorageLastBuy.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
 		End If
 		'groupboxStore
-		labelStoreTotalLevel.Text = "\ "& gamecache.playerStore.arrayLevel.GetUpperBound(0)
-		updownStoreLevel.Maximum = gamecache.playerStore.arrayLevel.GetUpperBound(0)
-		labelStoreTotalShelf.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
-		updownStoreShelf.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
-		If gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
-			labelStoreTotalBin.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
-			updownStoreBin.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+		labelStoreTotalLevel.Text = "\ "& gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0)
+		updownStoreLevel.Maximum = gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0)
+		labelStoreTotalShelf.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
+		updownStoreShelf.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
+		If gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
+			labelStoreTotalBin.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+			updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
 			
-			textboxStorePhItem.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
-			textboxStoreName.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
-			textboxStoreQuantity.Text = CType((gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
-			updownStorePrice.Value = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
+			textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
+			textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
+			textboxStoreQuantity.Text = CType((gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
+			updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
 		End If
 	End Sub
 	
 	Sub UpdownStoreLevelValueChanged(sender As Object, e As EventArgs)
-		labelStoreTotalShelf.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
-		updownStoreShelf.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
-		If gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
-			labelStoreTotalBin.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
-			updownStoreBin.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+		labelStoreTotalShelf.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
+		updownStoreShelf.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf.GetUpperBound(0)
+		If gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
+			labelStoreTotalBin.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+			updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
 			
-			textboxStorePhItem.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
-			textboxStoreName.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
-			textboxStoreQuantity.Text = CType((gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
-			updownStorePrice.Value = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
+			textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
+			textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
+			textboxStoreQuantity.Text = CType((gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
+			updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
 		End If
 	End Sub
 	
 	Sub UpdownStoreShelfValueChanged(sender As Object, e As EventArgs)
-		If gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
-			labelStoreTotalBin.Text = "\ "& gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
-			updownStoreBin.Maximum = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+		If gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
+			labelStoreTotalBin.Text = "\ "& gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
+			updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin.GetUpperBound(0)
 			
-			textboxStorePhItem.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
-			textboxStoreName.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
-			textboxStoreQuantity.Text = CType((gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
-			updownStorePrice.Value = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
+			textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
+			textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
+			textboxStoreQuantity.Text = CType((gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
+			updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
 		End If
 	End Sub
 	
 	Sub UpdownStoreBinValueChanged(sender As Object, e As EventArgs)
-		If gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
-			textboxStorePhItem.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
-			textboxStoreName.Text = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
-			textboxStoreQuantity.Text = CType((gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
-			updownStorePrice.Value = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
+		If gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin IsNot Nothing Then
+			textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinPath & gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinFile
+			textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleName
+			textboxStoreQuantity.Text = CType((gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).BinQuantity), String)
+			updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).ArticleLastSell
 		End If
 	End Sub
 	
 	Sub UpdownStorePriceLostFocus(sender As Object, e As EventArgs)
 		updownStorePrice.Value = CType(updownStorePrice.Value, Integer)
-		Dim integerSection As Integer = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).LinkSection
-		Dim integerArticle As Integer = gamecache.playerStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).LinkArticle
-		gamecache.playerStorage.arraySection(integerSection).arrayArticle(integerArticle).LastSell = CType(updownStorePrice.Value, Integer)
-		gamecache.playerStorage.arraySection(integerSection).arrayArticle(integerArticle).ArticleSave(gamecache.playerStorage.arraySection(integerSection).SectionPath)
+		Dim integerSection As Integer = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).LinkSection
+		Dim integerArticle As Integer = gamecache.currentCharacterStore.arrayLevel(CType(updownStoreLevel.Value, Integer)).arrayShelf(CType(updownStoreShelf.Value, Integer)).arrayBin(CType(updownStoreBin.Value, Integer)).LinkArticle
+		gamecache.currentCharacterStorage.arraySection(integerSection).arrayArticle(integerArticle).LastSell = CType(updownStorePrice.Value, Integer)
+		gamecache.currentCharacterStorage.arraySection(integerSection).arrayArticle(integerArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerSection).SectionPath)
 
 		formItemManagementLoad(Nothing, Nothing)
 	End Sub
 	
 	Sub UpdownStorageSectionValueChanged(sender As Object, e As EventArgs)
-		If gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
-			labelStorageTotalArticle.Text = "\ "& gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
-			updownStorageArticle.Maximum = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
+		If gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
+			labelStorageTotalArticle.Text = "\ "& gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
+			updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle.GetUpperBound(0)
 			
-			textboxStoragePhItem.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
-			textboxStorageName.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
-			textboxStorageQuantity.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
-			textboxStorageLastSell.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
-			textboxStorageLastBuy.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
+			textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
+			textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
+			textboxStorageQuantity.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
+			textboxStorageLastSell.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
+			textboxStorageLastBuy.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
 		End If
 	End Sub
 	
 	Sub UpdownStorageArticleValueChanged(sender As Object, e As EventArgs)
-		If gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
-			textboxStoragePhItem.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
-			textboxStorageName.Text = gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
-			textboxStorageQuantity.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
-			textboxStorageLastSell.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
-			textboxStorageLastBuy.Text = CType(gamecache.playerStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
+		If gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle IsNot Nothing Then
+			textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticlePath & gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ArticleFile
+			textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).ItemLink.Name_Title
+			textboxStorageQuantity.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).Quantity, String)
+			textboxStorageLastSell.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastSell, String)
+			textboxStorageLastBuy.Text = CType(gamecache.currentCharacterStorage.arraySection(CType(updownStorageSection.Value, Integer)).arrayArticle(CType(UpdownStorageArticle.Value, Integer)).LastBuy, String)
 		End If
 	End Sub
 	
@@ -154,32 +154,32 @@ Public Partial Class formItemManagement
 		Dim integerStorageArticle As Integer = CType(updownStorageArticle.Value, Integer)
 		
 		If textboxStoreName.Text = textboxStorageName.Text Then
-			gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity += gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity
-			gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity = 0
+			gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity += gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity
+			gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity = 0
 			
-			gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.playerStorage.arraySection(integerStorageSection).SectionPath)
-			gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
+			gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerStorageSection).SectionPath)
+			gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
 		Else
 			If MsgBox("Replaces current item, else add new Bin to current Shelf." & Chr(10) & "Use No for the first time when a player is new.", Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Replace?") = 6 Then
-				Dim integerSection As Integer = gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkSection
-				Dim integerArticle As Integer = gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkArticle
-				gamecache.playerStorage.arraySection(integerSection).arrayArticle(integerArticle).Quantity += gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity
-				gamecache.playerStorage.arraySection(integerSection).arrayArticle(integerArticle).ArticleSave(gamecache.playerStorage.arraySection(integerSection).SectionPath)
+				Dim integerSection As Integer = gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkSection
+				Dim integerArticle As Integer = gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkArticle
+				gamecache.currentCharacterStorage.arraySection(integerSection).arrayArticle(integerArticle).Quantity += gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity
+				gamecache.currentCharacterStorage.arraySection(integerSection).arrayArticle(integerArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerSection).SectionPath)
 				
-				gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkStorage = 0
-				gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkSection = integerStorageSection
-				gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkArticle = integerStorageArticle
-				gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity = gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity
-				gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity = 0
+				gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkStorage = 0
+				gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkSection = integerStorageSection
+				gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkArticle = integerStorageArticle
+				gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity = gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity
+				gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity = 0
 				
-				gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.playerStorage.arraySection(integerStorageSection).SectionPath)
-				gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
+				gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerStorageSection).SectionPath)
+				gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
 
 			Else
-				gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).BinAdd(New String() {"0", CType(integerStorageSection, String), CType(integerStorageArticle, String), textboxStorageQuantity.Text})
-				gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity = 0
+				gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).BinAdd(New String() {"0", CType(integerStorageSection, String), CType(integerStorageArticle, String), textboxStorageQuantity.Text})
+				gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).Quantity = 0
 				
-				gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.playerStorage.arraySection(integerStorageSection).SectionPath)
+				gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerStorageSection).SectionPath)
 				
 			End If			
 		End If
@@ -194,13 +194,13 @@ Public Partial Class formItemManagement
 		Dim integerStorageSection As Integer = CType(updownStorageSection.Value, Integer)
 		Dim integerStorageArticle As Integer = CType(updownStorageArticle.Value, Integer)
 		
-		Dim integerSection As Integer = gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkSection
-		Dim integerArticle As Integer = gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkArticle
-		gamecache.playerStorage.arraySection(integerSection).arrayArticle(integerArticle).Quantity += gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity
-		gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity = 0
+		Dim integerSection As Integer = gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkSection
+		Dim integerArticle As Integer = gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).LinkArticle
+		gamecache.currentCharacterStorage.arraySection(integerSection).arrayArticle(integerArticle).Quantity += gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity
+		gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinQuantity = 0
 		
-		gamecache.playerStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.playerStorage.arraySection(integerStorageSection).SectionPath)
-		gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.playerStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
+		gamecache.currentCharacterStorage.arraySection(integerStorageSection).arrayArticle(integerStorageArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerStorageSection).SectionPath)
+		gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).arrayBin(integerStoreBin).BinSave(gamecache.currentCharacterStore.arrayLevel(integerStoreLevel).arrayShelf(integerStoreShelf).ShelfPath)
 		
 		timerUpdateTick(Nothing, Nothing)
 	End Sub

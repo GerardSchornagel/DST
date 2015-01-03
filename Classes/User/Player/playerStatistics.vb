@@ -1,7 +1,7 @@
 ﻿''' <summary>
 ''' Get or Set the current Player Statistics data.
 ''' </summary>
-Public Class profileStatistics
+Public Class playerStatistics
 	Private iniFileHandler As New iniHandler()
 	Dim stringStatisticsData(,) As String
 ''' <summary>
@@ -13,7 +13,7 @@ Public Class profileStatistics
 ''' <summary>
 ''' Creates a new Profile Statistics file.
 ''' </summary>
-	Friend Sub NewStatistics(StatisticsInfo() As String)
+	Friend Sub NewPlayerStatistics(StatisticsInfo() As String)
 		stringStatisticsData = New String(,) {{"[Player Statistics]", "<TotalCharacters>", "0", "<TotalSpendings>", "0", "<TotalEarnings>", "0", "<TotalPlayTime>", "0", "<CreateDate>", StatisticsInfo(0), "<CreateTime>", StatisticsInfo(1)}}
 		'Start Writing New Profile
 		SaveState()
@@ -21,8 +21,8 @@ Public Class profileStatistics
 ''' <summary>
 ''' Loads a Profile Statistics.
 ''' </summary>
-	Friend Sub LoadStatistics()
-		stringStatisticsData = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile & "\statistics.pd")
+	Friend Sub LoadPlayerStatistics()
+		stringStatisticsData = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\player\statistics.ini")
 	End Sub
 ''' <summary>
 ''' Searches in stringStatisticsData for requested Setting and set/returns that value.
@@ -66,8 +66,8 @@ Public Class profileStatistics
 ''' Saves the current state of the Profile Statistics data.
 ''' </summary>
 	Public Sub SaveState()
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile)
-		iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile & "\statistics.pd", stringStatisticsData)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\player")
+		iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\player\statistics.ini", stringStatisticsData)
 	End Sub
 ''' <summary>
 ''' Returns/Sets an Integer with the Total Characters.

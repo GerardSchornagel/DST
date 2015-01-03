@@ -58,14 +58,14 @@
 		stringFiles = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString & "\" & comboboxCategory.SelectedItem.ToString & "\" & comboboxGenre.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly)
 		For Each file As String In stringFiles
 			stringMediator = file.Split(Chr(92))
-			comboboxName.Items.Add((stringMediator(stringMediator.GetUpperBound(0))).Remove(stringMediator(stringMediator.GetUpperBound(0)).Length - 3, 3))
+			comboboxName.Items.Add((stringMediator(stringMediator.GetUpperBound(0))).Remove(stringMediator(stringMediator.GetUpperBound(0)).Length - 4, 4))
 		Next
 	End Sub
 	
 	Sub ComboboxNameSelectedIndexChanged(sender As Object, e As EventArgs)
 		'Check for miss-click
 		If comboboxName.Text = "" Then Exit Sub
-		Dim itemSelected As New item(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString & "\" & comboboxCategory.SelectedItem.ToString & "\" & comboboxGenre.Text & "\" & comboboxName.Text & ".pd")
+		Dim itemSelected As New item(System.IO.Directory.GetCurrentDirectory & "\data\items\store\" & comboboxFamily.SelectedItem.ToString & "\" & comboboxCategory.SelectedItem.ToString & "\" & comboboxGenre.Text & "\" & comboboxName.Text & ".ini")
 		
 		labelItemFamilyDisplay.Text = itemSelected.Family
 		labelItemCategoryDisplay.Text = itemSelected.Category
@@ -93,18 +93,18 @@
 	Sub ButtonBuyClick(sender As Object, e As EventArgs)
 		If textboxBuyAmount.Text = "" Then Exit Sub
 		
-		If gamecache.playerCharacter.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
+		If gamecache.currentCharacterStatistics.Balance < CType(textboxPriceTotal.Text, Integer) Then MsgBox("Not enough balance.")
 		
-		If gamecache.playerCharacter.Balance >= CType(textboxPriceTotal.Text, Integer) Then
+		If gamecache.currentCharacterStatistics.Balance >= CType(textboxPriceTotal.Text, Integer) Then
 			MsgBox("You bought goods.")
 			
-			gamecache.playerCharacter.Balance -= CType(textboxPriceTotal.Text, Integer)
-			gamecache.playerCharacter.TotalSpendings += CType(textboxPriceTotal.Text, Integer)
-			'[Department]\[Genre]\[SubGenre]\[Itemname].pd
+			gamecache.currentCharacterStatistics.Balance -= CType(textboxPriceTotal.Text, Integer)
+			gamecache.currentCharacterStatistics.TotalSpendings += CType(textboxPriceTotal.Text, Integer)
+			'[Department]\[Genre]\[SubGenre]\[Itemname].ini
 			'Get product-order into temponary String Array.
 			ReDim stringItemOrder(4)
 			stringItemOrder(0) = System.IO.Directory.GetCurrentDirectory & "\Data\Items\Store\" & labelItemFamilyDisplay.Text & "\" &  labelItemCategoryDisplay.Text & "\" & labelItemGenreDisplay.Text & "\" 'ItemPath
-			stringItemOrder(1) = labelItemItemNameDisplay.Text & ".pd" 'ItemFile
+			stringItemOrder(1) = labelItemItemNameDisplay.Text & ".ini" 'ItemFile
 			stringItemOrder(2) = textboxBuyAmount.Text 'Quantity
 			stringItemOrder(3) = "0"'Last Selling Price
 			stringItemOrder(4) = textboxBuyPrice.Text 'Last Buying Price
@@ -112,21 +112,21 @@
 			integerCounterSearch = 0
 			integerCounterArticle = 0
 			Do
-				If gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle Is Nothing Then Exit Do
-				For Each Article As Article In gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle
+				If gamecache.currentCharacterStorage.arraySection(integerCounterSearch).arrayArticle Is Nothing Then Exit Do
+				For Each Article As Article In gamecache.currentCharacterStorage.arraySection(integerCounterSearch).arrayArticle
 					If Article.ItemLink.Name_Title = labelItemItemNameDisplay.Text Then
-						gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).Quantity += CType(stringItemOrder(2), Integer)
-						gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).LastBuy = CType(stringItemOrder(4), Integer)
-						gamecache.playerStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).ArticleSave(gamecache.playerStorage.arraySection(integerCounterSearch).SectionPath)
+						gamecache.currentCharacterStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).Quantity += CType(stringItemOrder(2), Integer)
+						gamecache.currentCharacterStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).LastBuy = CType(stringItemOrder(4), Integer)
+						gamecache.currentCharacterStorage.arraySection(integerCounterSearch).arrayArticle(integerCounterArticle).ArticleSave(gamecache.currentCharacterStorage.arraySection(integerCounterSearch).SectionPath)
 						Exit Sub
 					End If
 					integerCounterArticle += 1
 				Next
 				integerCounterArticle = 0
 				integerCounterSearch += 1
-			Loop Until integerCounterSearch >= gamecache.playerStorage.arraySection.GetUpperBound(0)
+			Loop Until integerCounterSearch >= gamecache.currentCharacterStorage.arraySection.GetUpperBound(0)
 			
-			gamecache.playerStorage.arraySection(0).ArticleAdd(stringItemOrder)
+			gamecache.currentCharacterStorage.arraySection(0).ArticleAdd(stringItemOrder)
 		End If
 	End Sub
 	

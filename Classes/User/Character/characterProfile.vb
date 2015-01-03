@@ -1,7 +1,7 @@
 ﻿''' <summary>
-''' All Character Variables are retrieved/stored here.
+''' All Character Profile Variables are retrieved/stored here.
 ''' </summary>
-Public Class character
+Public Class characterProfile
 	Private iniFileHandler As New iniHandler()
 	Dim stringCharacterData(,) As String
 ''' <summary>
@@ -13,16 +13,16 @@ Public Class character
 ''' <summary>
 ''' Creates a new Character file.
 ''' </summary>
-	Friend Sub NewCharacter(CharacterInfo() As String)
-		stringCharacterData = New String(,) {{"[Character Information]", "<World>", "0", "<Country>", "0", "<Place>", "0", "<Store>", "0", "<Balance>", "25", "<TotalSpendings>", "0", "<TotalEarnings>", "0", "<TotalItemsSold>", "0", "<TotalItemsBought>", "0", "<TotalDayCycles>", "0", "<TotalPlayTime>", "0", "<CreateDate>", CharacterInfo(0), "<CreateTime>", CharacterInfo(1)}}
+	Friend Sub NewCharacterProfile(CharacterInfo() As String)
+		stringCharacterData = New String(,) {{"[Character Profile]", "<World>", "0", "<Country>", "0", "<Place>", "0", "<Store>", "0", "<CreateDate>", CharacterInfo(0), "<CreateTime>", CharacterInfo(1)}}
 		'Start Writing New Profile
 		SaveState()
 	End Sub
 ''' <summary>
 ''' Loads a Profile Statistics.
 ''' </summary>
-	Friend Sub LoadCharacter()
-		stringCharacterData = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile & "\character.pd")
+	Friend Sub LoadCharacterProfile()
+		stringCharacterData = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\character\profile.ini")
 	End Sub
 ''' <summary>
 ''' Searches in stringCharacterData for requested Setting and set/returns that value.
@@ -66,8 +66,8 @@ Public Class character
 ''' Saves the current state of the Profile Statistics data.
 ''' </summary>
 	Public Sub SaveState()
-		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile)
-		iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.settingsGlobal.LastProfile & "\character.pd", stringCharacterData)
+		System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\character")
+		iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory & "\save\" & gamecache.currentSettings.LastProfile & "\character\profile.ini", stringCharacterData)
 	End Sub
 ''' <summary>
 ''' Returns a String with the current World.
@@ -114,90 +114,6 @@ Public Class character
 		End Get
 		Set(Value As String)
 			ReturnValue("Store") = Value
-			SaveState()
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the current balance.
-''' </summary>
-	Public Property Balance As Integer
-		Get
-			Return CType(ReturnValue("Balance"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("Balance") = Value.ToString
-			SaveState()
-		End Set
-	End Property
-	''' <summary>
-''' Returns an Integer with the Total Spendings.
-''' </summary>
-	Public Property TotalSpendings As Integer
-		Get
-			Return CType(ReturnValue("TotalSpendings"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("TotalSpendings") = Value.ToString
-			SaveState()
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the Total Earnings.
-''' </summary>
-	Public Property TotalEarnings As Integer
-		Get
-			Return CType(ReturnValue("TotalEarnings"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("TotalEarnings") = Value.ToString
-			SaveState()
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the Total Items Sold.
-''' </summary>
-	Public Property TotalItemsSold As Integer
-		Get
-			Return CType(ReturnValue("TotalItemsSold"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("TotalItemsSold") = Value.ToString
-			SaveState()
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the Total Items Bought.
-''' </summary>
-	Public Property TotalItemsBought As Integer
-		Get
-			Return CType(ReturnValue("TotalItemsBought"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("TotalItemsBought") = Value.ToString
-			SaveState()
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the current Total Day-Cycles.
-''' </summary>
-	Public Property TotalDayCycles As Integer
-		Get
-			Return CType(ReturnValue("TotalDayCycles"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("TotalDayCycles") = Value.ToString
-			SaveState()
-		End Set
-	End Property
-''' <summary>
-''' Returns an Integer with the Total Play-Time.
-''' </summary>
-	Public Property TotalPlayTime As Integer
-		Get
-			Return CType(ReturnValue("TotalPlayTime"), Integer)
-		End Get
-		Set(Value As Integer)
-			ReturnValue("TotalPlayTime") = Value.ToString
 			SaveState()
 		End Set
 	End Property
