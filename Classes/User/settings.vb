@@ -28,7 +28,7 @@ Public Class settings
 ''' </summary>
 ''' <param name="SettingRequest">Requested Setting as String. And saves when Set.</param>
 ''' <returns></returns>
-	Private Property ReturnValue(SettingRequest As String) As String
+	Public Property ReturnValue(SettingRequest As String) As String
 		Get
 			Dim integerColumn As Integer = 0
 			Dim integerRow As Integer = 0

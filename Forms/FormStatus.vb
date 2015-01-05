@@ -1,6 +1,6 @@
 ﻿Public Partial Class formStatus	
 	Private timerUpdate As New System.Windows.Forms.Timer
-	
+	Private algebraic As New solverAlgebraic()
 	Public Sub New()
 		' The Me.InitializeComponent call is required for Windows Forms designer support.
 		Me.InitializeComponent()

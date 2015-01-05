@@ -43,4 +43,14 @@ Public Class customer
 			individualCurrent.ToStrings = stringCurrentCustomer
 		End Set
 	End Property
+	
+	Public Function ReturnValue(Ethnic As String, SettingRequest As String) As String
+		For Each guest As individual In individualDatabase
+			If guest.Ethnic.ToLower = Ethnic.ToLower Then
+				Return guest.ReturnValue(SettingRequest)
+				Exit Function
+			End If
+		Next
+		Return Nothing
+	End Function
 End Class

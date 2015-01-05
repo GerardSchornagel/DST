@@ -80,7 +80,7 @@ Public Class individual
 ''' </summary>
 ''' <param name="SettingRequest">Requested Setting as String..</param>
 ''' <returns></returns>
-	Private ReadOnly Property ReturnValue(SettingRequest As String) As String
+	Public ReadOnly Property ReturnValue(SettingRequest As String) As String
 		Get
 			Dim integerColumn As Integer = 0
 			Dim integerRow As Integer = 0

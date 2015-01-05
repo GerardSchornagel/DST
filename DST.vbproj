@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Classes\Functions\binaryFileHandler.vb" />
     <Compile Include="Classes\Functions\mathematics.vb" />
+    <Compile Include="Classes\Functions\solverAlgebraic.vb" />
     <Compile Include="Classes\Objects\individual.vb" />
     <Compile Include="Classes\Objects\item.vb" />
     <Compile Include="Classes\User\Character\characterProfile.vb" />

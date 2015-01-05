@@ -30,7 +30,7 @@ Public Class playerProfile
 ''' </summary>
 ''' <param name="InformationRequest">Requested information as String. And saves when Set.</param>
 ''' <returns></returns>
-	Private Property ReturnValue(InformationRequest As String) As String
+	Public Property ReturnValue(InformationRequest As String) As String
 		Get
 			Dim integerColumn As Integer = 0
 			Dim integerRow As Integer = 0
