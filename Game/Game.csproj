@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{40E4AF8F-4357-4D3D-A41C-25384239D798}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Game</RootNamespace>
+    <AssemblyName>Game</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\formDC.cs" />
+    <Compile Include="Forms\formDC.Designer.cs">
+      <DependentUpon>formDC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formEditor.cs" />
+    <Compile Include="Forms\formEditor.Designer.cs">
+      <DependentUpon>formEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formGame.cs" />
+    <Compile Include="Forms\formGame.Designer.cs">
+      <DependentUpon>formGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formItemManagement.cs" />
+    <Compile Include="Forms\formItemManagement.Designer.cs">
+      <DependentUpon>formItemManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formMain.cs" />
+    <Compile Include="Forms\formMain.Designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formMap.cs" />
+    <Compile Include="Forms\formMap.Designer.cs">
+      <DependentUpon>formMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formOptions.cs" />
+    <Compile Include="Forms\formOptions.Designer.cs">
+      <DependentUpon>formOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formPlayerManagement.cs" />
+    <Compile Include="Forms\formPlayerManagement.Designer.cs">
+      <DependentUpon>formPlayerManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formStatus.cs" />
+    <Compile Include="Forms\formStatus.Designer.cs">
+      <DependentUpon>formStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\gameCache.cs" />
+    <Compile Include="Forms\gameCache.Designer.cs">
+      <DependentUpon>gameCache.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\formDC.resx">
+      <DependentUpon>formDC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formEditor.resx">
+      <DependentUpon>formEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formGame.resx">
+      <DependentUpon>formGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formItemManagement.resx">
+      <DependentUpon>formItemManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formMain.resx">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formOptions.resx">
+      <DependentUpon>formOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formPlayerManagement.resx">
+      <DependentUpon>formPlayerManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formStatus.resx">
+      <DependentUpon>formStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\gamecache.resx">
+      <DependentUpon>gameCache.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
