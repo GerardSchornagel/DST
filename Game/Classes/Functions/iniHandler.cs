@@ -12,6 +12,7 @@ public class iniHandler
     private int integerColumn;
     private int integerRow;
     private int integerMediator;
+
     /// <summary>
     /// Saves a 2d string-array to directory and file.
     /// </summary>
@@ -61,7 +62,7 @@ public class iniHandler
         //Loop through all stringMediator items and write as 1 string.
         integerMediator = 0;
         do {
-            stringIO += stringMediator[integerMediator] + Char(13) + Char(10);
+            stringIO += stringMediator[integerMediator] + (char)13 + (char)10;
             integerMediator += 1;
         } while (!(integerMediator > stringMediator.GetUpperBound(0)));
         //REMOVE:stringIO.Remove(stringIO.Length - 2, 2) 'Remove last two Chr's
@@ -71,7 +72,7 @@ public class iniHandler
             stringbuilderIO.Append(streamreaderIO.ReadToEnd());
         }
         using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(Pathname, false, System.Text.Encoding.Default)) {
-            streamWriter.Write(stringbuilderIO.ToString());
+            streamWriter.Write(stringbuilderIO);
         }
     }
 
@@ -90,7 +91,7 @@ public class iniHandler
         stringOutput = new string[Convert.ToInt32(stringIO.Substring(0, 2)) + 1, Convert.ToInt32(stringIO.Substring(2, 2)) + 1];
         stringIO = stringIO.Remove(0, 4);
 
-        stringMediator = stringIO.Split(Char(10));
+        stringMediator = stringIO.Split((char)10);
         integerMediator = 0;
         foreach (string line in stringMediator) {
             if (string.IsNullOrEmpty(stringMediator[integerMediator])) {
@@ -108,7 +109,7 @@ public class iniHandler
             if (string.IsNullOrEmpty(stringMediator[integerMediator])) {
                 integerMediator += 1;
                 continue;
-            } else if (stringMediator[integerMediator].Substring(0, 1) == "[") {
+            } if (stringMediator[integerMediator].Substring(0, 1) == "[") {
                 integerColumn += 1;
                 integerRow = 0;
                 stringOutput[integerColumn, integerRow] = stringMediator[integerMediator];
