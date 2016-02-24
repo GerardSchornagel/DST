@@ -43,7 +43,9 @@ public class solverAlgebraic
             //125=}
             //58=:
             if (stringVariable.Split((char)58)[0].ToLower() == "customer") {
-                stringOutput += gamecache.cacheCustomer.ReturnValue(stringVariable.Split((char)58)[2], stringVariable.Split((char)58)[1]);
+                gamecache.cacheCustomer.stringEthnic = stringVariable.Split((char)58)[2];
+                gamecache.cacheCustomer.SettingRequest = stringVariable.Split((char)58)[1];
+                stringOutput += gamecache.cacheCustomer.ReturnValue;
             } else if (stringVariable.Split((char)58)[0].ToLower() == "characterprofile") {
                 gamecache.currentCharacterProfile.InformationRequest = stringVariable.Split((char)58)[1];
                 stringOutput += gamecache.currentCharacterProfile.ReturnValue;

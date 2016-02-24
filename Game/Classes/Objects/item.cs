@@ -18,6 +18,7 @@ public class item
         stringFileName = FileName;
         stringItem = iniFilehandler.Load(stringFileName);
     }
+
     /// <summary>
     /// Searches in stringItem(,) for requested Setting and returns that value.
     /// </summary>
@@ -40,82 +41,134 @@ public class item
             return "";
         }
     }
+
     /// <summary>
     /// A String representing the Description of the item. 1-Line String.
     /// </summary>
     public string Description {
-        get { return ReturnValue["Description"].ToString; }
+        get {
+            SettingRequest = "Description";
+            return ReturnValue;
+        }
     }
+    
     /// <summary>
     /// A String representing the Picture Path & Filename of the item.
     /// </summary>
     public string PictureFileName {
-        get { return ReturnValue["PictureFilename"].ToString; }
+        get {
+            SettingRequest = "PictureFilename";
+            return ReturnValue;
+        }
     }
+    
     /// <summary>
     /// A String representing the ItemTier of the item.
     /// </summary>
     public string ItemTier {
-        get { return ReturnValue["ItemTier"].ToString; }
+        get {
+            SettingRequest = "ItemTier";
+            return ReturnValue;
+        }
     }
+    
     /// <summary>
     /// A String representing the BaseWorth of the item.
     /// </summary>
     public string BaseWorth {
-        get { return ReturnValue["BaseWorth"].ToString; }
+        get {
+            SettingRequest = "BaseWorth";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Rarity of the item.
     /// </summary>
     public string Rarity {
-        get { return ReturnValue["Rarity"].ToString; }
+        get {
+            SettingRequest = "Rarity";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Popularity of the item.
     /// </summary>
     public string Popularity {
-        get { return ReturnValue["Popularity"].ToString; }
+        get {
+            SettingRequest = "Popularity";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Quality of the item.
     /// </summary>
     public string Quality {
-        get { return ReturnValue["Quality"].ToString; }
+        get {
+            SettingRequest = "Quality";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Family of the item.
     /// </summary>
     public string Family {
-        get { return ReturnValue["Family"].ToString; }
+        get {
+            SettingRequest = "Family";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Category of the item.
     /// </summary>
     public string Category {
-        get { return ReturnValue["Category"].ToString; }
+        get {
+            SettingRequest = "Category";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Genre of the item.
     /// </summary>
     public string Genre {
-        get { return ReturnValue["Genre"].ToString; }
+        get {
+            SettingRequest = "Genre";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Company/Publisher of the item.
     /// </summary>
     public string Company_Publisher {
-        get { return ReturnValue["Company/Publisher"].ToString; }
+        get {
+            SettingRequest = "Company/Publisher";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Brand/Author of the item.
     /// </summary>
     public string Brand_Author {
-        get { return ReturnValue["Brand/Author"].ToString; }
+        get {
+            SettingRequest = "Brand/Author";
+            return ReturnValue;
+        }
     }
+
     /// <summary>
     /// A String representing the Name/Title of the item.
     /// </summary>
     public string Name_Title {
-        get { return ReturnValue["Name/Title"].ToString; }
+        get {
+            SettingRequest = "Name/Title";
+            return ReturnValue;
+        }
     }
 }

@@ -6,18 +6,14 @@ using System;
 /// </summary>
 public class catalog
 {
-    private item[] itemDatabase;
-    private item itemCurrent;
-    public catalog()
-    {
-
-    }
-
-    //Conains an array all items.
+    item[] itemDatabase;
+    item itemCurrent;
+    
+    //Contains an array all items.
     public void LoadDatabase()
     {
         string[] stringItemPaths = null;
-        stringItemPaths = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory + "\\data\\items\\store", "*.ini", System.IO.SearchOption.AllDirectories);
+        stringItemPaths = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store", "*.ini", System.IO.SearchOption.AllDirectories);
         itemDatabase = new item[stringItemPaths.GetUpperBound(0) + 1];
 
         int integerEntry = 0;
@@ -37,7 +33,7 @@ public class catalog
                 return article;
             }
         }
-        Interaction.MsgBox("No such item in database." + Char(13) + Family + " - " + Category + " - " + Genre + " - " + Name);
+        Interaction.MsgBox("No such item in database." + (char)13 + Family + " - " + Category + " - " + Genre + " - " + Name);
         return null;
     }
 }
