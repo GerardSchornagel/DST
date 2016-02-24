@@ -6,37 +6,22 @@ using System;
 public class playerStatistics
 {
     public string InformationRequest;
-    private iniHandler iniFileHandler = new iniHandler();
+    iniHandler iniFileHandler = new iniHandler();
     string[,] stringStatisticsData;
 
-    /// <summary>
-    /// Initializes Profile Statistics class.
-    /// </summary>
-    internal playerStatistics()
-    {
-
-    }
-    
     /// <summary>
     /// Creates a new Profile Statistics file.
     /// </summary>
     internal void NewPlayerStatistics(string[] StatisticsInfo)
     {
-        stringStatisticsData = new string[ +1, +1] { {
-                "[Player Statistics]",
-                "<TotalCharacters>",
-                "0",
-                "<TotalSpendings>",
-                "0",
-                "<TotalEarnings>",
-                "0",
-                "<TotalPlayTime>",
-                "0",
-                "<CreateDate>",
-                StatisticsInfo(0),
-                "<CreateTime>",
-                StatisticsInfo(1)
-            }
+        stringStatisticsData = new string[,] {
+            { "[Player Statistics]", "" },
+            { "<TotalCharacters>", "0" },
+            { "<TotalSpendings>", "0" },
+            { "<TotalEarnings>", "0" },
+            { "<TotalPlayTime>", "0" },
+            { "<CreateDate>", StatisticsInfo[0] },
+            { "<CreateTime>", StatisticsInfo[1] }
         };
         //Start Writing New Profile
         SaveState();
@@ -47,7 +32,7 @@ public class playerStatistics
     /// </summary>
     internal void LoadPlayerStatistics()
     {
-        stringStatisticsData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\statistics.ini");
+        stringStatisticsData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\statistics.ini");
     }
     
     /// <summary>
@@ -92,17 +77,21 @@ public class playerStatistics
     /// </summary>
     public void SaveState()
     {
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player");
-        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\statistics.ini", stringStatisticsData);
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player");
+        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\statistics.ini", stringStatisticsData);
     }
     
     /// <summary>
     /// Returns/Sets an Integer with the Total Characters.
     /// </summary>
     public int TotalCharacters {
-        get { return Convert.ToInt32(ReturnValue["TotalCharacters"]); }
+        get {
+            InformationRequest = "TotalCharacters";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalCharacters"] = value.ToString;
+            InformationRequest = "TotalCharacters";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -111,9 +100,13 @@ public class playerStatistics
     /// Returns/Sets an Integer with the Total Spendings.
     /// </summary>
     public int TotalSpendings {
-        get { return Convert.ToInt32(ReturnValue["TotalSpendings"]); }
+        get {
+            InformationRequest = "TotalSpendings";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalSpendings"] = value.ToString;
+            InformationRequest = "TotalSpendings";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -122,9 +115,13 @@ public class playerStatistics
     /// Returns/Sets an Integer with the Total Earnings.
     /// </summary>
     public int TotalEarnings {
-        get { return Convert.ToInt32(ReturnValue["TotalEarnings"]); }
+        get {
+            InformationRequest = "TotalEarnings";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalEarnings"] = value.ToString;
+            InformationRequest = "TotalEarnings";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -133,9 +130,13 @@ public class playerStatistics
     /// Returns/Sets an Integer with the Total Play Time in Minutes.
     /// </summary>
     public int TotalPlayTime {
-        get { return Convert.ToInt32(ReturnValue["TotalPlayTime"]); }
+        get {
+            InformationRequest = "TotalPlayTime";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalPlayTime"] = value.ToString;
+            InformationRequest = "TotalPlayTime";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -144,9 +145,13 @@ public class playerStatistics
     /// Returns/Sets a String with the profile creation date.
     /// </summary>
     public string CreateDate {
-        get { return ReturnValue["CreateDate"].ToString; }
+        get {
+            InformationRequest = "CreateDate";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["CreateDate"] = value.ToString;
+            InformationRequest = "CreateDate";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -155,9 +160,13 @@ public class playerStatistics
     /// Returns/Sets a String with the profile creation time.
     /// </summary>
     public string CreateTime {
-        get { return ReturnValue["CreateTime"].ToString; }
+        get {
+            InformationRequest = "CreateTime";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["CreateTime"] = value.ToString;
+            InformationRequest = "CreateTime";
+            ReturnValue = value;
             SaveState();
         }
     }

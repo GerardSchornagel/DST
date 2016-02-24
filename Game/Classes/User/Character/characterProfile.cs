@@ -6,38 +6,24 @@ using System;
 public class characterProfile
 {
     public string InformationRequest;
-    private iniHandler iniFileHandler = new iniHandler();
+    iniHandler iniFileHandler = new iniHandler();
     string[,] stringCharacterData;
 
-    /// <summary>
-    /// Retrieves Character Variables.
-    /// </summary>
-    internal characterProfile()
-    {
-
-    }
-    
     /// <summary>
     /// Creates a new Character file.
     /// </summary>
     internal void NewCharacterProfile(string[] CharacterInfo)
     {
-        stringCharacterData = new string[ +1, +1] { {
-                "[Character Profile]",
-                "<World>",
-                "0",
-                "<Country>",
-                "0",
-                "<Place>",
-                "0",
-                "<Store>",
-                "0",
-                "<CreateDate>",
-                CharacterInfo(0),
-                "<CreateTime>",
-                CharacterInfo(1)
-            }
+        stringCharacterData = new string[,] {
+            { "[Character Profile]", "" },
+            { "<World>", "0" },
+            { "<Country>", "0" },
+            { "<Place>", "0" },
+            { "<Store>", "0" },
+            { "<CreateDate>", CharacterInfo[0] },
+            { "<CreateTime>", CharacterInfo[1] }
         };
+
         //Start Writing New Profile
         SaveState();
     }
@@ -47,7 +33,7 @@ public class characterProfile
     /// </summary>
     internal void LoadCharacterProfile()
     {
-        stringCharacterData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\profile.ini");
+        stringCharacterData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\profile.ini");
     }
     
     /// <summary>
@@ -92,17 +78,21 @@ public class characterProfile
     /// </summary>
     public void SaveState()
     {
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character");
-        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\profile.ini", stringCharacterData);
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character");
+        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\profile.ini", stringCharacterData);
     }
     
     /// <summary>
     /// Returns a String with the current World.
     /// </summary>
     public string CurrentWorld {
-        get { return ReturnValue["World"].ToString; }
+        get {
+            InformationRequest = "World";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["World"] = value.ToString;
+            InformationRequest = "World";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -111,9 +101,13 @@ public class characterProfile
     /// Returns a String with the current Country.
     /// </summary>
     public string CurrentCountry {
-        get { return ReturnValue["Country"].ToString; }
+        get {
+            InformationRequest = "Country";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["Country"] = value.ToString;
+            InformationRequest = "Country";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -122,9 +116,13 @@ public class characterProfile
     /// Returns a String with the current Place.
     /// </summary>
     public string CurrentPlace {
-        get { return ReturnValue["Place"].ToString; }
+        get {
+            InformationRequest = "Place";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["Place"] = value.ToString;
+            InformationRequest = "Place";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -133,9 +131,14 @@ public class characterProfile
     /// Returns a String with the current Store.
     /// </summary>
     public string CurrentStore {
-        get { return ReturnValue["Store"].ToString; }
+        get {
+            InformationRequest = "Store";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["Store"] = value.ToString;
+            InformationRequest = "Store";
+
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -144,9 +147,13 @@ public class characterProfile
     /// Returns a String with the Created Date.
     /// </summary>
     public string CreateDate {
-        get { return ReturnValue["CreateDate"].ToString; }
+        get {
+            InformationRequest = "CreateDate";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["CreateDate"] = value.ToString;
+            InformationRequest = "CreateDate";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -155,9 +162,13 @@ public class characterProfile
     /// Returns a String with the Created Time.
     /// </summary>
     public string CreateTime {
-        get { return ReturnValue["CreateTime"].ToString; }
+        get {
+            InformationRequest = "CreateTime";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["CreateTime"] = value.ToString;
+            InformationRequest = "CreateTime";
+            ReturnValue = value;
             SaveState();
         }
     }

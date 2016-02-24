@@ -6,43 +6,25 @@ using System;
 public class playerProfile
 {
     public string InformationRequest;
-    private iniHandler iniFileHandler = new iniHandler();
+    iniHandler iniFileHandler = new iniHandler();
     string[,] stringProfileData;
-
-    /// <summary>
-    /// Initializes Profile class.
-    /// </summary>
-    internal playerProfile()
-    {
-
-    }
 
     /// <summary>
     /// Creates a new Profile.
     /// </summary>
     public void NewPlayerProfile(string[] ProfileInfo)
     {
-        stringProfileData = new string[ +1, +1] { {
-                "[Player Profile]",
-                "<ProfileID>",
-                ProfileInfo(0),
-                "<NameFirst>",
-                ProfileInfo(1),
-                "<NameLast>",
-                ProfileInfo(2),
-                "<BirthYear>",
-                ProfileInfo(3),
-                "<BirthMonth>",
-                ProfileInfo(4),
-                "<BirthDay>",
-                ProfileInfo(5),
-                "<Gender>",
-                ProfileInfo(6),
-                "<E-Mail>",
-                ProfileInfo(7),
-                "<E-Mail Notification>",
-                ProfileInfo(8)
-            }
+        stringProfileData = new string[,] {
+            { "[Player Profile]", "" },
+            { "<ProfileID>", ProfileInfo[0] },
+            { "<NameFirst>", ProfileInfo[1] },
+            { "<NameLast>", ProfileInfo[2] },
+            { "<BirthYear>", ProfileInfo[3] },
+            { "<BirthMonth>", ProfileInfo[4] },
+            { "<BirthDay>", ProfileInfo[5] },
+            { "<Gender>", ProfileInfo[6] },
+            { "<E-Mail>", ProfileInfo[7] },
+            { "<E-Mail Notification>", ProfileInfo[8] }
         };
         gamecache.currentSettings.LastProfile = ProfileInfo[0];
         //Start Writing New Profile
@@ -54,7 +36,7 @@ public class playerProfile
     /// </summary>
     internal void LoadPlayerProfile()
     {
-        stringProfileData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\profile.ini");
+        stringProfileData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\profile.ini");
     }
     
     /// <summary>
@@ -99,17 +81,21 @@ public class playerProfile
     /// </summary>
     private void SaveState()
     {
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player");
-        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\profile.ini", stringProfileData);
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player");
+        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\player\\profile.ini", stringProfileData);
     }
 
     /// <summary>
     /// Returns a String with the ProfileID.
     /// </summary>
     public string ProfileID {
-        get { return ReturnValue["ProfileID"].ToString; }
+        get {
+            InformationRequest = "ProfileID";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["ProfileID"].ToString = value;
+            InformationRequest = "ProfileID";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -118,9 +104,13 @@ public class playerProfile
     /// Returns a String with the First name.
     /// </summary>
     public string FirstName {
-        get { return ReturnValue["NameFirst"].ToString; }
+        get {
+            InformationRequest = "NameFirst";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["NameFirst"].ToString = value;
+            InformationRequest = "NameFirst";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -129,9 +119,13 @@ public class playerProfile
     /// Returns a String with the Last name.
     /// </summary>
     public string LastName {
-        get { return ReturnValue["NameLast"].ToString; }
+        get {
+            InformationRequest = "NameLast";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["NameLast"].ToString = value;
+            InformationRequest = "NameLast";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -140,9 +134,13 @@ public class playerProfile
     /// Returns an Integer with the Birth Year.
     /// </summary>
     public int BirthYear {
-        get { return Convert.ToInt32(ReturnValue["BirthYear"]); }
+        get {
+            InformationRequest = "BirthYear";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["BirthYear"] = value.ToString;
+            InformationRequest = "BirthYear";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -151,9 +149,13 @@ public class playerProfile
     /// Returns an Integer with the Birth Month.
     /// </summary>
     public int BirthMonth {
-        get { return Convert.ToInt32(ReturnValue["BirthMonth"]); }
+        get {
+            InformationRequest = "BirthMonth";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["BirthMonth"] = value.ToString;
+            InformationRequest = "BirthMonth";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -162,9 +164,13 @@ public class playerProfile
     /// Returns an Integer with the Birth Day.
     /// </summary>
     public int BirthDay {
-        get { return Convert.ToInt32(ReturnValue["BirthDay"]); }
+        get {
+            InformationRequest = "BirthDay";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["BirthDay"] = value.ToString;
+            InformationRequest = "BirthDay";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -173,9 +179,13 @@ public class playerProfile
     /// Returns/Sets an String with the Gender
     /// </summary>
     public string Gender {
-        get { return ReturnValue["Gender"].ToString; }
+        get {
+            InformationRequest = "Gender";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["Gender"].ToString = value;
+            InformationRequest = "Gender";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -184,9 +194,13 @@ public class playerProfile
     /// Returns/Sets a String with the stringEMail.
     /// </summary>
     public string EMail {
-        get { return ReturnValue["EMail"].ToString; }
+        get {
+            InformationRequest = "EMail";
+            return ReturnValue;
+        }
         set {
-            ReturnValue["EMail"].ToString = value;
+            InformationRequest = "EMail";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -195,9 +209,13 @@ public class playerProfile
     /// Returns/Sets a True/False if subscribed to EMail Notification.
     /// </summary>
     public bool Notification {
-        get { return Convert.ToBoolean(ReturnValue["Notification"]); }
+        get {
+            InformationRequest = "Notification";
+            return Convert.ToBoolean(ReturnValue);
+        }
         set {
-            ReturnValue["Notification"] = value.ToString;
+            InformationRequest = "Notification";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }

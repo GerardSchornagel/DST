@@ -6,33 +6,20 @@ using System;
 public class settings
 {
     public string SettingRequest;
-    private iniHandler iniFilehandler = new iniHandler();
-    private string[,] stringSettings;
-
-    /// <summary>
-    /// Create new Profile Settings Class.
-    /// </summary>
-    public settings()
-    {
-
-    }
+    iniHandler iniFilehandler = new iniHandler();
+    string[,] stringSettings;
 
     /// <summary>
     /// Makes a new Settings.ini in the Save directory.
     /// </summary>
     public void NewSettings()
     {
-        stringSettings = new string[ +1, +1] { {
-                "[WarningMessages]",
-                "<LastProfileID>",
-                "0",
-                "<ProgramQuit>",
-                "False",
-                "<NewGameOverwrite>",
-                "False",
-                "<OptionsApplyRestart>",
-                "False"
-            }
+        stringSettings = new string[,] {
+            { "[WarningMessages]", ""},
+            {"<LastProfileID>","0"},
+            {"<ProgramQuit>", "False"},
+            {"<NewGameOverwrite>", "False"},
+            {"<OptionsApplyRestart>", "False"}
         };
         SaveState();
     }
@@ -42,7 +29,7 @@ public class settings
     /// </summary>
     public void LoadSettings()
     {
-        stringSettings = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory + "\\save\\settings.ini");
+        stringSettings = iniFilehandler.Load(System.IO.Directory.GetCurrentDirectory() + "\\save\\settings.ini");
     }
 
     /// <summary>
@@ -87,17 +74,17 @@ public class settings
     /// </summary>
     private void SaveState()
     {
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\save\\");
-        iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory + "\\save\\settings.ini", stringSettings);
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\save\\");
+        iniFilehandler.Save(System.IO.Directory.GetCurrentDirectory() + "\\save\\settings.ini", stringSettings);
     }
 
     /// <summary>
     /// A String representing the last Profile that has played, it is corresponding with the number in the save directory.
     /// </summary>
     public string LastProfile {
-        get { return ReturnValue["LastProfileID"].ToString; }
-        set {
-            ReturnValue["LastProfileID"].ToString = value;
+        get { SettingRequest = "LastProfileID"; return ReturnValue; }
+        set { SettingRequest = "LastProfileID";
+            ReturnValue = value;
             SaveState();
         }
     }
@@ -106,9 +93,9 @@ public class settings
     /// The warning message when quitting the program.
     /// </summary>
     public bool MessagesProgramQuit {
-        get { return Convert.ToBoolean(ReturnValue["ProgramQuit"]); }
-        set {
-            ReturnValue["ProgramQuit"] = value.ToString;
+        get { SettingRequest = "ProgramQuit"; return Convert.ToBoolean(ReturnValue); }
+        set { SettingRequest = "ProgramQuit";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -117,9 +104,9 @@ public class settings
     /// Warning message that the last Profile ID will be overwritten, in Alpha stage this means you lose your prev. game.
     /// </summary>
     public bool MessagesNewgameOverwrite {
-        get { return Convert.ToBoolean(ReturnValue["NewGameOverwrite"]); }
-        set {
-            ReturnValue["NewGameOverwrite"] = value.ToString;
+        get { SettingRequest = "NewGameOverwrite"; return Convert.ToBoolean(ReturnValue); }
+        set { SettingRequest = "NewGameOverwrite";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -128,9 +115,9 @@ public class settings
     /// Message if there are options are choosen via the main menu, the program has to be restarted.
     /// </summary>
     public bool MessagesOptionsApplyRestart {
-        get { return Convert.ToBoolean(ReturnValue["OptionsApplyRestart"]); }
-        set {
-            ReturnValue["OptionsApplyRestart"] = value.ToString;
+        get { SettingRequest = "OptionsApplyRestart"; return Convert.ToBoolean(ReturnValue); }
+        set { SettingRequest = "OptionsApplyRestart";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }

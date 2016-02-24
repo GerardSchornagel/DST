@@ -6,39 +6,23 @@ using System;
 public class characterStatistics
 {
     public string InformationRequest;
-    private iniHandler iniFileHandler = new iniHandler();
+    iniHandler iniFileHandler = new iniHandler();
     string[,] stringCharacterData;
-
-    /// <summary>
-    /// Retrieves Character Variables.
-    /// </summary>
-    internal characterStatistics()
-    {
-
-    }
 
     /// <summary>
     /// Creates a new Character file.
     /// </summary>
     internal void NewCharacterStatistics()
     {
-        stringCharacterData = new string[ +1, +1] { {
-                "[Character Statistics]",
-                "<Balance>",
-                "25",
-                "<TotalSpendings>",
-                "0",
-                "<TotalEarnings>",
-                "0",
-                "<TotalItemsSold>",
-                "0",
-                "<TotalItemsBought>",
-                "0",
-                "<TotalDayCycles>",
-                "0",
-                "<TotalPlayTime>",
-                "0"
-            }
+        stringCharacterData = new string[,] {
+            { "[Character Statistics]", "" },
+            { "<Balance>", "25" },
+            { "<TotalSpendings>", "0" },
+            { "<TotalEarnings>", "0" },
+            { "<TotalItemsSold>", "0" },
+            { "<TotalItemsBought>", "0" },
+            { "<TotalDayCycles>", "0" },
+            { "<TotalPlayTime>", "0" }
         };
         //Start Writing New Profile
         SaveState();
@@ -49,7 +33,7 @@ public class characterStatistics
     /// </summary>
     internal void LoadCharacterStatistics()
     {
-        stringCharacterData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\statistics.ini");
+        stringCharacterData = iniFileHandler.Load(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\statistics.ini");
     }
 
     /// <summary>
@@ -94,17 +78,21 @@ public class characterStatistics
     /// </summary>
     public void SaveState()
     {
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character");
-        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\statistics.ini", stringCharacterData);
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character");
+        iniFileHandler.Save(System.IO.Directory.GetCurrentDirectory() + "\\save\\" + gamecache.currentSettings.LastProfile + "\\character\\statistics.ini", stringCharacterData);
     }
 
     /// <summary>
     /// Returns an Integer with the current balance.
     /// </summary>
     public int Balance {
-        get { return Convert.ToInt32(ReturnValue["Balance"]); }
+        get {
+            InformationRequest = "Balance";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["Balance"] = value.ToString;
+            InformationRequest = "Balance";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -113,9 +101,13 @@ public class characterStatistics
     /// Returns an Integer with the Total Spendings.
     /// </summary>
     public int TotalSpendings {
-        get { return Convert.ToInt32(ReturnValue["TotalSpendings"]); }
+        get {
+            InformationRequest = "TotalSpendings";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalSpendings"] = value.ToString;
+            InformationRequest = "TotalSpendings";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -124,9 +116,13 @@ public class characterStatistics
     /// Returns an Integer with the Total Earnings.
     /// </summary>
     public int TotalEarnings {
-        get { return Convert.ToInt32(ReturnValue["TotalEarnings"]); }
+        get {
+            InformationRequest = "TotalEarnings";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalEarnings"] = value.ToString;
+            InformationRequest = "TotalEarnings";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -135,9 +131,13 @@ public class characterStatistics
     /// Returns an Integer with the Total Items Sold.
     /// </summary>
     public int TotalItemsSold {
-        get { return Convert.ToInt32(ReturnValue["TotalItemsSold"]); }
+        get {
+            InformationRequest = "TotalItemsSold";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalItemsSold"] = value.ToString;
+            InformationRequest = "TotalItemsSold";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -146,9 +146,13 @@ public class characterStatistics
     /// Returns an Integer with the Total Items Bought.
     /// </summary>
     public int TotalItemsBought {
-        get { return Convert.ToInt32(ReturnValue["TotalItemsBought"]); }
+        get {
+            InformationRequest = "TotalItemsBought";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalItemsBought"] = value.ToString;
+            InformationRequest = "TotalItemsBought";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -157,9 +161,13 @@ public class characterStatistics
     /// Returns an Integer with the current Total Day-Cycles.
     /// </summary>
     public int TotalDayCycles {
-        get { return Convert.ToInt32(ReturnValue["TotalDayCycles"]); }
+        get {
+            InformationRequest = "TotalDayCycles";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalDayCycles"] = value.ToString;
+            InformationRequest = "TotalDayCycles";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
@@ -168,9 +176,13 @@ public class characterStatistics
     /// Returns an Integer with the Total Play-Time.
     /// </summary>
     public int TotalPlayTime {
-        get { return Convert.ToInt32(ReturnValue["TotalPlayTime"]); }
+        get {
+            InformationRequest = "TotalPlayTime";
+            return Convert.ToInt32(ReturnValue);
+        }
         set {
-            ReturnValue["TotalPlayTime"] = value.ToString;
+            InformationRequest = "TotalPlayTime";
+            ReturnValue = value.ToString();
             SaveState();
         }
     }
