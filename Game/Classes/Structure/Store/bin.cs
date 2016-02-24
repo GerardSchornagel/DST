@@ -5,17 +5,17 @@ using System;
 /// </summary>
 public class bin
 {
-    private string stringBinPath = "Nothing";
-    private string stringBinFile = "Nothing";
-    private string stringLinkPath = "Nothing";
-    private string stringLinkFile = "Nothing";
-    private int integerLinkStorage = 0;
-    private int integerLinkSection = 0;
-    private int integerLinkArticle = 0;
-    private int integerBinQuantity = 0;
+    string stringBinPath = "Nothing";
+    string stringBinFile = "Nothing";
+    string stringLinkPath = "Nothing";
+    string stringLinkFile = "Nothing";
+    int integerLinkStorage = 0;
+    int integerLinkSection = 0;
+    int integerLinkArticle = 0;
+    int integerBinQuantity = 0;
 
-    private binaryFileHandler fileHandler = new binaryFileHandler();
-    private string[] stringBinData;
+    binaryFileHandler fileHandler = new binaryFileHandler();
+    string[] stringBinData;
 
     /// <summary>
     /// Resizes stringDataBin to 3 (LinkStorage, LinkSection, LinkArticle, Quantity).
@@ -32,8 +32,8 @@ public class bin
     public void BinLoad(string PathShelf)
     {
         string[] stringMediator = null;
-        stringMediator = stringBinPath.Split(Char(92));
-        stringBinFile = stringMediator(stringMediator.GetUpperBound(0));
+        stringMediator = stringBinPath.Split((char)92);
+        stringBinFile = stringMediator[stringMediator.GetUpperBound(0)];
         stringBinPath = stringBinPath.Remove(stringBinPath.Length - stringBinFile.Length, stringBinFile.Length);
         stringBinData = fileHandler.LoadRow(PathShelf, stringBinFile);
         integerLinkStorage = Convert.ToInt32(stringBinData[0]);
@@ -55,7 +55,7 @@ public class bin
         stringBinData[1] = Convert.ToString(integerLinkSection);
         stringBinData[2] = Convert.ToString(integerLinkArticle);
         stringBinData[3] = Convert.ToString(integerBinQuantity);
-        fileHandler.Save(PathShelf, stringBinFile, , stringBinData);
+        fileHandler.Save(PathShelf, stringBinFile, null, stringBinData);
 
         stringLinkPath = gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ArticlePath;
         stringLinkFile = gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ArticleFile;

@@ -5,17 +5,9 @@ using System;
 /// </summary>
 public class section
 {
-    public static article[] arrayArticle;
-    private string stringPathSection;
-    private int integerArticleCounter;
-
-    /// <summary>
-    /// Empty Sub.
-    /// </summary>
-    public section()
-    {
-
-    }
+    public article[] arrayArticle;
+    string stringPathSection;
+    int integerArticleCounter;
 
     /// <summary>
     /// Get/Adjust the path of the section without Initialize() and Load().

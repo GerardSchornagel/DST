@@ -5,17 +5,9 @@ using System;
 /// </summary>
 public class storage
 {
-    public static section[] arraySection;
-    private string stringPathStorage;
-    private int integerSectionCounter;
-
-    /// <summary>
-    /// Empty Sub.
-    /// </summary>
-    public storage()
-    {
-
-    }
+    public section[] arraySection;
+    string stringPathStorage;
+    int integerSectionCounter;
 
     /// <summary>
     /// Get/Adjust the path of the Storage without Initialize() and Load().
@@ -42,7 +34,7 @@ public class storage
     /// <summary>
     /// Loads all Shelves with all Bin's with all Items.
     /// </summary>
-    public static void StorageLoad()
+    public void StorageLoad()
     {
         foreach (section Section in arraySection) {
             Section.SectionInitialize();

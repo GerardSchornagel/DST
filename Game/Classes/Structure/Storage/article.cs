@@ -5,17 +5,17 @@ using System;
 /// </summary>
 public class article
 {
-    private string stringArticlePath = "Nothing";
-    private string stringArticleFile = "Nothing";
-    private string stringItemPath = "Nothing";
-    private string stringItemFile = "Nothing";
-    private item itemSelected;
-    private int integerArticleQuantity = 0;
-    private int integerArticleLastSell = 0;
-    private int integerArticleLastBuy = 0;
+    string stringArticlePath = "Nothing";
+    string stringArticleFile = "Nothing";
+    string stringItemPath = "Nothing";
+    string stringItemFile = "Nothing";
+    item itemSelected;
+    int integerArticleQuantity = 0;
+    int integerArticleLastSell = 0;
+    int integerArticleLastBuy = 0;
 
-    private binaryFileHandler fileHandler = new binaryFileHandler();
-    private string[] stringDataArticle = {
+    binaryFileHandler fileHandler = new binaryFileHandler();
+    string[] stringDataArticle = {
         "Nothing",
         "Nothing",
         "0",
@@ -38,8 +38,8 @@ public class article
     public void articleLoad(string PathShelf)
     {
         string[] stringMediator = null;
-        stringMediator = stringArticlePath.Split(Char(92));
-        stringArticleFile = stringMediator(stringMediator.GetUpperBound(0));
+        stringMediator = stringArticlePath.Split((char)92);
+        stringArticleFile = stringMediator[stringMediator.GetUpperBound(0)];
         stringArticlePath = stringArticlePath.Remove(stringArticlePath.Length - stringArticleFile.Length, stringArticleFile.Length);
         stringDataArticle = fileHandler.LoadRow(PathShelf, stringArticleFile);
         stringItemPath = stringDataArticle[0];
@@ -64,7 +64,7 @@ public class article
         stringDataArticle[2] = Convert.ToString(integerArticleQuantity);
         stringDataArticle[3] = Convert.ToString(integerArticleLastSell);
         stringDataArticle[4] = Convert.ToString(integerArticleLastBuy);
-        fileHandler.Save(PathShelf, stringArticleFile, , stringDataArticle);
+        fileHandler.Save(PathShelf, stringArticleFile, null, stringDataArticle);
 
         if (stringItemPath == "Nothing")
             return;

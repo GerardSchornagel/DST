@@ -5,17 +5,9 @@ using System;
 /// </summary>
 public class level
 {
-    public static shelf[] arrayShelf;
-    private string stringPathLevel;
-    private int integerShelfCounter;
-
-    /// <summary>
-    /// Empty Sub.
-    /// </summary>
-    public level()
-    {
-
-    }
+    public shelf[] arrayShelf;
+    string stringPathLevel;
+    int integerShelfCounter;
 
     /// <summary>
     /// Get/Adjust the path of the Level without Initialize() and Load().
@@ -42,7 +34,7 @@ public class level
     /// <summary>
     /// Loads all Shelves with all Bin's with all Items.
     /// </summary>
-    public static void ShelfLoad()
+    public void ShelfLoad()
     {
         foreach (shelf item in arrayShelf) {
             item.ShelfInitialize();

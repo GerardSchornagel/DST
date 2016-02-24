@@ -5,17 +5,9 @@ using System;
 /// </summary>
 public class shelf
 {
-    public static bin[] arrayBin;
-    private string stringPathShelf;
-    private int integerBinCounter;
-
-    /// <summary>
-    /// Empty Sub.
-    /// </summary>
-    public shelf()
-    {
-
-    }
+    public bin[] arrayBin;
+    string stringPathShelf;
+    int integerBinCounter;
 
     /// <summary>
     /// Get/Adjust the path of the Shelf without Initialize() and Load().
@@ -31,7 +23,7 @@ public class shelf
     public void ShelfInitialize()
     {
         integerBinCounter = 0;
-        arrayBin[integerBinCounter] = bin(System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1);
+        arrayBin = new bin[System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
         foreach (string file in System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly)) {
             arrayBin[integerBinCounter] = new bin();
             arrayBin[integerBinCounter].BinPath = file;
@@ -64,7 +56,7 @@ public class shelf
             intCheck += 1;
         } while (true);
         Array.Resize(ref arrayBin, intCheck + 1);
-        arrayBin[arrayBin.GetUpperBound(0)] = new Bin();
+        arrayBin[arrayBin.GetUpperBound(0)] = new bin();
         arrayBin[arrayBin.GetUpperBound(0)].BinPath = stringPathShelf + "\\";
         arrayBin[arrayBin.GetUpperBound(0)].BinFile = intCheck + ".ini";
         arrayBin[arrayBin.GetUpperBound(0)].LinkStorage = Convert.ToInt32(ArticleInfo[0]);
