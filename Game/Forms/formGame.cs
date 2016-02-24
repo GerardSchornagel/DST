@@ -2,10 +2,11 @@ using System;
 
 public partial class formGame
 {
-    private Random randomGenerator = new Random();
-    private System.Windows.Forms.Timer timerHour = new System.Windows.Forms.Timer();
-    private System.Windows.Forms.Timer timerCustomer = new System.Windows.Forms.Timer();
-    private int integerCustomerNumber;
+    Random randomGenerator = new Random();
+    mathematics classMathematics;
+    System.Windows.Forms.Timer timerHour = new System.Windows.Forms.Timer();
+    System.Windows.Forms.Timer timerCustomer = new System.Windows.Forms.Timer();
+    int integerCustomerNumber;
 
     public formGame()
     {
@@ -19,7 +20,7 @@ public partial class formGame
         timerCustomer.Tick += timerCustomer_Tick;
     }
 
-    private void buttonActionStart_Click(object sender, System.EventArgs e)
+    void buttonActionStart_Click(object sender, System.EventArgs e)
     {
         textboxActionHour.Text = "9";
         buttonActionStart.Text = "Day Started...";
@@ -32,7 +33,7 @@ public partial class formGame
         timerHour.Start();
     }
 
-    private void timerHour_Tick(object sender, System.EventArgs e)
+    void timerHour_Tick(object sender, System.EventArgs e)
     {
         //Before zero
         if (Convert.ToDouble(textboxActionHour.Text) > 0) {
@@ -56,11 +57,11 @@ public partial class formGame
         }
     }
 
-    private void timerCustomer_Tick(object sender, System.EventArgs e)
+    void timerCustomer_Tick(object sender, System.EventArgs e)
     {
         //More then Zero
         if (integerCustomerNumber > 0) {
-            textboxActionLog.AppendText("[" + textboxActionHour.Text + "] " + mathematics.CustomerBuying);
+            textboxActionLog.AppendText("[" + textboxActionHour.Text + "] " + classMathematics.CustomerBuying());
             integerCustomerNumber -= 1;
             //Less then zero customers
         } else {

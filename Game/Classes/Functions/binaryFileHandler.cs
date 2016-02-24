@@ -6,22 +6,13 @@ using System;
 /// </summary>
 public class binaryFileHandler
 {
-    private string stringStream;
-    private string stringLine;
-    private string[] stringRow;
-    private string[,] stringTable;
+    string stringStream;
+    string[] stringRow;
+    string[,] stringTable;
 
-    private int integerRawCounter;
-    private int integerRowCounter;
-    private int integerColumnCounter;
-
-    /// <summary>
-    /// Initialize class.
-    /// </summary>
-    public binaryFileHandler()
-    {
-
-    }
+    int integerRawCounter;
+    int integerRowCounter;
+    int integerColumnCounter;
 
     /// <summary>
     /// Save input to file on given location.
@@ -77,7 +68,6 @@ public class binaryFileHandler
             }
         }
         //Resetting variables
-        stringLine = null;
         stringRow = null;
         stringTable = null;
         stringStream = "";

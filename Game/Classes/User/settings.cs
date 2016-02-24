@@ -15,7 +15,7 @@ public class settings
     public void NewSettings()
     {
         stringSettings = new string[,] {
-            { "[WarningMessages]", ""},
+            { "[WarningMessages]",null},
             {"<LastProfileID>","0"},
             {"<ProgramQuit>", "False"},
             {"<NewGameOverwrite>", "False"},

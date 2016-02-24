@@ -31,17 +31,11 @@ public partial class gamecache
         // The Me.InitializeComponent call is required for Windows Forms designer support.
         this.InitializeComponent();
 
-        if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory + "\\save\\settings.ini")) {
-            labelDescription.Text = "Loading Global Settings";
-            progressbarLoading.Value = 4;
+        if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + "\\save\\settings.ini")) {
             //Load settings
             currentSettings.LoadSettings();
-            labelDescription.Text = "Load Latest Profile";
-            progressbarLoading.Value = 8;
             //Load latest Profile
             currentPlayerStatistics.LoadPlayerStatistics();
-            labelDescription.Text = "Opening Main Menu";
-            progressbarLoading.Value = 10;
             MainMenu.Show();
         } else {
             //Create new settings and opens New Profile window.
@@ -57,67 +51,40 @@ public partial class gamecache
         InfoProfileForm = new formPlayerManagement();
         InfoProfileForm.Show();
         MainMenu.Hide();
-        gamecache.WindowState = System.Windows.Forms.FormWindowState.Minimized;
     }
-
-    public void ResumeGame()
+    
+    public static void ResumeGame()
     {
         MainMenu.Hide();
-        progressbarLoading.Value = 0;
-        labelDescription.Text = "Loading Profile.";
-        this.WindowState = System.Windows.Forms.FormWindowState.Normal;
-        progressbarLoading.Value = 1;
-        labelDescription.Text = "Making new Profile.";
         currentPlayerProfile.LoadPlayerProfile();
-        progressbarLoading.Value = 2;
-        labelDescription.Text = "Making new Character.";
+        currentPlayerStatistics.LoadPlayerStatistics();
         currentCharacterProfile.LoadCharacterProfile();
         currentCharacterStatistics.LoadCharacterStatistics();
-        progressbarLoading.Value = 3;
-        labelDescription.Text = "Making new Storage.";
-        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0";
+        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0";
         currentCharacterStorage.StorageInitialize();
         currentCharacterStorage.StorageLoad();
-        progressbarLoading.Value = 6;
-        labelDescription.Text = "Creating Store Layout.";
-        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore";
+        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore";
         currentCharacterStore.StoreInitialize();
         currentCharacterStore.StoreLoad();
-        progressbarLoading.Value = 9;
-        labelDescription.Text = "Opening Forms.";
         StartGame();
-        progressbarLoading.Value = 10;
-        labelDescription.Text = "";
-        this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
     }
 
-    public void NewProfile()
+    public static void NewProfile()
     {
         InfoProfileForm.Hide();
-        progressbarLoading.Value = 2;
-        labelDescription.Text = "Making new Character.";
         currentCharacterProfile.LoadCharacterProfile();
         currentCharacterStatistics.LoadCharacterStatistics();
-        progressbarLoading.Value = 3;
-        labelDescription.Text = "Making new Storage.";
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0");
-        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0";
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0");
+        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0";
         currentCharacterStorage.StorageInitialize();
         currentCharacterStorage.StorageLoad();
         currentCharacterStorage.SectionAdd();
-        progressbarLoading.Value = 6;
-        labelDescription.Text = "Creating Store Layout.";
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore");
-        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore";
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore");
+        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore";
         currentCharacterStore.StoreInitialize();
         currentCharacterStore.StoreLoad();
         currentCharacterStore.LevelAdd();
-        progressbarLoading.Value = 9;
-        labelDescription.Text = "Opening Forms.";
         StartGame();
-        progressbarLoading.Value = 10;
-        labelDescription.Text = "";
-        this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
     }
 
     public static void StartGame()
@@ -147,6 +114,5 @@ public partial class gamecache
         ItemManagementForm.Show();
         MapForm.Show();
         DCForm.Show();
-        gamecache.WindowState = System.Windows.Forms.FormWindowState.Minimized;
     }
 }

@@ -3,12 +3,11 @@ using System;
 
 public partial class formDC
 {
-    private Random RandomInteger = new Random();
-    private string[,] stringItemSelected;
-    private string[] stringItemOrder;
+    Random RandomInteger = new Random();
+    string[] stringItemOrder;
 
-    private int integerCounterArticle;
-    private int integerCounterSearch;
+    int integerCounterArticle;
+    int integerCounterSearch;
 
     public formDC()
     {
@@ -23,10 +22,10 @@ public partial class formDC
 
         string[] stringDirectories = null;
         string[] stringMediator = null;
-        stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory + "\\data\\items\\store\\", "*", System.IO.SearchOption.TopDirectoryOnly);
+        stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store\\", "*", System.IO.SearchOption.TopDirectoryOnly);
         foreach (string directory in stringDirectories) {
-            stringMediator = directory.Split(Char(92));
-            comboboxFamily.Items.Add(stringMediator(stringMediator.GetUpperBound(0)));
+            stringMediator = directory.Split((char)92);
+            comboboxFamily.Items.Add(stringMediator[stringMediator.GetUpperBound(0)]);
         }
     }
 
@@ -37,10 +36,10 @@ public partial class formDC
 
         string[] stringDirectories = null;
         string[] stringMediator = null;
-        stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory + "\\data\\items\\store\\" + comboboxFamily.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly);
+        stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store\\" + comboboxFamily.SelectedItem.ToString(), "*", System.IO.SearchOption.TopDirectoryOnly);
         foreach (string directory in stringDirectories) {
-            stringMediator = directory.Split(Char(92));
-            comboboxCategory.Items.Add(stringMediator(stringMediator.GetUpperBound(0)));
+            stringMediator = directory.Split((char)92);
+            comboboxCategory.Items.Add(stringMediator[stringMediator.GetUpperBound(0)]);
         }
     }
 
@@ -51,10 +50,10 @@ public partial class formDC
 
         string[] stringDirectories = null;
         string[] stringMediator = null;
-        stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory + "\\data\\items\\store\\" + comboboxFamily.SelectedItem.ToString + "\\" + comboboxCategory.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly);
+        stringDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store\\" + comboboxFamily.SelectedItem + "\\" + comboboxCategory.SelectedItem, "*", System.IO.SearchOption.TopDirectoryOnly);
         foreach (string directory in stringDirectories) {
-            stringMediator = directory.Split(Char(92));
-            comboboxGenre.Items.Add(stringMediator(stringMediator.GetUpperBound(0)));
+            stringMediator = directory.Split((char)92);
+            comboboxGenre.Items.Add(stringMediator[stringMediator.GetUpperBound(0)]);
         }
     }
 
@@ -64,10 +63,10 @@ public partial class formDC
 
         string[] stringFiles = null;
         string[] stringMediator = null;
-        stringFiles = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory + "\\data\\items\\store\\" + comboboxFamily.SelectedItem.ToString + "\\" + comboboxCategory.SelectedItem.ToString + "\\" + comboboxGenre.SelectedItem.ToString, "*", System.IO.SearchOption.TopDirectoryOnly);
+        stringFiles = System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store\\" + comboboxFamily.SelectedItem + "\\" + comboboxCategory.SelectedItem + "\\" + comboboxGenre.SelectedItem, "*", System.IO.SearchOption.TopDirectoryOnly);
         foreach (string file in stringFiles) {
-            stringMediator = file.Split(Char(92));
-            comboboxName.Items.Add((stringMediator(stringMediator.GetUpperBound(0))).Remove(stringMediator(stringMediator.GetUpperBound(0)).Length - 4, 4));
+            stringMediator = file.Split((char)92);
+            comboboxName.Items.Add((stringMediator[stringMediator.GetUpperBound(0)]).Remove(stringMediator[stringMediator.GetUpperBound(0)].Length - 4, 4));
         }
     }
 
@@ -76,7 +75,7 @@ public partial class formDC
         //Check for miss-click
         if (string.IsNullOrEmpty(comboboxName.Text))
             return;
-        item itemSelected = new item(System.IO.Directory.GetCurrentDirectory + "\\data\\items\\store\\" + comboboxFamily.SelectedItem.ToString + "\\" + comboboxCategory.SelectedItem.ToString + "\\" + comboboxGenre.Text + "\\" + comboboxName.Text + ".ini");
+        item itemSelected = new item(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store\\" + comboboxFamily.SelectedItem + "\\" + comboboxCategory.SelectedItem + "\\" + comboboxGenre.Text + "\\" + comboboxName.Text + ".ini");
 
         labelItemFamilyDisplay.Text = itemSelected.Family;
         labelItemCategoryDisplay.Text = itemSelected.Category;
@@ -118,7 +117,7 @@ public partial class formDC
             //[Department]\[Genre]\[SubGenre]\[Itemname].ini
             //Get product-order into temponary String Array.
             stringItemOrder = new string[5];
-            stringItemOrder[0] = System.IO.Directory.GetCurrentDirectory + "\\Data\\Items\\Store\\" + labelItemFamilyDisplay.Text + "\\" + labelItemCategoryDisplay.Text + "\\" + labelItemGenreDisplay.Text + "\\";
+            stringItemOrder[0] = System.IO.Directory.GetCurrentDirectory() + "\\Data\\Items\\Store\\" + labelItemFamilyDisplay.Text + "\\" + labelItemCategoryDisplay.Text + "\\" + labelItemGenreDisplay.Text + "\\";
             //ItemPath
             stringItemOrder[1] = labelItemItemNameDisplay.Text + ".ini";
             //ItemFile
@@ -134,7 +133,7 @@ public partial class formDC
             do {
                 if (gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle == null)
                     break; // TODO: might not be correct. Was : Exit Do
-                foreach (Article Article in gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle) {
+                foreach (article Article in gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle) {
                     if (Article.ItemLink.Name_Title == labelItemItemNameDisplay.Text) {
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].Quantity += Convert.ToInt32(stringItemOrder[2]);
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].LastBuy = Convert.ToInt32(stringItemOrder[4]);

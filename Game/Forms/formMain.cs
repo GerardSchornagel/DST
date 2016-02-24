@@ -22,7 +22,7 @@ public partial class formMain
         //add filedialog and change lastProfile
         System.Windows.Forms.FolderBrowserDialog folderdialogLoadGame = new System.Windows.Forms.FolderBrowserDialog();
         folderdialogLoadGame.ShowNewFolderButton = false;
-        folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory + "\\save";
+        folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory() + "\\save";
         folderdialogLoadGame.Description = "Please select one of the numbered directory's";
         folderdialogLoadGame.ShowDialog();
         gamecache.currentSettings.LastProfile = Convert.ToString(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1));
@@ -63,7 +63,7 @@ public partial class formMain
         if (gamecache.currentSettings.MessagesProgramQuit) {
             Environment.Exit(0);
         } else {
-            if (Interaction.MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit")) {
+            if (Interaction.MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit").ToString() == "6") {
                 Environment.Exit(0);
             } else {
                 return;

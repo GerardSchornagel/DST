@@ -13,7 +13,7 @@ public partial class formEditor
     {
         // The Me.InitializeComponent call is required for Windows Forms designer support.
         this.InitializeComponent();
-        textboxFilename.Text = System.IO.Directory.GetCurrentDirectory + "\\data\\";
+        textboxFilename.Text = System.IO.Directory.GetCurrentDirectory() + "\\data\\";
     }
 
     public void buttonClose_Click(object sender, EventArgs e)
@@ -23,8 +23,8 @@ public partial class formEditor
 
     public void buttonSave_Click(object sender, EventArgs e)
     {
-        textboxEdit.AppendText(Char(13));
-        string[] stringMediator = textboxEdit.Text.Split(Char(10));
+        textboxEdit.AppendText(((char)13).ToString());
+        string[] stringMediator = textboxEdit.Text.Split((char)10);
         int integerCount = 0;
         do {
             stringMediator[integerCount] = stringMediator[integerCount].Remove(stringMediator[integerCount].Length - 1, 1);
@@ -35,9 +35,9 @@ public partial class formEditor
         int integerRow = 0;
 
         string[] stringColumns = null;
-        stringColumns = textboxEdit.Text.Split(Char(91));
+        stringColumns = textboxEdit.Text.Split((char)91);
         foreach (string line in stringColumns) {
-            string[] stringRow = line.Split(Char(60));
+            string[] stringRow = line.Split((char)60);
             if (integerRow < stringRow.GetUpperBound(0))
                 integerRow = stringRow.GetUpperBound(0);
         }
@@ -45,7 +45,7 @@ public partial class formEditor
 
         integerRow = 0;
         foreach (string line in stringMediator) {
-            if (line.StartsWith(Char(91))) {
+            if (line.StartsWith(((char)91).ToString())) {
                 integerColumn += 1;
                 integerRow = 0;
                 stringExport[integerColumn, integerRow] = line;
@@ -64,7 +64,7 @@ public partial class formEditor
         textboxEdit.Text = "";
         stringExport = iniFilehandler.Load(textboxFilename.Text);
         foreach (string line in stringExport) {
-            textboxEdit.AppendText(line + Char(13) + Char(10));
+            textboxEdit.AppendText(line + (char)13 + (char)10);
         }
     }
 
@@ -73,7 +73,7 @@ public partial class formEditor
         System.Windows.Forms.SaveFileDialog filebrowser = new System.Windows.Forms.SaveFileDialog();
         filebrowser.AddExtension = false;
         filebrowser.DefaultExt = "pd";
-        filebrowser.InitialDirectory = System.IO.Directory.GetCurrentDirectory + "\\data";
+        filebrowser.InitialDirectory = System.IO.Directory.GetCurrentDirectory() + "\\data";
         filebrowser.Title = "Choose new name or edit existing one.";
         filebrowser.ShowDialog();
         textboxFilename.Text = filebrowser.FileName;
@@ -92,19 +92,19 @@ public partial class formEditor
         switch (listboxDescription.SelectedIndex) {
             case 0:
                 //Items
-                textboxDescription.Text = "[ItemInformation]" + Char(13) + Char(10) + "<Name/Title>" + Char(13) + Char(10) + "<Brand/Author>" + Char(13) + Char(10) + "<Company/Publisher>" + Char(13) + Char(10) + "<Genre>" + Char(13) + Char(10) + "<Category>" + Char(13) + Char(10) + "<Family>" + Char(13) + Char(10) + Char(13) + Char(10) + "[Statistics]" + Char(13) + Char(10) + "<Quality>" + Char(13) + Char(10) + "<Popularity>" + Char(13) + Char(10) + "<Rarity>" + Char(13) + Char(10) + "<BaseWorth>" + Char(13) + Char(10) + "<ItemTier>" + Char(13) + Char(10) + Char(13) + Char(10) + "[Various]" + Char(13) + Char(10) + "<PictureFilename>" + Char(13) + Char(10) + "<Description>";
+                textboxDescription.Text = "[ItemInformation]" + (char)13 + (char)10 + "<Name/Title>" + (char)13 + (char)10 + "<Brand/Author>" + (char)13 + (char)10 + "<Company/Publisher>" + (char)13 + (char)10 + "<Genre>" + (char)13 + (char)10 + "<Category>" + (char)13 + (char)10 + "<Family>" + (char)13 + (char)10 + (char)13 + (char)10 + "[Statistics]" + (char)13 + (char)10 + "<Quality>" + (char)13 + (char)10 + "<Popularity>" + (char)13 + (char)10 + "<Rarity>" + (char)13 + (char)10 + "<BaseWorth>" + (char)13 + (char)10 + "<ItemTier>" + (char)13 + (char)10 + (char)13 + (char)10 + "[Various]" + (char)13 + (char)10 + "<PictureFilename>" + (char)13 + (char)10 + "<Description>";
                 break;
             case 1:
                 //Customers
-                textboxDescription.Text = "[Age]" + Char(13) + Char(10) + "<Min>" + Char(13) + Char(10) + "<Max>" + Char(13) + Char(10) + Char(13) + Char(10) + "[Money]" + Char(13) + Char(10) + "<Min>" + Char(13) + Char(10) + "<Max>" + Char(13) + Char(10) + Char(13) + Char(10) + "[Desire]" + Char(13) + Char(10) + "<Min>" + Char(13) + Char(10) + "<Max>";
+                textboxDescription.Text = "[Age]" + (char)13 + (char)10 + "<Min>" + (char)13 + (char)10 + "<Max>" + (char)13 + (char)10 + (char)13 + (char)10 + "[Money]" + (char)13 + (char)10 + "<Min>" + (char)13 + (char)10 + "<Max>" + (char)13 + (char)10 + (char)13 + (char)10 + "[Desire]" + (char)13 + (char)10 + "<Min>" + (char)13 + (char)10 + "<Max>";
                 break;
             case 2:
                 //Settings
-                textboxDescription.Text = "[WarningMessages]" + Char(13) + Char(10) + "<LastProfileID>" + Char(13) + Char(10) + "<ProgramQuit>" + Char(13) + Char(10) + "<NewgameOverwrite>" + Char(13) + Char(10) + "<OptionsApplyRestart>";
+                textboxDescription.Text = "[WarningMessages]" + (char)13 + (char)10 + "<LastProfileID>" + (char)13 + (char)10 + "<ProgramQuit>" + (char)13 + (char)10 + "<NewgameOverwrite>" + (char)13 + (char)10 + "<OptionsApplyRestart>";
                 break;
             case 3:
                 //Namelist
-                textboxDescription.Text = "[Name List Data]" + Char(13) + Char(10) + "<Male>" + Char(13) + Char(10) + "<Female>";
+                textboxDescription.Text = "[Name List Data]" + (char)13 + (char)10 + "<Male>" + (char)13 + (char)10 + "<Female>";
                 break;
         }
     }
