@@ -52,32 +52,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Functions\binaryFileHandler.cs" />
-    <Compile Include="Classes\Functions\iniHandler.cs" />
+    <Compile Include="Classes\Functions\ioINI.cs" />
     <Compile Include="Classes\Functions\mathematics.cs" />
     <Compile Include="Classes\Functions\solverAlgebraic.cs" />
-    <Compile Include="Classes\Objects\catalog.cs" />
-    <Compile Include="Classes\Objects\customer.cs" />
-    <Compile Include="Classes\Objects\individual.cs" />
-    <Compile Include="Classes\Objects\item.cs" />
-    <Compile Include="Classes\Structure\Storage\article.cs" />
-    <Compile Include="Classes\Structure\Storage\section.cs" />
-    <Compile Include="Classes\Structure\Storage\storage.cs" />
-    <Compile Include="Classes\Structure\Store\bin.cs" />
-    <Compile Include="Classes\Structure\Store\level.cs" />
-    <Compile Include="Classes\Structure\Store\shelf.cs" />
-    <Compile Include="Classes\Structure\Store\store.cs" />
-    <Compile Include="Classes\User\Character\characterProfile.cs" />
-    <Compile Include="Classes\User\Character\characterStatistics.cs" />
-    <Compile Include="Classes\User\Player\playerProfile.cs" />
-    <Compile Include="Classes\User\Player\playerStatistics.cs" />
-    <Compile Include="Classes\User\settings.cs" />
+    <Compile Include="Classes\Objects\items\catalog.cs" />
+    <Compile Include="Classes\Objects\items\item.cs" />
+    <Compile Include="Classes\Objects\NPC\ethnics.cs" />
+    <Compile Include="Classes\Objects\NPC\individual.cs" />
+    <Compile Include="Classes\Settings\settingsCharacter.cs" />
+    <Compile Include="Classes\Settings\settingsMain.cs" />
+    <Compile Include="Classes\Objects\Structure\Storage\article.cs" />
+    <Compile Include="Classes\Objects\Structure\Storage\section.cs" />
+    <Compile Include="Classes\Objects\Structure\Storage\storage.cs" />
+    <Compile Include="Classes\Objects\Structure\Store\bin.cs" />
+    <Compile Include="Classes\Objects\Structure\Store\level.cs" />
+    <Compile Include="Classes\Objects\Structure\Store\shelf.cs" />
+    <Compile Include="Classes\Objects\Structure\Store\store.cs" />
+    <Compile Include="Classes\Settings\settingsPlayer.cs" />
     <Compile Include="Forms\formDC.cs" />
     <Compile Include="Forms\formDC.Designer.cs">
       <DependentUpon>formDC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\formEditor.cs" />
-    <Compile Include="Forms\formEditor.Designer.cs">
-      <DependentUpon>formEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\formGame.cs" />
     <Compile Include="Forms\formGame.Designer.cs">
@@ -120,21 +114,18 @@
   <ItemGroup>
     <Folder Include="Classes" />
     <Folder Include="Classes\Functions" />
+    <Folder Include="Classes\Objects\items" />
+    <Folder Include="Classes\Objects\NPC" />
+    <Folder Include="Classes\Settings" />
     <Folder Include="Classes\Objects" />
-    <Folder Include="Classes\Structure" />
-    <Folder Include="Classes\Structure\Storage" />
-    <Folder Include="Classes\Structure\Store" />
-    <Folder Include="Classes\User" />
-    <Folder Include="Classes\User\Character" />
-    <Folder Include="Classes\User\Player" />
+    <Folder Include="Classes\Objects\Structure" />
+    <Folder Include="Classes\Objects\Structure\Storage" />
+    <Folder Include="Classes\Objects\Structure\Store" />
     <Folder Include="Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\formDC.resx">
       <DependentUpon>formDC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\formEditor.resx">
-      <DependentUpon>formEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formGame.resx">
       <DependentUpon>formGame.cs</DependentUpon>

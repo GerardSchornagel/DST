@@ -1,4 +1,5 @@
 using System;
+using Game.Classes.Settings;
 
 /// <summary>
 /// Description of form/class/etc.
@@ -14,32 +15,26 @@ public partial class gamecache
     static internal System.Windows.Forms.Form InfoProfileForm;
     static internal System.Windows.Forms.Form EditorForm;
 
-    static internal settings currentSettings = new settings();
+    static internal settingsMain MainSettings = new settingsMain();
 
-    static internal playerProfile currentPlayerProfile = new playerProfile();
-    static internal playerStatistics currentPlayerStatistics = new playerStatistics();
+    static internal settingsPlayer currentPlayer = new settingsPlayer();
     static internal storage currentCharacterStorage = new storage();
     static internal store currentCharacterStore = new store();
 
-    static internal characterProfile currentCharacterProfile = new characterProfile();
-    static internal characterStatistics currentCharacterStatistics = new characterStatistics();
+    static internal settingsCharacter currentCharacter = new settingsCharacter();
 
-    static internal customer cacheCustomer = new customer();
+    static internal ethnics cacheCustomer = new ethnics();
 
     public gamecache()
     {
         // The Me.InitializeComponent call is required for Windows Forms designer support.
         this.InitializeComponent();
 
-        if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + "\\save\\settings.ini")) {
-            //Load settings
-            currentSettings.LoadSettings();
+        if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + "settings" + (char)92 + "Main.ini")) {
             //Load latest Profile
-            currentPlayerStatistics.LoadPlayerStatistics();
-            MainMenu.Show();
+             MainMenu.Show();
         } else {
             //Create new settings and opens New Profile window.
-            currentSettings.NewSettings();
             InfoProfileForm = new formPlayerManagement();
             InfoProfileForm.Show();
         }
@@ -56,14 +51,14 @@ public partial class gamecache
     public static void ResumeGame()
     {
         MainMenu.Hide();
-        currentPlayerProfile.LoadPlayerProfile();
-        currentPlayerStatistics.LoadPlayerStatistics();
-        currentCharacterProfile.LoadCharacterProfile();
-        currentCharacterStatistics.LoadCharacterStatistics();
-        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0";
+//        currentPlayer.LoadPlayerProfile();
+//        currentPlayerStatistics.LoadPlayerStatistics();
+//        currentCharacter.LoadCharacterProfile();
+//        currentCharacter.LoadCharacterStatistics();
+        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\Storage\\0";
         currentCharacterStorage.StorageInitialize();
         currentCharacterStorage.StorageLoad();
-        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore";
+        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\MyFirstStore";
         currentCharacterStore.StoreInitialize();
         currentCharacterStore.StoreLoad();
         StartGame();
@@ -72,15 +67,15 @@ public partial class gamecache
     public static void NewProfile()
     {
         InfoProfileForm.Hide();
-        currentCharacterProfile.LoadCharacterProfile();
-        currentCharacterStatistics.LoadCharacterStatistics();
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0");
-        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\Storage\\0";
+//        currentCharacter.LoadCharacterProfile();
+//        currentCharacter.LoadCharacterStatistics();
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\Storage\\0");
+        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\Storage\\0";
         currentCharacterStorage.StorageInitialize();
         currentCharacterStorage.StorageLoad();
         currentCharacterStorage.SectionAdd();
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore");
-        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.currentSettings.LastProfile + "\\MyFirstStore";
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\MyFirstStore");
+        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\MyFirstStore";
         currentCharacterStore.StoreInitialize();
         currentCharacterStore.StoreLoad();
         currentCharacterStore.LevelAdd();

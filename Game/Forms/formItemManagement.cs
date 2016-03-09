@@ -31,7 +31,7 @@ public partial class formItemManagement
             updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
 
             textboxStoragePhItem.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile);
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name_Title;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -63,7 +63,7 @@ public partial class formItemManagement
             updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
 
             textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile;
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name_Title;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -140,7 +140,7 @@ public partial class formItemManagement
             updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
 
             textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile;
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name_Title;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -151,7 +151,7 @@ public partial class formItemManagement
     {
         if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle != null) {
             textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile;
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name_Title;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);

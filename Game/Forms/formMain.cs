@@ -25,7 +25,7 @@ public partial class formMain
         folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory() + "\\save";
         folderdialogLoadGame.Description = "Please select one of the numbered directory's";
         folderdialogLoadGame.ShowDialog();
-        gamecache.currentSettings.LastProfile = Convert.ToString(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1));
+        gamecache.MainSettings.LastUserID = Convert.ToInt32(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1));
         //Load Game
         buttonLastCharacter_Click(null, null);
     }
@@ -47,8 +47,9 @@ public partial class formMain
 
     public void buttonEditor_Click(object sender, EventArgs e)
     {
-        gamecache.EditorForm = new formEditor();
-        gamecache.EditorForm.Show();
+//        gamecache.EditorForm = new formEditor();
+//        gamecache.EditorForm.Show();
+        Interaction.MsgBox("Sorry, been disabled for the time being.");
     }
 
     public void buttonOptions_Click(object sender, EventArgs e)
@@ -60,7 +61,7 @@ public partial class formMain
     public void buttonQuit_Click(object sender, EventArgs e)
     {
         //Check for WarningMessage Setting and show the warning with Yes/No, else just End
-        if (gamecache.currentSettings.MessagesProgramQuit) {
+        if (gamecache.MainSettings.ExitConfirmation) {
             Environment.Exit(0);
         } else {
             if (Interaction.MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit").ToString() == "6") {

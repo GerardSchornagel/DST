@@ -18,26 +18,26 @@ public partial class formStatus
         timerUpdate.Interval = 2500;
         timerUpdate.Start();
 
-        textboxBalance.Text = Convert.ToString(gamecache.currentCharacterStatistics.Balance);
+        textboxBalance.Text = Convert.ToString(gamecache.currentCharacter.Balance);
         //Profile Tab
-        textboxProfileID.Text = Convert.ToString(gamecache.currentPlayerProfile.ProfileID);
-        textboxNameFirst.Text = gamecache.currentPlayerProfile.FirstName;
-        textboxNameLast.Text = gamecache.currentPlayerProfile.LastName;
-        textboxBirthYear.Text = Convert.ToString(gamecache.currentPlayerProfile.BirthYear);
-        textboxBirthMonth.Text = Convert.ToString(gamecache.currentPlayerProfile.BirthMonth);
-        textboxBirthDay.Text = Convert.ToString(gamecache.currentPlayerProfile.BirthDay);
-        textboxGender.Text = gamecache.currentPlayerProfile.Gender;
-        textboxCreateDate.Text = gamecache.currentPlayerStatistics.CreateDate;
-        textboxCreateTime.Text = gamecache.currentPlayerStatistics.CreateTime;
+        textboxProfileID.Text = Convert.ToString(gamecache.currentPlayer.ProfileID);
+        textboxNameFirst.Text = gamecache.currentPlayer.NameFirst;
+        textboxNameLast.Text = gamecache.currentPlayer.NameLast;
+        textboxBirthYear.Text = Convert.ToString(gamecache.currentPlayer.BirthYear);
+        textboxBirthMonth.Text = Convert.ToString(gamecache.currentPlayer.BirthMonth);
+        textboxBirthDay.Text = Convert.ToString(gamecache.currentPlayer.BirthDay);
+        textboxGender.Text = gamecache.currentPlayer.Gender;
+        textboxCreateDate.Text = gamecache.currentPlayer.CreateDate;
+        textboxCreateTime.Text = gamecache.currentPlayer.CreateTime;
         //Character Tab
-        textboxWorld.Text = gamecache.currentCharacterProfile.CurrentWorld;
-        textboxCountry.Text = gamecache.currentCharacterProfile.CurrentCountry;
-        textboxPlace.Text = gamecache.currentCharacterProfile.CurrentPlace;
-        textboxStore.Text = gamecache.currentCharacterProfile.CurrentStore;
-        textboxMoneyEarned.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalEarnings);
-        textboxMoneySpent.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalSpendings);
-        textboxItemsSold.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalItemsSold);
-        textboxPlaycycles.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalDayCycles);
+        textboxWorld.Text = gamecache.currentCharacter.World.ToString();
+        textboxCountry.Text = gamecache.currentCharacter.Country.ToString();
+        textboxPlace.Text = gamecache.currentCharacter.Place.ToString();
+        textboxStore.Text = gamecache.currentCharacter.Store.ToString();
+        textboxMoneyEarned.Text = Convert.ToString(gamecache.currentCharacter.EarningsTotal);
+        textboxMoneySpent.Text = Convert.ToString(gamecache.currentCharacter.SpendingsTotal);
+        textboxItemsSold.Text = Convert.ToString(gamecache.currentCharacter.ItemsSoldTotal);
+        textboxPlaycycles.Text = Convert.ToString(gamecache.currentCharacter.DayCyclesTotal);
     }
 
     public void buttonExit_Click(object sender, EventArgs e)
@@ -74,14 +74,14 @@ public partial class formStatus
 
     private void Reload()
     {
-        textboxBalance.Text = Convert.ToString(gamecache.currentCharacterStatistics.Balance);
-        textboxWorld.Text = gamecache.currentCharacterProfile.CurrentWorld;
-        textboxCountry.Text = gamecache.currentCharacterProfile.CurrentCountry;
-        textboxPlace.Text = gamecache.currentCharacterProfile.CurrentPlace;
-        textboxStore.Text = gamecache.currentCharacterProfile.CurrentStore;
-        textboxMoneyEarned.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalEarnings);
-        textboxMoneySpent.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalSpendings);
-        textboxItemsSold.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalItemsSold);
-        textboxPlaycycles.Text = Convert.ToString(gamecache.currentCharacterStatistics.TotalDayCycles);
+        textboxBalance.Text = Convert.ToString(gamecache.currentCharacter.Balance);
+        textboxWorld.Text = gamecache.currentCharacter.World.ToString();
+        textboxCountry.Text = gamecache.currentCharacter.Country.ToString();
+        textboxPlace.Text = gamecache.currentCharacter.Place.ToString();
+        textboxStore.Text = gamecache.currentCharacter.Store.ToString();
+        textboxMoneyEarned.Text = Convert.ToString(gamecache.currentCharacter.EarningsTotal);
+        textboxMoneySpent.Text = Convert.ToString(gamecache.currentCharacter.SpendingsTotal);
+        textboxItemsSold.Text = Convert.ToString(gamecache.currentCharacter.ItemsSoldTotal);
+        textboxPlaycycles.Text = Convert.ToString(gamecache.currentCharacter.DayCyclesTotal);
     }
 }

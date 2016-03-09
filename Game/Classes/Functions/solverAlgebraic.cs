@@ -42,23 +42,23 @@ public class solverAlgebraic
             stringVariable = line.Split((char)125)[0];
             //125=}
             //58=:
-            if (stringVariable.Split((char)58)[0].ToLower() == "customer") {
-                gamecache.cacheCustomer.stringEthnic = stringVariable.Split((char)58)[2];
-                gamecache.cacheCustomer.SettingRequest = stringVariable.Split((char)58)[1];
-                stringOutput += gamecache.cacheCustomer.ReturnValue;
-            } else if (stringVariable.Split((char)58)[0].ToLower() == "characterprofile") {
-                gamecache.currentCharacterProfile.InformationRequest = stringVariable.Split((char)58)[1];
-                stringOutput += gamecache.currentCharacterProfile.ReturnValue;
-            } else if (stringVariable.Split((char)58)[0].ToLower() == "characterstatistics") {
-                gamecache.currentCharacterProfile.InformationRequest = stringVariable.Split((char)58)[1];
-                stringOutput += gamecache.currentCharacterStatistics.ReturnValue;
-            } else if (stringVariable.Split((char)58)[0].ToLower() == "playerprofile") {
-                gamecache.currentCharacterProfile.InformationRequest = stringVariable.Split((char)58)[1];
-                stringOutput += gamecache.currentPlayerProfile.ReturnValue;
-            } else if (stringVariable.Split((char)58)[0].ToLower() == "playerstatistics") {
-                gamecache.currentCharacterProfile.InformationRequest = stringVariable.Split((char)58)[1];
-                stringOutput += gamecache.currentPlayerStatistics.ReturnValue;
-            }
+//            if (stringVariable.Split((char)58)[0].ToLower() == "customer") {
+//                gamecache.cacheCustomer.stringEthnic = stringVariable.Split((char)58)[2];
+//                gamecache.cacheCustomer.SettingRequest = stringVariable.Split((char)58)[1];
+//                stringOutput += gamecache.cacheCustomer.ReturnValue;
+//            } else if (stringVariable.Split((char)58)[0].ToLower() == "characterprofile") {
+//                gamecache.currentCharacter.InformationRequest = stringVariable.Split((char)58)[1];
+//                stringOutput += gamecache.currentCharacter.ReturnValue;
+//            } else if (stringVariable.Split((char)58)[0].ToLower() == "characterstatistics") {
+//                gamecache.currentCharacter.InformationRequest = stringVariable.Split((char)58)[1];
+//                stringOutput += gamecache.currentCharacter.ReturnValue;
+//            } else if (stringVariable.Split((char)58)[0].ToLower() == "playerprofile") {
+//                gamecache.currentCharacter.InformationRequest = stringVariable.Split((char)58)[1];
+//                stringOutput += gamecache.currentPlayer.ReturnValue;
+//            } else if (stringVariable.Split((char)58)[0].ToLower() == "playerstatistics") {
+//                gamecache.currentCharacter.InformationRequest = stringVariable.Split((char)58)[1];
+//                stringOutput += gamecache.currentPlayerStatistics.ReturnValue;
+//            }
             stringOutput += line.Split((char)125)[1];
             //Remainder with Operator's
         }

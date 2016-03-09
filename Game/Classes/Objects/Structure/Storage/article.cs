@@ -50,7 +50,7 @@ public class article
 
         if (stringItemPath == "Nothing")
             return;
-        itemSelected = new item(stringItemPath + stringItemFile);
+        itemSelected = new item(stringItemPath, stringItemFile);
     }
     
     /// <summary>
@@ -68,7 +68,7 @@ public class article
 
         if (stringItemPath == "Nothing")
             return;
-        itemSelected = new item(stringItemPath + stringItemFile);
+        itemSelected = new item(stringItemPath, stringItemFile);
     }
     
     /// <summary>

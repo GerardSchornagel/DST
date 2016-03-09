@@ -113,7 +113,7 @@ public class bin
     /// Get the Item Name from Linked Article.
     /// </summary>
     public string ArticleName {
-        get { return gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ItemLink.Name_Title; }
+        get { return gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ItemLink.Name; }
     }
     
     /// <summary>

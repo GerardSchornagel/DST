@@ -75,14 +75,14 @@ public partial class formDC
         //Check for miss-click
         if (string.IsNullOrEmpty(comboboxName.Text))
             return;
-        item itemSelected = new item(System.IO.Directory.GetCurrentDirectory() + "\\data\\items\\store\\" + comboboxFamily.SelectedItem + "\\" + comboboxCategory.SelectedItem + "\\" + comboboxGenre.Text + "\\" + comboboxName.Text + ".ini");
+        item itemSelected = new item("store" + (char)92 + comboboxFamily.SelectedItem + (char)92 + comboboxCategory.SelectedItem + (char)92 + comboboxGenre.Text, comboboxName.Text + ".ini");
 
         labelItemFamilyDisplay.Text = itemSelected.Family;
         labelItemCategoryDisplay.Text = itemSelected.Category;
         labelItemGenreDisplay.Text = itemSelected.Genre;
-        labelItemCompanyDisplay.Text = itemSelected.Company_Publisher;
-        labelItemBrandDisplay.Text = itemSelected.Brand_Author;
-        labelItemItemNameDisplay.Text = itemSelected.Name_Title;
+        labelItemCompanyDisplay.Text = itemSelected.Company;
+        labelItemBrandDisplay.Text = itemSelected.Brand;
+        labelItemItemNameDisplay.Text = itemSelected.Name;
 
         labelStatisticsQualityDisplay.Text = itemSelected.Quality;
         labelStatisticsPopularityDisplay.Text = itemSelected.Popularity;
@@ -90,7 +90,7 @@ public partial class formDC
         labelStatisticsBaseWorthDisplay.Text = itemSelected.BaseWorth;
         labelStatisticsItemTierDisplay.Text = itemSelected.ItemTier;
 
-        labelVariousPicturePathDisplay.Text = itemSelected.PictureFileName;
+        labelVariousPicturePathDisplay.Text = itemSelected.PictureFilename;
         labelVariousDescriptionDisplay.Text = itemSelected.Description;
 
         textboxBuyPrice.Text = Convert.ToString(RandomInteger.Next(Convert.ToInt32(Convert.ToDouble(labelStatisticsBaseWorthDisplay.Text) - (Convert.ToDouble(labelStatisticsBaseWorthDisplay.Text) * 0.5)), Convert.ToInt32(Convert.ToDouble(labelStatisticsBaseWorthDisplay.Text) + (Convert.ToDouble(labelStatisticsBaseWorthDisplay.Text) * 0.25))));
@@ -106,14 +106,14 @@ public partial class formDC
         if (string.IsNullOrEmpty(textboxBuyAmount.Text))
             return;
 
-        if (gamecache.currentCharacterStatistics.Balance < Convert.ToInt32(textboxPriceTotal.Text))
+        if (gamecache.currentCharacter.Balance < Convert.ToInt32(textboxPriceTotal.Text))
             Interaction.MsgBox("Not enough balance.");
 
-        if (gamecache.currentCharacterStatistics.Balance >= Convert.ToInt32(textboxPriceTotal.Text)) {
+        if (gamecache.currentCharacter.Balance >= Convert.ToInt32(textboxPriceTotal.Text)) {
             Interaction.MsgBox("You bought goods.");
 
-            gamecache.currentCharacterStatistics.Balance -= Convert.ToInt32(textboxPriceTotal.Text);
-            gamecache.currentCharacterStatistics.TotalSpendings += Convert.ToInt32(textboxPriceTotal.Text);
+            gamecache.currentCharacter.Balance -= Convert.ToInt32(textboxPriceTotal.Text);
+            gamecache.currentCharacter.SpendingsTotal += Convert.ToInt32(textboxPriceTotal.Text);
             //[Department]\[Genre]\[SubGenre]\[Itemname].ini
             //Get product-order into temponary String Array.
             stringItemOrder = new string[5];
@@ -134,7 +134,7 @@ public partial class formDC
                 if (gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle == null)
                     break; // TODO: might not be correct. Was : Exit Do
                 foreach (article Article in gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle) {
-                    if (Article.ItemLink.Name_Title == labelItemItemNameDisplay.Text) {
+                    if (Article.ItemLink.Name == labelItemItemNameDisplay.Text) {
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].Quantity += Convert.ToInt32(stringItemOrder[2]);
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].LastBuy = Convert.ToInt32(stringItemOrder[4]);
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerCounterSearch].SectionPath);

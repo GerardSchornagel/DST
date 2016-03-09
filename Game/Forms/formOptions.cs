@@ -11,19 +11,19 @@ public partial class formOptions
 
     public void formOptions_Load(object sender, EventArgs e)
     {
-        checkboxlistMessages.SetItemChecked(0, gamecache.currentSettings.MessagesProgramQuit);
-        checkboxlistMessages.SetItemChecked(1, gamecache.currentSettings.MessagesNewgameOverwrite);
-        checkboxlistMessages.SetItemChecked(2, gamecache.currentSettings.MessagesOptionsApplyRestart);
+        checkboxlistMessages.SetItemChecked(0, gamecache.MainSettings.ExitConfirmation);
+        checkboxlistMessages.SetItemChecked(1, gamecache.MainSettings.NewGameOverwrite);
+        checkboxlistMessages.SetItemChecked(2, gamecache.MainSettings.RestartOnOptions);
     }
 
     public void buttonOK_Click(object sender, EventArgs e)
     {
         //Save all options to save\setting.ini
-        gamecache.currentSettings.MessagesProgramQuit = Convert.ToBoolean(checkboxlistMessages.GetItemCheckState(0));
-        gamecache.currentSettings.MessagesNewgameOverwrite = Convert.ToBoolean(checkboxlistMessages.GetItemCheckState(1));
-        gamecache.currentSettings.MessagesOptionsApplyRestart = Convert.ToBoolean(checkboxlistMessages.GetItemCheckState(2));
+        gamecache.MainSettings.ExitConfirmation = Convert.ToBoolean(checkboxlistMessages.GetItemCheckState(0));
+        gamecache.MainSettings.NewGameOverwrite = Convert.ToBoolean(checkboxlistMessages.GetItemCheckState(1));
+        gamecache.MainSettings.RestartOnOptions = Convert.ToBoolean(checkboxlistMessages.GetItemCheckState(2));
         //Warn before restarting
-        if (gamecache.currentSettings.MessagesOptionsApplyRestart == false)
+        if (gamecache.MainSettings.RestartOnOptions == false)
             Interaction.MsgBox("The program has to be restarted to take full effect.", MsgBoxStyle.Exclamation, "Please restart.");
         this.Dispose();
     }

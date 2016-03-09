@@ -1,5 +1,4 @@
 using System;
-
 /// <summary>
 /// Contains various math-like functions.
 /// </summary>
@@ -20,15 +19,13 @@ public class mathematics
         string stringBinName = null;
         string stringReturn = null;
         Random randomGenerator = new Random();
-        string[] CustomerNew = new string[6];
+        
         //CustomerNew[0] = gamecache.playerCharacter.CurrentCountry
-        //HACK: Delete next line when locationCounrty is fixed & UnComment above.
-        CustomerNew[0] = "English";
-        gamecache.cacheCustomer.GetCurrentCustomer = CustomerNew;
-        CustomerNew = gamecache.cacheCustomer.GetCurrentCustomer;
-        //Ethnic, Name, Gender, Age, Money, Desire
         //Setting Random's for slot choosing.
-        stringReturn = "0";
+        
+        individual curCustomer = gamecache.cacheCustomer.individualDatabase[0];
+        curCustomer.Randomize();
+            stringReturn = "0";
         integerLevelSlot = randomGenerator.Next(gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0));
         levelStore = gamecache.currentCharacterStore.arrayLevel[integerLevelSlot];
         integerShelfSlot = randomGenerator.Next(levelStore.arrayShelf.GetUpperBound(0));
@@ -44,28 +41,28 @@ public class mathematics
         if (integerBinQuantity > 0) {
             //Check for enough CustomerMoney
             //BUY
-            if (integerBinPrice <= Convert.ToInt32(CustomerNew[4])) {
+            if (integerBinPrice <= curCustomer.MoneyRandom) {
                 //INTRESTED
-                if (((Convert.ToInt32(CustomerNew[4]) / 100) * Convert.ToInt32(CustomerNew[5])) >= integerBinPrice) {
+                if (((Convert.ToInt32(curCustomer.MoneyMinimum) / 100) * Convert.ToInt32(curCustomer.MoneyMaximum)) >= integerBinPrice) {
                     //set Return for formStatus.textboxLog
-                    stringReturn = stringBinName + " sold to " + CustomerNew[1] + " ($ " + CustomerNew[4] + ") from slot " + integerBinSlot + (char)10;
+                    stringReturn = stringBinName + " sold to " + curCustomer.Name + " ($ " + curCustomer.MoneyRandom + ") from slot " + integerBinSlot + (char)10;
                     //Add Article Sell price to Balance
-                    gamecache.currentCharacterStatistics.Balance += integerBinPrice;
+                    gamecache.currentCharacter.Balance += integerBinPrice;
                     //Remove 1 item from selected Bin and Saves.
                     gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].arrayBin[integerBinSlot].BinQuantity -= 1;
                     gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].arrayBin[integerBinSlot].BinSave(gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].ShelfPath);
                     //Add data to Statistics.
-                    gamecache.currentCharacterStatistics.TotalItemsSold += 1;
-                    gamecache.currentCharacterStatistics.TotalEarnings += integerBinPrice;
+                    gamecache.currentCharacter.ItemsSoldTotal += 1;
+                    gamecache.currentCharacter.EarningsTotal += integerBinPrice;
                     //NOTINTRESTRED
                 } else {
-                    stringReturn = stringBinName + " didn't sell to " + CustomerNew[1] + ", because of no desire from slot " + integerBinSlot + (char)10;
+                    stringReturn = stringBinName + " didn't sell to " + curCustomer.Name + ", because of no desire from slot " + integerBinSlot + (char)10;
                 }
 
                 //TOOEXPENSIVE
-            } else if (integerBinPrice >= Convert.ToInt32(CustomerNew[4])) {
+            } else if (integerBinPrice >= Convert.ToInt32(curCustomer.MoneyRandom)) {
                 //Set Return for formStatus.textboxLog
-                stringReturn = stringBinName + " too Expensive for " + CustomerNew[1] + " ($ " + CustomerNew[4] + ") from slot " + integerBinSlot + (char)10;
+                stringReturn = stringBinName + " too Expensive for " + curCustomer.Name + " ($ " + curCustomer.MoneyRandom + ") from slot " + integerBinSlot + (char)10;
             }
 
             //NOSTASH

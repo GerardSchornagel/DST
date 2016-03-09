@@ -48,11 +48,10 @@ public partial class formGame
             //Beneath zero
         } else {
             //Pass information for procces to/through formStatus
-            gamecache.currentCharacterStatistics.TotalDayCycles += 1;
+            gamecache.currentCharacter.DayCyclesTotal += 1;
             buttonActionStart.Text = "Start Day";
             buttonActionStart.Enabled = true;
-            textboxActionHour.Text = Convert.ToString(9);
-            gamecache.currentCharacterProfile.SaveState();
+            textboxActionHour.Text = Convert.ToString(9);;
             timerHour.Stop();
         }
     }
