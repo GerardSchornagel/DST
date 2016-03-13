@@ -491,6 +491,7 @@ partial class formItemManagement : System.Windows.Forms.Form
         this.Controls.Add(this.buttonClose);
         this.Controls.Add(this.buttonToStorage);
         this.Controls.Add(this.buttonToStore);
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
         this.Name = "formItemManagement";
         this.Text = "My First Store";
         Load += this.formItemManagement_Load;

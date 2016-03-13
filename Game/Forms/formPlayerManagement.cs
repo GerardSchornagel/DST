@@ -19,16 +19,30 @@ public partial class formPlayerManagement
             Interaction.MsgBox("Please create a first Player Profile to enter the MainMenu.");
 
         } else {
-            foreach (string file in System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + "\\save\\")) {
+            foreach (string file in System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92)) {
                 string[] profileID = file.Split((char)92);
-                listboxProfile.Items.Add(profileID[profileID.GetUpperBound(0)]);
+                if (profileID[profileID.GetUpperBound(0)] == "settings") {
+                    continue;
+                } else {
+                    listboxProfile.Items.Add(profileID[profileID.GetUpperBound(0)]);
+                }
             }
         }
     }
 
     public void buttonCreate_Click(object sender, EventArgs e)
     {
-        gamecache.currentPlayer.ProfileID = Convert.ToInt32(textboxProfileID.Text);
+        //Little loop to determine what slot to use. (max=256 slots|decide to auto-overwrite last or to stop proccess?)
+        int intS = 0;
+        while (intS <= 255) {
+            if (System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + intS)) {
+                intS++;
+            } else {
+                gamecache.currentPlayer.ProfileID = intS;
+                intS = 256;
+            }
+        }
+        gamecache.currentPlayer.ProfileName = textboxProfileID.Text;
         gamecache.currentPlayer.NameFirst = textboxNameFirst.Text;
         gamecache.currentPlayer.NameLast = textboxNameLast.Text;
         gamecache.currentPlayer.BirthYear = Convert.ToInt32(textboxBirthYear.Text);
@@ -37,10 +51,10 @@ public partial class formPlayerManagement
         gamecache.currentPlayer.Gender = checkboxGender.Text;
         gamecache.currentPlayer.Email = textboxEMail.Text;
         gamecache.currentPlayer.NotificationEmail = checkboxNotification.Checked;
-        gamecache.currentPlayer.CreateDate = Convert.ToString((System.DateTime.Now.Day + "-" + System.DateTime.Now.Month + "-" + System.DateTime.Now.Year));
-        gamecache.currentPlayer.CreateTime = Convert.ToString(System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute);
-        gamecache.currentCharacter.CreateDate = Convert.ToString((System.DateTime.Now.Day + "-" + System.DateTime.Now.Month + "-" + System.DateTime.Now.Year));
-        gamecache.currentCharacter.CreateTime = Convert.ToString(System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute);
+        gamecache.currentPlayer.CreateDate = Convert.ToString((DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year));
+        gamecache.currentPlayer.CreateTime = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+        gamecache.currentCharacter.CreateDate = Convert.ToString((DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year));
+        gamecache.currentCharacter.CreateTime = Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
         
         gamecache.NewProfile();
     }
@@ -98,5 +112,10 @@ public partial class formPlayerManagement
     {
         gamecache.MainSettings.LastUserID = Convert.ToInt32(listboxProfile.SelectedItem.ToString());
         gamecache.ResumeGame();
+    }
+    
+    public void formPlayerManagement_Dispose(object sender, EventArgs e)
+    {
+        gamecache.MainMenu.Show();
     }
 }

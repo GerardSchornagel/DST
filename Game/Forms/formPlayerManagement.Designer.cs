@@ -49,9 +49,9 @@ partial class formPlayerManagement : System.Windows.Forms.Form
         this.buttonLoad = new System.Windows.Forms.Button();
         this.groupboxProfile.SuspendLayout();
         this.SuspendLayout();
-        //
-        //groupboxProfile
-        //
+        // 
+        // groupboxProfile
+        // 
         this.groupboxProfile.Controls.Add(this.checkboxNotification);
         this.groupboxProfile.Controls.Add(this.checkboxGender);
         this.groupboxProfile.Controls.Add(this.textboxBirthYear);
@@ -72,129 +72,131 @@ partial class formPlayerManagement : System.Windows.Forms.Form
         this.groupboxProfile.TabIndex = 6;
         this.groupboxProfile.TabStop = false;
         this.groupboxProfile.Text = "Profile";
-        //
-        //checkboxNotification
-        //
+        // 
+        // checkboxNotification
+        // 
         this.checkboxNotification.Location = new System.Drawing.Point(6, 253);
         this.checkboxNotification.Name = "checkboxNotification";
         this.checkboxNotification.Size = new System.Drawing.Size(127, 33);
         this.checkboxNotification.TabIndex = 8;
         this.checkboxNotification.Text = "E-Mail Notification";
         this.checkboxNotification.UseVisualStyleBackColor = true;
-        this.checkboxNotification.CheckedChanged += this.checkboxGender_CheckedChanged;
-        //
-        //checkboxGender
-        //
+        // 
+        // checkboxGender
+        // 
+        this.checkboxGender.Appearance = System.Windows.Forms.Appearance.Button;
         this.checkboxGender.Location = new System.Drawing.Point(10, 175);
         this.checkboxGender.Name = "checkboxGender";
         this.checkboxGender.Size = new System.Drawing.Size(127, 33);
-        this.checkboxGender.TabIndex = 6;
+        this.checkboxGender.TabIndex = 5;
         this.checkboxGender.Text = "Male";
+        this.checkboxGender.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         this.checkboxGender.UseVisualStyleBackColor = true;
-        this.checkboxGender.CheckedChanged += this.checkboxGender_CheckedChanged;
-        //
-        //textboxBirthYear
-        //
+        this.checkboxGender.CheckedChanged += new System.EventHandler(this.checkboxGender_CheckedChanged);
+        // 
+        // textboxBirthYear
+        // 
         this.textboxBirthYear.Location = new System.Drawing.Point(9, 149);
         this.textboxBirthYear.Name = "textboxBirthYear";
         this.textboxBirthYear.Size = new System.Drawing.Size(56, 20);
-        this.textboxBirthYear.TabIndex = 3;
-        this.textboxBirthYear.LostFocus += this.textboxBirthYear_LostFocus;
-        //
-        //labelNameLast
-        //
+        this.textboxBirthYear.TabIndex = 2;
+        this.textboxBirthYear.LostFocus += new System.EventHandler(this.textboxBirthYear_LostFocus);
+        // 
+        // labelNameLast
+        // 
         this.labelNameLast.AutoSize = true;
         this.labelNameLast.Location = new System.Drawing.Point(6, 94);
         this.labelNameLast.Name = "labelNameLast";
         this.labelNameLast.Size = new System.Drawing.Size(58, 13);
         this.labelNameLast.TabIndex = 0;
         this.labelNameLast.Text = "Last Name";
-        //
-        //labelBirthDate
-        //
+        // 
+        // labelBirthDate
+        // 
         this.labelBirthDate.AutoSize = true;
         this.labelBirthDate.Location = new System.Drawing.Point(6, 133);
         this.labelBirthDate.Name = "labelBirthDate";
         this.labelBirthDate.Size = new System.Drawing.Size(131, 13);
         this.labelBirthDate.TabIndex = 0;
         this.labelBirthDate.Text = "Birth Date (YYYY-MM-DD)";
-        //
-        //textboxEMail
-        //
+        // 
+        // textboxEMail
+        // 
         this.textboxEMail.Location = new System.Drawing.Point(9, 227);
         this.textboxEMail.Name = "textboxEMail";
         this.textboxEMail.Size = new System.Drawing.Size(128, 20);
         this.textboxEMail.TabIndex = 7;
-        //
-        //textboxNameFirst
-        //
+        // 
+        // textboxNameFirst
+        // 
         this.textboxNameFirst.Location = new System.Drawing.Point(9, 71);
         this.textboxNameFirst.Name = "textboxNameFirst";
         this.textboxNameFirst.Size = new System.Drawing.Size(128, 20);
-        this.textboxNameFirst.TabIndex = 1;
+        this.textboxNameFirst.TabIndex = 0;
         this.textboxNameFirst.TextChanged += this.textboxNameFirst_TextChanged;
-        //
-        //labelProfileID
-        //
+        // 
+        // labelProfileID
+        // 
         this.labelProfileID.AutoSize = true;
         this.labelProfileID.Location = new System.Drawing.Point(6, 16);
         this.labelProfileID.Name = "labelProfileID";
         this.labelProfileID.Size = new System.Drawing.Size(67, 13);
         this.labelProfileID.TabIndex = 0;
         this.labelProfileID.Text = "Profile Name";
-        //
-        //textboxBirthDay
-        //
+        // 
+        // textboxBirthDay
+        // 
         this.textboxBirthDay.Location = new System.Drawing.Point(108, 149);
         this.textboxBirthDay.Name = "textboxBirthDay";
         this.textboxBirthDay.Size = new System.Drawing.Size(29, 20);
-        this.textboxBirthDay.TabIndex = 5;
+        this.textboxBirthDay.TabIndex = 4;
         this.textboxBirthDay.LostFocus += this.textboxBirthDay_LostFocus;
-        //
-        //labelEMail
-        //
+        // 
+        // labelEMail
+        // 
         this.labelEMail.AutoSize = true;
         this.labelEMail.Location = new System.Drawing.Point(6, 211);
         this.labelEMail.Name = "labelEMail";
         this.labelEMail.Size = new System.Drawing.Size(36, 13);
         this.labelEMail.TabIndex = 0;
         this.labelEMail.Text = "E-Mail";
-        //
-        //labelNameFirst
-        //
+        // 
+        // labelNameFirst
+        // 
         this.labelNameFirst.AutoSize = true;
         this.labelNameFirst.Location = new System.Drawing.Point(6, 55);
         this.labelNameFirst.Name = "labelNameFirst";
         this.labelNameFirst.Size = new System.Drawing.Size(57, 13);
         this.labelNameFirst.TabIndex = 0;
         this.labelNameFirst.Text = "First Name";
-        //
-        //textboxNameLast
-        //
+        // 
+        // textboxNameLast
+        // 
         this.textboxNameLast.Location = new System.Drawing.Point(9, 110);
         this.textboxNameLast.Name = "textboxNameLast";
         this.textboxNameLast.Size = new System.Drawing.Size(128, 20);
-        this.textboxNameLast.TabIndex = 2;
+        this.textboxNameLast.TabIndex = 1;
         this.textboxNameLast.TextChanged += this.textboxNameLast_TextChanged;
-        //
-        //textboxBirthMonth
-        //
+        // 
+        // textboxBirthMonth
+        // 
         this.textboxBirthMonth.Location = new System.Drawing.Point(71, 149);
         this.textboxBirthMonth.Name = "textboxBirthMonth";
         this.textboxBirthMonth.Size = new System.Drawing.Size(31, 20);
-        this.textboxBirthMonth.TabIndex = 4;
+        this.textboxBirthMonth.TabIndex = 3;
         this.textboxBirthMonth.LostFocus += this.textboxBirthMonth_LostFocus;
-        //
-        //textboxProfileID
-        //
+        // 
+        // textboxProfileID
+        // 
         this.textboxProfileID.Location = new System.Drawing.Point(9, 32);
         this.textboxProfileID.Name = "textboxProfileID";
         this.textboxProfileID.ReadOnly = true;
         this.textboxProfileID.Size = new System.Drawing.Size(128, 20);
         this.textboxProfileID.TabIndex = 0;
-        //
-        //buttonCreate
-        //
+        this.textboxProfileID.TabStop = false;
+        // 
+        // buttonCreate
+        // 
         this.buttonCreate.Location = new System.Drawing.Point(12, 310);
         this.buttonCreate.Name = "buttonCreate";
         this.buttonCreate.Size = new System.Drawing.Size(71, 29);
@@ -202,17 +204,17 @@ partial class formPlayerManagement : System.Windows.Forms.Form
         this.buttonCreate.Text = "Create";
         this.buttonCreate.UseVisualStyleBackColor = true;
         this.buttonCreate.Click += this.buttonCreate_Click;
-        //
-        //listboxProfile
-        //
+        // 
+        // listboxProfile
+        // 
         this.listboxProfile.FormattingEnabled = true;
         this.listboxProfile.Location = new System.Drawing.Point(164, 13);
         this.listboxProfile.Name = "listboxProfile";
         this.listboxProfile.Size = new System.Drawing.Size(130, 329);
         this.listboxProfile.TabIndex = 10;
-        //
-        //buttonLoad
-        //
+        // 
+        // buttonLoad
+        // 
         this.buttonLoad.Location = new System.Drawing.Point(89, 310);
         this.buttonLoad.Name = "buttonLoad";
         this.buttonLoad.Size = new System.Drawing.Size(69, 29);
@@ -220,10 +222,10 @@ partial class formPlayerManagement : System.Windows.Forms.Form
         this.buttonLoad.Text = "Use";
         this.buttonLoad.UseVisualStyleBackColor = true;
         this.buttonLoad.Click += this.buttonLoad_Click;
-        //
-        //formProfileManagement
-        //
-        this.AutoScaleDimensions = new System.Drawing.SizeF(6f, 13f);
+        // 
+        // formPlayerManagement
+        // 
+        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(309, 353);
         this.Controls.Add(this.buttonLoad);
@@ -231,14 +233,15 @@ partial class formPlayerManagement : System.Windows.Forms.Form
         this.Controls.Add(this.buttonCreate);
         this.Controls.Add(this.groupboxProfile);
         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+        Load += this.formPlayerManagement_Load;
         this.MaximizeBox = false;
         this.MinimizeBox = false;
         this.Name = "formPlayerManagement";
         this.Text = "New Player";
-        Load += this.formPlayerManagement_Load;
         this.groupboxProfile.ResumeLayout(false);
         this.groupboxProfile.PerformLayout();
         this.ResumeLayout(false);
+
     }
     
     private System.Windows.Forms.Button buttonLoad;

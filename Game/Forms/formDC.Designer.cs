@@ -523,7 +523,7 @@ partial class formDC : System.Windows.Forms.Form
         this.Controls.Add(this.labelBuyPrice);
         this.Controls.Add(this.labelCategory);
         this.Controls.Add(this.labelName);
-        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
         this.MaximizeBox = false;
         this.MinimizeBox = false;
         this.Name = "formDC";

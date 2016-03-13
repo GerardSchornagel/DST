@@ -75,7 +75,7 @@ public partial class formDC
         //Check for miss-click
         if (string.IsNullOrEmpty(comboboxName.Text))
             return;
-        item itemSelected = new item("store" + (char)92 + comboboxFamily.SelectedItem + (char)92 + comboboxCategory.SelectedItem + (char)92 + comboboxGenre.Text, comboboxName.Text + ".ini");
+        item itemSelected = new item("data" + (char)92 + "items" + (char)92 + "store" + (char)92 + comboboxFamily.SelectedItem + (char)92 + comboboxCategory.SelectedItem + (char)92 + comboboxGenre.Text, comboboxName.Text + ".ini");
 
         labelItemFamilyDisplay.Text = itemSelected.Family;
         labelItemCategoryDisplay.Text = itemSelected.Category;
@@ -117,7 +117,7 @@ public partial class formDC
             //[Department]\[Genre]\[SubGenre]\[Itemname].ini
             //Get product-order into temponary String Array.
             stringItemOrder = new string[5];
-            stringItemOrder[0] = System.IO.Directory.GetCurrentDirectory() + "\\Data\\Items\\Store\\" + labelItemFamilyDisplay.Text + "\\" + labelItemCategoryDisplay.Text + "\\" + labelItemGenreDisplay.Text + "\\";
+            stringItemOrder[0] = "data" + (char)92 + "items" + (char)92 + "store" + (char)92 + labelItemFamilyDisplay.Text + (char)92 + labelItemCategoryDisplay.Text + (char)92 + labelItemGenreDisplay.Text;
             //ItemPath
             stringItemOrder[1] = labelItemItemNameDisplay.Text + ".ini";
             //ItemFile

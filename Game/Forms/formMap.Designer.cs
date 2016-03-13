@@ -33,6 +33,7 @@ partial class formMap : System.Windows.Forms.Form
         //formMap
         //
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
         this.Name = "formMap";
         this.Text = "formMap";
     }

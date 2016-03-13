@@ -33,7 +33,7 @@ public class item
         stringPath = path;
         stringFilename = file;
         //Fill stringDetails with pathEthnic
-        stringItem = iniFilehandler.Load("data" + (char)92 + "items" + (char)92 + path, file);
+        stringItem = iniFilehandler.Load(path, file);
         //Item Information
         Name = stringItem[0, 1, 1];
         Brand = stringItem[0, 2, 1];

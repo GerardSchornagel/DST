@@ -3,7 +3,7 @@ using System;
 public partial class formGame
 {
     Random randomGenerator = new Random();
-    mathematics classMathematics;
+    mathematics classMathematics = new mathematics();
     System.Windows.Forms.Timer timerHour = new System.Windows.Forms.Timer();
     System.Windows.Forms.Timer timerCustomer = new System.Windows.Forms.Timer();
     int integerCustomerNumber;

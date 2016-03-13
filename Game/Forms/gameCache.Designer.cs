@@ -71,7 +71,7 @@ partial class gamecache : System.Windows.Forms.Form
         this.Controls.Add(this.labelDescription);
         this.Controls.Add(this.labelLoading);
         this.Controls.Add(this.progressbarLoading);
-        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
         this.Name = "gamecache";
         this.ShowIcon = false;
         this.ShowInTaskbar = false;

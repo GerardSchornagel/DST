@@ -43,7 +43,7 @@ public class mathematics
             //BUY
             if (integerBinPrice <= curCustomer.MoneyRandom) {
                 //INTRESTED
-                if (((Convert.ToInt32(curCustomer.MoneyMinimum) / 100) * Convert.ToInt32(curCustomer.MoneyMaximum)) >= integerBinPrice) {
+                if (((Convert.ToInt32(curCustomer.MoneyMinimum) / 100) * Convert.ToInt32(curCustomer.MoneyMaximum)) <= integerBinPrice) {
                     //set Return for formStatus.textboxLog
                     stringReturn = stringBinName + " sold to " + curCustomer.Name + " ($ " + curCustomer.MoneyRandom + ") from slot " + integerBinSlot + (char)10;
                     //Add Article Sell price to Balance

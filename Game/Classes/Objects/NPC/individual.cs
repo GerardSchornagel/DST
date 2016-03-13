@@ -46,9 +46,9 @@ public class individual
         DesireMaximum = Convert.ToInt32(stringEthnicDetails[0, 6, 1]);
         
         //Fill stringNamelistM with pathEthnic
-        stringEthnicNameMale = LoadNamelist(System.IO.Directory.GetCurrentDirectory() + (char)92 + "data" + (char)92 + "customers" + (char)93 + Ethnic + (char)92 + "NamelistM.nld");
+        stringEthnicNameMale = LoadNamelist(System.IO.Directory.GetCurrentDirectory() + (char)92 + "data" + (char)92 + "customers" + (char)92 + Ethnic + (char)92 + "NamelistM.nld");
         //Fill stringNamelistF with pathEthnic
-        stringEthnicNameFemale = LoadNamelist(System.IO.Directory.GetCurrentDirectory() + (char)92 + "data" + (char)92 + "customers" + (char)93 + Ethnic + (char)92 + "NamelistF.nld");
+        stringEthnicNameFemale = LoadNamelist(System.IO.Directory.GetCurrentDirectory() + (char)92 + "data" + (char)92 + "customers" + (char)92 + Ethnic + (char)92 + "NamelistF.nld");
         
         Randomize();
     }

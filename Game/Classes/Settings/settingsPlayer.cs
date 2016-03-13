@@ -12,6 +12,7 @@ namespace Game.Classes.Settings
         ioINI iniSettings = new ioINI();
         //Profile Data
         int _ProfileID;
+        string _ProfileName;
         string _NameFirst;
         string _NameLast;
         int _BirthYear;
@@ -37,6 +38,7 @@ namespace Game.Classes.Settings
                 stringSettings = iniSettings.Load("save" + (char)92 + "settings", "Player.ini");
                 //Profile Data
                 _ProfileID = Convert.ToInt32(Retrieve("Profile", "Profile ID"));
+                _ProfileName = (string)Retrieve("Profile", "Profile Name");
                 _NameFirst = (string)Retrieve("Profile", "First Name");
                 _NameLast = (string)Retrieve("Profile", "Last Name");
                 _BirthYear = Convert.ToInt32(Retrieve("Profile", "Year of Birth"));
@@ -54,34 +56,37 @@ namespace Game.Classes.Settings
                 _CreateTime = (string)Retrieve("Statistics", "Time of Creation");
             } else {
                 //Profile Data
-                stringSettings = new string[2, 10, 2];
+                stringSettings = new string[2, 11, 2];
                 stringSettings[0, 0, 0] = "Profile";
                 stringSettings[0, 1, 0] = "Profile ID";
                 stringSettings[0, 1, 1] = "0";
                 _ProfileID = 0;
-                stringSettings[0, 2, 0] = "First Name";
-                stringSettings[0, 2, 1] = "John";
+                stringSettings[0, 2, 0] = "Profile Name";
+                stringSettings[0, 2, 1] = "Doe_John";
+                _ProfileName = "Doe_John";
+                stringSettings[0, 3, 0] = "First Name";
+                stringSettings[0, 3, 1] = "John";
                 _NameFirst = "John";
-                stringSettings[0, 3, 0] = "Last Name";
-                stringSettings[0, 3, 1] = "Doe";
+                stringSettings[0, 4, 0] = "Last Name";
+                stringSettings[0, 4, 1] = "Doe";
                 _NameLast = "Doe";
-                stringSettings[0, 4, 0] = "Year of Birth";
-                stringSettings[0, 4, 1] = "1985";
+                stringSettings[0, 5, 0] = "Year of Birth";
+                stringSettings[0, 5, 1] = "1985";
                 _BirthYear = 1985;
-                stringSettings[0, 5, 0] = "Month of Birth";
-                stringSettings[0, 5, 1] = "9";
+                stringSettings[0, 6, 0] = "Month of Birth";
+                stringSettings[0, 6, 1] = "9";
                 _BirthMonth = 9;
-                stringSettings[0, 6, 0] = "Day of birth";
-                stringSettings[0, 6, 1] = "24";
+                stringSettings[0, 7, 0] = "Day of birth";
+                stringSettings[0, 7, 1] = "24";
                 _BirthDay = 24;
-                stringSettings[0, 7, 0] = "Gender";
-                stringSettings[0, 7, 1] = "male";
+                stringSettings[0, 8, 0] = "Gender";
+                stringSettings[0, 8, 1] = "male";
                 _Gender = "male";
-                stringSettings[0, 8, 0] = "E-Mail";
-                stringSettings[0, 8, 1] = "a@b.com";
-                _Email = "a@b.com";
-                stringSettings[0, 9, 0] = "E-Mail Notification";
-                stringSettings[0, 9, 1] = "False";
+                stringSettings[0, 9, 0] = "E-Mail";
+                stringSettings[0, 9, 1] = "john@doe.com";
+                _Email = "john@doe.com";
+                stringSettings[0, 10, 0] = "E-Mail Notification";
+                stringSettings[0, 10, 1] = "False";
                 _NotificationEmail = false;
                 //Statistics Data
                 stringSettings[1, 0, 0] = "Statistics";
@@ -176,6 +181,21 @@ namespace Game.Classes.Settings
             }
         }
         
+        /// <summary>
+        /// A string with the Profile Name.
+        /// When set, it saves to file.
+        /// </summary>
+        public string ProfileName {
+            get {
+                return _ProfileName;
+            }
+            set {
+                _ProfileName = value;
+                Change("Profile", "Profile Name", value);
+                saveSettings();
+            }
+        }
+
         /// <summary>
         /// A string with the first name of the Player.
         /// When set, it saves to file.

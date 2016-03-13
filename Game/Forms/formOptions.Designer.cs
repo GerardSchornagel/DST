@@ -99,7 +99,7 @@ partial class formOptions : System.Windows.Forms.Form
         this.Controls.Add(this.buttonCancel);
         this.Controls.Add(this.tabcontrolOptions);
         this.Controls.Add(this.buttonOK);
-        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
         this.MaximizeBox = false;
         this.MinimizeBox = false;
         this.Name = "formOptions";

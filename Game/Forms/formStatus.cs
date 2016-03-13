@@ -48,9 +48,9 @@ public partial class formStatus
 
     public void buttonMap_Click(object sender, EventArgs e)
     {
-        gamecache.MapForm.Show();
-        gamecache.MapForm.ShowInTaskbar = true;
-        gamecache.MapForm.WindowState = System.Windows.Forms.FormWindowState.Normal;
+        //        gamecache.MapForm.Show();
+        //        gamecache.MapForm.ShowInTaskbar = true;
+        //        gamecache.MapForm.WindowState = System.Windows.Forms.FormWindowState.Normal;
     }
 
     public void buttonDC_Click(object sender, EventArgs e)

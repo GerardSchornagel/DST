@@ -40,7 +40,7 @@ namespace Game.Classes.Settings
                 _CreateDate = (string)Retrieve("Profile", "Date of creation");
                 _CreateTime = (string)Retrieve("Profile", "Time of creation");
                 //Statistics Data
-                _Balance = Convert.ToInt32(Retrieve("Statistics", "Balance on Character."));
+                _Balance = Convert.ToInt32(Retrieve("Statistics", "Balance on Character"));
                 _SpendingsTotal = Convert.ToInt32(Retrieve("Statistics", "Total Spendings"));
                 _EarningsTotal = Convert.ToInt32(Retrieve("Statistics", "Total Earnings"));
                 _ItemsSoldTotal = Convert.ToInt32(Retrieve("Statistics", "Total Items Sold"));
@@ -94,8 +94,8 @@ namespace Game.Classes.Settings
                 //Statistics Data
                 stringSettings[1, 0, 0] = "Statistics";
                 stringSettings[1, 1, 0] = "Balance on Character";
-                stringSettings[1, 1, 1] = "0";
-                _Balance = 0;
+                stringSettings[1, 1, 1] = "100";
+                _Balance = 100;
                 stringSettings[1, 2, 0] = "Total Spendings";
                 stringSettings[1, 2, 1] = "0";
                 _SpendingsTotal = 0;
@@ -131,9 +131,9 @@ namespace Game.Classes.Settings
         /// <returns>Single string with Value.</returns>
         string Retrieve(string Category, string Option)
         {
-            for (int intC = 0; intC > stringSettings.GetUpperBound(0); intC++) {
+            for (int intC = 0; intC <= stringSettings.GetUpperBound(0); intC++) {
                 if (stringSettings[intC, 0, 0] == Category) {
-                    for (int intO = 0; intO > stringSettings.GetUpperBound(1); intO++) {
+                    for (int intO = 0; intO <= stringSettings.GetUpperBound(1); intO++) {
                         if (stringSettings[intC, intO, 0] == Option) {
                             return stringSettings[intC, intO, 1];
                         }
