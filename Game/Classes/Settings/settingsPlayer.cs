@@ -81,7 +81,7 @@ namespace Game.Classes.Settings
                 stringSettings[0, 8, 1] = "a@b.com";
                 _Email = "a@b.com";
                 stringSettings[0, 9, 0] = "E-Mail Notification";
-                stringSettings[0, 9, 1] = "false";
+                stringSettings[0, 9, 1] = "False";
                 _NotificationEmail = false;
                 //Statistics Data
                 stringSettings[1, 0, 0] = "Statistics";

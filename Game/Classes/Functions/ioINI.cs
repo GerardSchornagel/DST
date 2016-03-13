@@ -117,7 +117,6 @@ public class ioINI
     /// <param name="SavingFile">Input 2D string-array.</param>
     public void Save(string path, string file, string[,,] SavingFile)
     {
-        //TODO TODO REMOVE EMPTY ENTRIES FROM SavingFile TODO TODO 
         // Change value given by caller - search for (C)ategory on [#,0,0] - (O)ption on [C,#,0] - value = [C,O,1]
         // Save to new ini file
         

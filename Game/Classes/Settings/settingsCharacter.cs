@@ -49,7 +49,7 @@ namespace Game.Classes.Settings
                 _PlaytimeTotal = Convert.ToInt32(Retrieve("Statistics", "Total Playtime"));
             } else {
                 //Profile Data
-stringSettings = new string[2, 8, 2];
+                stringSettings = new string[2, 8, 2];
                 stringSettings[0, 0, 0] = "Profile";
                 stringSettings[0, 1, 0] = "Current World";
                 stringSettings[0, 1, 1] = "0";
@@ -65,18 +65,28 @@ stringSettings = new string[2, 8, 2];
                 _Store = 0;
                 stringSettings[0, 5, 0] = "Date of Creation";
                 string stringDate = DateTime.Now.Date.Year + "-";
-                if (stringDate.Length == 3) { stringDate = "20" + stringDate; }
+                if (stringDate.Length == 3) {
+                    stringDate = "20" + stringDate;
+                }
                 stringDate += DateTime.Now.Date.Month + "-";
-                if (stringDate.Length == 7) { stringDate = stringDate.Insert(5, "0"); }
+                if (stringDate.Length == 7) {
+                    stringDate = stringDate.Insert(5, "0");
+                }
                 stringDate += DateTime.Now.Date.Day;
-                if (stringDate.Length == 9) { stringDate = stringDate.Insert(8, "0"); }
+                if (stringDate.Length == 9) {
+                    stringDate = stringDate.Insert(8, "0");
+                }
                 stringSettings[0, 5, 1] = stringDate;
                 _CreateDate = stringSettings[0, 5, 1];
                 stringSettings[0, 6, 0] = "Time of Creation";
                 string stringTime = DateTime.Now.TimeOfDay.Hours + ":";
-                if (stringTime.Length == 2) { stringTime = "0" + stringTime; }
+                if (stringTime.Length == 2) {
+                    stringTime = "0" + stringTime;
+                }
                 stringTime += DateTime.Now.TimeOfDay.Minutes;
-                if (stringTime.Length == 4) { stringTime = stringTime.Insert(3, "0"); }
+                if (stringTime.Length == 4) {
+                    stringTime = stringTime.Insert(3, "0");
+                }
                 stringSettings[0, 6, 1] = stringTime;
                 _CreateTime = stringSettings[0, 6, 1];
 

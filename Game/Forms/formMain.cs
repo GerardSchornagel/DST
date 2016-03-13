@@ -22,7 +22,7 @@ public partial class formMain
         //add filedialog and change lastProfile
         System.Windows.Forms.FolderBrowserDialog folderdialogLoadGame = new System.Windows.Forms.FolderBrowserDialog();
         folderdialogLoadGame.ShowNewFolderButton = false;
-        folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory() + "\\save";
+        folderdialogLoadGame.SelectedPath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save";
         folderdialogLoadGame.Description = "Please select one of the numbered directory's";
         folderdialogLoadGame.ShowDialog();
         gamecache.MainSettings.LastUserID = Convert.ToInt32(folderdialogLoadGame.SelectedPath.Substring(folderdialogLoadGame.SelectedPath.Length - 1, 1));
@@ -42,13 +42,18 @@ public partial class formMain
 
     public void buttonLastCharacter_Click(object sender, EventArgs e)
     {
-        gamecache.ResumeGame();
+        //Check for latest used UserProfile and use, else disable button.
+        if (System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID)) {
+            gamecache.ResumeGame();
+        } else {
+            Interaction.MsgBox("No savefile detected on Last known user.");
+        }
     }
 
     public void buttonEditor_Click(object sender, EventArgs e)
     {
-//        gamecache.EditorForm = new formEditor();
-//        gamecache.EditorForm.Show();
+        //        gamecache.EditorForm = new formEditor();
+        //        gamecache.EditorForm.Show();
         Interaction.MsgBox("Sorry, been disabled for the time being.");
     }
 
@@ -61,14 +66,12 @@ public partial class formMain
     public void buttonQuit_Click(object sender, EventArgs e)
     {
         //Check for WarningMessage Setting and show the warning with Yes/No, else just End
-        if (gamecache.MainSettings.ExitConfirmation) {
+        if (gamecache.MainSettings.ExitConfirmation)
+            if (Interaction.MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit").ToString() == "Yes") {
             Environment.Exit(0);
         } else {
-            if (Interaction.MsgBox("This will end the game, are you sure?", MsgBoxStyle.YesNo, "Quit").ToString() == "6") {
-                Environment.Exit(0);
-            } else {
-                return;
-            }
+            return;
         }
+        Environment.Exit(0);
     }
 }

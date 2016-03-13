@@ -62,10 +62,10 @@ partial class formOptions : System.Windows.Forms.Form
         //
         this.checkboxlistMessages.FormattingEnabled = true;
         this.checkboxlistMessages.Items.AddRange(new object[] {
-            "Exiting Program",
-            "Creating New Game Overwrite",
-            "Apply Changes requires restart of program"
-        });
+                                                     "Exiting Program",
+                                                     "Creating New Game Overwrite",
+                                                     "Apply Changes requires restart of program"
+                                                 });
         this.checkboxlistMessages.Location = new System.Drawing.Point(6, 6);
         this.checkboxlistMessages.Name = "checkboxlistMessages";
         this.checkboxlistMessages.Size = new System.Drawing.Size(261, 319);
@@ -104,7 +104,6 @@ partial class formOptions : System.Windows.Forms.Form
         this.MinimizeBox = false;
         this.Name = "formOptions";
         this.Text = "Options";
-        Load += this.formOptions_Load;
         this.tabcontrolOptions.ResumeLayout(false);
         this.tabpageMessages.ResumeLayout(false);
         this.ResumeLayout(false);

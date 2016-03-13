@@ -7,7 +7,7 @@ namespace Game.Classes.Settings
     /// </summary>
     public class settingsMain
     {
-        string[,,] stringSettings = new string[1,5,2];
+        string[,,] stringSettings = new string[1, 5, 2];
         ioINI iniSettings = new ioINI();
         int _LastUserID;
         bool _ExitConfirmation;
@@ -22,7 +22,7 @@ namespace Game.Classes.Settings
             if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + "settings" + (char)92 + "Main.ini")) {
                 stringSettings = iniSettings.Load("save" + (char)92 + "settings", "Main.ini");
                 _LastUserID = Convert.ToInt32(Retrieve("WarningMessages", "Last Used User ID"));
-                _ExitConfirmation = Convert.ToBoolean(Retrieve("WarningMessages", "Confirmation on Exit"));
+                _ExitConfirmation = Convert.ToBoolean((Retrieve("WarningMessages", "Confirmation on Exit")));
                 _NewGameOverwrite = Convert.ToBoolean(Retrieve("WarningMessages", "Overwrite existing Profile on New Game"));
                 _RestartOnOptions = Convert.ToBoolean(Retrieve("WarningMessages", "Advice Restart on Options change"));
             } else {
@@ -31,13 +31,13 @@ namespace Game.Classes.Settings
                 stringSettings[0, 1, 1] = "0";
                 _LastUserID = 0;
                 stringSettings[0, 2, 0] = "Confirmation on Exit";
-                stringSettings[0, 2, 1] = "true";
+                stringSettings[0, 2, 1] = "True";
                 _ExitConfirmation = true;
                 stringSettings[0, 3, 0] = "Overwrite existing Profile on New Game";
-                stringSettings[0, 3, 1] = "true";
+                stringSettings[0, 3, 1] = "True";
                 _NewGameOverwrite = true;
                 stringSettings[0, 4, 0] = "Advice Restart on Options change";
-                stringSettings[0, 4, 1] = "true";
+                stringSettings[0, 4, 1] = "True";
                 _RestartOnOptions = true;
                 settingsSave();
             }
@@ -51,9 +51,9 @@ namespace Game.Classes.Settings
         /// <returns>Single string with Value.</returns>
         string Retrieve(string Category, string Option)
         {
-            for (int intC = 0; intC > stringSettings.GetUpperBound(0); intC++) {
+            for (int intC = 0; intC <= stringSettings.GetUpperBound(0); intC++) {
                 if (stringSettings[intC, 0, 0] == Category) {
-                    for (int intO = 0; intO > stringSettings.GetUpperBound(1); intO++) {
+                    for (int intO = 0; intO <= stringSettings.GetUpperBound(1); intO++) {
                         if (stringSettings[intC, intO, 0] == Option) {
                             return stringSettings[intC, intO, 1];
                         }
@@ -71,9 +71,9 @@ namespace Game.Classes.Settings
         /// <param name="Value">Value as string.</param>
         void Change(string Category, string Option, string Value)
         {
-            for (int intC = 0; intC > stringSettings.GetUpperBound(0); intC++) {
+            for (int intC = 0; intC <= stringSettings.GetUpperBound(0); intC++) {
                 if (stringSettings[intC, 0, 0] == Category) {
-                    for (int intO = 0; intO > stringSettings.GetUpperBound(1); intO++) {
+                    for (int intO = 0; intO <= stringSettings.GetUpperBound(1); intO++) {
                         if (stringSettings[intC, intO, 0] == Option) {
                             stringSettings[intC, intO, 1] = Value;
                         }
