@@ -1,70 +1,53 @@
 using System;
 
 /// <summary>
-/// DataType representing any number of Item's as a section().
+/// DataType representing any number of Article's as a section().
 /// </summary>
 public class section
 {
     public article[] arrayArticle;
-    string stringPathSection;
-    int integerArticleCounter;
+    public int intStorage;
+    public int intSection;
 
     /// <summary>
     /// Get/Adjust the path of the section without Initialize() and Load().
     /// </summary>
-    public string SectionPath {
-        get { return stringPathSection; }
-        set { stringPathSection = value; }
-    }
+    public string sectionPath { get; set; }
 
     /// <summary>
-    /// Resize arrayItem and fill with New Item's.
+    /// Resize arrayArticle and fill with new article's.
     /// </summary>
     public void SectionInitialize()
-    {
-        integerArticleCounter = 0;
-        arrayArticle = new article[System.IO.Directory.GetFiles(stringPathSection, "*.ini", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
-        foreach (string file in System.IO.Directory.GetFiles(stringPathSection, "*.ini", System.IO.SearchOption.TopDirectoryOnly)) {
-            arrayArticle[integerArticleCounter] = new article();
-            arrayArticle[integerArticleCounter].ArticlePath = file;
-
-            integerArticleCounter += 1;
+    { 
+        if (System.IO.Directory.GetDirectories(sectionPath, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) == 0) {
+            arrayArticle = new article[1];
+        } else {
+            arrayArticle = new article[System.IO.Directory.GetDirectories(sectionPath, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
+        }
+        for (int i = 0; i <= arrayArticle.GetUpperBound(0); i++) {
+            arrayArticle[i] = new article();
+            arrayArticle[i].Load(intStorage, intSection, i);
         }
     }
     
     /// <summary>
-    /// Loads all Item's with Item Info.
+    /// Makes new Article with the given Variable's.
     /// </summary>
-    public void SectionLoad()
+    /// <param name="articleItem">Item to be used as article.</param>
+    /// <param name="Quantity">Quantity of article's.</param>
+    /// <param name="LastBuy">Last buying price of article.</param>
+    public void ArticleAdd(item articleItem, int Quantity, int LastBuy)
     {
-        foreach (article Article in arrayArticle) {
-            Article.articleLoad(stringPathSection + "\\");
+                if (arrayArticle.GetUpperBound(0) == -1) {
+            arrayArticle = new article[1];
+        } else {
+            Array.Resize(ref arrayArticle, arrayArticle.GetUpperBound(0) + 1);
         }
-    }
-    
-    /// <summary>
-    /// Makes new Article with the given template. With ArticleSave().
-    /// </summary>
-    /// <param name="ArticleInfo">New String() {ItemPath, ItemFile, Quantity, LastSell, LastBuy}</param>
-    public void ArticleAdd(string[] ArticleInfo)
-    {
-        int intCheck = 0;
-        do {
-            if (System.IO.File.Exists(stringPathSection + "\\" + intCheck + ".ini")) {
-            } else {
-                break; // TODO: might not be correct. Was : Exit Do
-            }
-            intCheck += 1;
-        } while (true);
-        Array.Resize(ref arrayArticle, intCheck + 1);
         arrayArticle[arrayArticle.GetUpperBound(0)] = new article();
-        arrayArticle[arrayArticle.GetUpperBound(0)].ArticlePath = stringPathSection + "\\";
-        arrayArticle[arrayArticle.GetUpperBound(0)].ArticleFile = intCheck + ".ini";
-        arrayArticle[arrayArticle.GetUpperBound(0)].ItemPath = ArticleInfo[0];
-        arrayArticle[arrayArticle.GetUpperBound(0)].ItemFile = ArticleInfo[1];
-        arrayArticle[arrayArticle.GetUpperBound(0)].Quantity = Convert.ToInt32(ArticleInfo[2]);
-        arrayArticle[arrayArticle.GetUpperBound(0)].LastSell = Convert.ToInt32(ArticleInfo[3]);
-        arrayArticle[arrayArticle.GetUpperBound(0)].LastBuy = Convert.ToInt32(ArticleInfo[4]);
-        arrayArticle[arrayArticle.GetUpperBound(0)].ArticleSave(stringPathSection);
+        arrayArticle[arrayArticle.GetUpperBound(0)].Load(intStorage, intSection, arrayArticle.GetUpperBound(0));
+        arrayArticle[arrayArticle.GetUpperBound(0)].Path = articleItem.stringPath;
+        arrayArticle[arrayArticle.GetUpperBound(0)].File = articleItem.stringFilename;
+        arrayArticle[arrayArticle.GetUpperBound(0)].Quantity = Quantity;
+        arrayArticle[arrayArticle.GetUpperBound(0)].LastBuy = LastBuy;
     }
 }

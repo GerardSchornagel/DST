@@ -42,12 +42,13 @@ public partial class formMain
 
     public void buttonLastCharacter_Click(object sender, EventArgs e)
     {
+        Interaction.MsgBox("Sorry, disabled for now...");
         //Check for latest used UserProfile and use, else disable button.
-        if (System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID)) {
-            gamecache.ResumeGame();
-        } else {
-            Interaction.MsgBox("No savefile detected on Last known user.");
-        }
+//        if (System.IO.Directory.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID)) {
+//            gamecache.ResumeGame();
+//        } else {
+//            Interaction.MsgBox("No savefile detected on Last known user.");
+//        }
     }
 
     public void buttonEditor_Click(object sender, EventArgs e)

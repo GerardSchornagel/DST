@@ -15,17 +15,12 @@ public partial class formPlayerManagement
     public void formPlayerManagement_Load(object sender, EventArgs e)
     {
         listboxProfile.Items.Clear();
-        if (gamecache.MainSettings.LastUserID == 0) {
-            Interaction.MsgBox("Please create a first Player Profile to enter the MainMenu.");
-
-        } else {
-            foreach (string file in System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92)) {
-                string[] profileID = file.Split((char)92);
-                if (profileID[profileID.GetUpperBound(0)] == "settings") {
-                    continue;
-                } else {
-                    listboxProfile.Items.Add(profileID[profileID.GetUpperBound(0)]);
-                }
+        foreach (string file in System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92)) {
+            string[] profileID = file.Split((char)92);
+            if (profileID[profileID.GetUpperBound(0)] == "settings") {
+                continue;
+            } else {
+                listboxProfile.Items.Add(profileID[profileID.GetUpperBound(0)]);
             }
         }
     }

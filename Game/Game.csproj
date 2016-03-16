@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Functions\binaryFileHandler.cs" />
     <Compile Include="Classes\Functions\ioINI.cs" />
     <Compile Include="Classes\Functions\mathematics.cs" />
     <Compile Include="Classes\Functions\solverAlgebraic.cs" />

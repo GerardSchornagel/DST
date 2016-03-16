@@ -1,125 +1,208 @@
 using System;
 
 /// <summary>
-/// DataType representing 1 bin with 1 article through string().
+/// DataType representing an bin containing a number of item's.
+/// 1.) Initialising create's empty template.
+/// 2.) Use Load to fill in variable's.
 /// </summary>
 public class bin
 {
-    string stringBinPath = "Nothing";
-    string stringBinFile = "Nothing";
-    string stringLinkPath = "Nothing";
-    string stringLinkFile = "Nothing";
-    int integerLinkStorage = 0;
-    int integerLinkSection = 0;
-    int integerLinkArticle = 0;
-    int integerBinQuantity = 0;
+    string[,,] stringBin = new string[2, 4, 2];
+    ioINI iniDetails = new ioINI();
 
-    binaryFileHandler fileHandler = new binaryFileHandler();
-    string[] stringBinData;
-
+    //Bin Information
+    public string _Path;
+    public string _File;
+    int _Store;
+    int _Level;
+    int _Shelf;
+    int _Bin;
+    int _Quantity;
+    int _Price;
+    //Article Information
+    int _Storage;
+    int _Section;
+    int _Article;
+    article articleSelected;
+    
     /// <summary>
-    /// Resizes stringDataBin to 3 (LinkStorage, LinkSection, LinkArticle, Quantity).
+    /// Retrieve Value from given Category && Option.
     /// </summary>
-    public bin()
+    /// <param name="Category">Category as string.</param>
+    /// <param name="Option">Option as string.</param>
+    /// <returns>Single string with Value.</returns>
+    string Retrieve(string Category, string Option)
     {
-        stringBinData = new string[4];
+        for (int intC = 0; intC <= stringBin.GetUpperBound(0); intC++) {
+            if (stringBin[intC, 0, 0] == Category) {
+                for (int intO = 0; intO <= stringBin.GetUpperBound(1); intO++) {
+                    if (stringBin[intC, intO, 0] == Option) {
+                        return stringBin[intC, intO, 1];
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /// <summary>
-    /// Loads Bin and Item Data.
+    /// Change the Value of a Option in a given Category.
     /// </summary>
-    /// <param name="PathShelf">Needed for path and file seperation.</param>
-    public void BinLoad(string PathShelf)
+    /// <param name="Category">Category as string.</param>
+    /// <param name="Option">Option as string.</param>
+    /// <param name="Value">Value as string.</param>
+    void Change(string Category, string Option, string Value)
     {
-        string[] stringMediator = null;
-        stringMediator = stringBinPath.Split((char)92);
-        stringBinFile = stringMediator[stringMediator.GetUpperBound(0)];
-        stringBinPath = stringBinPath.Remove(stringBinPath.Length - stringBinFile.Length, stringBinFile.Length);
-        stringBinData = fileHandler.LoadRow(PathShelf, stringBinFile);
-        integerLinkStorage = Convert.ToInt32(stringBinData[0]);
-        integerLinkSection = Convert.ToInt32(stringBinData[1]);
-        integerLinkArticle = Convert.ToInt32(stringBinData[2]);
-        integerBinQuantity = Convert.ToInt32(stringBinData[3]);
-
-        stringLinkPath = gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ArticlePath;
-        stringLinkFile = gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ArticleFile;
+        for (int intC = 0; intC <= stringBin.GetUpperBound(0); intC++) {
+            if (stringBin[intC, 0, 0] == Category) {
+                for (int intO = 0; intO <= stringBin.GetUpperBound(1); intO++) {
+                    if (stringBin[intC, intO, 0] == Option) {
+                        stringBin[intC, intO, 1] = Value;
+                    }
+                }
+            }
+        }
     }
-    
+
     /// <summary>
-    /// Saves the Bin and loads the linked Item Data.
+    /// Loads the bin through Store, Level, Shelf and Bin.
     /// </summary>
-    /// <param name="PathShelf">Needed for path and file seperation.</param>
-    public void BinSave(string PathShelf)
+    /// <param name="Store">Store of Bin.</param>
+    /// <param name="Level">Level of Bin.</param>
+    /// <param name="Shelf">Shelf of Bin.</param>
+    /// <param name="Bin">Designated Bin.</param>
+    public void Load(int Store, int Level, int Shelf, int Bin)
     {
-        stringBinData[0] = Convert.ToString(integerLinkStorage);
-        stringBinData[1] = Convert.ToString(integerLinkSection);
-        stringBinData[2] = Convert.ToString(integerLinkArticle);
-        stringBinData[3] = Convert.ToString(integerBinQuantity);
-        fileHandler.Save(PathShelf, stringBinFile, null, stringBinData);
+        _Store = Store;
+        _Level = Level;
+        _Shelf = Shelf;
+        _Bin = Bin;
 
-        stringLinkPath = gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ArticlePath;
-        stringLinkFile = gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ArticleFile;
+        // Check if bin exists, yes=load no=new.
+        if (System.IO.File.Exists(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "store" + (char)92 + Store + (char)92 + Level + (char)92 + Shelf + (char)92 + Bin + (char)92 + "details.ini")) {
+            //Bin Information
+            _Store = Store;
+            _Level = Level;
+            _Shelf = Shelf;
+            _Bin = Bin;
+            _Path = "save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "store" + (char)92 + Store + (char)92 + Level + (char)92 + Shelf + (Char)92 + Bin;
+            _File = "details.ini";
+            stringBin = iniDetails.Load(_Path, _File); //Load bin ini
+            _Quantity = Convert.ToInt32(Retrieve("Bin Information", "Quantity of article"));
+            _Price = Convert.ToInt32(Retrieve("Bin Information", "Price of article"));
+            //Article Information
+            _Storage = Convert.ToInt32(Retrieve("Article Information", "Storage of article"));
+            _Section = Convert.ToInt32(Retrieve("Article Information", "Section of article"));
+            _Article = Convert.ToInt32(Retrieve("Article Information", "Designated article"));
+            articleSelected = new article();
+            articleSelected.Load(_Storage, _Section, _Article);
+            
+        } else {
+            //Bin Information
+            stringBin[0, 0, 0] = "Bin Information";
+            stringBin[0, 1, 0] = "Quantity of article";
+            stringBin[0, 1, 1] = "0";
+            _Quantity = 0;
+            stringBin[0, 2, 0] = "Price of article";
+            stringBin[0, 2, 1] = "0";
+            _Price = 0;
+            //Article Information
+            stringBin[1, 0, 0] = "Article Information";
+            stringBin[1, 1, 0] = "Storage of article";
+            stringBin[1, 1, 1] = "0";
+            _Storage = 0;
+            stringBin[1, 2, 0] = "Section of article";
+            stringBin[1, 2, 1] = "0";
+            _Section = 0;
+            stringBin[1, 3, 0] = "Designated article";
+            stringBin[1, 3, 1] = "0";
+            _Article = 0;
+            binSave();
+        }
+    }
+    
+    void binSave()
+    {
+        iniDetails.Save("save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "store" + (char)92 + _Store + (char)92 + _Level + (char)92 + _Shelf + (char)92 + _Bin, "details.ini", stringBin);
+    }
+
+    /// <summary>
+    /// Get/Sets the Quantity of the Article in the bin-slot WITH Change() and binSave().
+    /// </summary>
+    public int Quantity {
+        get {
+            return _Quantity;
+        }
+        set {
+            _Quantity = value;
+            Change("Bin Information", "Quantity of article", value.ToString());
+            binSave();
+        }
     }
     
     /// <summary>
-    /// Get/Adjust the path of the Bin without ItemLoad().
+    /// Get/Sets the Price of the article in the bin-slot WITH Change() and binSave().
     /// </summary>
-    public string BinPath {
-        get { return stringBinPath; }
-        set { stringBinPath = value; }
+    public int Price {
+        get {
+            return _Price;
+        }
+        set {
+            _Price = value;
+            Change("Bin Information", "Price of article", value.ToString());
+            binSave();
+        }
     }
-    
+
     /// <summary>
-    /// Get/Adjust the filename of the Bin without ItemLoad().
+    /// Get/Sets the Storage of the article in the bin-slot WITH Change() and WITHOUT binSave() & articleSelected.Load().
+    /// When setting the designated article it will do binSave() & articleSelected.Load().
     /// </summary>
-    public string BinFile {
-        get { return stringBinFile; }
-        set { stringBinFile = value; }
+    public int Storage {
+        get {
+            return _Storage;
+        }
+        set {
+            _Storage = value;
+            Change("Article Information", "Storage of article", value.ToString());
+        }
     }
-    
+
     /// <summary>
-    /// Get/Adjust the Storage linked for this Bin.
+    /// Get/Sets the Section of the article in the bin-slot WITH Change() and WITHOUT binSave() & articleSelected.Load().
+    /// When setting the designated article it will do binSave() & articleSelected.Load().
     /// </summary>
-    public int LinkStorage {
-        get { return integerLinkStorage; }
-        set { integerLinkStorage = value; }
+    public int Section {
+        get {
+            return _Section;
+        }
+        set {
+            _Section = value;
+            Change("Article Information", "Section of article", value.ToString());
+        }
     }
-    
+
     /// <summary>
-    /// Get/Adjust the Section linked for this Bin.
+    /// Get/Sets the designated article in the bin-slot WITH Change(), binSave() & articleSelected.Load().
     /// </summary>
-    public int LinkSection {
-        get { return integerLinkSection; }
-        set { integerLinkSection = value; }
+    public int Article {
+        get {
+            return _Article;
+        }
+        set {
+            _Article = value;
+            Change("Article Information", "Designated article", value.ToString());
+            binSave();
+            articleSelected.Load(_Storage, _Section, _Article);
+        }
     }
-    
+
     /// <summary>
-    /// Get/Adjust the Article linked for this Bin.
+    /// Get the article datatype. For setting use Storage(), Section() & Article().
     /// </summary>
-    public int LinkArticle {
-        get { return integerLinkArticle; }
-        set { integerLinkArticle = value; }
-    }
-    
-    /// <summary>
-    /// Get/Adjust the Quantity without BinSave().
-    /// </summary>
-    public int BinQuantity {
-        get { return integerBinQuantity; }
-        set { integerBinQuantity = value; }
-    }
-    
-    /// <summary>
-    /// Get the Item Name from Linked Article.
-    /// </summary>
-    public string ArticleName {
-        get { return gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].ItemLink.Name; }
-    }
-    
-    /// <summary>
-    /// Get the Last Selling price from Linked Article.
-    /// </summary>
-    public int ArticleLastSell {
-        get { return gamecache.currentCharacterStorage.arraySection[integerLinkSection].arrayArticle[integerLinkArticle].LastSell; }
+    public article Article_Data {
+        get {
+            return articleSelected;
+        }
     }
 }

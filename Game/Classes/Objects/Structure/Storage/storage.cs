@@ -6,58 +6,44 @@ using System;
 public class storage
 {
     public section[] arraySection;
-    string stringPathStorage;
-    int integerSectionCounter;
-
+    public int intStorage;
+    int intSection;
+    
     /// <summary>
     /// Get/Adjust the path of the Storage without Initialize() and Load().
     /// </summary>
-    public string StoragePath {
-        get { return stringPathStorage; }
-        set { stringPathStorage = value; }
-    }
+    public string storagePath { get; set; }
 
     /// <summary>
-    /// Resizes arraySection() and fill with New Section's.
+    /// Resizes arraySection() and fill with new Section's.
     /// </summary>
     public void StorageInitialize()
     {
-        integerSectionCounter = 0;
-        arraySection = new section[System.IO.Directory.GetDirectories(stringPathStorage, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
-        foreach (string folder in System.IO.Directory.GetDirectories(stringPathStorage, "*", System.IO.SearchOption.TopDirectoryOnly)) {
-            arraySection[integerSectionCounter] = new section();
-            arraySection[integerSectionCounter].SectionPath = folder;
-            integerSectionCounter += 1;
+        arraySection = new section[System.IO.Directory.GetDirectories(storagePath, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
+        intSection = 0;
+        foreach (string folder in System.IO.Directory.GetDirectories(storagePath, "*", System.IO.SearchOption.TopDirectoryOnly)) {
+            arraySection[intSection] = new section();
+            arraySection[intSection].sectionPath = folder;
+            arraySection[intSection].SectionInitialize();
+            intSection++;
         }
     }
     
     /// <summary>
-    /// Loads all Shelves with all Bin's with all Items.
-    /// </summary>
-    public void StorageLoad()
-    {
-        foreach (section Section in arraySection) {
-            Section.SectionInitialize();
-            Section.SectionLoad();
-        }
-    }
-
-    /// <summary>
-    /// Adds a empty Storage with 1 Section and 1 Bin containing 'Nothing'.
+    /// Adds a empty Section.
     /// </summary>
     public void SectionAdd()
     {
-        int intCheck = 0;
-        do {
-            if (System.IO.Directory.Exists(stringPathStorage + "\\" + intCheck)) {
-            } else {
-                break; // TODO: might not be correct. Was : Exit Do
-            }
-            intCheck += 1;
-        } while (true);
-        Array.Resize(ref arraySection, intCheck + 1);
-        System.IO.Directory.CreateDirectory(stringPathStorage + "\\" + intCheck);
+        if (arraySection.GetUpperBound(0) == -1) {
+            arraySection = new section[1];
+        } else {
+            Array.Resize(ref arraySection, arraySection.GetUpperBound(0) + 1);
+        }
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "storage" + (char)92 + arraySection.GetUpperBound(0));
         arraySection[arraySection.GetUpperBound(0)] = new section();
-        arraySection[arraySection.GetUpperBound(0)].SectionPath = stringPathStorage + "\\" + intCheck;
+        arraySection[arraySection.GetUpperBound(0)].intStorage = intStorage;
+        arraySection[arraySection.GetUpperBound(0)].intSection = arraySection.GetUpperBound(0);
+        arraySection[arraySection.GetUpperBound(0)].sectionPath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "storage" + (char)92 + arraySection.GetUpperBound(0);
+        arraySection[arraySection.GetUpperBound(0)].SectionInitialize();
     }
 }

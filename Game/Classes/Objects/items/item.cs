@@ -6,10 +6,10 @@ using System;
 public class item
 {
     ioINI iniFilehandler = new ioINI();
-    string stringPath;
-    string stringFilename;
     string[,,] stringItem;
-
+    public string stringPath;
+    public string stringFilename;
+    
     //Item Information
     public string Name { get; set; }
     public string Brand { get; set; }
@@ -29,7 +29,7 @@ public class item
 
     public item(string path, string file)
     {
-        //Set current Ethnic Variable to memory
+        //Set current item Variable to memory
         stringPath = path;
         stringFilename = file;
         //Fill stringDetails with pathEthnic

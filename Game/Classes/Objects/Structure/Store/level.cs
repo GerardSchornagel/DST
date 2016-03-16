@@ -6,58 +6,46 @@ using System;
 public class level
 {
     public shelf[] arrayShelf;
-    string stringPathLevel;
-    int integerShelfCounter;
+    public int intStore;
+    public int intLevel;
+    int intShelf;
 
     /// <summary>
     /// Get/Adjust the path of the Level without Initialize() and Load().
     /// </summary>
-    public string LevelPath {
-        get { return stringPathLevel; }
-        set { stringPathLevel = value; }
-    }
+    public string levelPath { get; set; }
 
     /// <summary>
-    /// Resizes arrayShelf() and fill with New Shelf's.
+    /// Resizes arrayShelf() and fill with new Shelf's.
     /// </summary>
-    public void ShelfInitialize()
+    public void LevelInitialize()
     {
-        integerShelfCounter = 0;
-        arrayShelf = new shelf[System.IO.Directory.GetDirectories(stringPathLevel, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
-        foreach (string folder in System.IO.Directory.GetDirectories(stringPathLevel, "*", System.IO.SearchOption.TopDirectoryOnly)) {
-            arrayShelf[integerShelfCounter] = new shelf();
-            arrayShelf[integerShelfCounter].ShelfPath = folder + "\\";
-            integerShelfCounter += 1;
+        arrayShelf = new shelf[System.IO.Directory.GetDirectories(levelPath, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
+        intShelf = 0;
+        foreach (string folder in System.IO.Directory.GetDirectories(levelPath, "*", System.IO.SearchOption.TopDirectoryOnly)) {
+            arrayShelf[intShelf] = new shelf();
+            arrayShelf[intShelf].shelfPath = folder;
+            arrayShelf[intShelf].ShelfInitialize();
+            intShelf++;
         }
     }
     
     /// <summary>
-    /// Loads all Shelves with all Bin's with all Items.
-    /// </summary>
-    public void ShelfLoad()
-    {
-        foreach (shelf item in arrayShelf) {
-            item.ShelfInitialize();
-            item.ShelfLoad();
-        }
-    }
-    
-    /// <summary>
-    /// Adds a empty Level with 1 Shelf and 1 Bin containing 'Nothing'.
+    /// Adds a empty Level with 1 shelf.
     /// </summary>
     public void ShelfAdd()
     {
-        int intCheck = 0;
-        do {
-            if (System.IO.Directory.Exists(stringPathLevel + "\\" + intCheck)) {
-            } else {
-                break; // TODO: might not be correct. Was : Exit Do
-            }
-            intCheck += 1;
-        } while (true);
-        Array.Resize(ref arrayShelf, intCheck + 1);
-        System.IO.Directory.CreateDirectory(stringPathLevel + "\\" + intCheck);
+        if (arrayShelf.GetUpperBound(0) == -1) {
+            arrayShelf = new shelf[1];
+        } else {
+            Array.Resize(ref arrayShelf, arrayShelf.GetUpperBound(0) + 1);
+        }
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "store" + (char)92 + intStore + (char)92 + intLevel + (char)92 + arrayShelf.GetUpperBound(0));
         arrayShelf[arrayShelf.GetUpperBound(0)] = new shelf();
-        arrayShelf[arrayShelf.GetUpperBound(0)].ShelfPath = stringPathLevel + "\\" + intCheck;
+        arrayShelf[arrayShelf.GetUpperBound(0)].intStore = intStore;
+        arrayShelf[arrayShelf.GetUpperBound(0)].intLevel = intLevel;
+        arrayShelf[arrayShelf.GetUpperBound(0)].intShelf = arrayShelf.GetUpperBound(0);
+        arrayShelf[arrayShelf.GetUpperBound(0)].shelfPath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.currentPlayer.ProfileID + (char)92 + "store" + (char)92 + intStore + (char)92 + intLevel + (char)92 + arrayShelf.GetUpperBound(0);
+        arrayShelf[arrayShelf.GetUpperBound(0)].ShelfInitialize();
     }
 }

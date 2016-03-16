@@ -6,64 +6,47 @@ using System;
 public class shelf
 {
     public bin[] arrayBin;
-    string stringPathShelf;
-    int integerBinCounter;
+    public int intStore;
+    public int intLevel;
+    public int intShelf;
 
     /// <summary>
     /// Get/Adjust the path of the Shelf without Initialize() and Load().
     /// </summary>
-    public string ShelfPath {
-        get { return stringPathShelf; }
-        set { stringPathShelf = value; }
-    }
+    public string shelfPath { get; set; }
 
     /// <summary>
-    /// Resize arrayBin and fill with New Bin's.
+    /// Resize arrayBin and fill with new Bin's.
     /// </summary>
     public void ShelfInitialize()
     {
-        integerBinCounter = 0;
-        arrayBin = new bin[System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
-        foreach (string file in System.IO.Directory.GetFiles(stringPathShelf, "*.ini", System.IO.SearchOption.TopDirectoryOnly)) {
-            arrayBin[integerBinCounter] = new bin();
-            arrayBin[integerBinCounter].BinPath = file;
-            integerBinCounter += 1;
+        if (System.IO.Directory.GetDirectories(shelfPath, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) == 0) {
+            arrayBin = new bin[1];
+        } else {
+            arrayBin = new bin[System.IO.Directory.GetDirectories(shelfPath, "*", System.IO.SearchOption.TopDirectoryOnly).GetUpperBound(0) + 1];
+        }
+        for (int i = 0; i <= arrayBin.GetUpperBound(0); i++) {
+            arrayBin[i] = new bin();
+            arrayBin[i].Load(intStore, intLevel, intShelf, i);
         }
     }
     
     /// <summary>
-    /// Loads all Bin's with Item Info.
+    /// Makes a new Bin with the given Variable's.
     /// </summary>
-    public void ShelfLoad()
+    public void BinAdd(article articleBin, int Quantity, int Price)
     {
-        foreach (bin item in arrayBin) {
-            item.BinLoad(stringPathShelf);
+        if (arrayBin.GetUpperBound(0) == -1) {
+            arrayBin = new bin[1];
+        } else {
+            Array.Resize(ref arrayBin, arrayBin.GetUpperBound(0) + 1);
         }
-    }
-    
-    /// <summary>
-    /// Makes new Bin with the given template.
-    /// </summary>
-    /// <param name="ArticleInfo">New String() {LinkStorage, LinkSection, LinkArticle, Quantity}</param>
-    public void BinAdd(string[] ArticleInfo)
-    {
-        int intCheck = 0;
-        do {
-            if (System.IO.File.Exists(stringPathShelf + "\\" + intCheck + ".ini")) {
-            } else {
-                break; // TODO: might not be correct. Was : Exit Do
-            }
-            intCheck += 1;
-        } while (true);
-        Array.Resize(ref arrayBin, intCheck + 1);
         arrayBin[arrayBin.GetUpperBound(0)] = new bin();
-        arrayBin[arrayBin.GetUpperBound(0)].BinPath = stringPathShelf + "\\";
-        arrayBin[arrayBin.GetUpperBound(0)].BinFile = intCheck + ".ini";
-        arrayBin[arrayBin.GetUpperBound(0)].LinkStorage = Convert.ToInt32(ArticleInfo[0]);
-        arrayBin[arrayBin.GetUpperBound(0)].LinkSection = Convert.ToInt32(ArticleInfo[1]);
-        arrayBin[arrayBin.GetUpperBound(0)].LinkArticle = Convert.ToInt32(ArticleInfo[2]);
-        arrayBin[arrayBin.GetUpperBound(0)].BinQuantity = Convert.ToInt32(ArticleInfo[3]);
-
-        arrayBin[arrayBin.GetUpperBound(0)].BinSave(stringPathShelf);
+        arrayBin[arrayBin.GetUpperBound(0)].Load(intStore, intLevel, intShelf, arrayBin.GetUpperBound(0));
+        arrayBin[arrayBin.GetUpperBound(0)].Storage = articleBin._Storage;
+        arrayBin[arrayBin.GetUpperBound(0)].Section = articleBin._Section;
+        arrayBin[arrayBin.GetUpperBound(0)].Article = articleBin._Article;
+        arrayBin[arrayBin.GetUpperBound(0)].Quantity = Quantity;
+        arrayBin[arrayBin.GetUpperBound(0)].Price = Price;
     }
 }

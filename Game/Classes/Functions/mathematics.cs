@@ -33,9 +33,9 @@ public class mathematics
         integerBinSlot = randomGenerator.Next((shelfStore.arrayBin.GetUpperBound(0)) + 1);
         binStore = shelfStore.arrayBin[integerBinSlot];
         //Getting Bin data to local variable's.
-        stringBinName = binStore.ArticleName;
-        integerBinQuantity = binStore.BinQuantity;
-        integerBinPrice = binStore.ArticleLastSell;
+        stringBinName = binStore.Article_Data.Item.Name;
+        integerBinQuantity = binStore.Quantity;
+        integerBinPrice = binStore.Price;
         //First check for quantity in Bin
         //STASH
         if (integerBinQuantity > 0) {
@@ -48,11 +48,10 @@ public class mathematics
                     stringReturn = stringBinName + " sold to " + curCustomer.Name + " ($ " + curCustomer.MoneyRandom + ") from slot " + integerBinSlot + (char)10;
                     //Add Article Sell price to Balance
                     gamecache.currentCharacter.Balance += integerBinPrice;
-                    //Remove 1 item from selected Bin and Saves.
-                    gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].arrayBin[integerBinSlot].BinQuantity -= 1;
-                    gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].arrayBin[integerBinSlot].BinSave(gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].ShelfPath);
+                    //Remove 1 item from selected Bin.
+                    gamecache.currentCharacterStore.arrayLevel[integerLevelSlot].arrayShelf[integerShelfSlot].arrayBin[integerBinSlot].Quantity--;
                     //Add data to Statistics.
-                    gamecache.currentCharacter.ItemsSoldTotal += 1;
+                    gamecache.currentCharacter.ItemsSoldTotal++;
                     gamecache.currentCharacter.EarningsTotal += integerBinPrice;
                     //NOTINTRESTRED
                 } else {

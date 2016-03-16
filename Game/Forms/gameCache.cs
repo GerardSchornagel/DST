@@ -44,12 +44,11 @@ public partial class gamecache
     public static void ResumeGame()
     {
         MainMenu.Hide();
-        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\Storage\\0";
+        currentCharacterStorage.storagePath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID + (char)92 + "storage";
+        currentCharacterStorage.intStorage = 0;
         currentCharacterStorage.StorageInitialize();
-        currentCharacterStorage.StorageLoad();
-        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\MyFirstStore";
+        currentCharacterStore.storePath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID + (char)92 + "store";
         currentCharacterStore.StoreInitialize();
-        currentCharacterStore.StoreLoad();
         StartGame();
     }
 
@@ -57,15 +56,14 @@ public partial class gamecache
     {
         gamecache.MainSettings.LastUserID = gamecache.currentPlayer.ProfileID;
         InfoProfileForm.Hide();
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\Storage\\0");
-        currentCharacterStorage.StoragePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\Storage\\0";
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID + (char)92 + "storage");
+        currentCharacterStorage.storagePath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID + (char)92 + "storage";
+        currentCharacterStorage.intStorage = 0;
         currentCharacterStorage.StorageInitialize();
-        currentCharacterStorage.StorageLoad();
         currentCharacterStorage.SectionAdd();
-        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\MyFirstStore");
-        currentCharacterStore.StorePath = System.IO.Directory.GetCurrentDirectory() + "\\Save\\" + gamecache.MainSettings.LastUserID + "\\MyFirstStore";
+        System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID + (char)92 + "store");
+        currentCharacterStore.storePath = System.IO.Directory.GetCurrentDirectory() + (char)92 + "save" + (char)92 + gamecache.MainSettings.LastUserID + (char)92 + "store";
         currentCharacterStore.StoreInitialize();
-        currentCharacterStore.StoreLoad();
         currentCharacterStore.LevelAdd();
         StartGame();
     }

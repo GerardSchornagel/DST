@@ -6,9 +6,7 @@ using System;
 /// </summary>
 public partial class formItemManagement
 {
-    private int integerCounterSearch;
-    private int integerCounterArticle;
-    private System.Windows.Forms.Timer timerUpdate = new System.Windows.Forms.Timer();
+    System.Windows.Forms.Timer timerUpdate = new System.Windows.Forms.Timer();
 
     public formItemManagement()
     {
@@ -26,12 +24,12 @@ public partial class formItemManagement
         //groupboxStorage
         labelStorageTotalSection.Text = "\\ " + gamecache.currentCharacterStorage.arraySection.GetUpperBound(0);
         updownStorageSection.Maximum = gamecache.currentCharacterStorage.arraySection.GetUpperBound(0);
-        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle != null) {
+        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0) != -1) {
             labelStorageTotalArticle.Text = "\\ " + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
             updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
 
-            textboxStoragePhItem.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile);
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
+            textboxStoragePhItem.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Path + (char)92 + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].File);
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Item.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -42,14 +40,14 @@ public partial class formItemManagement
         updownStoreLevel.Maximum = gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0);
         labelStoreTotalShelf.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf.GetUpperBound(0);
         updownStoreShelf.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf.GetUpperBound(0);
-        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin != null) {
+        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0) != -1) {
             labelStoreTotalBin.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
             updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
 
-            textboxStorePhItem.Text = Convert.ToString(gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinPath + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinFile);
-            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleName;
-            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinQuantity));
-            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleLastSell;
+            textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._Path + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._File;
+            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Article_Data.Item.Name;
+            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Quantity));
+            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Price;
         }
     }
 
@@ -58,12 +56,12 @@ public partial class formItemManagement
         //groupboxStorage
         labelStorageTotalSection.Text = "\\ " + gamecache.currentCharacterStorage.arraySection.GetUpperBound(0);
         updownStorageSection.Maximum = gamecache.currentCharacterStorage.arraySection.GetUpperBound(0);
-        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle != null) {
+        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0) != -1) {
             labelStorageTotalArticle.Text = "\\ " + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
             updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
 
-            textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile;
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
+            textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Path + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].File;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Item.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -73,14 +71,14 @@ public partial class formItemManagement
         updownStoreLevel.Maximum = gamecache.currentCharacterStore.arrayLevel.GetUpperBound(0);
         labelStoreTotalShelf.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf.GetUpperBound(0);
         updownStoreShelf.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf.GetUpperBound(0);
-        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin != null) {
+        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0) != -1) {
             labelStoreTotalBin.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
             updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
 
-            textboxStorePhItem.Text = Convert.ToString(gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinPath + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinFile);
-            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleName;
-            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinQuantity));
-            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleLastSell;
+            textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._Path + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._File;
+            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Article_Data.Item.Name;
+            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Quantity));
+            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Price;
         }
     }
 
@@ -88,59 +86,58 @@ public partial class formItemManagement
     {
         labelStoreTotalShelf.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf.GetUpperBound(0);
         updownStoreShelf.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf.GetUpperBound(0);
-        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin != null) {
+        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0) != -1) {
             labelStoreTotalBin.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
             updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
 
-            textboxStorePhItem.Text = Convert.ToString(gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinPath + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinFile);
-            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleName;
-            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinQuantity));
-            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleLastSell;
+            textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._Path + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._File;
+            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Article_Data.Item.Name;
+            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Quantity));
+            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Price;
         }
     }
 
     public void updownStoreShelf_ValueChanged(object sender, EventArgs e)
     {
-        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin != null) {
+        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0) != -1) {
             labelStoreTotalBin.Text = "\\ " + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
             updownStoreBin.Maximum = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0);
 
-            textboxStorePhItem.Text = Convert.ToString(gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinPath + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinFile);
-            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleName;
-            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinQuantity));
-            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleLastSell;
+            textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._Path + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._File;
+            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Article_Data.Item.Name;
+            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Quantity));
+            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Price;
         }
     }
 
     public void updownStoreBin_ValueChanged(object sender, EventArgs e)
     {
-        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin != null) {
-            textboxStorePhItem.Text = Convert.ToString(gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinPath + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinFile);
-            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleName;
-            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].BinQuantity));
-            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].ArticleLastSell;
+        if (gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin.GetUpperBound(0) != -1) {
+            textboxStorePhItem.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._Path + gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)]._File;
+            textboxStoreName.Text = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Article_Data.Item.Name;
+            textboxStoreQuantity.Text = Convert.ToString((gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Quantity));
+            updownStorePrice.Value = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Price;
         }
     }
 
     public void updownStorePrice_LostFocus(object sender, EventArgs e)
     {
         updownStorePrice.Value = Convert.ToInt32(updownStorePrice.Value);
-        int integerSection = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].LinkSection;
-        int integerArticle = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].LinkArticle;
+        int integerSection = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Section;
+        int integerArticle = gamecache.currentCharacterStore.arrayLevel[Convert.ToInt32(updownStoreLevel.Value)].arrayShelf[Convert.ToInt32(updownStoreShelf.Value)].arrayBin[Convert.ToInt32(updownStoreBin.Value)].Article;
         gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].LastSell = Convert.ToInt32(updownStorePrice.Value);
-        gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerSection].SectionPath);
 
         formItemManagement_Load(null, null);
     }
 
     public void updownStorageSection_ValueChanged(object sender, EventArgs e)
     {
-        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle != null) {
+        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0) != -1) {
             labelStorageTotalArticle.Text = "\\ " + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
             updownStorageArticle.Maximum = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0);
 
-            textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile;
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
+            textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Path + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].File;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Item.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -149,9 +146,9 @@ public partial class formItemManagement
 
     public void updownStorageArticle_ValueChanged(object sender, EventArgs e)
     {
-        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle != null) {
-            textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticlePath + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ArticleFile;
-            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].ItemLink.Name;
+        if (gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle.GetUpperBound(0) != -1) {
+            textboxStoragePhItem.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Path + gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].File;
+            textboxStorageName.Text = gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Item.Name;
             textboxStorageQuantity.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].Quantity);
             textboxStorageLastSell.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastSell);
             textboxStorageLastBuy.Text = Convert.ToString(gamecache.currentCharacterStorage.arraySection[Convert.ToInt32(updownStorageSection.Value)].arrayArticle[Convert.ToInt32(updownStorageArticle.Value)].LastBuy);
@@ -168,38 +165,27 @@ public partial class formItemManagement
         int integerStorageArticle = Convert.ToInt32(updownStorageArticle.Value);
 
         if (textboxStoreName.Text == textboxStorageName.Text) {
-            gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinQuantity += gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity;
+            gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Quantity += gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity;
             gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity = 0;
 
-            gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerStorageSection].SectionPath);
-            gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinSave(gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].ShelfPath);
         } else {
             if (Interaction.MsgBox("Replaces current item, else add new Bin to current Shelf." + (char)10 + "Use No for the first time when a player is new.", Microsoft.VisualBasic.MsgBoxStyle.YesNo, "Replace?").ToString() == "6") {
-                int integerSection = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkSection;
-                int integerArticle = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkArticle;
-                gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].Quantity += gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinQuantity;
-                gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerSection].SectionPath);
+                int integerSection = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Section;
+                int integerArticle = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Article;
+                gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].Quantity += gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Quantity;
 
-                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkStorage = 0;
-                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkSection = integerStorageSection;
-                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkArticle = integerStorageArticle;
-                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinQuantity = gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity;
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Storage = 0;
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Section = integerStorageSection;
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Article = integerStorageArticle;
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Quantity = gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity;
                 gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity = 0;
-
-                gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerStorageSection].SectionPath);
-                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinSave(gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].ShelfPath);
 
             } else {
-                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].BinAdd(new string[] {
-                                                                                                                       "0",
-                                                                                                                       Convert.ToString(integerStorageSection),
-                                                                                                                       Convert.ToString(integerStorageArticle),
-                                                                                                                       textboxStorageQuantity.Text
-                                                                                                                   });
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].BinAdd(new article(), Convert.ToInt32(textboxStorageQuantity.Text), 0);
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin.GetUpperBound(0)].Storage = 0;
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin.GetUpperBound(0)].Section = integerStorageSection;
+                gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin.GetUpperBound(0)].Article = integerStorageArticle;
                 gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].Quantity = 0;
-
-                gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerStorageSection].SectionPath);
-
             }
         }
         timerUpdate.Enabled = true;
@@ -214,14 +200,10 @@ public partial class formItemManagement
         int integerStorageSection = Convert.ToInt32(updownStorageSection.Value);
         int integerStorageArticle = Convert.ToInt32(updownStorageArticle.Value);
 
-        int integerSection = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkSection;
-        int integerArticle = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].LinkArticle;
-        gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].Quantity += gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinQuantity;
-        gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinQuantity = 0;
-
-        gamecache.currentCharacterStorage.arraySection[integerStorageSection].arrayArticle[integerStorageArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerStorageSection].SectionPath);
-        gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].BinSave(gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].ShelfPath);
-
+        int integerSection = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Section;
+        int integerArticle = gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Article;
+        gamecache.currentCharacterStorage.arraySection[integerSection].arrayArticle[integerArticle].Quantity += gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Quantity;
+        gamecache.currentCharacterStore.arrayLevel[integerStoreLevel].arrayShelf[integerStoreShelf].arrayBin[integerStoreBin].Quantity = 0;
         timerUpdate_Tick(null, null);
     }
 

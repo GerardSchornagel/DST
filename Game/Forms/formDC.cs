@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using Microsoft.VisualBasic;
 using System;
 
@@ -134,10 +135,9 @@ public partial class formDC
                 if (gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle == null)
                     break; // TODO: might not be correct. Was : Exit Do
                 foreach (article Article in gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle) {
-                    if (Article.ItemLink.Name == labelItemItemNameDisplay.Text) {
+                    if (Article.Item.Name == labelItemItemNameDisplay.Text) {
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].Quantity += Convert.ToInt32(stringItemOrder[2]);
                         gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].LastBuy = Convert.ToInt32(stringItemOrder[4]);
-                        gamecache.currentCharacterStorage.arraySection[integerCounterSearch].arrayArticle[integerCounterArticle].ArticleSave(gamecache.currentCharacterStorage.arraySection[integerCounterSearch].SectionPath);
                         return;
                     }
                     integerCounterArticle += 1;
@@ -146,7 +146,7 @@ public partial class formDC
                 integerCounterSearch += 1;
             } while (!(integerCounterSearch >= gamecache.currentCharacterStorage.arraySection.GetUpperBound(0)));
 
-            gamecache.currentCharacterStorage.arraySection[0].ArticleAdd(stringItemOrder);
+            gamecache.currentCharacterStorage.arraySection[0].ArticleAdd(new item(stringItemOrder[0], stringItemOrder[1]), Convert.ToInt32(textboxBuyAmount.Text), Convert.ToInt32(textboxBuyPrice.Text));
         }
     }
 
